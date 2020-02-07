@@ -31,7 +31,31 @@ class Beer implements \JsonSerializable {
 	private $beerAbv;
 	/**
 	 * brewery id for this beer; this is the foreign key
-	 * @var Binary
+	 * @var Binary $beerBreweryId
 	 */
+	private $beerBreweryId;
+	/**
+	 * description for the beer
+	 * @var String $beerDescription
+	 */
+	private $beerDescription;
+	/**
+	 * name of the beer
+	 * @var String $beerName
+	 */
+	private $beerName;
+	/**
+	 * type of the beer
+	 * @var String $beerType
+	 */
+	private $beerType;
+
+	/**
+	 * constructor method for this beer
+	 *
+	 * @param String|Uuid $newBeerId id of this beer
+	 * @param Binary|string
+	 */
+
 
 }
