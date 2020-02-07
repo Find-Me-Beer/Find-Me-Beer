@@ -152,5 +152,35 @@ class Beer implements \JsonSerializable {
 		$this->beerBreweryId = $uuid;
 	}
 
+	/**
+	 * accessor method for beer description
+	 * @return String value of beer description
+	 */
+	public function getBeerDescription(): String {
+		return ($this->beerDescription);
+	}
+	/**
+	 * mutator method for beer description
+	 *
+	 * @param String $newBeerDescription new beer description
+	 * @throws \InvalidArgumentException if $newBeerDescription is not a string or insecure
+	 * @throws \RangeException if $newBreweryDescription is not under 1000 characters
+	 * @throws \TypeError if $newBreweryDescription is not a string
+	 */
+	public function setBeerDescription($newBeerDescription): void {
+		//Sanitize and verify $newBeerDescription is secure
+		$newBeerDescription = trim($newBeerDescription);
+		$newBeerDescription = filter_var($newBeerDescription, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newBeerDescription) === true) {
+			throw(new \InvalidArgumentException("Beer description is empty"));
+		}
 
+		//verify $newBeerDescription will fit into the database
+		if(strlen($newBeerDescription) > 1000) {
+			throw(new\RangeException("Beer description is too long"));
+		}
+
+		//Store new beer description
+		$this->beerDescription = $newBeerDescription;
+	}
 }
