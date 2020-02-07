@@ -170,6 +170,9 @@ class Beer implements \JsonSerializable {
 		//Sanitize and verify $newBeerDescription is secure
 		$newBeerDescription = trim($newBeerDescription);
 		$newBeerDescription = filter_var($newBeerDescription, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if($newBeerDescription === null) {
+			$this->beerDescription = null;
+		}
 
 		//verify $newBeerDescription will fit into the database
 		if(strlen($newBeerDescription) > 1000) {
@@ -243,6 +246,25 @@ class Beer implements \JsonSerializable {
 			//store new beer type
 			$this->beerType = $newBeerType;
 		}
+
+		/**
+		 * inserts this Beer into mySQL
+		 *
+		 * @param \PDO $pdo PDO Connection Object
+		 * @throws \PDOException when mySQL related error occurs
+		 * @throws \TypeError if $pdo is not a PDO Connection Object
+		 */
+		public function insert(\PDO $pdo) : void {
+
+			//Create query
+			$query = "INSERT INTO beer(beerId, beerAbv, beerBreweryId, beerDescription,  beerName, beerType) VALUES(:beerId, :beerAbv, :beerBreweryId, :beerDescription, :beerName, :beerType)";
+			$statement = $pdo->prepare($query);
+
+			//bind variables to placeholders
+			$parameters = ["beerId" => $this->beerId->getBytes(), "beerAbv" => $this->beerAbv->getBytes(), "beerBreweryId" => $this->beerBreweryId->getBytes(), "beerDescription" => $this->beerDescription->getBytes(), "beerName" => $this->beerName->getBytes(), "beerType" => $this->beerType->getBytes(),];
+		}
+
+
 
 
 }
