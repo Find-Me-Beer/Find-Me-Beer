@@ -1,13 +1,19 @@
-ALTER	DATABASE beer CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+# ALTER	DATABASE beer CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-DROP TABLE IF EXISTS Tag;
-DROP TABLE IF EXISTS BeerTag;
-DROP TABLE IF EXISTS Favorite;
-DROP TABLE IF EXISTS Brewery;
-DROP TABLE IF EXISTS Beer;
-DROP TABLE IF EXISTS "User";
+DROP TABLE IF EXISTS beerTag;
+DROP TABLE IF EXISTS favorite;
+DROP TABLE IF EXISTS beer;
+DROP TABLE IF EXISTS brewery;
+DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS tag;
 
-CREATE TABLE "User" (
+CREATE TABLE tag (
+  tagId Binary(16),
+  tagContent Varchar(32),
+  PRIMARY KEY (tagId)
+);
+
+CREATE TABLE `user` (
   userId Binary(16) NOT NULL,
   userAuthenticationToken Varchar(255) NOT NULL,
   userAvatarUrl Varchar(128),
@@ -22,50 +28,53 @@ CREATE TABLE "User" (
   PRIMARY KEY (userId)
 );
 
-CREATE TABLE Beer (
-  beerId Binary(16) NOT NULL,
-  beerAbv Decimal(8,6) NOT NULL,
-  beerBreweryId Binary(16) NOT NULL,
-  beerDescription Varchar(1000),
-  beerName Varchar(32) NOT NULL,
-  beerType Varchar(32) NOT NULL,
-  PRIMARY KEY (beerId),
-  FOREIGN KEy (beerBreweryId) REFERENCES Brewery(breweryId),
-);
 
-CREATE TABLE Brewery (
+
+CREATE TABLE brewery (
   breweryId Binary(16) NOT NULL,
   breweryAddress Varchar(512) NOT NULL,
   breweryAvatarUrl Varchar(128) NOT NULL,
   breweryDescription Varchar(1000),
   breweryEmail Varchar(128) NOT NULL,
   breweryName Varchar(32) NOT NULL,
-  breweryLat Decimal NOT NULL,
-  breweryLong Decimal NOT NULL,
-  breweryPhone Varchar(32),
+  breweryLat Decimal(9,6) NOT NULL,
+  breweryLong Decimal(9,6) NOT NULL,
+  breweryPhone Varchar(64),
   breweryUrl Varchar(2083) NOT NULL,
   PRIMARY KEY (breweryId)
 );
+CREATE TABLE beer (
+	beerId Binary(16) NOT NULL,
+	beerBreweryId Binary(16) NOT NULL,
+	beerAbv Decimal(5,3) NOT NULL,
+	beerDescription Varchar(1000),
+	beerName Varchar(64) NOT NULL,
+	beerType Varchar(64) NOT NULL,
+	INDEX(beerBreweryId),
+	FOREIGN KEY (beerBreweryId) REFERENCES brewery(breweryId),
+	PRIMARY KEY (beerId)
+);
 
-CREATE TABLE Favorite (
+CREATE TABLE favorite (
   favoriteBeerId Binary(16),
   favoriteUserId Binary(16),
-  FOREIGN KEY (favoriteBeerId) REFERENCES Beer(beerId),
-  FOREIGN KEY (favoriteUserId) REFERENCES "User"(userId),
+  INDEX(favoriteBeerId),
+  INDEX(favoriteUserId),
+  FOREIGN KEY (favoriteBeerId) REFERENCES beer(beerId),
+  FOREIGN KEY (favoriteUserId) REFERENCES `user`(userId),
+  PRIMARY KEY (favoriteBeerId, favoriteUserId)
 );
 
-CREATE TABLE BeerTag (
+CREATE TABLE beerTag (
   beerTagBeerId Binary(16) NOT NULL,
   beerTagTagId Binary(16) NOT NULL,
-  FOREIGN KEY (beerTagBeerId) REFERENCES Beer(beerId),
-  FOREIGN KEY (beerTagTagId) REFERENCES Tag(tagId),
+  INDEX(beerTagBeerId),
+  INDEX(beerTagTagId),
+  FOREIGN KEY (beerTagBeerId) REFERENCES beer(beerId),
+  FOREIGN KEY (beerTagTagId) REFERENCES tag(tagId),
+  PRIMARY KEY (beerTagBeerId, beerTagTagId)
 );
 
-CREATE TABLE Tag (
-  tagId Binary(16),
-  tagContent Varchar(32),
-  PRIMARY KEY (tagId)
-);
 
 
 
