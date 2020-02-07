@@ -33,16 +33,16 @@ class Favorite implements \JsonSerializable {
 	 **/
 	private $FavoriteBeerId;
 	/**
-	 * date and time this Tweet was sent, in a PHP DateTime object
-	 * @var \DateTime $tweetDate
+	 * date and time this beer was favorited, in a PHP DateTime object
+	 * @var \DateTime $newDate
 	 **/
-	private $tweetDate;
+	private $newDate;
 
 	/**
 	 * constructor for this Tweet
 	 *
-	 * @param string|Uuid $newTweetId id of this Tweet or null if a new Tweet
-	 * @param string|Uuid $newTweetProfileId id of the Profile that sent this Tweet
+	 * @param string|Uuid $newTweetId id of Beer or null if a new beer
+	 * @param string|Uuid $newFavoriteBeerId id of the Profile that sent this Tweet
 	 * @param string $newTweetContent string containing actual tweet data
 	 * @param \DateTime|string|null $newTweetDate date and time Tweet was sent or null if set to current date and time
 	 * @throws \InvalidArgumentException if data types are not valid
@@ -51,39 +51,39 @@ class Favorite implements \JsonSerializable {
 	 * @throws \Exception if some other exception occurs
 	 * @Documentation https://php.net/manual/en/language.oop5.decon.php
 	 **/
-	public function __construct($newTweetId, $newTweetProfileId, string $newTweetContent, $newTweetDate = null) {
+	public function __construct($newFavoriteId, $newFavoriteId, string $newTweetContent, $newTweetDate = null) {
 		try {
-			$this->setTweetId($newTweetId);
-			$this->setTweetProfileId($newTweetProfileId);
-			$this->setTweetContent($newTweetContent);
-			$this->setTweetDate($newTweetDate);
+			$this->setFavoriteId($newFavoriteId);
+			$this->setFavoriteUserId($newFavoriteUserId);
+			$this->setFavoriteBeerId($newTweetContent);
+			$this->setDate($newDate);
 		}
 			//determine what exception type was thrown
-		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+		catch(\Exception $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 	}
 
 	/**
-	 * accessor method for tweet id
+	 * accessor method for beer id
 	 *
-	 * @return Uuid value of tweet id
+	 * @return Uuid value of beer id
 	 **/
-	public function getTweetId() : Uuid {
-		return($this->tweetId);
+	public function getFavoriteId() : Uuid {
+		return($this->FavoriteId);
 	}
 
 	/**
-	 * mutator method for tweet id
+	 * mutator method for beer id
 	 *
-	 * @param Uuid|string $newTweetId new value of tweet id
+	 * @param Uuid|string $newFavoriteId new value of tweet id
 	 * @throws \RangeException if $newTweetId is not positive
 	 * @throws \TypeError if $newTweetId is not a uuid or string
 	 **/
-	public function setTweetId( $newTweetId) : void {
+	public function setFavoriteId( $newFavoriteId) : void {
 		try {
-			$uuid = self::validateUuid($newTweetId);
+			$uuid = self::validateUuid($newFavoriteId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
@@ -160,14 +160,14 @@ class Favorite implements \JsonSerializable {
 	 *
 	 * @return \DateTime value of tweet date
 	 **/
-	public function getTweetDate() : \DateTime {
-		return($this->tweetDate);
+	public function getNewDate() : \DateTime {
+		return($this->newDate);
 	}
 
 	/**
 	 * mutator method for tweet date
 	 *
-	 * @param \DateTime|string|null $newTweetDate tweet date as a DateTime object or string (or null to load the current time)
+	 * @param \DateTime|string|null $newDate tweet date as a DateTime object or string (or null to load the current time)
 	 * @throws \InvalidArgumentException if $newTweetDate is not a valid object or string
 	 * @throws \RangeException if $newTweetDate is a date that does not exist
 	 **/
