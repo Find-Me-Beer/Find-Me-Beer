@@ -31,7 +31,7 @@ class Beer implements \JsonSerializable {
 	private $beerAbv;
 	/**
 	 * brewery id for this beer; this is the foreign key
-	 * @var Binary $beerBreweryId
+	 * @var Uuid $beerBreweryId
 	 */
 	private $beerBreweryId;
 	/**
@@ -78,9 +78,10 @@ class Beer implements \JsonSerializable {
 	 * accessor method for beer id
 	 * @return Uuid value of beer id
 	 */
-	public function getBeerId() {
-		return($this->beerId);
+	public function getBeerId(): Uuid {
+		return ($this->beerId);
 	}
+
 	/**
 	 * mutator method for beer id
 	 *
@@ -88,7 +89,7 @@ class Beer implements \JsonSerializable {
 	 * @throws \RangeException if $newBeerId is not positive
 	 * @throws \TypeError if $newBeerId is not an integer
 	 */
-	public function setBeerId($newBeerId) {
+	public function setBeerId($newBeerId): void {
 		try {
 			$uuid = self::validateUuid($newBeerId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
@@ -97,6 +98,58 @@ class Beer implements \JsonSerializable {
 		}
 
 		$this->beerId = $uuid;
+	}
+
+	/**
+	 * accessor method for beer abv
+	 * @return Decimal abv for this beer
+	 */
+	public function getBeerAbv(): Decimal {
+		return ($this->beerAbv);
+	}
+
+	/**
+	 * mutator method for beer abv
+	 *
+	 * @param Decimal $newBeerAbv new abv for beer
+	 * @throws \RangeException if abv is out of appropriate range
+	 */
+	public function setBeerAbv(Decimal $newBeerAbv): void {
+		//Verify the abv is between 0 - 100% ABV
+		if($newBeerAbv < 0 || $newBeerAbv > 100) {
+			throw (new\RangeException("beer abv is out of appropriate range"));
+		}
+
+		//store new beer abv
+		$this->beerAbv = $newBeerAbv;
+
+	}
+
+	/**
+	 * accessor method for beer brewery id
+	 * @return Uuid value of beer brewery id
+	 */
+	public function getBeerBreweryId(): Uuid {
+		return ($this->beerBreweryId);
+	}
+	/**
+	 * mutator method for beer brewery id
+	 *
+	 * @param Uuid|String $newBeerBreweryId new beer brewery id
+	 * @throws \RangeException if $newBreweryId is not positive
+	 * @throws \TypeError if $newBreweryId is not a uuid or string
+	 */
+	public function setBeerBreweryId($newBeerBreweryId): void {
+		//Verify $newBeerBreweryId is a valid Uuid
+		try {
+			$uuid = self::validateUuid($newBeerBreweryId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+
+		//Store new beer brewery id
+		$this->beerBreweryId = $uuid;
 	}
 
 
