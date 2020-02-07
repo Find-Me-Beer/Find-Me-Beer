@@ -210,7 +210,38 @@ class Beer implements \JsonSerializable {
 
 			//store new beer name
 			$this->beerName = $newBeerName;
+		}
 
+		/**
+		 * accessor method for beer type
+		 * @return String value of beer type
+		 */
+		public function getBeerType() : String {
+			return($this->beerName);
+		}
+		/**
+		 * mutator method for beer type
+		 *
+		 * @param String $newBeerType new type of the beer
+		 * @throws \InvalidArgumentException if $newBeerType is not a string or insecure
+		 * @throws \RangeException if $newBeerName is > 64 characters
+		 * @throws \TypeError if $newBeerType is not a string
+		 */
+		public function setBeerType(String $newBeerType) : void {
+			//Sanitize and verify $newBeerType is secure
+			$newBeerType = trim($newBeerType);
+			$newBeerType = filter_var($newBeerType, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+			if(empty($newBeerType) === true) {
+				throw(new \InvalidArgumentException("Beer type is empty or insecure"));
+			}
+
+			//verify $newBeerType will fit into the database
+			if(strlen($newBeerType) > 64) {
+				throw (new\RangeException("Beer type is too long"));
+			}
+
+			//store new beer type
+			$this->beerType = $newBeerType;
 		}
 
 
