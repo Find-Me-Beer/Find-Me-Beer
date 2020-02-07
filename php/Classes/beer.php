@@ -163,7 +163,6 @@ class Beer implements \JsonSerializable {
 	 * mutator method for beer description
 	 *
 	 * @param String $newBeerDescription new beer description
-	 * @throws \InvalidArgumentException if $newBeerDescription is not a string or insecure
 	 * @throws \RangeException if $newBreweryDescription is not under 1000 characters
 	 * @throws \TypeError if $newBreweryDescription is not a string
 	 */
@@ -171,9 +170,6 @@ class Beer implements \JsonSerializable {
 		//Sanitize and verify $newBeerDescription is secure
 		$newBeerDescription = trim($newBeerDescription);
 		$newBeerDescription = filter_var($newBeerDescription, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($newBeerDescription) === true) {
-			throw(new \InvalidArgumentException("Beer description is empty"));
-		}
 
 		//verify $newBeerDescription will fit into the database
 		if(strlen($newBeerDescription) > 1000) {
@@ -183,4 +179,39 @@ class Beer implements \JsonSerializable {
 		//Store new beer description
 		$this->beerDescription = $newBeerDescription;
 	}
+
+	/**
+	 * accessor method for beer name
+	 * @return String value of beer name
+	 */
+	public function getBeerName() : String {
+		return($this->beerName);
+	}
+	/**
+	 * mutator method for beer name
+	 *
+	 * @param String $newBeerName new name of beer
+	 * @throws \InvalidArgumentException if $newBeerName is not a string or insecure
+	 * @throws \RangeException if $newBeerName is > 64 characters
+	 * @throws \TypeError if $newBeerName is not a string
+	 */
+		public function setBeerName(String $newBeerName) : void {
+			//Sanitize and verify $newBeerName is secure
+			$newBeerName = trim($newBeerName);
+			$newBeerName = filter_var($newBeerName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+			if(empty($newBeerName) === true) {
+				throw(new \InvalidArgumentException("Beer name is empty or insecure"));
+			}
+
+			//Verify beer name will fit in the database
+			if(strlen($newBeerName) > 64) {
+				throw (new\RangeException("beer name is too long"));
+			}
+
+			//store new beer name
+			$this->beerName = $newBeerName;
+
+		}
+
+
 }
