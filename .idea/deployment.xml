@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="Find-Me-Beer" exclude=".svn;.cvs;.idea;.DS_Store;.git;.hg;node_modules;dist;*.js.map;vendor">
+    <serverData>
+      <paths name="Find-Me-Beer">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="b630ea72-7bf3-48ce-8747-c38e66a26192" name="Find-Me-Beer" url="https://bootcamp-coders.cnm.edu/~variasantonov/Find-Me-Beer">
+        <fileTransfer host="bootcamp-coders.cnm.edu" port="22" rootFolder="/home/variasantonov/public_html/Find-Me-Beer" accessType="SFTP" authAgent="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
