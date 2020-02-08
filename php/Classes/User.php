@@ -419,24 +419,24 @@ class User implements \JsonSerializable {
 		$query = "UPDATE user SET userId = :userId, userActivationToken = :userActivationToken, userAvatarUrl = :userAvatarUrl, userDOB = :userDOB, userEmail = :userEmail, userFirstName = :userFirstName, userHash = :userHash, userLastName = :userLastName, userUsername = :userUsername WHERE userId = :userId";
 		$statement = $pdo->prepare($query);
 
-
-		$parameters = [
-			"profileAbout" => $this->profileAbout,
-			"profileActivationToken" => $this->profileActivationToken,
-			"profileAddressLine1" => $this->profileAddressLine1,
-			"profileAddressLine2" => $this->profileAddressLine2,
-			"profileCity" => $this->profileCity,
-			"profileEmail" => $this->profileEmail,
-			"profileHash" => $this->profileHash,
-			"profileImage" => $this->profileImage,
-			"profileName" => $this->profileName,
-			"profileState" => $this->profileState,
-			"profileUsername" => $this->profileUsername,
-			"profileUserType" => $this->profileUserType,
-			"profileZip" => $this->profileZip,
-			"profileId" => $this->profileId->getBytes()
-		];
-		$statement->execute($parameters);
+		//Figure this part out
+//		$parameters = [
+//			"profileAbout" => $this->profileAbout,
+//			"profileActivationToken" => $this->profileActivationToken,
+//			"profileAddressLine1" => $this->profileAddressLine1,
+//			"profileAddressLine2" => $this->profileAddressLine2,
+//			"profileCity" => $this->profileCity,
+//			"profileEmail" => $this->profileEmail,
+//			"profileHash" => $this->profileHash,
+//			"profileImage" => $this->profileImage,
+//			"profileName" => $this->profileName,
+//			"profileState" => $this->profileState,
+//			"profileUsername" => $this->profileUsername,
+//			"profileUserType" => $this->profileUserType,
+//			"profileZip" => $this->profileZip,
+//			"profileId" => $this->profileId->getBytes()
+//		];
+//		$statement->execute($parameters);
 	}
 	/**
 	 * delete UserID from mySQL
