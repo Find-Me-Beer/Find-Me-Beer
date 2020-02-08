@@ -16,10 +16,10 @@ class User implements \JsonSerializable {
 	//userAvatarUrl Varchar(128),
 	//userDOB Date NOT NULL,
 	//userEmail Varchar(128) NOT NULL,
-	//userFirstName Varchar(32) NOT NULL,
+	//userFirstName Varchar(64) NOT NULL,
 	//userHash Varchar(96) NOT NULL,
-	//userLastName Varchar(32) NOT NULL,
-	//userUsername Varchar(32) NOT NULL,
+	//userLastName Varchar(64) NOT NULL,
+	//userUsername Varchar(64) NOT NULL,
 	//UNIQUE (userEmail),
 	//UNIQUE (userUsername),
 	//PRIMARY KEY (userId)
@@ -219,8 +219,167 @@ class User implements \JsonSerializable {
 		}
 
 		$newUserDOB = self::validateDate($newUserDOB);
+			//with dateDiff()
+			$dateOfBirth = new\DateTime();
+			$dateOfBirth->newUserDOB;
+			$today = date("Y-m-d");
+			$diff = date_diff(date_create($dateOfBirth), date_create($today));
+			//echo 'Age is ' .$diff->format('%y');
+			if($diff<21){
+				throw (new \OutOfRangeException("You Must Be 21 Years Old to Use This App"));
+			}
+
+			$this->userDOB = $newUserDOB;
+
+		}
+
+	/**
+	 * accessor method for userEmail
+	 * @return String value of userEmail
+	 **/
+	public function getUserEmail(): string {
+		return $this->userEmail;
+	}
+	/**
+	 * mutator method for User email
+	 * @param string $newUserEmail
+	 * @throws \InvalidArgumentException if $newUserEmail is not a string or insecure
+	 * @throws \RangeException if $newUserEmail is > 128 characters
+	 * @throws \TypeError if $newUserEmail is not a string
+	 **/
+	public function setUserEmail(string $newUserEmail): void {
+		// verify the profile email content is secure
+		$newUserEmail = trim($newUserEmail);
+		$newUserEmail = filter_var($newUserEmail, FILTER_SANITIZE_EMAIL, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newUserEmail) === true) {
+			throw(new \InvalidArgumentException("profile email content is empty or insecure") );
+		}
+
+		// verify the profile email content will fit in the database
+		if(strlen($newUserEmail) > 128) {
+			throw(new \RangeException("profile email content too large"));
+		}
+
+		// store the profile email content
+		$this->UserEmail = $newUserEmail;
+	}
+	// userFirst Name Accessors/ Mutators
+
+	public function getUserFirstName(): string {
+		return $this->userFirstName;
+
 	}
 
+	/**
+	 * mutator method for User First Name
+	 * @param string $newUserFirstName
+	 * @throws \RangeException if $newUserFirstName is > 64 characters
+	 * @throws \TypeError if $newUserFirstName is not a string
+	 **/
 
+	public function setUserFirstName(string $newUserFirstName):void {
+		//verify new user FirstName is secure
+		$newUserFirstName = trim($newUserFirstName);
+		$newUserFirstName = FILTER_VAR($newUserFirstName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		//verify size of string is less than 64 characters
+		if(strlen($newUserFirstName)>64){
+				throw(new \RangeException("First Name is too long"));
+		}
+		// store First Name
+		$this->userFirstName = $newUserFirstName;
+	}
+
+	//User Hash
+
+	/**
+	 * accessor method for User Hash
+	 *
+	 * @return string value of hash
+	 */
+	public function getUserHash() : string {
+		return $this->userHash;
+	}
+
+	/**
+	 * mutator method for user hash password
+	 *
+	 * @param string $newUserHash
+	 * @throws \InvalidArgumentException if the hash is not secure
+	 * @throws \RangeException if the hash is not 128 characters
+	 * @throws \TypeError if profile hash is not a string
+	 */
+	public function setUserHash(string $newUserHash): void {
+		//enforce that hash is properly formatted
+		$newUserHash = trim($newUserHash);
+		if(empty($newUserHash) === true) {
+			throw(new \InvalidArgumentException("User password hash empty or insecure"));
+		}
+		//enforce the hash is an Argon hash
+		$userHashInfo = password_get_info($newUserHash);
+		if($userHashInfo["algoName"] !== "argon2i") {
+			throw(new \InvalidArgumentException("User hash is not a valid hash"));
+		}
+		//enforce that the hash is exactly 96 characters.
+		if(strlen($newUserHash) !== 96) {
+			throw(new\RangeException("User hash must be 96 characters"));
+		}
+		//store the hash
+		$this->userHash = $newUserHash;
+	}
+	//Getter user Last Name
+	public function getUserLastName(): string {
+		return $this->userLastName;
+
+	}
+
+	/**
+	 * mutator method for User First Name
+	 * @param string $newUserlastName
+	 * @throws \RangeException if $newUserFirstName is > 64 characters
+	 * @throws \TypeError if $newUserFirstName is not a string
+	 **/
+
+	public function setUserLastName(string $newUserLastName):void {
+		//verify new user Last Name is secure
+		$newUserLastName = trim($newUserLastName);
+		$newUserLastName = FILTER_VAR($newUserLastName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		//verify size of string is less than 64 characters
+		if(strlen($newUserLastName)>64){
+			throw(new \RangeException("First Name is too long"));
+		}
+		// store First Name
+		$this->userLastName = $newUserLastName;
+	}
+ // UserUsername
+	//Accessor for UserUsername
+	//returns string value of Username
+
+	public function getUserUsername(): string {
+		return $this-> userUsername;
+	}
+
+	/**
+	 * mutator method for profile username
+	 * @param string $newProfileUsername
+	 * @throws \InvalidArgumentException if $newProfileUsername is not a string or insecure
+	 * @throws \RangeException if $newProfileUsername is > 48 characters
+	 * @throws \TypeError if $newProfileUsername is not a string
+	 **/
+	public function setUserUsername(string $newUserUsername): void {
+		// verify the User username content is secure
+		$newUserUsername = trim($newUserUsername);
+		$newUserUsername = filter_var($newUserUsername, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newUserUsername) === true) {
+			throw(new \InvalidArgumentException("User username content is empty or insecure"));
+		}
+
+		// verify the User username content will fit in the database
+		if(strlen($newUserUsername) > 64 {
+			throw(new \RangeException("User username content too large"));
+		}
+
+		// store the User username content
+		$this->userUsername = $newUserUsername;
+	}
 
 }
