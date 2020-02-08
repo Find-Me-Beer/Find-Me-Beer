@@ -396,17 +396,7 @@ class User implements \JsonSerializable {
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 **/
 	public function insert(\PDO $pdo) : void {
-		/** User Class to input/store user data */
-		//userId Binary(16) NOT NULL,
-		//userAuthenticationToken Varchar(255) NOT NULL,
-		//userAvatarUrl Varchar(128),
-		//userDOB Date NOT NULL,
-		//userEmail Varchar(128) NOT NULL,
-		//userFirstName Varchar(64) NOT NULL,
-		//userHash Varchar(96) NOT NULL,
-		//userLastName Varchar(64) NOT NULL,
-		//userUsername Varchar(64) NOT NULL,
-		// create query template
+
 		$query = "INSERT INTO user(userId, userActivationToken, userAvatarUrl, userDOB, userEmail, userFirstName, userHash, userLastName, userUsername, profileUsername) VALUES(:userId, :userActivationToken, :userAvatarUrl, :userDOB, :userEmail, :userFirstName, :userHash, :userLastName, :userUsername)";
 		$statement = $pdo->prepare($query);
 
@@ -414,5 +404,50 @@ class User implements \JsonSerializable {
 		$parameters = ["userId" => $this->userId->getBytes(), "userActivationToken" => $this->userActivationToken, "userAvatarUrl" => $this->userAvatarUrl, "userDOB" => $this->userDOB, "userEmail" => $this->userEmail, "userFirstName" => $this->userFirstName, "userHash" => $this->userHash, "userLastName" => $this->userLastName, "userUsername" => $this->userUsername];
 		$statement->execute($parameters);
 	}
-	
+
+
+	/**
+	 * updates this User in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) : void {
+
+		// update query
+		$query = "UPDATE user SET userId = :userId, userActivationToken = :userActivationToken, userAvatarUrl = :userAvatarUrl, userDOB = :userDOB, userEmail = :userEmail, userFirstName = :userFirstName, userHash = :userHash, userLastName = :userLastName, userUsername = :userUsername WHERE userId = :userId";
+		$statement = $pdo->prepare($query);
+
+
+		$parameters = [
+			"profileAbout" => $this->profileAbout,
+			"profileActivationToken" => $this->profileActivationToken,
+			"profileAddressLine1" => $this->profileAddressLine1,
+			"profileAddressLine2" => $this->profileAddressLine2,
+			"profileCity" => $this->profileCity,
+			"profileEmail" => $this->profileEmail,
+			"profileHash" => $this->profileHash,
+			"profileImage" => $this->profileImage,
+			"profileName" => $this->profileName,
+			"profileState" => $this->profileState,
+			"profileUsername" => $this->profileUsername,
+			"profileUserType" => $this->profileUserType,
+			"profileZip" => $this->profileZip,
+			"profileId" => $this->profileId->getBytes()
+		];
+		$statement->execute($parameters);
+	}
+	/**
+	 * delete UserID from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo): void {
+		$query = "DELETE FROM user WHERE userId = :userId";
+		$statement = $pdo->prepare($query);
+
+	}
 }
