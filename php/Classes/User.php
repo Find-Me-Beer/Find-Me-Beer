@@ -418,7 +418,7 @@ class User implements \JsonSerializable {
 		// update query
 		$query = "UPDATE user SET userId = :userId, userActivationToken = :userActivationToken, userAvatarUrl = :userAvatarUrl, userDOB = :userDOB, userEmail = :userEmail, userFirstName = :userFirstName, userHash = :userHash, userLastName = :userLastName, userUsername = :userUsername WHERE userId = :userId";
 		$statement = $pdo->prepare($query);
-
+	}
 		//Figure this part out
 //		$parameters = [
 //			"profileAbout" => $this->profileAbout,
@@ -437,7 +437,7 @@ class User implements \JsonSerializable {
 //			"profileId" => $this->profileId->getBytes()
 //		];
 //		$statement->execute($parameters);
-	}
+//	}
 	/**
 	 * delete UserID from mySQL
 	 *
@@ -450,4 +450,80 @@ class User implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 	}
+		/**
+		 * gets the user by UserId
+		 *
+		 * @param \PDO $pdo PDO connection object
+		 * @param Uuid|string $userId tweet id to search for
+		 * @return User|null User found or null if not found
+		 * @throws \PDOException when mySQL related errors occur
+		 * @throws \TypeError when a variable are not the correct data type
+		 **/
+	public static function getUserByUserId(\PDO $pdo, $userId) : ?User {
+		//sanitize the userId before searching
+			try {
+				$userId = self::validateUuid($userId);
+			} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
+						throw(new |\PDOException($exception->getMessage(), 0, $exception));
+			}
+			// create query template
+			$query = "SELECT userId, userActivationToken, userAvatarUrl, userDOB, userEmail, userFirstName, userHash, userLastName, userUsername FROM user WHERE userid= :userId";
+			$statement =$pdo->prepare($query);
+
+			//bind the user id to the place holder in the template
+			$parameters = ["userId" => $userId ->getBytes()];
+			$statement->execute($parameters);
+			// grab the author from mySQL
+
+			try{
+					$user = null;
+					$statement->setFetchMode(\PDO::FETCH_ASSOC);
+					$row = $statement->fetch();
+					if($row !== false){
+							$user = new User($row["userId"], $row["userActivationToken"], $row["userAvatarUrl"], $row["userDOB"], $row["userEmail"], $row["userFirstName"], $row["userHash"],$row["userLastName"], $row["userUsername"]);
+
+					}
+			}	catch(\Exception $exception){
+				// if row couldnt be converted, rethrow it
+					throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+			return ($user);
+	}
+	/**
+	 * gets the user by user id and returns an array
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid|string $userId user id to search by
+	 * @return \SplFixedArray SplFixedArray of User Id's found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+
+	public static function getUsersByUserId(\PDO $pdo, $userId): \SplFixedArray {
+
+			try {
+					$userId = self::validateUuid($userId);
+			} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		// create query template
+		$query = "SELECT userId, userActivationToken, userAvatarUrl, userDOB, userEmail, userFirstName, userHash, userLastName, userUsername FROM user WHERE userid= :userId";
+		$statement =$pdo->prepare($query);
+
+		//bind the user id to the place holder in the template
+		$parameters = ["userId" => $userId ->getBytes()];
+		$statement->execute($parameters);
+
+		// build an array of Users
+		$users = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !==false) {
+				try{
+
+
+				}
+		}
+	}
+
+
 }
