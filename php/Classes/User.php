@@ -382,4 +382,37 @@ class User implements \JsonSerializable {
 		$this->userUsername = $newUserUsername;
 	}
 
+	public function jsonSerialize() : array{
+		$fields = get_object_vars($this);
+		$fields["userId"] = $this->userId->toString();
+		return($fields);
+	}
+	// TODO: Implement jsonSerialize() method.}
+	/**
+	 * inserts this User into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo) : void {
+		/** User Class to input/store user data */
+		//userId Binary(16) NOT NULL,
+		//userAuthenticationToken Varchar(255) NOT NULL,
+		//userAvatarUrl Varchar(128),
+		//userDOB Date NOT NULL,
+		//userEmail Varchar(128) NOT NULL,
+		//userFirstName Varchar(64) NOT NULL,
+		//userHash Varchar(96) NOT NULL,
+		//userLastName Varchar(64) NOT NULL,
+		//userUsername Varchar(64) NOT NULL,
+		// create query template
+		$query = "INSERT INTO user(userId, userActivationToken, userAvatarUrl, userDOB, userEmail, userFirstName, userHash, userLastName, userUsername, profileUsername) VALUES(:userId, :userActivationToken, :userAvatarUrl, :userDOB, :userEmail, :userFirstName, :userHash, :userLastName, :userUsername)";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holders in the template
+		$parameters = ["userId" => $this->userId->getBytes(), "userActivationToken" => $this->userActivationToken, "userAvatarUrl" => $this->userAvatarUrl, "userDOB" => $this->userDOB, "userEmail" => $this->userEmail, "userFirstName" => $this->userFirstName, "userHash" => $this->userHash, "userLastName" => $this->userLastName, "userUsername" => $this->userUsername];
+		$statement->execute($parameters);
+	}
+	
 }
