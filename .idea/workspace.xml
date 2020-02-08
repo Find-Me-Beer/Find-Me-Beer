@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8d724f4-7369-46c2-ae2f-cc6ecff95fb2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/php/Classes/ValidateDate.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/php/Classes/ValidateUuid.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/php/Classes/autoload.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/php/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/php/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_html/Conceptual-Model/ConceptualModel.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_html/epic/BeerERD.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_html/epic/bruce.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_html/epic/concept-model.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_html/epic/conceptual-model2.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_html/epic/erd.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_html/epic/felicia.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_html/epic/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/DDL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/ddl.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/Classes/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/Classes/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,16 +137,6 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:variasantonov@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:variasantonov@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@773fa518" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:variasantonov@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@ac3cb3c" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
             </expand>
             <select />
@@ -306,6 +283,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="750" y="351" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581047289257" />
+    <state x="761" y="515" key="NewPhpFileDialog" timestamp="1581098199643">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="761" y="515" key="NewPhpFileDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581098199643" />
     <state x="296" y="299" width="1484" height="648" key="ShowDiffWithBranchDialog" timestamp="1581095808581">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
