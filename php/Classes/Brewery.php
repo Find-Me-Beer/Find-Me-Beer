@@ -40,9 +40,16 @@ class Brewery implements \JsonSerializable {
 
 	private $breweryUrl;
 
-	function __construct($breweryId, $breweryAddress, $breweryAvatarUrl, $breweryDescription, $breweryEmail, $breweryLat, $breweryLong, $breweryName, $breweryPhone,$breweryUrl) {
-	}
+	public function __construct ($breweryId, $breweryAddress, $breweryAvatarUrl, $breweryDescription, $breweryEmail, $breweryLat, $breweryLong, $breweryName, $breweryPhone,$breweryUrl) {
+		try {
+			$this->breweryId($breweryId)
+			$this->breweryAddress($breweryAddress);
+			$this->breweryAvatarUrl(breweryAvatarUrl);
+			$this->breweryDescription
 
+		}
+
+	}
 }
 
 ?>
