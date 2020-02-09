@@ -42,7 +42,7 @@ class Brewery implements \JsonSerializable {
 
 	public function __construct ($breweryId, $breweryAddress, $breweryAvatarUrl, $breweryDescription, $breweryEmail, $breweryLat, $breweryLong, $breweryName, $breweryPhone,$breweryUrl) {
 		try {
-			$this->breweryId($breweryId)
+			$this->breweryId($breweryId);
 			$this->breweryAddress($breweryAddress);
 			$this->breweryAvatarUrl(breweryAvatarUrl);
 			$this->breweryDescription
