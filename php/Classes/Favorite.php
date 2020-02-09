@@ -7,56 +7,48 @@ require_once(dirname(__DIR__) . "/vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
 
 /**
- * User favorites a beer Class
+ *
  *
  * Favorite Beer Class
  *
- * @author Dylan McDonald <dmcdonald21@cnm.edu>
- * @version 3.0.0
+ * @author Patrick Leyba <pleyba4@cnm.edu>
+ * @version 0.0.1
  **/
 class Favorite implements \JsonSerializable {
-	use ValidateDate;
 	use ValidateUuid;
 	/**
-	 * id for this Tweet; this is the primary key
+	 * id for this Favorite; this is the primary key
 	 * @var Uuid $FavoriteId
 	 **/
 	private $FavoriteId;
 	/**
-	 * id of the Profile that favorited this beer; this is a foreign key
+	 * id of the User that favorited this beer; this is a foreign key
 	 * @var Uuid $FavoriteUserId
 	 **/
 	private $FavoriteUserId;
 	/**
-	 * actual textual content of this beer
+	 *
 	 * @var string $FavoriteBeerId
 	 **/
 	private $FavoriteBeerId;
-	/**
-	 * date and time this beer was favorited, in a PHP DateTime object
-	 * @var \DateTime $newDate
-	 **/
-	private $newDate;
 
 	/**
-	 * constructor for this Tweet
+	 * constructor for this Favorite
 	 *
-	 * @param string|Uuid $newTweetId id of Beer or null if a new beer
-	 * @param string|Uuid $newFavoriteBeerId id of the Profile that sent this Tweet
-	 * @param string $newTweetContent string containing actual tweet data
-	 * @param \DateTime|string|null $newTweetDate date and time Tweet was sent or null if set to current date and time
+	 * @param string|Uuid $newFavoriteId id of Beer or null if a new beer
+	 * @param string|Uuid $newFavoriteUserId id of the user that favorites this beer
+	 * @param string $newFavoriteBeerId string is favorite beer id data
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs
 	 * @Documentation https://php.net/manual/en/language.oop5.decon.php
 	 **/
-	public function __construct($newFavoriteId, $newFavoriteId, string $newTweetContent, $newTweetDate = null) {
+	public function __construct($newFavoriteId, $newFavoriteUserId, $newFavoriteBeerId)
 		try {
 			$this->setFavoriteId($newFavoriteId);
 			$this->setFavoriteUserId($newFavoriteUserId);
-			$this->setFavoriteBeerId($newTweetContent);
-			$this->setDate($newDate);
+			$this->setFavoriteBeerId($newFavoriteBeerId);
 		}
 			//determine what exception type was thrown
 		catch(\Exception $exception) {
@@ -65,23 +57,23 @@ class Favorite implements \JsonSerializable {
 		}
 	}
 
-	/**
-	 * accessor method for beer id
+	/** #1
+	 * accessor method for favorite id
 	 *
-	 * @return Uuid value of beer id
+	 * @return Uuid value of favorite id
 	 **/
 	public function getFavoriteId() : Uuid {
-		return($this->FavoriteId);
+		return($this->favoriteId);
 	}
 
-	/**
-	 * mutator method for beer id
+	/** #1
+	 * mutator method for favorite id
 	 *
-	 * @param Uuid|string $newFavoriteId new value of tweet id
-	 * @throws \RangeException if $newTweetId is not positive
-	 * @throws \TypeError if $newTweetId is not a uuid or string
+	 * @param Uuid|string $newFavoriteId new value of favorite id
+	 * @throws \RangeException if $newFavoriteId is not positive
+	 * @throws \TypeError if $newFavoriteId is not a uuid or string
 	 **/
-	public function setFavoriteId( $newFavoriteId) : void {
+	public function setFavoriteId($newFavoriteId) : void {
 		try {
 			$uuid = self::validateUuid($newFavoriteId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
@@ -89,101 +81,70 @@ class Favorite implements \JsonSerializable {
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 
-		// convert and store the tweet id
-		$this->tweetId = $uuid;
+		// convert and store the beer id
+		$this->favoriteId = $uuid;
 	}
 
-	/**
-	 * accessor method for tweet profile id
+	/** #2
+	 * accessor method for favorite user id
 	 *
-	 * @return Uuid value of tweet profile id
+	 * @return string
 	 **/
-	public function getTweetProfileId() : Uuid{
-		return($this->tweetProfileId);
+	public function getFavoriteBeerId(): ?string {
+		return($this->FavoriteUserId);
 	}
 
-	/**
-	 * mutator method for tweet profile id
+	/** #2
+	 * mutator method for favorite user id
 	 *
-	 * @param string | Uuid $newTweetProfileId new value of tweet profile id
-	 * @throws \RangeException if $newProfileId is not positive
-	 * @throws \TypeError if $newTweetProfileId is not an integer
+	 * @param string | Uuid $newFavoriteUserId new value of favorite user id
+	 * @throws \RangeException if $newFavoriteUserId is not positive
+	 * @throws \TypeError if $newFavortieUserId is not an integer
 	 **/
-	public function setTweetProfileId( $newTweetProfileId) : void {
+	public function setFavoriteUserId(int $newFavoriteUserId) : void {
 		try {
-			$uuid = self::validateUuid($newTweetProfileId);
+			$uuid = self::validateUuid($newFavoriteUserId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
-			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+			throw(new \$exceptionType($exception->getMessage(), 0, $exception));
 		}
 
-		// convert and store the profile id
-		$this->tweetProfileId = $uuid;
+		// convert and store the user id
+		$this->favoriteUserId = $uuid;
 	}
 
-	/**
-	 * accessor method for tweet content
+	/** #3
+	 * accessor method for favorite beer id
 	 *
-	 * @return string value of tweet content
+	 * @return string value of favorite beer id
 	 **/
-	public function getTweetContent() : string {
-		return($this->tweetContent);
+	public function getFavoriteBeerId() : string {
+		return($this->favoriteBeerId());
 	}
 
-	/**
-	 * mutator method for tweet content
+	/** #3
+	 * mutator method for favorite beer id
 	 *
-	 * @param string $newTweetContent new value of tweet content
-	 * @throws \InvalidArgumentException if $newTweetContent is not a string or insecure
-	 * @throws \RangeException if $newTweetContent is > 140 characters
-	 * @throws \TypeError if $newTweetContent is not a string
+	 * @param string $newFavoriteBeerId new value of favorite beer id
+	 * @throws \InvalidArgumentException if $newFavoriteBeerId is not a string or insecure
+	 * @throws \RangeException if $newFavoriteBeerId is > 140 characters
+	 * @throws \TypeError if $newFavoriteBeerId is not a string
 	 **/
-	public function setTweetContent(string $newTweetContent) : void {
+	public function setFavoriteBeerId(int $newFavoriteBeerId) : void {
 		// verify the tweet content is secure
-		$newTweetContent = trim($newTweetContent);
-		$newTweetContent = filter_var($newTweetContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($newTweetContent) === true) {
-			throw(new \InvalidArgumentException("tweet content is empty or insecure"));
+		$newFavoriteBeerId = trim($newFavoriteBeerId);
+		$newFavoriteBeerId = filter_var($newFavoriteBeerId, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newFavoriteBeerId) === true) {
+			throw(new \InvalidArgumentException("favorite beer is empty"));
 		}
 
 		// verify the tweet content will fit in the database
-		if(strlen($newTweetContent) > 140) {
-			throw(new \RangeException("tweet content too large"));
+		if(strlen($newFavoriteBeerId) > 140) {
+			throw(new \RangeException("favorite beer id too large"));
 		}
 
-		// store the tweet content
-		$this->tweetContent = $newTweetContent;
+		// store the favorite beer id
+		$this->favoriteBeerId = $newFavoriteBeerId;
 	}
 
-	/**
-	 * accessor method for tweet date
-	 *
-	 * @return \DateTime value of tweet date
-	 **/
-	public function getNewDate() : \DateTime {
-		return($this->newDate);
-	}
 
-	/**
-	 * mutator method for tweet date
-	 *
-	 * @param \DateTime|string|null $newDate tweet date as a DateTime object or string (or null to load the current time)
-	 * @throws \InvalidArgumentException if $newTweetDate is not a valid object or string
-	 * @throws \RangeException if $newTweetDate is a date that does not exist
-	 **/
-	public function setTweetDate($newTweetDate = null) : void {
-		// base case: if the date is null, use the current date and time
-		if($newTweetDate === null) {
-			$this->tweetDate = new \DateTime();
-			return;
-		}
-
-		// store the like date using the ValidateDate trait
-		try {
-			$newTweetDate = self::validateDateTime($newTweetDate);
-		} catch(\InvalidArgumentException | \RangeException $exception) {
-			$exceptionType = get_class($exception);
-			throw(new $exceptionType($exception->getMessage(), 0, $exception));
-		}
-		$this->tweetDate = $newTweetDate;
-	}
