@@ -7,15 +7,18 @@ require_once(dirname(__DIR__) . "/vendor/autoload.php");
 
 use Ramsey\Uuid\Uuid;
 
-class Brewery implements \JsonSerializable {
-	use ValidateDate;
-	use ValidateUuid;
 /**
  * Class Brewery
  * @Author Celeste Whitaker <cwhitaker4@cnm,edu>
  */
 
+class Brewery implements \JsonSerializable {
 	use ValidateUuid;
+
+	/**
+	 * id for this Brewery; this is the primary key
+	 * @var Uuid $breweryId
+	 */
 
 	private $breweryId;
 
@@ -35,12 +38,11 @@ class Brewery implements \JsonSerializable {
 
 	private $breweryPhone;
 
-
 	private $breweryUrl;
 
 }
 
-
+?>
 
 
 
