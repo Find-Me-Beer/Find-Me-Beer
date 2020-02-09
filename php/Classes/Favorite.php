@@ -147,4 +147,176 @@ class Favorite implements \JsonSerializable {
 		$this->favoriteBeerId = $newFavoriteBeerId;
 	}
 
+	/**PDO #1
+	 * inserts favoriteId into mySQL
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo) {
+	//check that the beer tag exists before inserting into SQL
+	if($this->favoriteId === null || $this->favoriteId === null) {
+		throw (new \PDOException("favorite id not valid"));
+	}
+	//create query template
+	$query = "INSERT INTO favoriteId(favoriteId, ) VALUES (:beerTagBeerId, :beerTagTagId)";
+	$statement = $pdo->prepare($query);
+
+	//bind the member variables to the place holders in the template
+	$parameters = ["beerTagBeerId" => $this->beerTagBeerId, "beerTagTagId" => $this->beerTagTagId];
+	$statement->execute($parameters);
+}
+
+	/**
+	 * deletes this beer tag from mySQL
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occure
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo) {
+	// check that the object exists before deleting it
+	if($this->beerTagBeerId === null || $this->beerTagTagId === null) {
+		throw (new \PDOException ("beer or tag not valid"));
+	}
+	//create a query template
+	$query = "DELETE FROM beerTag WHERE beerTagBeerId = :beerTagBeerId AND beerTagTagId = :beerTagTagId";
+	$statement = $pdo->prepare($query);
+
+	//bind the member variables to the place holder in the template
+	$parameters = ["beerTagBeerId" => $this->beerTagBeerId, "beerTagTagId" => $this->beerTagTagId];
+	$statement->execute($parameters);
+}
+
+	/**
+	 * gets the beerTag by beer Id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param int $beerTagBeerId the beerId to search for
+	 * @return \SplFixedArray of BeerTags found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getBeerTagByBeerId(\PDO $pdo, int $beerTagBeerId) {
+	//sanitize the beer id
+	if($beerTagBeerId < 0) {
+		throw (new \PDOException("beer id is not positive"));
+	}
+	//create query template
+	$query = "SELECT beerTagBeerId, beerTagTagId FROM beerTag WHERE beerTagBeerId = :beerTagBeerId";
+	$statement = $pdo->prepare($query);
+
+	//bind the beer id to the place holder in the template
+	$parameters = ["beerTagBeerId" => $beerTagBeerId];
+	$statement->execute($parameters);
+
+	//build an array of beerTags
+	$beerTags = new \SplFixedArray($statement->rowCount());
+	$statement->setFetchMode(\PDO::FETCH_ASSOC);
+	while(($row = $statement->fetch()) !== false) {
+		try {
+			$beerTag = new BeerTag($row["beerTagBeerId"], $row["beerTagTagId"]);
+			$beerTags[$beerTags->key()] = $beerTag;
+			$beerTags->next();
+		} catch(\Exception $exception) {
+			//if the row cant be converted rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+	}
+	return ($beerTags);
+}
+
+	/**
+	 * gets the beer tag by tag Id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param int $beerTagTagId tag Id to search for
+	 * @return \SplFixedArray of BeerTags found or null if nothing is found
+	 * @throws \PDOException when mySQL related errors are found
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getBeerTagByTagId(\PDO $pdo, int $beerTagTagId) {
+	// sanitize the tag id
+	if($beerTagTagId < 0) {
+		throw(new \PDOException ("Tag Id is not positive"));
+	}
+	//create query template
+	$query = "SELECT beerTagBeerId, beerTagTagId FROM beerTag WHERE beerTagTagId = :beerTagTagId";
+	$statement = $pdo->prepare($query);
+
+	//bind the member variables to the placeholders in the template
+	$parameters = ["beerTagTagId" => $beerTagTagId];
+	$statement->execute($parameters);
+
+	//build an array of beer tags
+	$beerTags = new \SplFixedArray($statement->rowCount());
+	$statement->setFetchMode(\PDO::FETCH_ASSOC);
+	while(($row = $statement->fetch()) !== false) {
+		try {
+			$beerTag = new BeerTag($row["beerTagBeerId"], $row["beerTagTagId"]);
+			$beerTags[$beerTags->key()] = $beerTag;
+			$beerTags->next();
+		} catch(\Exception $exception) {
+			//if the row could not be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+	}
+	return ($beerTags);
+}
+
+	//get beer tag by beer id and tag id
+	/**
+	 * gets the beer tag by both beer and tag id
+	 * @param \PDO $pdo PDO connection object
+	 * @param int $beerTagBeerID beer id to search for
+	 * @param int $beerTagTagId tag id to search for
+	 * @return BeerTag|null beerTag if found, null if not
+	 * @throws \PDOException when mySQL errors occur
+	 * @throws \TypeError when variables are not of the correct data type
+	 **/
+	public static function getBeerTagByBeerIdAndTagId(\PDO $pdo, int $beerTagBeerId, int $beerTagTagId) {
+	//sanitize the beer id and the tag id before searching
+	if($beerTagBeerId < 0) {
+		throw (new \PDOException("beer id is not positive"));
+	}
+	if($beerTagTagId < 0) {
+		throw (new \PDOException("tag id is not positive"));
+	}
+
+	//create a query template
+	$query = "SELECT beerTagBeerId, beerTagTagId FROM beerTag WHERE beerTagBeerId = :beerTagBeerId AND beerTagTagId = :beerTagTagId;";
+	$statement = $pdo->prepare($query);
+
+	//bind the variables to the placeholders in the template
+	$parameters = ["beerTagBeerId" => $beerTagBeerId, "beerTagTagId" => $beerTagTagId];
+	$statement->execute($parameters);
+
+	//grab the beer tag from mySQL
+	try {
+		$beerTag = null;
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		$row = $statement->fetch();
+		if($row !== false) {
+			$beerTag = new BeerTag($row["beerTagBeerId"], $row["beerTagTagId"]);
+		}
+	} catch(\Exception $exception) {
+
+		throw(new \PDOException($exception->getMessage(), 0, $exception));
+	}
+	return ($beerTag);
+}
+
+
+
+	//jsonSerialize
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+	$fields = get_object_vars($this);
+	return ($fields);
+}
+}
+
 
