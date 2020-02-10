@@ -260,7 +260,7 @@ class Beer implements \JsonSerializable {
 			$statement = $pdo->prepare($query);
 
 			//bind variables to placeholders
-			$parameters = ["beerId" => $this->beerId->getBytes(), "beerAbv" => $this->beerAbv->getBytes(), "beerBreweryId" => $this->beerBreweryId->getBytes(), "beerDescription" => $this->beerDescription->getBytes(), "beerName" => $this->beerName->getBytes(), "beerType" => $this->beerType->getBytes()];
+			$parameters = ["beerId" => $this->beerId->getBytes(), "beerAbv" => $this->beerAbv, "beerBreweryId" => $this->beerBreweryId->getBytes(), "beerDescription" => $this->beerDescription, "beerName" => $this->beerName, "beerType" => $this->beerType];
 			$statement->execute($parameters);
 		}
 
@@ -292,7 +292,7 @@ class Beer implements \JsonSerializable {
 			$statement = $pdo->prepare($query);
 
 			//Bind member variables to placeholders
-			$parameters = ["beerId" => $this->beerId->getBytes(), "beerAbv" => $this->beerAbv->getBytes(), "beerBreweryId" => $this->beerBreweryId->getBytes(), "beerDescription" => $this->beerDescription->getBytes(), "beerName" => $this->beerName->getBytes(), "beerType" => $this->beerType->getBytes()];
+			$parameters = ["beerId" => $this->beerId->getBytes(), "beerAbv" => $this->beerAbv, "beerBreweryId" => $this->beerBreweryId->getBytes(), "beerDescription" => $this->beerDescription, "beerName" => $this->beerName, "beerType" => $this->beerType];
 			$statement->execute($parameters);
 		}
 
@@ -303,6 +303,30 @@ class Beer implements \JsonSerializable {
 		 * @return \SplFixedArray SplFixedArray of beer found or null if not found
 		 * @throws \PDOException when mySQL related errors occur
 		 * @throws \TypeError when variables are not the correct data type
+		 */
+		public static function getAllBeer(\PDO $pdo) :\SplFixedArray {
+			//Create Query
+			$query = "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer";
+			$statement = $pdo->prepare($query);
+
+			//build array of beers
+			$beerArray = new \SplFixedArray($statement->rowCount());
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			while(($row = $statement->fetch()) !==false) {
+				try {
+					$beer = new beer($row["beerId"], $row["beerAbv"], $row["beerBreweryId"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
+					$beerArray[$beerArray->key()] = $beer;
+					$beerArray->next();
+				} catch(\Exception $exception) {
+					// if the row couldn't be converted, rethrow it
+					throw (new \PDOException($exception->getMessage(), 0, $exception));
+				}
+			}
+			return ($beerArray);
+		}
+
+		/**
+		 *
 		 */
 
 
