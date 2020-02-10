@@ -454,8 +454,8 @@ class Beer implements \JsonSerializable {
 	public function jsonSerialize() : array {
 		$fields = get_object_vars($this);
 
-		$fields["beerId"] = $this->tweetId->toString();
-		$fields["beerBreweryId"] = $this->tweetProfileId->toString();
+		$fields["beerId"] = $this->beerId->toString();
+		$fields["beerBreweryId"] = $this->beerBreweryId->toString();
 
 		return($fields);
 	}
