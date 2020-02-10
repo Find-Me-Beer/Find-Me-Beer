@@ -446,6 +446,20 @@ class Beer implements \JsonSerializable {
 			return($beerArray);
 		}
 
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() : array {
+		$fields = get_object_vars($this);
+
+		$fields["beerId"] = $this->tweetId->toString();
+		$fields["beerBreweryId"] = $this->tweetProfileId->toString();
+
+		return($fields);
+	}
+
 		/**
 		 * gets beer by tag id
 		 *
