@@ -220,8 +220,8 @@ class User implements \JsonSerializable {
 
 		$newUserDOB = self::validateDate($newUserDOB);
 			//with dateDiff()
-			$dateOfBirth = new\DateTime();
-			$dateOfBirth->newUserDOB;
+			$dateOfBirth = new\DateTime($newUserDOB);
+//			$dateOfBirth=;
 			$today = date("Y-m-d");
 			$diff = date_diff(date_create($dateOfBirth), date_create($today));
 			//echo 'Age is ' .$diff->format('%y');
@@ -419,32 +419,13 @@ class User implements \JsonSerializable {
 		$query = "UPDATE user SET userId = :userId, userActivationToken = :userActivationToken, userAvatarUrl = :userAvatarUrl, userDOB = :userDOB, userEmail = :userEmail, userFirstName = :userFirstName, userHash = :userHash, userLastName = :userLastName, userUsername = :userUsername WHERE userId = :userId";
 		$statement = $pdo->prepare($query);
 	}
-		//Figure this part out
-//		$parameters = [
-//			"profileAbout" => $this->profileAbout,
-//			"profileActivationToken" => $this->profileActivationToken,
-//			"profileAddressLine1" => $this->profileAddressLine1,
-//			"profileAddressLine2" => $this->profileAddressLine2,
-//			"profileCity" => $this->profileCity,
-//			"profileEmail" => $this->profileEmail,
-//			"profileHash" => $this->profileHash,
-//			"profileImage" => $this->profileImage,
-//			"profileName" => $this->profileName,
-//			"profileState" => $this->profileState,
-//			"profileUsername" => $this->profileUsername,
-//			"profileUserType" => $this->profileUserType,
-//			"profileZip" => $this->profileZip,
-//			"profileId" => $this->profileId->getBytes()
-//		];
-//		$statement->execute($parameters);
-//	}
-	/**
-	 * delete UserID from mySQL
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError if $pdo is not a PDO connection object
-	 **/
+
+//	 * delete UserID from mySQL
+//	 *
+//	 * @param \PDO $pdo PDO connection object
+//	 * @throws \PDOException when mySQL related errors occur
+//	 * @throws \TypeError if $pdo is not a PDO connection object
+//	 **/
 	public function delete(\PDO $pdo): void {
 		$query = "DELETE FROM user WHERE userId = :userId";
 		$statement = $pdo->prepare($query);
