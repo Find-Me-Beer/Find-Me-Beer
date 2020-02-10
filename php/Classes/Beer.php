@@ -4,7 +4,6 @@ namespace FindMeBeer\FindMeBeer;
 require_once("autoload.php");
 require_once(dirname(__DIR__) . "/vendor/autoload.php");
 
-use phpDocumentor\Reflection\Types\Void_;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -447,12 +446,46 @@ class Beer implements \JsonSerializable {
 			return($beerArray);
 		}
 
+		/**
+		 * gets beer by tag id
+		 *
+		 * @param \PDO $pdo PDO connection object
+		 * @param Uuid|string $tagId tag id to search for
+		 * @return \SplFixedArray SplFixedArray of beer found or null if not found
+		 * @throws \PDOException when mySQL related errors occur
+		 * @throws \TypeError when variables are not the correct data type
 
+		public static function getBeerByTagId(\PDO $pdo, $tagId) :\SplFixedArray {
+			// sanitizes the tag id
+			try {
+				$tagId = self::validateUuid($tagId);
+			} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
 
+			//Create query
+			$query = "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerId = beerTag.beerId AND beerTag WHERE beerTag.tagId = :tagId";
+			//Or "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerId = beerTag.beerId AND beerTag.tagId = :beerTag.tagId";
+			$statement = $pdo->prepare($query);
 
+			//Bind beer brewery id to placeholder
+			$parameters = ["tagId" => $tagId->getBytes()];
+			$statement->execute($parameters);
 
-
-
-
-
+			//Builds an array of beers
+			$beerArray = new \SplFixedArray($statement->rowCount());
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			while(($row = $statement->fetch()) !== false) {
+				try {
+					$beer = new Beer($row["beerId"], $row["beerAbv"], $row["beerBreweryId"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
+					$beerArray[$beerArray->key()] = $beer;
+					$beerArray->next();
+				} catch(\Exception $exception) {
+					// if the row couldn't be converted, rethrow it
+					throw(new \PDOException($exception->getMessage(), 0, $exception));
+				}
+			}
+			return ($beerArray);
+		}
+		 */
 }
