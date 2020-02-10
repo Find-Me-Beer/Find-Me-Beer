@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8d724f4-7369-46c2-ae2f-cc6ecff95fb2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Find-Me-Beer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Find-Me-Beer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c8ebe07b-4992-44b3-a3ea-ad4558e68a38.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c8ebe07b-4992-44b3-a3ea-ad4558e68a38.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/php/Classes/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/Classes/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/ddl.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/ddl.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +202,7 @@
       <workItem from="1580752499517" duration="5586000" />
       <workItem from="1580855242878" duration="1360000" />
       <workItem from="1580948330787" duration="12230000" />
-      <workItem from="1581146051536" duration="10442000" />
+      <workItem from="1581146051536" duration="14269000" />
     </task>
     <task id="LOCAL-00001" summary="Find Me Beer Conceptual Model Draft">
       <created>1580500593302</created>
