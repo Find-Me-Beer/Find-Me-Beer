@@ -334,7 +334,7 @@ class Beer implements \JsonSerializable {
 		 * @throws \PDOException when mySQL related errors occur
 		 * @throws \TypeError when a variable are not the correct data type
 		 */
-		public static function getBeerByBeerId(\PDO $pdo, $beerId) {
+		public static function getBeerByBeerId(\PDO $pdo, $beerId) :?Beer {
 			//Sanitize beerId before searching
 			try {
 				$beerId = self::validateUuid($beerId);
@@ -374,7 +374,7 @@ class Beer implements \JsonSerializable {
 		 * @throws \PDOException when mySQL related errors occur
 		 * @throws \TypeError when variables are not the correct data type
 		 */
-		public static function getBeerByBeerBreweryId(\PDO $pdo, $beerBreweryId) :void {
+		public static function getBeerByBeerBreweryId(\PDO $pdo, $beerBreweryId) :\SplFixedArray {
 			// sanitizes the beer brewery id
 			try {
 				$beerBreweryId = self::validateUuid($beerBreweryId);
@@ -383,8 +383,29 @@ class Beer implements \JsonSerializable {
 			}
 
 			//Create query
-			$query = "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerBreweryId = :beerId";
+			$query = "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerBreweryId = :beerBreweryId";
 			$statement = $pdo->prepare($query);
+
+			//Bind beer brewery id to placeholder
+			$parameters = ["beerBreweryId" => $beerBreweryId->getBytes()];
+			$statement->execute($parameters);
+
+			//Builds an array of beers
+			$beerArray = new \SplFixedArray($statement->rowCount());
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			while(($row = $statement->fetch()) !== false) {
+				try {
+					$beer = new Beer($row["beerId"], $row["beerAbv"], $row["beerBreweryId"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
+					$beerArray[$beerArray->key()] = $beer;
+					$beerArray->next();
+				} catch(\Exception $exception) {
+					// if the row couldn't be converted, rethrow it
+					throw(new \PDOException($exception->getMessage(), 0, $exception));
+				}
+			}
+			return($beerArray);
+		}
+
 
 
 
