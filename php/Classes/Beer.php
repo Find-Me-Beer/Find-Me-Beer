@@ -24,7 +24,7 @@ class Beer implements \JsonSerializable {
 	private $beerId;
 	/**
 	 * abv for this beer
-	 * @var Decimal $beerAbv
+	 * @var float $beerAbv
 	 */
 	private $beerAbv;
 	/**
@@ -52,7 +52,7 @@ class Beer implements \JsonSerializable {
 	 * constructor method for this beer
 	 *
 	 * @param String|Uuid $newBeerId id of this beer
-	 * @param String|Decimal $newBeerAbv abv of this beer
+	 * @param String|float $newBeerAbv abv of this beer
 	 * @param String|Uuid $newBeerBreweryId
 	 * @param String $newBeerDescription description of this beer
 	 * @param String $newBeerName name of this beer
@@ -60,12 +60,12 @@ class Beer implements \JsonSerializable {
 	 */
 	public function __construct($newBeerId, $newBeerAbv, $newBeerBreweryId, $newBeerDescription, $newBeerName, $newBeerType) {
 		try {
-			$this->setBeerId = $newBeerId;
-			$this->setBeerAbv = $newBeerAbv;
-			$this->setBeerBreweryId = $newBeerBreweryId;
-			$this->setBeerDescription = $newBeerDescription;
-			$this->setBeerName = $newBeerName;
-			$this->setBeerType = $newBeerType;
+			$this->setBeerId($newBeerId);
+			$this->setBeerAbv($newBeerAbv);
+			$this->setBeerBreweryId($newBeerBreweryId);
+			$this->setBeerDescription($newBeerDescription);
+			$this->setBeerName($newBeerName);
+			$this->setBeerType($newBeerType);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw (new $exceptionType($exception->getMessage(), 0, $exception));
@@ -100,16 +100,16 @@ class Beer implements \JsonSerializable {
 
 	/**
 	 * accessor method for beer abv
-	 * @return Decimal abv for this beer
+	 * @return float abv for this beer
 	 */
-	public function getBeerAbv(): Decimal {
+	public function getBeerAbv(): float {
 		return ($this->beerAbv);
 	}
 
 	/**
 	 * mutator method for beer abv
 	 *
-	 * @param Decimal $newBeerAbv new abv for beer
+	 * @param float $newBeerAbv new abv for beer
 	 * @throws \RangeException if abv is out of appropriate range
 	 */
 	public function setBeerAbv(Decimal $newBeerAbv): void {
