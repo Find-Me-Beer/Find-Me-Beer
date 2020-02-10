@@ -147,39 +147,39 @@ class Favorite implements \JsonSerializable {
 		$this->favoriteBeerId = $newFavoriteBeerId;
 	}
 
-	/**PDO #1
+	/**          PDO 1-1 INSERT
 	 * inserts favoriteId into mySQL
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 **/
 	public function insert(\PDO $pdo) {
-	//check that the beer tag exists before inserting into SQL
+	//check that the favorite id exists before inserting into SQL
 	if($this->favoriteId === null || $this->favoriteId === null) {
 		throw (new \PDOException("favorite id not valid"));
 	}
 	//create query template
-	$query = "INSERT INTO favoriteId(favoriteId, ) VALUES (:beerTagBeerId, :beerTagTagId)";
+	$query = "INSERT INTO favoriteId(favoriteId, ) VALUES (:favoriteId, :favoriteId)";
 	$statement = $pdo->prepare($query);
 
 	//bind the member variables to the place holders in the template
-	$parameters = ["beerTagBeerId" => $this->beerTagBeerId, "beerTagTagId" => $this->beerTagTagId];
+	$parameters = ["favoriteId" => $this->favoriteId, "favoriteId" => $this->favoriteId];
 	$statement->execute($parameters);
 }
 
-	/**
-	 * deletes this beer tag from mySQL
+	/**			PDO 1-2 DELETION
+	 * deletes this favoriteId from mySQL
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL related errors occure
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 **/
 	public function delete(\PDO $pdo) {
 	// check that the object exists before deleting it
-	if($this->beerTagBeerId === null || $this->beerTagTagId === null) {
+	if($this->favoriteId === null || $this->favoriteId === null) {
 		throw (new \PDOException ("beer or tag not valid"));
 	}
 	//create a query template
-	$query = "DELETE FROM beerTag WHERE beerTagBeerId = :beerTagBeerId AND beerTagTagId = :beerTagTagId";
+	$query = "DELETE FROM favorite WHERE favoriteId = :favoriteId AND Id = :beerTagTagId";
 	$statement = $pdo->prepare($query);
 
 	//bind the member variables to the place holder in the template
@@ -188,41 +188,41 @@ class Favorite implements \JsonSerializable {
 }
 
 	/**
-	 * gets the beerTag by beer Id
+	 * gets the favoriteId by favoriteUserId
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param int $beerTagBeerId the beerId to search for
-	 * @return \SplFixedArray of BeerTags found or null if not found
+	 * @param int $favoriteId the favoriteId to search for
+	 * @return \SplFixedArray of favoriteId found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-	public static function getBeerTagByBeerId(\PDO $pdo, int $beerTagBeerId) {
-	//sanitize the beer id
-	if($beerTagBeerId < 0) {
-		throw (new \PDOException("beer id is not positive"));
+	public static function getFavoriteIdByFavoriteUserId(\PDO $pdo, int $favoriteId) {
+	//sanitize the favorite id
+	if($favoriteId < 0) {
+		throw (new \PDOException("favorite id is not valid"));
 	}
 	//create query template
-	$query = "SELECT beerTagBeerId, beerTagTagId FROM beerTag WHERE beerTagBeerId = :beerTagBeerId";
+	$query = "SELECT , favoriteId, favoriteUserId, favoriteBeerId FROM favorite WHERE favoriteId = :favoriteId";
 	$statement = $pdo->prepare($query);
 
-	//bind the beer id to the place holder in the template
-	$parameters = ["beerTagBeerId" => $beerTagBeerId];
+	//bind the favorite id to the place holder in the template
+	$parameters = ["favoriteId" => $favoriteId];
 	$statement->execute($parameters);
 
-	//build an array of beerTags
-	$beerTags = new \SplFixedArray($statement->rowCount());
+	//build an array of favorite
+	$favoriteId = new \SplFixedArray($statement->rowCount());
 	$statement->setFetchMode(\PDO::FETCH_ASSOC);
 	while(($row = $statement->fetch()) !== false) {
 		try {
-			$beerTag = new BeerTag($row["beerTagBeerId"], $row["beerTagTagId"]);
-			$beerTags[$beerTags->key()] = $beerTag;
+			$beerTag = new BeerTag($row["favoriteId"], $row["Id"]);
+			$beerTags[$beerTags->key()] = $favoriteId;
 			$beerTags->next();
 		} catch(\Exception $exception) {
 			//if the row cant be converted rethrow it
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
 	}
-	return ($beerTags);
+	return ($favoriteId);
 }
 
 	/**
