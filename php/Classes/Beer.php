@@ -314,7 +314,7 @@ class Beer implements \JsonSerializable {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			while(($row = $statement->fetch()) !==false) {
 				try {
-					$beer = new beer($row["beerId"], $row["beerAbv"], $row["beerBreweryId"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
+					$beer = new Beer($row["beerId"], $row["beerAbv"], $row["beerBreweryId"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
 					$beerArray[$beerArray->key()] = $beer;
 					$beerArray->next();
 				} catch(\Exception $exception) {
@@ -326,8 +326,25 @@ class Beer implements \JsonSerializable {
 		}
 
 		/**
+		 * gets beer by its beer id
 		 *
+		 * @param \PDO $pdo PDO connection object
+		 * @param Uuid|string $beerId beer id to search for
+		 * @return Beer|null Beer found or null if not found
+		 * @throws \PDOException when mySQL related errors occur
+		 * @throws \TypeError when a variable are not the correct data type
 		 */
+		public static function getBeerByBeerId(\PDO $pdo, $beerId) {
+			//Sanitize beerId before searching
+			try {
+				$beerId = self::validateUuid($beerId);
+			} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+				throw (new \PDOException($exception->getMessage(), 0, $exception));
+			}
+
+			//Creates Query
+			$query = "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerId = :beerId";
+		}
 
 
 
