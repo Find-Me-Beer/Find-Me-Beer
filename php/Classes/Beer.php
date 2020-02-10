@@ -111,7 +111,7 @@ class Beer implements \JsonSerializable {
 	 * @param float $newBeerAbv new abv for beer
 	 * @throws \RangeException if abv is out of appropriate range
 	 */
-	public function setBeerAbv(Decimal $newBeerAbv): void {
+	public function setBeerAbv(float $newBeerAbv): void {
 		//Verify the abv is between 0 - 100% ABV
 		if($newBeerAbv < 0 || $newBeerAbv > 100) {
 			throw (new\RangeException("beer abv is out of appropriate range"));
@@ -281,6 +281,7 @@ class Beer implements \JsonSerializable {
 
 		/**
 		 * updates beer in mySQL
+		 * @param \PDO $pdo PDO Connection Object
 		 * @throws \PDOException when mySQL error occurs
 		 * @throws \TypeError if $pdo is not a PDO Connection Object
 		 */
