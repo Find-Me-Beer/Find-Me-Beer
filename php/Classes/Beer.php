@@ -406,6 +406,47 @@ class Beer implements \JsonSerializable {
 			return($beerArray);
 		}
 
+		/**
+		 * gets beer by beer type
+		 *
+		 * @param \PDO $pdo PDO connection object
+		 * @param String $beerType beer type to search for
+		 * @return \SplFixedArray SplFixedArray of beer found or null if not found
+		 * @throws \PDOException when mySQL related errors occur
+		 * @throws \TypeError when a variable are not the correct data type
+		 */
+		public static function getBeerByBeerType(\PDO $pdo, $beerType) :\SplFixedArray {
+			//Sanitize $beerType
+			$beerType = trim($beerType);
+			$beerType = filter_var($beerType, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+			if(empty($beerType) === true) {
+				throw(new \PDOException("Beer type is empty of invalid"));
+			}
+			// escape mySQL wild cards
+			$beerType = str_replace("_", "\\_", str_replace("%", "\\%", $beerType));
+
+			//create query
+			$query = "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerType = :beerType";
+			$statement = $pdo->prepare($query);
+
+			//bind beer type to placeholder
+			$beerType = "%$beerType%";
+			$parameters = ["beerType" => $beerType];
+			$statement->execute($parameters);
+
+			//build array of beers
+			$beerArray = new \SplFixedArray($statement->rowCount());
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			while(($row = $statement->fetch()) !== false) {
+				try {
+					$beerArray = new Beer($row["beerId"], $row["beerAbv"], $row["beerBreweryId"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
+				} catch(\Exception $exception) {
+					throw (new \PDOException($exception->getMessage(), 0, $exception));
+				}
+			}
+			return($beerArray);
+		}
+
 
 
 
