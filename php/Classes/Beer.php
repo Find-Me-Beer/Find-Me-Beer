@@ -12,7 +12,6 @@ use Ramsey\Uuid\Uuid;
  * This class will hold all the necessary state variables and methods for Beer objects
  *
  * @author Reece Nunn <
- * @version 3.0.0
  **/
 class Beer implements \JsonSerializable {
 	use ValidateDate;
