@@ -4,8 +4,7 @@ namespace FindMeBeer\FindMeBeer;
 require_once("autoload.php");
 require_once(dirname(__DIR__) . "/vendor/autoload.php");
 
-use Cassandra\Decimal;
-use MongoDB\BSON\Binary;
+use phpDocumentor\Reflection\Types\Void_;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -261,8 +260,51 @@ class Beer implements \JsonSerializable {
 			$statement = $pdo->prepare($query);
 
 			//bind variables to placeholders
-			$parameters = ["beerId" => $this->beerId->getBytes(), "beerAbv" => $this->beerAbv->getBytes(), "beerBreweryId" => $this->beerBreweryId->getBytes(), "beerDescription" => $this->beerDescription->getBytes(), "beerName" => $this->beerName->getBytes(), "beerType" => $this->beerType->getBytes(),];
+			$parameters = ["beerId" => $this->beerId->getBytes(), "beerAbv" => $this->beerAbv->getBytes(), "beerBreweryId" => $this->beerBreweryId->getBytes(), "beerDescription" => $this->beerDescription->getBytes(), "beerName" => $this->beerName->getBytes(), "beerType" => $this->beerType->getBytes()];
+			$statement->execute($parameters);
 		}
+
+		/**
+		 * deletes this beer from mySQL
+		 *
+		 * @param \PDO $pdo PDO Connection Object
+		 * @throws \PDOException when mySQL error occurs
+		 * @throws /\TypeError if $pdo is not a PDO Connection Object
+		 */
+		public function delete(\PDO $pdo) :void {
+			//Create Query
+			$query = "DELETE FROM beer WHERE beerId = :beerId";
+			$statement = $pdo->prepare($query);
+
+			//Bind member variables to placeholder
+			$parameters = ["beerId" => $this->beerId->getBytes()];
+			$statement->execute($parameters);
+		}
+
+		/**
+		 * updates beer in mySQL
+		 * @throws \PDOException when mySQL error occurs
+		 * @throws \TypeError if $pdo is not a PDO Connection Object
+		 */
+		public function update(\PDO $pdo) :void {
+			//Query
+			$query = "UPDATE beer WHERE beerId = :beerId, beerAbv = :beerAbv, beerBreweryId = :beerBreweryId, beerDescription = :beerDescription, beerName = :beerName, beerType = :beerType";
+			$statement = $pdo->prepare($query);
+
+			//Bind member variables to placeholders
+			$parameters = ["beerId" => $this->beerId->getBytes(), "beerAbv" => $this->beerAbv->getBytes(), "beerBreweryId" => $this->beerBreweryId->getBytes(), "beerDescription" => $this->beerDescription->getBytes(), "beerName" => $this->beerName->getBytes(), "beerType" => $this->beerType->getBytes()];
+			$statement->execute($parameters);
+		}
+
+		/**
+		 * gets all beer from beer table
+		 *
+		 * @param \PDO $pdo PDO connection object
+		 * @return \SplFixedArray SplFixedArray of beer found or null if not found
+		 * @throws \PDOException when mySQL related errors occur
+		 * @throws \TypeError when variables are not the correct data type
+		 */
+
 
 
 
