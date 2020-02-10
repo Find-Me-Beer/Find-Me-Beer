@@ -500,7 +500,7 @@ class User implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !==false) {
 				try{
-						$users = new User($row["userId"], $row["userActivationToken"], $row["userAvatarUrl"], $row["userDOB"], $row["userEmail"], $row["userFirstName"], $row["userHash"],$row["userLastName"], $row["userUsername"])
+						$users = new User($row["userId"], $row["userActivationToken"], $row["userAvatarUrl"], $row["userDOB"], $row["userEmail"], $row["userFirstName"], $row["userHash"],$row["userLastName"], $row["userUsername"]);
 						$users[$users->key()] = $users;
 						$users->next();
 					}  catch(\Exception $exception) {
