@@ -1,5 +1,5 @@
 <?php
-namespace Vlad11793\ObjectOrientated;
+namespace FindMeBeer\FindMeBeer;
 require_once("autoload.php");
 require_once(dirname(__DIR__) . "/vendor/autoload.php");
 
@@ -216,5 +216,5 @@ class Tag implements \JsonSerializable {
 		return ($fields);
 	}
 
-}
+
 }
