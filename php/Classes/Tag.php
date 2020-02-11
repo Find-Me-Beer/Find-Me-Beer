@@ -70,7 +70,7 @@ class Tag implements \JsonSerializable {
 	 * @throws \TypeError if $newTagId is not a uuid or string
 	 **/
 
-	public function setUserId($newTagId): void {
+	public function setTagId($newTagId): void {
 		try {
 			$uuid = self::validateUuid($newTagId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
@@ -94,9 +94,14 @@ class Tag implements \JsonSerializable {
 	 **/
 
 	public function setTagContent(string $newTagContent):void {
-		//verify new user FirstName is secure
+		//verify new tag Id is secure
 		$newTagContent = trim($newTagContent);
 		$newTagContent = FILTER_VAR($newTagContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		//verify if tag content is valid
+
+		if(empty($newTagContent) === true){
+				throw(new\InvalidArgumentException("tag content insecure"));
+		}
 		//verify size of string is less than 64 characters
 		if(strlen($newTagContent)>64){
 			throw(new \RangeException("Tag Content is too long"));
@@ -105,9 +110,111 @@ class Tag implements \JsonSerializable {
 		$this->tagContent = $newTagContent;
 	}
 
+	/**
+	 * inserts this Tag profile into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo): void {
+
+		// create query template
+		$query = "INSERT INTO tag(tagId, tagContent) VALUES(:tagId, :tagContent)";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holders in the template
+		$parameters = ["tagId" => $this->tagId, "tagContent" => $this->tagContent];
+		$statement->execute($parameters);
+
+	}
+	/**
+	 * deletes this Tag Id from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo): void {
+		// create query template
+		$query = "DELETE FROM tag WHERE tagId = :tagId";
+		$statement = $pdo->prepare($query);
+		// bind the member variables to the place holders in the template
+		$parameters = ["tagId" => $this->tagId];
+		$statement->execute($parameters);
+	}
+	/**
+	 * gets the Tag by TagId
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param int $tagId message id to search for
+	 * @return ?Tag found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable are not the correct data type
+	 **/
+	public static function getTagByTagId(\PDO $pdo, int $tagId): ?Tag {
+		// create query template
+		$query = "SELECT tagId, tagContent FROM tag WHERE tagId = :tagId";
+		$statement = $pdo->prepare($query);
+
+		// bind the Tag ID to the place holder in the template
+		$parameters = ["tagId" => $tagId];
+		$statement->execute($parameters);
+
+		// grab the tag from mySQL
+		try {
+			$tag = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$tag = new Tag($row["tagId"], $row["tagContent"]);
+			}
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($tag);
+	}
 
 
+	//getAllTags
+	/**
+	 * @param \PDO $pdo PDO connection object
+	 * @return \SplFixedArray SplFixedArray of Tags found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 */
+	public static function getAllTags (\PDO $pdo) : \SplFixedArray {
+		//create query template
+		$query = "SELECT tagId, tagContent FROM tag";
+		$statement = $pdo->prepare($query);
+		$statement->execute();
 
+		//build an array of tags
+		$tags = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$tag = new Tag($row["tagId"], $row["tagContent"]);
+				$tags[$tags->key()] = $tag;
+				$tags->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return ($tags);
+	}
 
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize(): array {
+		$fields = get_object_vars($this);
+		return ($fields);
+	}
 
+}
 }
