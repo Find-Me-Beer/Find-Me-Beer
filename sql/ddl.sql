@@ -15,7 +15,7 @@ CREATE TABLE tag (
 
 CREATE TABLE `user` (
   userId Binary(16) NOT NULL,
-  userAuthenticationToken Varchar(255) NOT NULL,
+  userActivationToken Varchar(255) NOT NULL,
   userAvatarUrl Varchar(128),
   userDOB Date NOT NULL,
   userEmail Varchar(128) NOT NULL,
