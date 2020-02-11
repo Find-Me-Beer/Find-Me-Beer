@@ -9,220 +9,369 @@ use Ramsey\Uuid\Uuid;
 /**
  *
  *
- * Favorite Class
+ * Favorites Class
  *
  * @author Patrick Leyba <pleyba4@cnm.edu>
  * @version 0.0.1
  **/
-class Favorite implements \JsonSerializable {
+class Favorites implements \JsonSerializable {
+	use ValidateDate;
 	use ValidateUuid;
 	/**
-	 * id for this Favorite; this is the primary key
-	 * @var Uuid $FavoriteId
+	 * id for Favorites; this is the primary key
+	 * @var Uuid $favoritesId
 	 **/
-	private $FavoriteId;
+	private $favoritesId;
 	/**
-	 * id of the User that favorited this beer; this is a foreign key
-	 * @var Uuid $FavoriteUserId
+	 * id of the Profile that sent this Tweet; this is a foreign key
+	 * @var Uuid $favoritesUserId
 	 **/
-	private $FavoriteUserId;
+	private $favoritesUserId;
 	/**
-	 * this is a foreign key
-	 * @var string $FavoriteBeerId
+	 * actual beer favorite of this beer
+	 * @var string $favoritesBeerId
 	 **/
-	private $FavoriteBeerId;
+	private $favoritesBeerId;
 
 	/**
-	 * constructor for this Favorite
+	 * constructor for Favorites
 	 *
-	 * @param string|Uuid $newFavoriteId id of Beer or null if a new beer
-	 * @param string|Uuid $newFavoriteUserId id of the user that favorites this beer
-	 * @param string $newFavoriteBeerId string is favorite beer id data
+	 * @param string|Uuid $newFavoritesId id of this Tweet or null if a new Tweet
+	 * @param string|Uuid $newFavoritesUserId id of the Profile that sent this Tweet
+	 * @param string $newFavoritesBeerId string containing actual tweet data
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs
 	 * @Documentation https://php.net/manual/en/language.oop5.decon.php
 	 **/
-	public function __construct($newFavoriteId, $newFavoriteUserId, $newFavoriteBeerId) {
+	public function __construct($newFavoritesId, $newFavoritesUserId, $newFavoritesBeerId) {
 		try {
-			$this->setFavoriteId($newFavoriteId);
-			$this->setFavoriteUserId($newFavoriteUserId);
-			$this->setFavoriteBeerId($newFavoriteBeerId);
+			$this->setFavoritesId($newFavoritesId);
+			$this->setFavoritesUserId($newFavoritesUserId);
+			$this->setFavoritesBeerId($newFavoritesBeerId);
 		}
 			//determine what exception type was thrown
-		catch(\Exception $exception) {
+		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 	}
 
-	/** #1-1
-	 * accessor method for favorite id
+	/**
+	 * accessor method for favoritesId
 	 *
-	 * @return Uuid value of favorite id
+	 * @return Uuid value of favoritesId
 	 **/
-	public function getFavoriteId() : Uuid {
-		return($this->favoriteId);
+	public function getFavoritesId() : Uuid {
+		return($this->favoritesId);
 	}
 
-	/** #1-2
-	 * mutator method for favorite id
+	/**
+	 * mutator method for favoritesId
 	 *
-	 * @param Uuid|string $newFavoriteId new value of favorite id
-	 * @throws \RangeException if $newFavoriteId is not positive
-	 * @throws \TypeError if $newFavoriteId is not a uuid or string
+	 * @param Uuid|string $newFavoritesId new value of favoritesId
+	 * @throws \RangeException if $newFavoritesId is not positive
+	 * @throws \TypeError if $newFavoritesId is not a uuid or string
 	 **/
-	public function setFavoriteId($newFavoriteId) : void {
+	public function setFavoritesId( $newFavoritesId) : void {
 		try {
-			$uuid = self::validateUuid($newFavoriteId);
+			$uuid = self::validateUuid($newFavoritesId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 
-		// convert and store the beer id
-		$this->favoriteId = $uuid;
+		// convert and store the favoritesId
+		$this->favoritesId = $uuid;
 	}
 
-	/** #2-1
-	 * accessor method for favorite user id
+	/**
+	 * accessor method for favoritesUserId
 	 *
-	 * @return string
+	 * @return Uuid value of favoritesUserId
 	 **/
-	public function getFavoriteBeerId(): ?string {
-		return($this->FavoriteUserId);
+	public function getFavoritesUserId() : Uuid{
+		return($this->favoritesUserId);
 	}
 
-	/** #2-2
-	 * mutator method for favorite user id
+	/**
+	 * mutator method for favoritesUserId
 	 *
-	 * @param string | Uuid $newFavoriteUserId new value of favorite user id
-	 * @throws \RangeException if $newFavoriteUserId is not positive
-	 * @throws \TypeError if $newFavortieUserId is not an integer
+	 * @param string | Uuid $newFavoritesUserId new value of favoritesUserId
+	 * @throws \RangeException if $newFavoritesUserId is not positive
+	 * @throws \TypeError if $newFavoritesUserId is not an integer
 	 **/
-	public function setFavoriteUserId(int $newFavoriteUserId) : void {
+	public function setFavoritesUserId( $newFavoritesUserId) : void {
 		try {
-			$uuid = self::validateUuid($newFavoriteUserId);
+			$uuid = self::validateUuid($newFavoritesUserId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
-			throw(new \$exceptionType($exception->getMessage(), 0, $exception));
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 
-		// convert and store the user id
-		$this->favoriteUserId = $uuid;
+		// convert and store the profile id
+		$this->favoritesUserId = $uuid;
 	}
 
-	/** #3-1
-	 * accessor method for favorite beer id
+	/**
+	 * accessor method for favoritesBeerId
 	 *
-	 * @return string value of favorite beer id
+	 * @return string value of favoritesBeerId
 	 **/
-	public function getFavoriteBeerId() : string {
-		return($this->favoriteBeerId());
+	public function getFavoritesBeerId() : string {
+		return($this->favoritesBeerId);
 	}
 
-	/** #3-2
-	 * mutator method for favorite beer id
+	/**
+	 * mutator method for favoritesBeerId
 	 *
-	 * @param string $newFavoriteBeerId new value of favorite beer id
-	 * @throws \InvalidArgumentException if $newFavoriteBeerId is not a string or insecure
-	 * @throws \RangeException if $newFavoriteBeerId is > 140 characters
-	 * @throws \TypeError if $newFavoriteBeerId is not a string
+	 * @param string $newFavoritesBeerId new value of tweet content
+	 * @throws \InvalidArgumentException if $newFavoritesBeerId is not a string or insecure
+	 * @throws \RangeException if $newFavoritesBeerId is > 140 characters
+	 * @throws \TypeError if $newFavoritesBeerId is not a string
 	 **/
-	public function setFavoriteBeerId(int $newFavoriteBeerId) : void {
+	public function setFavoritesBeerId(string $newFavoritesBeerId) : void {
 		// verify the tweet content is secure
-		$newFavoriteBeerId = trim($newFavoriteBeerId);
-		$newFavoriteBeerId = filter_var($newFavoriteBeerId, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($newFavoriteBeerId) === true) {
-			throw(new \InvalidArgumentException("favorite beer is empty"));
+		$newFavoritesBeerId = trim($newFavoritesBeerId);
+		$newFavoritesBeerId = filter_var($newFavoritesBeerId, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newFavoritesBeerId) === true) {
+			throw(new \InvalidArgumentException("tweet content is empty or insecure"));
 		}
 
-		// verify the newFavoriteBeerId content will fit in the database
-		if(strlen($newFavoriteBeerId) > 140) {
-			throw(new \RangeException("favorite beer id too large"));
+		// verify the tweet content will fit in the database
+		if(strlen($newFavoritesBeerId) > 140) {
+			throw(new \RangeException("tweet content too large"));
 		}
 
-		// store the favorite beer id
-		$this->favoriteBeerId = $newFavoriteBeerId;
+		// store the tweet content
+		$this->favoritesBeerId = $newFavoritesBeerId;
 	}
 
-	/**          PDO 1-1 INSERT
-	 * inserts favoriteUserId into mySQL
+	/**
+	 * inserts Favorites into mySQL
+	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 **/
-	public function insert(\PDO $pdo) {
-	//check that the favorite id exists before inserting into SQL
-	if($this->favoriteUserId === null || $this->favoriteUserId === null) {
-		throw (new \PDOException("favorite id not valid"));
+	public function insert(\PDO $pdo) : void {
+
+		// create query template
+		$query = "INSERT INTO favorites(favoritesId,favoritesUserId, favoritesBeerId) VALUES(:favoritesId, :favoritesUserId, :favoritesBeerId)";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holders in the template
+		$formattedDate = $this->favoritesDate->format("Y-m-d H:i:s.u");
+		$parameters = ["tweetId" => $this->tweetId->getBytes(), "tweetProfileId" => $this->favoritesUserId->getBytes(), "tweetContent" => $this->favoritesBeerId, "favoritesBeerId" => $formattedDate];
+		$statement->execute($parameters);
 	}
-	//create query template
-	$query = "INSERT INTO favorite(favoriteUserId, favoriteBeerId ) VALUES ('', '')";
-	$statement = $pdo->prepare($query);
 
-	//bind the member variables to the place holders in the template
-	$parameters = ["favoriteUserId" => $this->setFavoriteUserId(), "favoriteBeerId" => $this->getFavoriteBeerId();
-	$statement->execute($parameters);
-}
-
-	/**			PDO 1-2 DELETION
-	 * deletes this favoriteUserId from mySQL
-	 * @param \PDO $pdo PDO connection object
-	 * @throws \PDOException when mySQL related errors occure
-	 * @throws \TypeError if $pdo is not a PDO connection object
-	 **/
-	public function delete(\PDO $pdo) {
-	// check that the object exists before deleting it
-	if($this->favoriteUserId === null || $this->favoriteUserId === null) {
-		throw (new \PDOException ("beer or tag not valid"));
-	}
-	//create a query template
-	$query = "DELETE FROM favorite WHERE favoriteUserId = :favoriteUserId";
-	$statement = $pdo->prepare($query);
-
-	//bind the member variables to the place holder in the template
-	$parameters = ["favoriteUserId" => $this->setFavoriteUserId(), "beerTagTagId" => $this->beerTagTagId];
-	$statement->execute($parameters);
-}
 
 	/**
-	 * gets getFavoritesByFavoriteUserIdAndFavoriteBeerId
+	 * deletes Favorites from mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param int $favoriteId the favoriteId to search for
-	 * @return \SplFixedArray of favoriteId found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo) : void {
+
+		// create query template
+		$query = "DELETE FROM tweet WHERE tweetId = :tweetId";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holder in the template
+		$parameters = ["tweetId" => $this->tweetId->getBytes()];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * updates this Favorites in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) : void {
+
+		// create query template
+		$query = "UPDATE tweet SET tweetProfileId = :tweetProfileId, tweetContent = :tweetContent, tweetDate = :tweetDate WHERE tweetId = :tweetId";
+		$statement = $pdo->prepare($query);
+
+
+		$formattedDate = $this->tweetDate->format("Y-m-d H:i:s.u");
+		$parameters = ["tweetId" => $this->tweetId->getBytes(),"tweetProfileId" => $this->tweetProfileId->getBytes(), "tweetContent" => $this->tweetContent, "tweetDate" => $formattedDate];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * gets the Favorites by FavoritesId
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid|string $favoritesId tweet id to search for
+	 * @return Tweet|null Tweet found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable are not the correct data type
+	 **/
+	public static function getFavoritesByFavoritesId(\PDO $pdo, $favoritesId) : ?Favorites {
+		// sanitize the favoritesId before searching
+		try {
+			$tweetId = self::validateUuid($favoritesId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		// create query template
+		$query = "SELECT favoritesId, favoritesUserId, favoritesBeerId FROM favorites WHERE favoritesId = :favoritesId";
+		$statement = $pdo->prepare($query);
+
+		// bind the favoritesId to the place holder in the template
+		$parameters = ["favoritesId" => $favoritesId->getBytes()];
+		$statement->execute($parameters);
+
+		// grab the favorite from mySQL
+		try {
+			$favoritesId = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$tweet = new Favorites($row["favoritesId"], $row["favoritesUserId"], $row["favoritesBeerId"]);
+			}
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($favoritesId);
+	}
+
+	/**
+	 * gets Favorites by profile id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid|string $tweetProfileId profile id to search by
+	 * @return \SplFixedArray SplFixedArray of Tweets found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-	public static function getFavoritesByFavoriteUserIdAndBeerId(\PDO $pdo, int $favoriteId) {
-	//sanitize the favorite id
-	if($favoriteId < 0) {
-		throw (new \PDOException("favorite id is not valid"));
-	}
-	//create query template
-	$query = "SELECT , favoriteId, favoriteUserId, favoriteBeerId FROM favorite WHERE favoriteId = :favoriteId";
-	$statement = $pdo->prepare($query);
+	public static function getFavoritesByFavoritesUserId(\PDO $pdo, $favoritesUserId) : \SplFixedArray {
 
-	//bind the favorite id to the place holder in the template
-	$parameters = ["favoriteId" => $favoriteId];
-	$statement->execute($parameters);
-
-	//build an array of favorites
-	$favoriteId = new \SplFixedArray($statement->rowCount());
-	$statement->setFetchMode(\PDO::FETCH_ASSOC);
-	while(($row = $statement->fetch()) !== false) {
 		try {
-			$favoriteId = new favoriteId($row["favoriteId"], $row["Id"]);
-			$favoriteId->next();
-		} catch(\Exception $exception) {
-			//if the row cant be converted rethrow it
+			$favoritesUserId = self::validateUuid($favoritesUserId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
+
+		// create query template
+		$query = "SELECT tweetId, tweetProfileId, tweetContent, tweetDate FROM tweet WHERE tweetProfileId = :tweetProfileId";
+		$statement = $pdo->prepare($query);
+		// bind the tweet profile id to the place holder in the template
+		$parameters = ["favoritesUserId" => $favoritesUserId->getBytes()];
+		$statement->execute($parameters);
+		// build an array of tweets
+		$tweets = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$tweet = new Tweet($row["favoritesId"], $row["favoritesUserId"], $row["favoritesBeerId"]);
+				$tweets[$tweets->key()] = $tweet;
+				$tweets->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($tweets);
 	}
-	return ($favoriteId);
+
+	/**
+	 * gets Favorites by BeerId
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $favoritesBeerId beerId to search for
+	 * @return \SplFixedArray SplFixedArray of Favorites found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getFavoritesByBeerId(\PDO $pdo, string $favoritesBeerId) : \SplFixedArray {
+		// sanitize the description before searching
+		$favoritesBeerId = trim($favoritesBeerId);
+		$favoritesBeerId = filter_var($favoritesBeerId, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($favoritesBeerId) === true) {
+			throw(new \PDOException("favorite beer is invalid"));
+		}
+
+		// escape any mySQL wild cards
+		$favoritesBeerId = str_replace("_", "\\_", str_replace("%", "\\%", $favoritesBeerId));
+
+		// create query template
+		$query = "SELECT favoritesId, favoritesUserId, favoritesBeerId FROM favorites WHERE favoritesBeerId LIKE :favoritesBeerId";
+		$statement = $pdo->prepare($query);
+
+		// bind the tweet content to the place holder in the template
+		$favoritesBeerId = "%$favoritesBeerId%";
+		$parameters = ["favoritesBeerId" => $favoritesBeerId];
+		$statement->execute($parameters);
+
+		// build an array of tweets
+		$tweets = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$tweet = new Tweet($row["tweetId"], $row["tweetProfileId"], $row["tweetContent"], $row["tweetDate"]);
+				$tweets[$tweets->key()] = $tweet;
+				$tweets->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($favoritesBeerId);
+	}
+
+	/**
+	 * gets all Favorites
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @return \SplFixedArray SplFixedArray of Tweets found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getAllFavorites(\PDO $pdo) : \SPLFixedArray {
+		// create query template
+		$query = "SELECT favoritesId, favoritesUserId, favoritesBeerId FROM favorites";
+		$statement = $pdo->prepare($query);
+		$statement->execute();
+
+		// build an array of favorites
+		$favorites = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$favorites = new Favorites($row["favoritesId"], $row["favoritesUserId"], $row["favoritesBeerId"]);
+				$favorites[$favorites->key()] = $favorites;
+				$favorites->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return ($favorites);
+	}
+
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() : array {
+		$fields = get_object_vars($this);
+
+		$fields["favoritesId"] = $this->favoritesUserId->toString();
+		$fields["favoritesUserId"] = $this->favoritesUserId->toString();
+
+		//format the date so that the front end can consume it
+		$fields["tweetDate"] = round(floatval($this->tweetDate->format("U.u")) * 1000);
+		return($fields);
+	}
 }
-
-
-
