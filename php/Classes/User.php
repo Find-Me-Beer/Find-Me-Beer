@@ -3,7 +3,7 @@
 namespace FindMeBeer\FindMeBeer;
 
 require_once("autoload.php");
-require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
+require_once(dirname(__DIR__) . "/vendor/autoload.php");
 
 use Ramsey\Uuid\Uuid;
 
@@ -374,7 +374,7 @@ class User implements \JsonSerializable {
 		}
 
 		// verify the User username content will fit in the database
-		if(strlen($newUserUsername) > 64 {
+		if(strlen($newUserUsername) > 64 ){
 			throw(new \RangeException("User username content too large"));
 		}
 
@@ -445,7 +445,7 @@ class User implements \JsonSerializable {
 			try {
 				$userId = self::validateUuid($userId);
 			} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
-						throw(new |\PDOException($exception->getMessage(), 0, $exception));
+						throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 			// create query template
 			$query = "SELECT userId, userActivationToken, userAvatarUrl, userDOB, userEmail, userFirstName, userHash, userLastName, userUsername FROM user WHERE userid= :userId";
