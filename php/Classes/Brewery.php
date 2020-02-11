@@ -8,7 +8,7 @@ require_once(dirname(__DIR__) . "/vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
 
 /**
- * Class Brewery
+ * Class  rewery
  * @Author Celeste Whitaker <cwhitaker4@cnm.edu>
  */
 
