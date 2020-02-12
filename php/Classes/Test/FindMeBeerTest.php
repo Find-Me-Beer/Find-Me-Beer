@@ -48,13 +48,13 @@ abstract class DataDesignTest extends TestCase {
 
 		// add all the tables for the project here
 		// THESE TABLES *MUST* BE LISTED IN THE SAME ORDER THEY WERE CREATED!!!!
-		$dataset->addTable("Tag");
+		$dataset->addTable("tag");
 		// the second parameter is required because like is also a SQL keyword and is the only way PHPUnit can query the like table
-		$dataset->addTable("User", "SELECT userId, userActivationToken, userAvatarUrl, userDOB, userEmail, userFirstName, userHash, userLastName, userUserName FROM `user`");
-		$dataset->addTable("Brewery");
-		$dataset->addTable("Beer");
-		$dataset->addTable("Favorite");
-		$dataset->addTable("BeerTag");
+		$dataset->addTable("user", "SELECT userId, userActivationToken, userAvatarUrl, userDOB, userEmail, userFirstName, userHash, userLastName, userUserName FROM `user`");
+		$dataset->addTable("brewery");
+		$dataset->addTable("beer");
+		$dataset->addTable("favorite");
+		$dataset->addTable("beerTag");
 		return($dataset);
 
 	}
