@@ -35,7 +35,7 @@ class Brewery implements \JsonSerializable {
 	use ValidateUuid;
 	/**
 	 * id for this Brewery; this is the primary key
-	 * @var Uuid $breweryId
+	 * @var Uuid $BreweryId
 	 */
 	private $BreweryId;
 
@@ -87,7 +87,7 @@ class Brewery implements \JsonSerializable {
 	 * mutator of BreweryId
 	 * @param Uuid $newBreweryId
 	 * @throws \RangeException if $newBreweryId is not positive
-	 * @throws \TypeError if $newBreweyId is not a uuid or string
+	 * @throws \TypeError if $newBreweryId is not a uuid or string
 	 */
 
 	public function setBreweryId($newBreweryId): void {
@@ -246,47 +246,47 @@ public function getBreweryName(): string {
 
 		//verify size of string is less than 64 characters
 
-		if(strlen($newbreweryPhone) > 64) {
+		if(strlen($newBreweryPhone) > 64) {
 
 			throw(new \RangeException("Brewery Phone is too long"));
 
 		}
 
 		// store Brewery Phone
-		$this->breweryPhone = $newbreweryPhone;
+		$this->BreweryPhone = $newBreweryPhone;
 
 	}
 
 
-	public function getbreweryUrl(): string {
-		return ($this->breweryUrl);
+	public function getBreweryUrl(): string {
+		return ($this->BreweryUrl);
 	}
 
 	/**
-	 * mutator method for breweryUrl
-	 * @param string $newbreweryUrl
-	 * @throws \RangeException if $newbreweryUrl is > 2083 characters
-	 * @throws \TypeError if $newbreweryUrl is not a string
+	 * mutator method for BreweryUrl
+	 * @param string $newBreweryUrl
+	 * @throws \RangeException if $newBreweryUrl is > 2083 characters
+	 * @throws \TypeError if $newBreweryUrl is not a string
 	 **/
 
-	public function setbreweryUrl(string $newbreweryUrl): void {
+	public function setBreweryUrl(string $newBreweryUrl): void {
 
 		//verify new brewery url is secure
 
-		$newbreweryUrl = trim($newbreweryUrl);
+		$newBreweryUrl = trim($newBreweryUrl);
 
-		$newbreweryUrl = FILTER_VAR($newbreweryUrl, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		$newBreweryUrl = FILTER_VAR($newBreweryUrl, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
 		//verify size of string is less than 2083 characters
 
-		if(strlen($newbreweryUrl) > 2083) {
+		if(strlen($newBreweryUrl) > 2083) {
 
-			throw(new \RangeException(\"Brewery phone number is too long\\"));
+			throw(new \RangeException(Brewery phone number is too long));
 
 		}
 
-		// store breweryUrl
-		$this->breweryUrl = $newbreweryUrl;
+		// store BreweryUrl
+		$this->BreweryUrl = $newBreweryUrl;
 
 	}
 }
