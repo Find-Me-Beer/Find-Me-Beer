@@ -290,7 +290,7 @@ public function getbreweryUrl(): string {
 
 	if(strlen($newbreweryUrl)> 2083){
 
-		throw(new \RangeException(\"Brewery Phone is too long\\"));
+		throw(new \RangeException(\"Brewery phone number is too long\\"));
 
 		}
 
@@ -298,3 +298,4 @@ public function getbreweryUrl(): string {
 	$this->breweryUrl = $newbreweryUrl;
 
 }
+?>
