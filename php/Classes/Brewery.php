@@ -231,18 +231,18 @@ public function getBreweryName(): string {
 
 	/**
 	 * mutator method for Brewery Phone
-	 * @param string $newbreweryPhone
-	 * @throws \RangeException if $newbreweryPhone is > 64 characters
-	 * @throws \TypeError if $newbreweryPhone is not a string
+	 * @param string $newBreweryPhone
+	 * @throws \RangeException if $newBreweryPhone is > 64 characters
+	 * @throws \TypeError if $newBreweryPhone is not a string
 	 **/
 
-	public function setbreweryPhone(string $newbreweryPhone): void {
+	public function setBreweryPhone(string $newBreweryPhone): void {
 
 		//verify new brewery phone is secure
 
-		$newbreweryPhone = trim($newbreweryPhone);
+		$newBreweryPhone = trim($newBreweryPhone);
 
-		$newbreweryPhone = FILTER_VAR($newbreweryPhone, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		$newBreweryPhone = FILTER_VAR($newBreweryPhone, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
 		//verify size of string is less than 64 characters
 
