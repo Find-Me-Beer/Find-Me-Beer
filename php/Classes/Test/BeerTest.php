@@ -96,9 +96,37 @@ class BeerTest extends FindMeBeerTest {
 			$this->VALID_BEERNAME, $this->VALID_BEERTYPE);
 		$beer->insert($this->getPDO());
 
-		//edit beer and update in mySQL
-		$beer
+		//grab data from mySQL and enforce the fields match our expectations
+		$pdoBeer = Beer::getBeerByBeerId($this->getPDO(), $beer->getBeerId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beer"));
+		$this->assertEquals($pdoBeer->getBeerId(), $this->VALID_BEERID);
+		$this->assertEquals($pdoBeer->getBeerAbv(), $this->VALID_BEERABV2);
+		$this->assertEquals($pdoBeer->getBeerDescription(), $this->VALID_BEERDESCRIPTION);
+		$this->assertEquals($pdoBeer->getBeerName(), $this->VALID_BEERNAME);
+		$this->assertEquals($pdoBeer->getBeerType(), $this->VALID_BEERTYPE);
+	}
+
+	/**
+	 * test inserting a valid beer, modifying it and then updating it
+	 */
+	public function testUpdateValidBeer() :void {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getsRowCount("beer");
+
+		// create a new Beer and insert to into mySQL
+		$beerId = generateUuidV4();
+		$beer = new Beer($beerId, $this->beer->getBeerId(), $this->VALID_BEERABV, $this->VALID_BEERDESCRIPTION, $this->VALID_BEERNAME, $this->VALID_BEERTYPE);
+		$beer->insert($this->getPDO());
+		// edit this Beer and insert it into mySQL
+		$beer->setBeerAbv($this->VALID_BEERABV2);
+		$beer->update($this->getPDO());
+		// grab the data from mySQL and enforce the fields match our expectations
+		$pdoBeer = Beer::getBeerByBeerId($this->getPDO(), $beer->getBeerId());
+
+
 
 	}
+
+
 
 }
