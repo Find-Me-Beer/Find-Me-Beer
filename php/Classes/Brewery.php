@@ -104,11 +104,11 @@ public function getbreweryId(): Uuid {
 
 	}
 
-public function getbreweryAddress(): ?string {
-	return $this->breweryAddress;
+public function getbreweryAddress(): string {
+	return ($this->breweryAddress);
 }
 
-public function setbreweryAddress (?string $newbreweryAddress): void {
+public function setbreweryAddress (string $newbreweryAddress) : void {
 	if ($newbreweryAddress === null) {
 		$this->newbreweryAddress = null;
 		return;
@@ -195,20 +195,20 @@ public function setbreweryDescription ($newbreweryDescription) {
 		throw(new \RangeException(\"brewery email content too large\"));
 	}
 
-	// store the profile email content
+	// store the brewery email content
 	$this->breweryEmail = $newbreweryEmail;
 
 }
 
 public function getBreweryName(): string {
-		return($this->BreweryName);
+		return($this->breweryName);
 }
-	/**
+	/*
 	 * mutator method for Brewery Name
-	 * @param string $newBreweryName
+	 * @param string $newbreweryName
 	 * @throws \RangeException if $newbreweryName is > 32 characters
 	 * @throws \TypeError if $newbreweryName is not a string
-	 **/
+	 */
 
 	public function setbreweryName(string $newbreweryName):void {
 
