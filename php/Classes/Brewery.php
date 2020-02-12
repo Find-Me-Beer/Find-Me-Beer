@@ -59,16 +59,16 @@ class Brewery implements \JsonSerializable {
 
 	public function __construct($newBreweryId, $newBreweryAddress, $newBreweryAvatarUrl, $newBreweryDescription, $newBreweryEmail, $newBreweryLat, $newBreweryLong, $newBreweryName, $newBreweryPhone, $newBreweryUrl) {
 		try {
-			$this->setBreweryId($newbreweryId);
-			$this->setBreweryAddress($newbreweryAddress);
-			$this->setBreweryAvatarUrl($newbreweryAvatarUrl);
-			$this->setBreweryDescription($newbreweryDescription);
-			$this->setBreweryEmail($newbreweryEmail);
-			$this->setBreweryName($newbreweryName);
-			$this->setBreweryLat($newbreweryLat);
-			$this->setBreweryLong($newbreweryLong);
-			$this->setBreweryPhone($newbreweryPhone);
-			$this->setBreweryUrl($newbreweryUrl);
+			$this->setBreweryId($newBreweryId);
+			$this->setBreweryAddress($newBreweryAddress);
+			$this->setBreweryAvatarUrl($newBreweryAvatarUrl);
+			$this->setBreweryDescription($newBreweryDescription);
+			$this->setBreweryEmail($newBreweryEmail);
+			$this->setBreweryName($newBreweryName);
+			$this->setBreweryLat($newBreweryLat);
+			$this->setBreweryLong($newBreweryLong);
+			$this->setBreweryPhone($newBreweryPhone);
+			$this->setBreweryUrl($newBreweryUrl);
 
 		} //determine what exception type was thrown
 		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
@@ -79,42 +79,42 @@ class Brewery implements \JsonSerializable {
 		}
 	}
 
-	public function getbreweryId(): Uuid {
-		return ($this->breweryId);
+	public function getBreweryId(): Uuid {
+		return ($this->BreweryId);
 	}
 
 	/**
-	 * mutator of breweryId
-	 * @param Uuid $newbreweryId
-	 * @throws \RangeException if $newbreweryId is not positive
-	 * @throws \TypeError if $newbreweyId is not a uuid or string
+	 * mutator of BreweryId
+	 * @param Uuid $newBreweryId
+	 * @throws \RangeException if $newBreweryId is not positive
+	 * @throws \TypeError if $newBreweyId is not a uuid or string
 	 */
 
-	public function setBreweryId($newbreweryId): void {
+	public function setBreweryId($newBreweryId): void {
 		try {
-			$uuid = self::validatUuid($newbreweryId);
+			$uuid = self::validatUuid($newBreweryId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
-		//convert and store breweryId
-		$this->breweryId = $uuid;
+		//convert and store BreweryId
+		$this->BreweryId = $uuid;
 
 	}
 
-	public function getbreweryAddress(): string {
-		return ($this->breweryAddress);
+	public function getBreweryAddress(): string {
+		return ($this->BreweryAddress);
 	}
 
-	public function setbreweryAddress(string $newbreweryAddress): void {
-		if($newbreweryAddress === null) {
-			$this->newbreweryAddress = null;
+	public function setBreweryAddress(string $newBreweryAddress): void {
+		if($newBreweryAddress === null) {
+			$this->newBreweryAddress = null;
 			return;
 		}
 
-		$newbreweryAddress = strtolower(trim($newbreweryAddress));
+		$newBreweryAddress = strtolower(trim($newBreweryAddress));
 
-		if(ctype_xdigit($newbreweryAddress) === false) {
+		if(ctype_xdigit($newBreweryAddress) === false) {
 
 			throw(new\RangeException("brewery Address is not valid"));
 
