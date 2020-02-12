@@ -12,32 +12,31 @@ use Ramsey\Uuid\Uuid;
  * @Author Celeste Whitaker <cwhitaker4@cnm.edu>
  */
 
+/**
+ *
+ *
+ * breweryId Binary(16) PRIMARY KEY
+breweryAddress Varchar(512)
+breweryAvatarUrl Varchar(128)
+breweryDescription Varchar(1000)
+breweryEmail Varchar(128)
+breweryName Varchar(32)
+breweryLat Decimal
+breweryLong Decimal
+breweryPhone Varchar(32)
+breweryUrl Varchar(2083)
+ *
+ *
+ *
+ */
+
 class Brewery implements \JsonSerializable {
+	use ValidateDate;
 	use ValidateUuid;
-
-	/**
-	 *
-	 *
-	 * breweryId Binary(16) PRIMARY KEY
-	breweryAddress Varchar(512)
-	breweryAvatarUrl Varchar(128)
-	breweryDescription Varchar(1000)
-	breweryEmail Varchar(128)
-	breweryName Varchar(32)
-	breweryLat Decimal
-	breweryLong Decimal
-	breweryPhone Varchar(32)
-	breweryUrl Varchar(2083)
-	 *
-	 *
-	 *
-	 */
-
 	/**
 	 * id for this Brewery; this is the primary key
 	 * @var Uuid $breweryId
 	 */
-
 	private $breweryId;
 
 	private $breweryAddress;
