@@ -448,19 +448,19 @@ class Beer implements \JsonSerializable {
 
 
 
-	/**
-	 * formats the state variables for JSON serialization
-	 *
-	 * @return array resulting state variables to serialize
-	 **/
-	public function jsonSerialize() : array {
-		$fields = get_object_vars($this);
+		/**
+		 * formats the state variables for JSON serialization
+		 *
+		 * @return array resulting state variables to serialize
+		 **/
+		public function jsonSerialize() : array {
+			$fields = get_object_vars($this);
 
-		$fields["beerId"] = $this->beerId->toString();
-		$fields["beerBreweryId"] = $this->beerBreweryId->toString();
+			$fields["beerId"] = $this->beerId->toString();
+			$fields["beerBreweryId"] = $this->beerBreweryId->toString();
 
-		return($fields);
-	}
+			return($fields);
+		}
 
 		/**
 		 * gets beer by tag id
@@ -480,7 +480,7 @@ class Beer implements \JsonSerializable {
 			}
 
 			//Create query
-			$query = "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerId = beerTag.beerId AND beerTag WHERE beerTag.tagId = :tagId";
+			$query = "SELECT beer.beerId, beer.beerAbv, beer.beerBreweryId, beer.beerDescription, beer.beerName, beer.beerType FROM beer INNER JOIN beerTag ON beer.beerId = beerTag.beerTagBeerId WHERE beerTag.beerTagTagId = :tagId";
 			//Or "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerId = beerTag.beerId AND beerTag.tagId = :beerTag.tagId";
 			$statement = $pdo->prepare($query);
 
