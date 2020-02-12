@@ -106,21 +106,23 @@ class Brewery implements \JsonSerializable {
 		return ($this->BreweryAddress);
 	}
 
-	public function setBreweryAddress(string $newBreweryAddress): void {
-		if($newBreweryAddress === null) {
-			$this->newBreweryAddress = null;
-			return;
+	public function setBreweryAddress(string $newBreweryAddress) : void {
+
+		$newBreweryAddress = trim($newBreweryAddress);
+		$newBreweryAddress = filter_var($newBreweryAddress, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newBreweryAddress) === true) {
+			throw(new \InvalidArgumentException("Brewery Address is not valid"));
 		}
-
-		$newBreweryAddress = strtolower(trim($newBreweryAddress));
-
-		if(ctype_xdigit($newBreweryAddress) === false) {
-
-			throw(new\RangeException("brewery Address is not valid"));
-
+		// verify the Brewery Address will fit in the database
+		if(strlen($newBreweryAddress) > 512) {
+			throw(new \RangeException("profile at handle is too large"));
 		}
+		// store the Brewery Address
+		$this->BreweryAddress = $newBreweryAddress;
+	}
 
-		//make sure breweryAddress is only 512 characters
+
+	//make sure breweryAddress is only 512 characters
 
 		if(strlen($newbreweryAddress) > 512) {
 			throw(new\RangeException("brewery address must be 512 characters or less)
