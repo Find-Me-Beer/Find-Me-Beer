@@ -122,101 +122,101 @@ class Brewery implements \JsonSerializable {
 	}
 
 /**
- * accessor method for breweryAvatarUrl
- *@return String value for breweryAvatarUrl
+ * accessor method for BreweryAvatarUrl
+ *@return String value for BreweryAvatarUrl
  *
  */
 
-public function breweryAvatarUrl(){
-	return $this-> breweryAvatarUrl;
+public function BreweryAvatarUrl(){
+	return $this-> BreweryAvatarUrl;
 
 }
 
 	/**
-	 * mutator method for breweryAvatarUrl
-	 * @param $newbreweryAvatarUrl
-	 * @return String value of breweryAvatarUrl
+	 * mutator method for BreweryAvatarUrl
+	 * @param $newBreweryAvatarUrl
+	 * @return String value of BreweryAvatarUrl
 	 */
 
-	public function setbreweryAvatarUrl($newbreweryAvatarUrl){
-	$this-> breweryAvatarUrl = $newbreweryAvatarUrl;
+	public function setBreweryAvatarUrl($newBreweryAvatarUrl){
+	$this-> BreweryAvatarUrl = $newBreweryAvatarUrl;
 
 }
 
 /**
- * accessor method for breweryAvatarUrl
- * @return String value of breweryAvatarUrl
+ * accessor method for BreweryAvatarUrl
+ * @return String value of BreweryAvatarUrl
  **/
 
-public function setbreweryDescription ($newbreweryDescription) {
-	if ($newbreweryDescription === null) {
-		$this->newbreweryDescription = null;
+public function setBreweryDescription ($newBreweryDescription) {
+	if ($newBreweryDescription === null) {
+		$this->newBreweryDescription = null;
 		return;
 }
 
-		$newbreweryDescription = string(trim($newbreweryDescription));
+		$newBreweryDescription = string(trim($newBreweryDescription));
 
-		if(empty($newbreweryDescription) === true) {
+		if(empty($newBreweryDescription) === true) {
 
-			throw(new\RangeException(\"brewery description is not valid\"));
-
-		}
-
-		//make sure breweryDescription is only 1000 characters
-
-		if(strlen($newbreweryDescription) > 1000){
-			throw(new\RangeException(\"brewery description must be 1000 characters or less)
+			throw(new\RangeException("Brewery description is not valid));
 
 		}
 
-		$this->breweryDescription = $newbreweryDescription;
+		//make sure BreweryDescription is only 1000 characters
+
+		if(strlen($newBreweryDescription) > 1000){
+			throw(new\RangeException(Brewery description must be 1000 characters or less)
+
+		}
+
+		$this->BreweryDescription = $newBreweryDescription;
 
 	}
 
-		throw(new \InvalidArgumentException(\"profile email content is empty or insecure\"));
+		throw(new \InvalidArgumentException(profile email content is empty or insecure));
 
 	}
 
 	/*verify the brewery email content will fit in database
 
-	if(strlen($newbreweryEmail > 128) {
+	if(strlen($newBreweryEmail > 128) {
 
-		throw(new \RangeException("brewery email content too large\"));
+		throw(new \RangeException("Brewery email content too large));
 	}
 
-	// store the brewery email content
-	$this->breweryEmail = $newbreweryEmail;
+	// store the Brewery email content
+	$this->BreweryEmail = $newBreweryEmail;
 
 }
 
 public function getBreweryName(): string {
-		return($this->breweryName);
+		return($this->BreweryName);
 }
 	/*
 	 * mutator method for Brewery Name
-	 * @param string $newbreweryName
-	 * @throws \RangeException if $newbreweryName is > 32 characters
-	 * @throws \TypeError if $newbreweryName is not a string
+	 * @param string $newBreweryName
+	 * @throws \RangeException if $newBreweryName is > 32 characters
+	 * @throws \TypeError if $newBreweryName is not a string
 	 */
 
-	public function setbreweryName(string $newbreweryName):void {
+	public function seBbreweryName(string $newBreweryName):void {
 
-		//verify new brewery Name is secure
+		//verify new brewery name is secure
 
-		$newbreweryName = trim($newbreweryName);
+		$newBreweryName = trim($newBreweryName);
 
-		$newbreweryName = FILTER_VAR($newbreweryName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		$newBreweryName = FILTER_VAR($newBreweryName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
 		//verify size of string is less than 32 characters
 
-		if(strlen($newbreweryName)> 32){
+		if(strlen($newBreweryName)> 32){
 
-			throw(new \RangeException(\"Brewery Name is too long\\"));
+			throw(new \RangeException("Brewery Name is too long"));
 
 		}
 
 		// store Brewery Name
-		$this->breweryName = $newbreweryName;
+		$this->BreweryName = $newBreweryName;
 
 	}
 
@@ -225,8 +225,8 @@ public function getBreweryName(): string {
 	 */
 
 
-	public function getbreweryPhone(): string {
-		return ($this->breweryPhone);
+	public function getBreweryPhone(): string {
+		return ($this->BreweryPhone);
 	}
 
 	/**
