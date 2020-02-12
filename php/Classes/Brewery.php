@@ -30,7 +30,6 @@ use Ramsey\Uuid\Uuid;
  *
  */
 class brewery implements \JsonSerializable {
-	use ValidateDate;
 	use ValidateUuid;
 	/**
 	 * id for this brewery; this is the primary key
