@@ -36,23 +36,43 @@ class Brewery {
 	 * @var Uuid $breweryId
 	 */
 	private $breweryId;
-
+	/**
+	 *
+	 * @var string $breweryAddress
+	 *
+	 */
 	private $breweryAddress;
-
+	/**
+	 * @var string $breweryAvatarUrl
+	 */
 	private $breweryAvatarUrl;
-
+	/**
+	 * @var string $breweryDescription
+	 */
 	private $breweryDescription;
-
+	/**
+	 * @var string $breweryEmail
+	 */
 	private $breweryEmail;
-
+	/**
+	 * @var string $breweryName
+	 */
 	private $breweryName;
-
+	/**
+	 * @var float $breweryLat
+	 */
 	private $breweryLat;
-
+	/**
+	 * @var float $breweryLong
+	 */
 	private $breweryLong;
-
+	/**
+	 * @var string $breweryPhone
+	 */
 	private $breweryPhone;
-
+	/**
+	 * @var string $breweryUrl
+	 */
 	private $breweryUrl;
 
 	public function __construct($newbreweryId, string $newbreweryAddress, string $newbreweryAvatarUrl, ?string $newbreweryDescription, $newbreweryEmail, $newbreweryLat, $newbreweryLong, $newbreweryName, $newbreweryPhone, $newbreweryUrl) {
