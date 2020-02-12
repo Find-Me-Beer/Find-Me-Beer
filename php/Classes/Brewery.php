@@ -92,10 +92,8 @@ class Brewery {
 		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
-			{
 			}
 		}
-	}
 
 	public function getbreweryId(): Uuid {
 		return ($this->breweryId);
