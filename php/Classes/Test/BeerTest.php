@@ -18,8 +18,8 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
  * This is a PHPUnit test for the Beer Class. All PDO methods are tested for valid inputs
  *
  * @see Beer
- * @author Reece Nunn <rnunn4@cnm.edu
- * @modeled after TweetTest.php by Dylan McDonald <dmcdonald21@cnm.edu>
+ * @author Reece Nunn <rnunn4@cnm.edu>
+ * @modeled after BeerTest.php by Merri Zibert <mzibert@cnm.edu>
  */
 class BeerTest extends FindMeBeerTest {
 	/**
@@ -72,7 +72,7 @@ class BeerTest extends FindMeBeerTest {
 		//run setUp() method first
 		parent::setUp();
 
-		//create and insert brewery that created beer
+		//create and insert brewery that created the beer
 		$this->brewery = new Brewery(generateUuidV4(), "111 Marble Ave NW, Albuquerque, NM 87102",
 			"https://gravatar.com/avatar/07e75bbcdc08eca3d8db273bc7d3f7f8?s=400&d=robohash&r=x",
 			"Founded in 2008 in the heart of downtown Albuquerque, Marble Brewery is devoted to brewing
@@ -81,10 +81,24 @@ class BeerTest extends FindMeBeerTest {
 			 and raise expectations. We package a variety of styles and distribute throughout New Mexico, Arizona, Southwest
 			 Texas and Southwest Colorado.", "marblebrewery@marble.com", "35.094880", "-106.665270",
 		"Marble Brewery", "(505)243-2739", "https://marblebrewery.com/");
+		$this->brewery->insert($this->getPDO());
 	}
 
+	/**
+	 * test inserting valid beer and verify the mySQL data matches
+	 */
+	public function testInsertValidBeer() {
+		//count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("beer");
 
-// create and insert a Brewery to own the test Beer
-$this->brewery = new Brewery()
-$this->brewery->insert($this->getPDO());
+		//create a new Beer and insert it into mySQL
+		$beer = new Beer(generateUuidV4(), $this->brewery->getbreweryId(), $this->VALID_BEERABV, $this->VALID_BEERDESCRIPTION,
+			$this->VALID_BEERNAME, $this->VALID_BEERTYPE);
+		$beer->insert($this->getPDO());
+
+		//edit beer and update in mySQL
+		$beer
+
+	}
+
 }
