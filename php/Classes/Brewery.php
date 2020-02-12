@@ -170,17 +170,16 @@ class Brewery {
 			return;
 		}
 
-		$newbreweryDescription = string(trim($newbreweryDescription));
-
+		$newbreweryDescription = string(trim($newbreweryDescription) {
 		if(empty($newbreweryDescription) === true) {
 
 			throw(new\RangeException("brewery description is not valid));
 
 		}
 
-		//make sure breweryDescription is only 1000 characters
+		/make sure breweryDescription is 1000 characters or less
 
-		if(strlen($newbreweryDescription) > 1000){
+		if(strlen($newbreweryDescription) > 1000) {
 			throw(new\RangeException(brewery description must be 1000 characters or less)
 
 		}
@@ -192,17 +191,20 @@ class Brewery {
 		throw(new \InvalidArgumentException(content is empty or insecure));
 
 	}
-
-	/*verify the brewery email content will fit in database
-
-	if(strlen($newbreweryEmail > 128) {
-
-		throw(new \RangeException("brewery email content too large));
-	}
-
-		// store the brewery email content
+	
+	public function setbreweryEmail(string $newbreweryEmail) : void {
+		
+		$newbreweryEmail = trim($newbreweryEmail);
+		$newbreweryEmail = filter_var($newbreweryEmail, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newbreweryEmail) === true) {
+			throw(new \InvalidArgumentException(\"Brewery email is not valid\"));
+		}
+		// verify the brewery email will fit in the database
+		if(strlen($newbreweryEmail) > 128) {
+			throw(new \RangeException(\"brewery email is too large\"));
+		}
+		// store the brewery email
 		$this->breweryEmail = $newbreweryEmail;
-
 	}
 
 	public function getbreweryName(): string {
