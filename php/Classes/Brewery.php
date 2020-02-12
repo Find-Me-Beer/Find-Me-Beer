@@ -115,23 +115,12 @@ class Brewery implements \JsonSerializable {
 		}
 		// verify the Brewery Address will fit in the database
 		if(strlen($newBreweryAddress) > 512) {
-			throw(new \RangeException("profile at handle is too large"));
+			throw(new \RangeException("Brewery address is over 512 characters"));
 		}
 		// store the Brewery Address
 		$this->BreweryAddress = $newBreweryAddress;
 	}
 
-
-	//make sure breweryAddress is only 512 characters
-
-		if(strlen($newbreweryAddress) > 512) {
-			throw(new\RangeException("brewery address must be 512 characters or less)
-
-		}
-
-		$this->breweryAddress = $newbreweryAddress;
-
-	}
 /**
  * accessor method for breweryAvatarUrl
  *@return String value for breweryAvatarUrl
