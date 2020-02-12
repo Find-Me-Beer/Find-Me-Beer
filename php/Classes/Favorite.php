@@ -17,7 +17,7 @@ use Ramsey\Uuid\Uuid;
 class Favorite implements \JsonSerializable {
 	use ValidateUuid;
 	/**
-	 * id of the Profile that sent this Tweet; this is a foreign key
+	 * id of the Profile that sent this Favorite; this is a foreign key
 	 * @var Uuid $favoriteUserId
 	 **/
 	private $favoriteUserId;
@@ -30,8 +30,8 @@ class Favorite implements \JsonSerializable {
 	/**
 	 * constructor for Favorite
 	 *
-	 * @param string|Uuid $newFavoriteBeerId id of the Profile that sent this Tweet
-	 * @param string $newFavoriteUserId string containing actual tweet data
+	 * @param string|Uuid $newFavoriteBeerId id of the beer for this Favorite
+	 * @param string $newFavoriteUserId string containing actual userId data
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
@@ -154,7 +154,7 @@ class Favorite implements \JsonSerializable {
 	 * @throws \TypeError when a variable are not the correct data type
 	 * @return favorites|null Like found or null if not found
 	 **/
-	public static function getFavoriteByFavoriteBeerIdAndFavoriteUserId(\PDO $pdo, string $favoriteBeerId, string $favoriteUserId ) : ?Favorites {
+	public static function getFavoriteByFavoriteBeerIdAndFavoriteUserId(\PDO $pdo, string $favoriteBeerId, string $favoriteUserId ) : ?Favorite {
 		// sanitize the favoriteBeerId and favoriteUserId before searching
 		try {
 			$favoriteBeerId = self::validateUuid($favoriteBeerId);
