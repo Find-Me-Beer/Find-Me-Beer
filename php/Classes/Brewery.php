@@ -9,7 +9,7 @@ use Ramsey\Uuid\Uuid;
 
 /**
  * Class  Brewery
- * @Author Celeste Whitaker <cwhitaker4@cnm.edu>
+ * @Author Celeste C Whitaker <cwhitaker4@cnm.edu>
  */
 
 /**
