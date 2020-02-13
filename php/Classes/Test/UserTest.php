@@ -109,15 +109,131 @@ class UserTest extends FindMeBeerTest {
 	/**
 	 * test inserting a User, editing it, and then updating it
 	 **/
-	public function testUpdateUser() {
+	public function testUpdateValidUser() {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("user");
 		// create a new User and insert to into mySQL
 		$userId = generateUuidV4();
-		$user = new User($userId, $this->profile->getUserId(), $this->$VALID_USERID, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $VALID_FIRSTNAME, $VALID_HASH, $VALID_LASTNAME);
+		$user = new User($userId, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $VALID_FIRSTNAME, $VALID_HASH, $VALID_LASTNAME);
+		$user->insert($this->getPDO());
+		// edit the User and update it in mySQL
+		$user->setUserActivationToken($this->$VALID_ACTIVATIONTOKEN);
+		$user->setUserAvatarUrl($this->$VALID_AVATARURL);
+		$user->setUserDOB($this->$VALID_DOB);
+		$user->setUserEmail($this->$VALID_EMAIL);
+		$user->setUserFirstName($this->$VALID_FIRSTNAME);
+		$user->setUserHash($this->$VALID_HASH);
+		$user->setUserLastName($this->$VALID_LASTNAME);
+		$user->update($this->getPDO());
+		// grab the data from mySQL and enforce the fields match our expectations
+
+		$pdoUser = User::getUserByUserId($this->getPDO(), $user->getUserId());
+
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("user"));
+		$this->assertEquals($pdoUser->getUserId(), $userId);
+		$this->assertEquals($pdoUser->getUserActivationToken(), $this->VALID_ACTIVATIONTOKEN);
+		$this->assertEquals($pdoUser->getUserAvatarUrl(), $this->VALID_AVATARURL);
+		$this->assertEquals($pdoUser->getUserDOB(), $this->VALID_DOB);
+		$this->assertEquals($pdoUser->getUserEmail(), $this->VALID_EMAIL);
+		$this->assertEquals($pdoUser->getUserFirstName(), $this->VALID_FIRSTNAME);
+		$this->assertEquals($pdoUser->getUserHash(), $this->VALID_HASH);
+		$this->assertEquals($pdoUser->getUserLastName(), $this->VALID_LASTNAME);
+	}
+
+	/**
+	 * test creating a User and then deleting it
+	 **/
+	public function testDeleteValidUser() : void {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("user");
+
+		$userId = generateUuidV4();
+		$user = new User($userId, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $VALID_FIRSTNAME, $VALID_HASH, $VALID_LASTNAME);
 		$user->insert($this->getPDO());
 
 
+		// delete the User from mySQL
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("user"));
+		$user->delete($this->getPDO());
+
+		// grab the data from mySQL and enforce the User does not exist
+		$pdoUser = User::getUserByUserId($this->getPDO(), $user->getUserId());
+		$this->assertNull($pdoUser);
+		$this->assertEquals($numRows, $this->getConnection()->getRowCount("user"));
+	}
+
+	/**
+	 * test inserting a User and regrabbing it from mySQL
+	 **/
+	public function testGetValidUserByUserId() : void {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("user");
+
+		// create a new User and insert to into mySQL
+		$userId = generateUuidV4();
+		$user = new User($userId, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $VALID_FIRSTNAME, $VALID_HASH, $VALID_LASTNAME);
+		$user->insert($this->getPDO());
+
+		// grab the data from mySQL and enforce the fields match our expectations
+		$pdoUser = User::getUserByUserId($this->getPDO(), $user->getUserId());
+
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("user"));
+		$this->assertEquals($pdoUser->getUserId(), $userId);
+		$this->assertEquals($pdoUser->getUserActivationToken(), $this->VALID_ACTIVATIONTOKEN);
+		$this->assertEquals($pdoUser->getUserAvatarUrl(), $this->VALID_AVATARURL);
+		$this->assertEquals($pdoUser->getUserDOB()->format("Y-m-d"), $this->VALID_DOB);
+		$this->assertEquals($pdoUser->getUserEmail(), $this->VALID_EMAIL);
+		$this->assertEquals($pdoUser->getUserFirstName(), $this->VALID_FIRSTNAME);
+		$this->assertEquals($pdoUser->getUserHash(), $this->VALID_HASH);
+		$this->assertEquals($pdoUser->getUserLastName(), $this->VALID_LASTNAME);
+	}
+	/**
+	 * test grabbing a profile by its activation
+	 */
+	public function testGetValidUserByActivationToken() : void {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("user");
+
+		$userId = generateUuidV4();
+		$user = new User($userId, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $VALID_FIRSTNAME, $VALID_HASH, $VALID_LASTNAME);
+		$user->insert($this->getPDO());
+
+		// grab the data from mySQL and enforce the fields match our expectations
+		$pdoUser = User::getUserByUserActivationToken($this->getPDO(), $user->getUserActivationToken());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("user"));
+		$this->assertEquals($pdoUser->getUserId(), $userId);
+		$this->assertEquals($pdoUser->getUserActivationToken(), $this->VALID_ACTIVATIONTOKEN);
+		$this->assertEquals($pdoUser->getUserAvatarUrl(), $this->VALID_AVATARURL);
+		$this->assertEquals($pdoUser->getUserDOB()->format("Y-m-d"), $this->VALID_DOB);
+		$this->assertEquals($pdoUser->getUserEmail(), $this->VALID_EMAIL);
+		$this->assertEquals($pdoUser->getUserFirstName(), $this->VALID_FIRSTNAME);
+		$this->assertEquals($pdoUser->getUserHash(), $this->VALID_HASH);
+		$this->assertEquals($pdoUser->getUserLastName(), $this->VALID_LASTNAME);
+	}
+
+	/**
+	 * test grabbing a User by email
+	 **/
+	public function testGetValidUserByEmail() : void {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("user");
+
+		$userId = generateUuidV4();
+		$user = new User($userId, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $VALID_FIRSTNAME, $VALID_HASH, $VALID_LASTNAME);
+		$user->insert($this->getPDO());
+
+		// grab the data from mySQL and enforce the fields match our expectations
+		$pdoUser = User::getUserByUserEmail($this->getPDO(), $user->getUserEmail());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("user"));
+		$this->assertEquals($pdoUser->getUserId(), $userId);
+		$this->assertEquals($pdoUser->getUserActivationToken(), $this->VALID_ACTIVATIONTOKEN);
+		$this->assertEquals($pdoUser->getUserAvatarUrl(), $this->VALID_AVATARURL);
+		$this->assertEquals($pdoUser->getUserDOB()->format("Y-m-d"), $this->VALID_DOB);
+		$this->assertEquals($pdoUser->getUserEmail(), $this->VALID_EMAIL);
+		$this->assertEquals($pdoUser->getUserFirstName(), $this->VALID_FIRSTNAME);
+		$this->assertEquals($pdoUser->getUserHash(), $this->VALID_HASH);
+		$this->assertEquals($pdoUser->getUserLastName(), $this->VALID_LASTNAME);
+	}
 
 
 }
