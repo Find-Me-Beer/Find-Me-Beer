@@ -154,7 +154,7 @@ class BeerTest extends FindMeBeerTest {
 	}
 
 	/**
-	 * test inserting a beer and selecting it from mySQL
+	 * test getting all beers
 	 */
 	public function testGetValidBeers() {
 		// count the number of rows and save it for later
@@ -187,8 +187,32 @@ class BeerTest extends FindMeBeerTest {
 	}
 
 	/**
-	 *
+	 * test inserting a beer and grabbing it by its id
 	 */
+	public function testGetValidBeerByBeerId() {
+		//count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("beer");
+
+		// create a new beer and insert it into mySQL
+		$beerId = generateUuidV4();
+		$beer = new Beer($beerId,
+			$this->VALID_BEERABV,
+			$this->brewery->getbreweryId(),
+			$this->VALID_BEERDESCRIPTION,
+			$this->VALID_BEERNAME,
+			$this->VALID_BEERTYPE);
+		$beer->insert($this->getPDO());
+
+		//grab data from database and enforce it matches expectations
+		$pdoBeer = Beer::getBeerByBeerId($this->getPDO(), $beer->getBeerId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beer"));
+		$this->assertEquals($pdoBeer->getBeerId(), $beerId);
+		$this->assertEquals($pdoBeer->getBeerAbv(), $this->VALID_BEERABV);
+		$this->assertEquals($pdoBeer->getBeerBreweryId(), $this->brewery->getbreweryId());
+		$this->assertEquals($pdoBeer->getBeerDescription(), $this->VALID_BEERDESCRIPTION);
+		$this->assertEquals($pdoBeer->getBeerName(), $this->VALID_BEERNAME);
+		$this->assertEquals($pdoBeer->getBeerName(), $this->VALID_BEERTYPE);
+	}
 
 
 }
