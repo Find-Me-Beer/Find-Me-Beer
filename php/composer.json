@@ -7,12 +7,11 @@
     "swiftmailer/swiftmailer": "@stable",
     "lcobucci/jwt": "3.2",
     "ramsey/uuid": "@stable",
-<<<<<<< HEAD
-    "ext-pdo": "*"
-=======
+    "ext-pdo": "*",
+
     "ext-pdo": "*",
     "ext-json": "*"
->>>>>>> 01cfadfb1b9115fbca06bd4118344c9b74a52ae0
+
   },
   "scripts":{
     "phpunit": "./vendor/bin/phpunit -c ./Classes/Test --coverage-html coverage"

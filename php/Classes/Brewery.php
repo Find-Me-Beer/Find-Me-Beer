@@ -375,47 +375,17 @@ $this->breweryLat = $newbreweryLat;
 	 * @throws \RangeException if $newbreweryUrl is > 2083 characters
 	 * @throws \TypeError if $newbreweryUrl is not a string
 	 **/
-
 	public function setbreweryUrl(string $newbreweryUrl): void {
-
 		//verify new brewery url is secure
 		$newbreweryUrl = trim($newbreweryUrl);
 		$newbreweryUrl = FILTER_VAR($newbreweryUrl, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-
 		//verify size of string is less than 2083 characters
 		if(strlen($newbreweryUrl) > 2083) {
 			throw(new \RangeException("Brewery phone number is too long"));
-
 		}
-
 		// store breweryUrl
 		$this->breweryUrl = $newbreweryUrl;
 
 	}
 }
 
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
