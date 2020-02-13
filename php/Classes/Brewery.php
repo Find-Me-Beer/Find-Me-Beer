@@ -90,7 +90,7 @@ class Brewery implements \JsonSerializable {
 	 * @param $newbreweryUrl
 	 */
 
-	public function __construct($newbreweryId, string $newbreweryAddress, string $newbreweryAvatarUrl, ?string $newbreweryDescription, $newbreweryEmail, $newbreweryLat, $newbreweryLong, $newbreweryName, $newbreweryPhone, $newbreweryUrl) {
+	public function __construct($newbreweryId, string $newbreweryAddress, string $newbreweryAvatarUrl, ?string $newbreweryDescription, string $newbreweryEmail, $newbreweryLat, $newbreweryLong, string $newbreweryPhone, $newbreweryUrl) {
 		try {
 			$this->setbreweryId($newbreweryId);
 			$this->setbreweryAddress($newbreweryAddress);
@@ -159,7 +159,7 @@ class Brewery implements \JsonSerializable {
 		}
 		// verify the brewery Address will fit in the database
 		if(strlen($newbreweryAddress) > 512) {
-			throw(new \RangeException("brewery address is over 512 characters"));
+			throw(new \RangeException("Brewery address is over 512 characters"));
 		}
 		// store the brewery Address
 		$this->breweryAddress = $newbreweryAddress;
@@ -200,14 +200,14 @@ class Brewery implements \JsonSerializable {
 
 		$newbreweryDescription = string(trim($newbreweryDescription) {
 		if(empty($newbreweryDescription) === true) {
-			throw(new\RangeException("brewery description is not valid"));
+			throw(new\RangeException("Brewery description is not valid"));
 
 		}
 
 		//make sure breweryDescription is 1000 characters or less
 
 		if(strlen($newbreweryDescription) > 1000) {
-			throw(new\RangeException(brewery description must be 1000 characters or less));
+			throw(new\RangeException("Brewery description is too long"));
 
 		}
 
@@ -215,7 +215,7 @@ class Brewery implements \JsonSerializable {
 
 	}
 
-		throw(new \InvalidArgumentException(content is empty or insecure));
+		throw(new \InvalidArgumentException("Content is empty or insecure"));
 
 	}
 	
@@ -256,7 +256,7 @@ class Brewery implements \JsonSerializable {
 		//verify size of string is less than 32 characters
 
 		if(strlen($newbreweryName) > 32) {
-			//throw(new \RangeException());
+			//throw(new \RangeException();
 		}
 
 		// store brewery Name
@@ -264,11 +264,40 @@ class Brewery implements \JsonSerializable {
 
 	}
 
-public function set
-	/**
-	 * NEED TO ADD LAT AND LONG
-	 */
+/**
+* accessor for brewery latitude
+* @return float brewery latitude between -90 and 90
+**/
 
+public function getbreweryLat() : float {
+return ($this->breweryLat);
+
+}
+
+/**
+* mutator for brewery latitude
+* @param float $newbreweryLat new value of the brewery latitude
+* @throws \RangeException if $newbreweryLat is outside of range
+**/
+
+public function setbreweryLat(float $newbreweryLat) : void {
+//		//verify that trail latitude is valid and secure
+//		$newbreweryLat = trim($newbreweryLat);
+//		$newbreweryLat = filter_var($newbreweryLat, FILTER_SANITIZE_NUMBER_FLOAT);
+if(floatval($newbreweryLat) < -90) {
+throw(new \RangeException(\"Error latitude is incorrect\"));
+
+}
+//verify brewery latitude will fit into database
+if(floatval($newbreweryLat) > 90) {
+throw(new \RangeException(\"Error latitude is incorrect\"));
+
+}
+
+//store the latitude data
+$this->breweryLat = $newbreweryLat;
+
+}
 
 	public function getbreweryPhone(): string {
 		return ($this->breweryPhone);
@@ -293,7 +322,7 @@ public function set
 
 		if(strlen($newbreweryPhone) > 64) {
 
-			throw(new \RangeException("brewery Phone is too long"));
+			throw(new \RangeException("brewery phone is too long"));
 
 		}
 
@@ -335,3 +364,29 @@ public function set
 
 	}
 }
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
