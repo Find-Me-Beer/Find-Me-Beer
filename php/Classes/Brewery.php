@@ -430,7 +430,7 @@ public function update(\PDO $pdo) : void {
 	 * @param $breweryId
 	 * @return Brewery|null
 	 */
-public static function getBreweryByBreweryId(\PDO $pdo, $breweryId) : ?brewery {
+public static function getBreweryByBreweryId(\PDO $pdo, $breweryId) : \SplFixedArray {
 
 	try {
 		$breweryId = self::validateUuid($breweryId);
