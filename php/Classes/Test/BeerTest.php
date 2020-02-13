@@ -115,16 +115,42 @@ class BeerTest extends FindMeBeerTest {
 
 		// create a new Beer and insert to into mySQL
 		$beerId = generateUuidV4();
-		$beer = new Beer($beerId, $this->beer->getBeerId(), $this->VALID_BEERABV, $this->VALID_BEERDESCRIPTION, $this->VALID_BEERNAME, $this->VALID_BEERTYPE);
+		$beer = new Beer($beerId, $this->VALID_BEERABV, $this->brewery->getbreweryId(), $this->VALID_BEERDESCRIPTION, $this->VALID_BEERNAME, $this->VALID_BEERTYPE);
 		$beer->insert($this->getPDO());
 		// edit this Beer and insert it into mySQL
 		$beer->setBeerAbv($this->VALID_BEERABV2);
 		$beer->update($this->getPDO());
 		// grab the data from mySQL and enforce the fields match our expectations
 		$pdoBeer = Beer::getBeerByBeerId($this->getPDO(), $beer->getBeerId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beer"));
+		$this->assertEquals($pdoBeer->getBeerId(), $this->VALID_BEERID);
+		$this->assertEquals($pdoBeer->getBeerAbv(), $this->VALID_BEERABV2);
+		$this->assertEquals($pdoBeer->getBeerDescription(), $this->VALID_BEERDESCRIPTION);
+		$this->assertEquals($pdoBeer->getBeerName(), $this->VALID_BEERNAME);
+		$this->assertEquals($pdoBeer->getBeerType(), $this->VALID_BEERTYPE);
+	}
 
+	/**
+	 * test creating a beer and deleting it
+	 */
+	public function testDeleteValidBeer(){
+		//count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("beer");
 
+		//create a new Beer and insert it into mySQL
+		$beerId = generateUuidV4();
+		$beer = new Beer($beerId, $this->VALID_BEERABV, $this->brewery->getBreweryId(),
+			$this->VALID_BEERDESCRIPTION, $this->VALID_BEERNAME, $this->VALID_BEERTYPE);
+		$beer->insert($this->getPDO());
 
+		//delete the beer from mySQL
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beer"));
+		$beer->delete($this->getPDO());
+
+		//grab the Beer from mySQL and enforce the Beer does not exist
+		$pdoBeer = Beer::getBeerByBeerId($this->getPDO(), $beer->getBeerId());
+		$this->assertNull($pdoBeer);
+		$this->assertEquals($numRows, $this->getConnection()->getRowCount("beer"));
 	}
 
 
