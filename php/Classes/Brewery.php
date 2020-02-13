@@ -95,6 +95,10 @@ class Brewery implements \JsonSerializable {
 			}
 		}
 
+	/**
+	 * accessor method for trail id
+	 * @return Uuid value of brewery Id
+	 */
 	public function getbreweryId(): Uuid {
 		return ($this->breweryId);
 	}
@@ -118,10 +122,19 @@ class Brewery implements \JsonSerializable {
 
 	}
 
+	/**
+	 * accessor for brewery address
+	 * @return string brewery address
+	 */
 	public function getbreweryAddress(): string {
 		return ($this->breweryAddress);
 	}
 
+	/**
+	 * mutator for brewery address
+	 * @param string $newbreweryAddress
+	 * @throws \InvalidArgumentException if $newbreweryAddress if address is too long
+	 */
 	public function setbreweryAddress(string $newbreweryAddress): void {
 
 		$newbreweryAddress = trim($newbreweryAddress);
@@ -164,7 +177,7 @@ class Brewery implements \JsonSerializable {
 	 * @return String value of breweryAvatarUrl
 	 **/
 
-	public function setbreweryDescription($newbreweryDescription) {
+	public function setbreweryDescription(string $newbreweryDescription) :void {
 		if($newbreweryDescription === null) {
 			$this->newbreweryDescription = null;
 			return;
