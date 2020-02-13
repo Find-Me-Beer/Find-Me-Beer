@@ -446,22 +446,6 @@ class Beer implements \JsonSerializable {
 			return($beerArray);
 		}
 
-
-
-		/**
-		 * formats the state variables for JSON serialization
-		 *
-		 * @return array resulting state variables to serialize
-		 **/
-		public function jsonSerialize() : array {
-			$fields = get_object_vars($this);
-
-			$fields["beerId"] = $this->beerId->toString();
-			$fields["beerBreweryId"] = $this->beerBreweryId->toString();
-
-			return($fields);
-		}
-
 		/**
 		 * gets beer by tag id
 		 *
@@ -502,5 +486,19 @@ class Beer implements \JsonSerializable {
 				}
 			}
 			return ($beerArray);
+		}
+
+		/**
+		 * formats the state variables for JSON serialization
+		 *
+		 * @return array resulting state variables to serialize
+		 **/
+		public function jsonSerialize() : array {
+			$fields = get_object_vars($this);
+
+			$fields["beerId"] = $this->beerId->toString();
+			$fields["beerBreweryId"] = $this->beerBreweryId->toString();
+
+			return($fields);
 		}
 }
