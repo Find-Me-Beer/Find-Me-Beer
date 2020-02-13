@@ -398,7 +398,16 @@ public function insert(\PDO $pdo) : void {
 	$parameters = ["breweryId" => $this->breweryId->getBytes(), "breweryId" => $this->breweryId->getBytes(),];
 	$statement->execute($parameters);
 }
+	/**
+	 * @param \PDO $pdo
+	 */
+	public function update(\PDO $pdo) : void {
 
+		// create query
+		$query = "UPDATE brewery SET breweryId = :breweryId, breweryAdress = : breweryAvatarUrl ,  breweryDescription = : breweryEmail WHERE breweryId = :breweryId";
+		$statement = $pdo->prepare($query);
+
+	}
 
 	/**
 	 * deletes this brewery from mySQL
@@ -413,16 +422,6 @@ public function delete(\PDO $pdo) : void {
 	// connects variables to query
 	$parameters = ["breweryId" => $this->breweryId->getBytes()];
 	$statement->execute($parameters);
-}
-	/**
-	 * @param \PDO $pdo
-	 */
-public function update(\PDO $pdo) : void {
-
-	// create query
-	$query = "UPDATE brewery SET breweryId = :breweryId, breweryAdress = : breweryAvatarUrl ,  breweryDescription = : breweryEmail WHERE breweryId = :breweryId";
-	$statement = $pdo->prepare($query);
-
 }
 
 	/**
