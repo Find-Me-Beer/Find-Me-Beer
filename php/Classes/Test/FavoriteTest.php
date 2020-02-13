@@ -103,12 +103,45 @@ class FavoriteTest extends FindMeBeerTest {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("favorite");
 
-		// create a new Like and insert to into mySQL
-		$like = new Favorite($this->beer->getBeerId(), $this->user->getUserId());
-		$like->insert($this->getPDO());
+		// create a new Favorite and insert to into mySQL
+		$favorite = new Favorite($this->beer->getBeerId(), $this->user->getUserId());
+		$favorite->insert($this->getPDO());
 
 		// get the data from mySQL and enforce it matches our expectations
 		$pdoFavorite = Favorite:: getFavoriteByFavoriteBeerIdAndFavoriteUserId($this->getPDO(), $this->beer->getBeerId(), $this->user->getUserId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("favorite"));
+		$this->assertEquals($pdoFavorite->getFavoriteBeerId(), $this->beer->getBeerId());
+		$this->assertEquals($pdoFavorite->getFavoriteUserId(), $this->user->getUserId());
+	}
+
+	/**
+	 * test creating a favorite and then deleting it
+	 */
+	public function testDeleteValidFavorite() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("favorite");
+
+		// create a new Favorite and insert to into mySQL
+		$favorite = new Favorite($this->beer->getBeerId(), $this->user->getUserId());
+		$favorite->insert($this->getPDO());
+
+		// delete the favorite from the database
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("favorite"));
+		$favorite->delete($this->getPDO());
+
+		// grab data from database and enforce that the Favorite doesn't exist
+		$pdoFavorite = Favorite::getFavoriteByFavoriteBeerIdAndFavoriteUserId($this->getPDO(), $this->beer->getBeerId(), $this->user->getUserId());
+		$this->assertNull($pdoFavorite);
+		$this->assertEquals($numRows, $this->getConnection()->getRowCount("Favorite"));
+	}
+
+	/**
+	 * test getting a favorite by user id
+	 */
+	public function testGetFavoriteByUserId() {
+
+	}
+
 
 
 }
