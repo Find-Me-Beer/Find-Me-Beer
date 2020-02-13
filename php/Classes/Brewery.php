@@ -155,7 +155,7 @@ class Brewery implements \JsonSerializable {
 		$newbreweryAddress = trim($newbreweryAddress);
 		$newbreweryAddress = filter_var($newbreweryAddress, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($newbreweryAddress) === true) {
-			throw(new \InvalidArgumentException("brewery Address is not valid"));
+			throw(new \InvalidArgumentException("Brewery address is not valid"));
 		}
 		// verify the brewery Address will fit in the database
 		if(strlen($newbreweryAddress) > 512) {
@@ -200,12 +200,11 @@ class Brewery implements \JsonSerializable {
 
 		$newbreweryDescription = string(trim($newbreweryDescription) {
 		if(empty($newbreweryDescription) === true) {
-
 			throw(new\RangeException("brewery description is not valid"));
 
 		}
 
-		/make sure breweryDescription is 1000 characters or less
+		//make sure breweryDescription is 1000 characters or less
 
 		if(strlen($newbreweryDescription) > 1000) {
 			throw(new\RangeException(brewery description must be 1000 characters or less));
