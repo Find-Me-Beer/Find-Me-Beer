@@ -29,7 +29,7 @@ use Ramsey\Uuid\Uuid;
  *
  *
  */
-class Brewery {
+class Brewery implements \JsonSerializable {
 	use ValidateUuid;
 	/**
 	 * id for this brewery; this is the primary key
@@ -180,7 +180,7 @@ class Brewery {
 		/make sure breweryDescription is 1000 characters or less
 
 		if(strlen($newbreweryDescription) > 1000) {
-			throw(new\RangeException(brewery description must be 1000 characters or less)
+			throw(new\RangeException(brewery description must be 1000 characters or less));
 
 		}
 
@@ -192,7 +192,7 @@ class Brewery {
 
 	}
 	
-	public function setbreweryEmail(string $newbreweryEmail) : void {
+	public function setBreweryEmail(string $newbreweryEmail) : void {
 		
 		$newbreweryEmail = trim($newbreweryEmail);
 		$newbreweryEmail = filter_var($newbreweryEmail, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -201,7 +201,7 @@ class Brewery {
 		}
 		// verify the brewery email will fit in the database
 		if(strlen($newbreweryEmail) > 128) {
-			throw(new \RangeException(\"brewery email is too large\"));
+			throw(new \RangeException(\"Brewery email is too large\"));
 		}
 		// store the brewery email
 		$this->breweryEmail = $newbreweryEmail;
@@ -218,7 +218,7 @@ class Brewery {
 	 * @throws \TypeError if $newbreweryName is not a string
 	 */
 
-	public function sebbreweryName(string $newbreweryName): void {
+	public function setbreweryName(string $newbreweryName): void {
 
 		//verify new brewery name is secure
 
@@ -229,9 +229,7 @@ class Brewery {
 		//verify size of string is less than 32 characters
 
 		if(strlen($newbreweryName) > 32) {
-
-			throw(new \RangeException("brewery Name is too long"));
-
+			//throw(new \RangeException());
 		}
 
 		// store brewery Name
