@@ -75,6 +75,21 @@ class Brewery implements \JsonSerializable {
 	 */
 	private $breweryUrl;
 
+	/**
+	 * Brewery constructor.
+	 *
+	 * @param $newbreweryId string|Uuid $newbreweryId
+	 * @param string $newbreweryAddress
+	 * @param string $newbreweryAvatarUrl
+	 * @param string|null $newbreweryDescription
+	 * @param $newbreweryEmail
+	 * @param $newbreweryLat
+	 * @param $newbreweryLong
+	 * @param $newbreweryName
+	 * @param $newbreweryPhone
+	 * @param $newbreweryUrl
+	 */
+
 	public function __construct($newbreweryId, string $newbreweryAddress, string $newbreweryAvatarUrl, ?string $newbreweryDescription, $newbreweryEmail, $newbreweryLat, $newbreweryLong, $newbreweryName, $newbreweryPhone, $newbreweryUrl) {
 		try {
 			$this->setbreweryId($newbreweryId);
@@ -96,7 +111,7 @@ class Brewery implements \JsonSerializable {
 		}
 
 	/**
-	 * accessor method for trail id
+	 * accessor method for brewery id
 	 * @return Uuid value of brewery Id
 	 */
 	public function getbreweryId(): Uuid {
@@ -186,7 +201,7 @@ class Brewery implements \JsonSerializable {
 		$newbreweryDescription = string(trim($newbreweryDescription) {
 		if(empty($newbreweryDescription) === true) {
 
-			throw(new\RangeException("brewery description is not valid));
+			throw(new\RangeException("brewery description is not valid"));
 
 		}
 
@@ -210,7 +225,7 @@ class Brewery implements \JsonSerializable {
 		$newbreweryEmail = trim($newbreweryEmail);
 		$newbreweryEmail = filter_var($newbreweryEmail, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($newbreweryEmail) === true) {
-			throw(new \InvalidArgumentException(\"Brewery email is not valid\"));
+			throw(new \InvalidArgumentException("Brewery email is not valid\"));
 		}
 		// verify the brewery email will fit in the database
 		if(strlen($newbreweryEmail) > 128) {
@@ -250,6 +265,7 @@ class Brewery implements \JsonSerializable {
 
 	}
 
+public function set
 	/**
 	 * NEED TO ADD LAT AND LONG
 	 */
