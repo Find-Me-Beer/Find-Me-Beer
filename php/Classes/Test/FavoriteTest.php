@@ -138,8 +138,26 @@ class FavoriteTest extends FindMeBeerTest {
 	/**
 	 * test getting a favorite by user id
 	 */
-	public function testGetFavoriteByUserId() {
+	public function testGetValidFavoriteByUserId() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("favorite");
 
+		// // create a new Favorite and insert to into mySQL
+		$favorite = new Favorite($this->beer->getBeerId(), $this->user->getUserId());
+		$favorite->insert($this->getPDO());
+
+		// get the data from mySQL and enforce it matches our expectations
+		$results = Favorite::getFavoriteByFavoriteUserId($this->getPDO(), $this->user->getUserId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("favorite"));
+		$this->assertCount(1, $results);
+
+		// enforce no other objects are bleeding into the test
+		$this->assertContainsOnlyInstancesOf("FindMeBeer\\FindMeBeer\\Favorite", $results);
+
+		// grab the result from the array and validate it
+		$pdoFavorite = $results[0];
+		$this->assertEquals($pdoFavorite->getFavoriteBeerId(), $this->beer->getBeerId());
+		$this->assertEquals($pdoFavorite->getFavoriteUserId(), $this->user->getUserId());
 	}
 
 
