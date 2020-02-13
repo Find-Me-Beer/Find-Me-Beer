@@ -387,5 +387,54 @@ $this->breweryLat = $newbreweryLat;
 		$this->breweryUrl = $newbreweryUrl;
 
 	}
+
+
+public function insert(\PDO $pdo) : void {
+
+	// create query template
+	$query = "INSERT INTO brewery(breweryId, breweryAddress, breweryAvatarUrl, breweryDescription, breweryEmail, breweryName, breweryLat, breweryLong, breweryPhone, breweryUrl) VALUES(:breweryId, :breweryAddress, :breweryAvatarUrl, :breweryDescription, :breweryEmail, :breweryName, :breweryLat, :breweryLong, :breweryPhone, :breweryUrl)";
+	$statement = $pdo->prepare($query);
+
+	$parameters = ["breweryId" => $this->breweryId->getBytes(), "breweryId" => $this->breweryId->getBytes(),];
+	$statement->execute($parameters);
 }
+
+
+	/**
+	 * deletes this brewery from mySQL
+	 * @param \PDO $pdo
+	 */
+public function delete(\PDO $pdo) : void {
+
+	// create query
+	$query = "DELETE FROM brewery WHERE breweryId = :breweryId";
+	$statement = $pdo->prepare($query);
+
+	// connects variables to query
+	$parameters = ["breweryId" => $this->breweryId->getBytes()];
+	$statement->execute($parameters);
+}
+	/**
+	 * @param \PDO $pdo
+	 */
+public function update(\PDO $pdo) : void {
+
+	// create query
+	$query = "UPDATE brewery SET breweryId = :breweryId, breweryAdress = : breweryAvatarUrl ,  breweryDescription = : breweryEmail WHERE breweryId = :breweryId";
+	$statement = $pdo->prepare($query);
+
+}
+
+	/**
+	 * @param \PDO $pdo
+	 * @param $breweryId
+	 * @return Brewery|null
+	 */
+public static function getBreweryByBreweryId(\PDO $pdo, $breweryId) : ?brewery {
+
+	try {
+		$breweryId = self::validateUuid($breweryId);
+	} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+		throw(new \PDOException($exception->getMessage(), 0, $exception));
+	}
 
