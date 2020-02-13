@@ -156,8 +156,8 @@ class Brewery implements \JsonSerializable {
 	 *
 	 */
 
-	public function breweryAvatarUrl() {
-		return $this->breweryAvatarUrl;
+	public function getbreweryAvatarUrl() : string {
+		return ($this->breweryAvatarUrl);
 
 	}
 
@@ -167,7 +167,7 @@ class Brewery implements \JsonSerializable {
 	 * @return String value of breweryAvatarUrl
 	 */
 
-	public function setbreweryAvatarUrl($newbreweryAvatarUrl) {
+	public function setbreweryAvatarUrl($newbreweryAvatarUrl) :void {
 		$this->breweryAvatarUrl = $newbreweryAvatarUrl;
 
 	}
@@ -177,7 +177,7 @@ class Brewery implements \JsonSerializable {
 	 * @return String value of breweryAvatarUrl
 	 **/
 
-	public function setbreweryDescription(string $newbreweryDescription) :void {
+	public function setbreweryDescription(string $newbreweryDescription) : void {
 		if($newbreweryDescription === null) {
 			$this->newbreweryDescription = null;
 			return;
