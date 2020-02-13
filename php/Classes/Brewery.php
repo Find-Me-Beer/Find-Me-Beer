@@ -90,7 +90,7 @@ class Brewery implements \JsonSerializable {
 	 * @param $newbreweryUrl
 	 */
 
-	public function __construct($newbreweryId, string $newbreweryAddress, string $newbreweryAvatarUrl, ?string $newbreweryDescription, string $newbreweryEmail, $newbreweryLat, $newbreweryLong, string $newbreweryPhone, $newbreweryUrl) {
+	public function __construct($newbreweryId, string $newbreweryAddress, string $newbreweryAvatarUrl, ?string $newbreweryDescription, string $newbreweryEmail, float $newbreweryLat, float $newbreweryLong, string $newbreweryPhone, $newbreweryUrl) {
 		try {
 			$this->setbreweryId($newbreweryId);
 			$this->setbreweryAddress($newbreweryAddress);
@@ -210,7 +210,7 @@ class Brewery implements \JsonSerializable {
 			throw(new\RangeException("Brewery description is too long"));
 
 		}
-
+	//store the brewery description
 		$this->breweryDescription = $newbreweryDescription;
 
 	}
@@ -235,6 +235,7 @@ class Brewery implements \JsonSerializable {
 	}
 
 	public function getbreweryName(): string {
+
 		return ($this->breweryName);
 	}
 
@@ -248,13 +249,10 @@ class Brewery implements \JsonSerializable {
 	public function setbreweryName(string $newbreweryName): void {
 
 		//verify new brewery name is secure
-
 		$newbreweryName = trim($newbreweryName);
-
 		$newbreweryName = FILTER_VAR($newbreweryName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
 		//verify size of string is less than 32 characters
-
 		if(strlen($newbreweryName) > 32) {
 			//throw(new \RangeException();
 		}
@@ -300,6 +298,45 @@ $this->breweryLat = $newbreweryLat;
 
 }
 
+	/**
+	 * accessor for brewery longitude
+	 * @return float brewery longitude in degrees between -180 and 180
+	 **/
+
+	public function getbreweryLong() : float {
+		return ($this->breweryLong);
+
+	}
+
+	/**
+	 * mutator for brewery longitude
+	 * @param float $newbreweryLong new value of the brewery longitude
+	 * @throws \RangeException if $newbreweryLong is outside of range
+	 **/
+
+	public function setbreweryLong(float $newbreweryLong) : void {
+
+//		//verify that brewery longitude is valid and secure
+		$newbreweryLong = trim($newbreweryLong);
+		$newbreweryLong = filter_var($newbreweryLong, FILTER_SANITIZE_NUMBER_FLOAT);
+		if(floatval($newbreweryLong) < -180) {
+			throw(new \RangeException("Brewery longitude is incorrect"));
+
+		}
+
+		if(floatval($newbreweryLong) > 180) {
+			throw(new \RangeException("Brewery longitude is incorrect"));
+
+		}
+
+		//store the latitude data
+		$this->breweryLong = $newbreweryLong;
+	}
+
+	/**
+	 *  accessor for brewery phone
+	 * @return string value for brewery phone
+	 */
 	public function getbreweryPhone(): string {
 		return ($this->breweryPhone);
 	}
@@ -314,15 +351,11 @@ $this->breweryLat = $newbreweryLat;
 	public function setbreweryPhone(string $newbreweryPhone): void {
 
 		//verify new brewery phone is secure
-
 		$newbreweryPhone = trim($newbreweryPhone);
-
 		$newbreweryPhone = FILTER_VAR($newbreweryPhone, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
 		//verify size of string is less than 64 characters
-
 		if(strlen($newbreweryPhone) > 64) {
-
 			throw(new \RangeException("brewery phone is too long"));
 
 		}
@@ -331,7 +364,6 @@ $this->breweryLat = $newbreweryLat;
 		$this->breweryPhone = $newbreweryPhone;
 
 	}
-
 
 	public function getbreweryUrl(): string {
 		return ($this->breweryUrl);
@@ -347,15 +379,11 @@ $this->breweryLat = $newbreweryLat;
 	public function setbreweryUrl(string $newbreweryUrl): void {
 
 		//verify new brewery url is secure
-
 		$newbreweryUrl = trim($newbreweryUrl);
-
 		$newbreweryUrl = FILTER_VAR($newbreweryUrl, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
 		//verify size of string is less than 2083 characters
-
 		if(strlen($newbreweryUrl) > 2083) {
-
 			throw(new \RangeException("Brewery phone number is too long"));
 
 		}
