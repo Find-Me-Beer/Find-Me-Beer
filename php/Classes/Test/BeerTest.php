@@ -8,7 +8,7 @@ use FindMeBeer\FindMeBeer\{Brewery, Beer, BeerTag};
 require_once(dirname(__DIR__) . "/autoload.php");
 
 // grab the uuid generator
-require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
+require_once (dirname(__DIR__, 2) . "/lib/uuid.php");
 
 /**
  * unit test for Beer class
@@ -22,7 +22,7 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
 class BeerTest extends FindMeBeerTest {
 	/**
 	 * Valid beer id to use; this starts null and is assigned later
-	 * @var Uuid $VALID_BEERID
+	 * @var int $VALID_BEERID
 	 */
 	protected $VALID_BEERID = null;
 
@@ -282,7 +282,7 @@ class BeerTest extends FindMeBeerTest {
 		$beer->insert($this->getPDO());
 
 		//grab the data from mySQL and check it matches our expectations
-		$results = Beer::getBeerByBeerType($this->getPDO(), $this->beer->getBeerType());
+		$results = Beer::getBeerByBeerType($this->getPDO(), $beer->getBeerType());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beer"));
 		$this->assertCount(1, $results);
 		$this->assertContainsOnlyInstancesOf("FindMeBeer\\FindMeBeer\\Beer", $results);
