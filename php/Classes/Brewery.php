@@ -218,17 +218,17 @@ class Brewery implements \JsonSerializable {
 		throw(new \InvalidArgumentException("Content is empty or insecure"));
 
 	}
-	
+
 	public function setBreweryEmail(string $newbreweryEmail) : void {
-		
+
 		$newbreweryEmail = trim($newbreweryEmail);
 		$newbreweryEmail = filter_var($newbreweryEmail, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($newbreweryEmail) === true) {
-			throw(new \InvalidArgumentException("Brewery email is not valid\"));
+			throw(new \InvalidArgumentException("Brewery email is not valid"));
 		}
 		// verify the brewery email will fit in the database
 		if(strlen($newbreweryEmail) > 128) {
-			throw(new \RangeException(\"Brewery email is too large\"));
+			throw(new \RangeException("Brewery email is too large"));
 		}
 		// store the brewery email
 		$this->breweryEmail = $newbreweryEmail;
@@ -281,16 +281,17 @@ return ($this->breweryLat);
 **/
 
 public function setbreweryLat(float $newbreweryLat) : void {
-//		//verify that trail latitude is valid and secure
-//		$newbreweryLat = trim($newbreweryLat);
-//		$newbreweryLat = filter_var($newbreweryLat, FILTER_SANITIZE_NUMBER_FLOAT);
+//verify that brewery latitude is valid and secure
+$newbreweryLat = trim($newbreweryLat);
+$newbreweryLat = filter_var($newbreweryLat, FILTER_SANITIZE_NUMBER_FLOAT);
 if(floatval($newbreweryLat) < -90) {
-throw(new \RangeException(\"Error latitude is incorrect\"));
+throw(new \RangeException("Error latitude is incorrect"));
 
 }
+
 //verify brewery latitude will fit into database
 if(floatval($newbreweryLat) > 90) {
-throw(new \RangeException(\"Error latitude is incorrect\"));
+throw(new \RangeException("Error latitude is incorrect"));
 
 }
 
@@ -355,7 +356,7 @@ $this->breweryLat = $newbreweryLat;
 
 		if(strlen($newbreweryUrl) > 2083) {
 
-			throw(new \RangeException(brewery phone number is too long));
+			throw(new \RangeException("Brewery phone number is too long"));
 
 		}
 
