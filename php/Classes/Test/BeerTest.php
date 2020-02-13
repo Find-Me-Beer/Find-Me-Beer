@@ -2,7 +2,7 @@
 
 namespace FindMeBeer\FindMeBeer\Test;
 
-use FindMeBeer\FindMeBeer\{Brewery, Beer, Tag};
+use FindMeBeer\FindMeBeer\{Brewery, Beer, BeerTag};
 
 // grab the class you're testing
 require_once(dirname(__DIR__) . "/autoload.php");
