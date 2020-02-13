@@ -114,7 +114,7 @@ class BeerTest extends FindMeBeerTest {
 	 */
 	public function testUpdateValidBeer() :void {
 		// count the number of rows and save it for later
-		$numRows = $this->getConnection()->getsRowCount("beer");
+		$numRows = $this->getConnection()->getRowCount("beer");
 
 		// create a new Beer and insert to into mySQL
 		$beerId = generateUuidV4();
