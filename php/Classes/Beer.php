@@ -464,7 +464,7 @@ class Beer implements \JsonSerializable {
 			}
 
 			//Create query
-			$query = "SELECT beer.beerId, beer.beerAbv, beer.beerBreweryId, beer.beerDescription, beer.beerName, beer.beerType FROM beer INNER JOIN beerTag ON beer.beerId = beerTag.beerTagBeerId WHERE beerTag.beerTagTagId = :tagId";
+			$query = "SELECT beer.beerId, beer.beerAbv, beer.beerBreweryId, beer.beerDescription, beer.beerName, beer.beerType, beerTag.beerTagBeerId, beerTag.beerTagTagId FROM beer INNER JOIN beerTag ON beer.beerId = beerTag.beerTagBeerId WHERE beerTag.beerTagTagId = :tagId";
 			//Or "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerId = beerTag.beerId AND beerTag.tagId = :beerTag.tagId";
 			$statement = $pdo->prepare($query);
 
