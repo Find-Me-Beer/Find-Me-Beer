@@ -97,7 +97,7 @@ class FavoriteTest extends FindMeBeerTest {
 	}
 
 	/**
-	 * test inserting a valid Favorite  and verify sql data matches
+	 * test inserting a valid Favorite and verify sql data matches
 	 */
 	public function testInsertValidFavorite() : void {
 		// count the number of rows and save it for later
@@ -159,6 +159,26 @@ class FavoriteTest extends FindMeBeerTest {
 		$this->assertEquals($pdoFavorite->getFavoriteBeerId(), $this->beer->getBeerId());
 		$this->assertEquals($pdoFavorite->getFavoriteUserId(), $this->user->getUserId());
 	}
+
+	/**
+	 * test getting a favorite by beer id and user id
+	 */
+	public function getValidFavoriteByUserIdAndBeerId() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("favorite");
+
+		// create a new Favorite and insert to into mySQL
+		$favorite = new Favorite($this->beer->getBeerId(), $this->user->getUserId());
+		$favorite->insert($this->getPDO());
+
+		// grab data from mySQL and enforce it matches expectations
+		$pdoFavorite = Favorite::getFavoriteByFavoriteBeerIdAndFavoriteUserId($this->getPDO(), $this->beer->getBeerId(), $this->user->getUserId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("favorite"));
+		$this->assertEquals($pdoFavorite->getFavoriteBeerId(), $this->beer->getBeerId());
+		$this->assertEquals($pdoFavorite->getFavoriteUserId(), $this->user->getUserId());
+	}
+
+
 
 
 
