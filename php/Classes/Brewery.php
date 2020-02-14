@@ -215,10 +215,6 @@ class Brewery implements \JsonSerializable {
 		//store the brewery description
 		$this->breweryDescription = $newBreweryDescription;
 
-		// is this an orphan?
-		throw(new \InvalidArgumentException("Content is empty or insecure"));
-	}
-
 	/**
 	 * accessor method for brewery email
 	 *
