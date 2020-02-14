@@ -538,7 +538,7 @@ class Brewery implements \JsonSerializable {
 		$statement->execute($parameters);
 
 		// array for brewery
-		$breweries = new \SplFixedArray(($statement->rowCount());
+		$breweries = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 				try {
@@ -587,9 +587,9 @@ class Brewery implements \JsonSerializable {
 		return ($breweries);
 
 		}
-		public function jsonSerialize() {
-
-				return (get_object_vars($this));
-		}
+//		public function jsonSerialize() {
+//
+//				return (get_object_vars($this));
+//		}
 
 }
