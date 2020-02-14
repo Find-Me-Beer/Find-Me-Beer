@@ -9,6 +9,7 @@ use Ramsey\Uuid\Uuid;
 
 /**
  * Class  Brewery
+ *
  * @Author Celeste Whitaker <cwhitaker4@cnm.edu>
  */
 
@@ -179,8 +180,9 @@ class Brewery implements \JsonSerializable {
 
 	/**
 	 * mutator method for breweryAvatarUrl
+	 *
 	 * @param $newBreweryAvatarUrl
-	 * @return String value of breweryAvatarUrl
+	 *
 	 */
 	public function setbreweryAvatarUrl($newBreweryAvatarUrl): void {
 
