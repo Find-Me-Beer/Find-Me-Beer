@@ -213,12 +213,13 @@ class Brewery implements \JsonSerializable {
 		//store the brewery description
 		$this->breweryDescription = $newBreweryDescription;
 	}
+
 	/**
 	 * accessor method for brewery email
 	 *
 	 * @return string
 	 */
-	public function getBreweryEmail() : string {
+	public function getBreweryEmail(): string {
 		return ($this->breweryEmail);
 	}
 
@@ -314,7 +315,7 @@ class Brewery implements \JsonSerializable {
 	 * @return float brewery longitude in degrees between -180 and 180
 	 **/
 
-	public function getbreweryLong(): float {
+	public function getBreweryLong(): float {
 		return ($this->breweryLong);
 
 	}
@@ -322,10 +323,10 @@ class Brewery implements \JsonSerializable {
 	/**
 	 * mutator for brewery longitude
 	 * @param float $newBreweryLong new value of the brewery longitude
-	 * @throws \RangeException if $newbreweryLong is outside of range
+	 * @throws \RangeException if $newBreweryLong is outside of range
 	 **/
 
-	public function setbreweryLong(float $newBreweryLong): void {
+	public function setBreweryLong(float $newBreweryLong): void {
 
 //		//verify that brewery longitude is valid and secure
 		$newBreweryLong = trim($newBreweryLong);
@@ -348,7 +349,7 @@ class Brewery implements \JsonSerializable {
 	 *  accessor for brewery phone
 	 * @return string value for brewery phone
 	 */
-	public function getbreweryPhone(): string {
+	public function getBreweryPhone(): string {
 		return ($this->breweryPhone);
 	}
 
@@ -359,7 +360,7 @@ class Brewery implements \JsonSerializable {
 	 * @throws \TypeError if $newBreweryPhone is not a string
 	 **/
 
-	public function setbreweryPhone(string $newBreweryPhone): void {
+	public function setBreweryPhone(string $newBreweryPhone): void {
 
 		// if phone is null, set to null and return - just like we did for description
 
@@ -369,14 +370,14 @@ class Brewery implements \JsonSerializable {
 
 		//verify size of string is less than 64 characters
 		if(strlen($newBreweryPhone) > 64) {
-			throw(new \RangeException("brewery phone is too long"));
+			throw(new \RangeException("Brewery phone is too long"));
 		}
 
 		// store brewery Phone
 		$this->breweryPhone = $newBreweryPhone;
 	}
 
-	public function getbreweryUrl(): string {
+	public function getBreweryUrl(): string {
 		return ($this->breweryUrl);
 	}
 
@@ -386,11 +387,11 @@ class Brewery implements \JsonSerializable {
 	 * @throws \RangeException if $newBreweryUrl is > 2083 characters
 	 * @throws \TypeError if $newBreweryUrl is not a string
 	 **/
-	public function setbreweryUrl(string $newBreweryUrl): void {
+	public function setBreweryUrl(string $newBreweryUrl): void {
 		//verify new brewery url is secure
 		$newBreweryUrl = trim($newBreweryUrl);
 		// we can use php FILTER_SANITIZE_URL
-		$newBreweryUrl = FILTER_VAR($newBreweryUrl, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		$newBreweryUrl = FILTER_VAR($newBreweryUrl, FILTER_SANITIZE_URL, FILTER_FLAG_NO_ENCODE_QUOTES);
 		//verify size of string is less than 2083 characters
 		if(strlen($newBreweryUrl) > 2083) {
 			throw(new \RangeException("Brewery URL is too long"));
@@ -399,8 +400,22 @@ class Brewery implements \JsonSerializable {
 		$this->breweryUrl = $newBreweryUrl;
 	}
 
+	public function jsonSerialize(): array {
+		$fields = get_object_vars($this);
+		$fields["breweryId"] = $this->breweryId->toString();
+		return ($fields);
+	}
+	// TODO: Implement jsonSerialize() method.}
 
-	// do dockblocks
+	/**
+	 * inserts this User into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+
+
 	public function insert(\PDO $pdo): void {
 
 		// create query template
@@ -409,7 +424,15 @@ class Brewery implements \JsonSerializable {
 
 		$parameters = [
 			"breweryId" => $this->breweryId->getBytes(),
-			"breweryId" => $this->breweryId->getBytes()
+			"breweryAddress" => $this->breweryAddress,
+			"breweryAvatarUrl" => $this->breweryAvatarUrl,
+			"breweryDescription" => $this->breweryDescription,
+			"breweryEmail" => $this->breweryEmail,
+			"breweryName" => $this->breweryName,
+			"breweryLat" => $this->breweryLat,
+			"breweryLong" => $this->breweryLong,
+			"breweryPhone" => $this->breweryPhone,
+			"breweryUrl" => $this->breweryUrl
 		];
 
 		$statement->execute($parameters);
@@ -421,7 +444,7 @@ class Brewery implements \JsonSerializable {
 	public function update(\PDO $pdo): void {
 
 		// create query
-		$query = "UPDATE brewery SET breweryAddress = :breweryAvatarUrl, breweryDescription = :breweryEmail WHERE breweryId = :breweryId";
+		$query = "UPDATE brewery SET breweryId=:breweryId, breweryAddress =:breweryAddress, breweryAvatarUrl=: breweryAvatarUrl, breweryDescription =:breweryDescription,  breweryEmail= :breweryEmail, breweryName=: breweryName, breweryLat=:breweryLat,breweryLong=:breweryLong,breweryPhone=:breweryPhone,breweryUrl=:breweryUrl,  WHERE breweryId = :breweryId";
 		$statement = $pdo->prepare($query);
 
 	}
@@ -462,18 +485,66 @@ class Brewery implements \JsonSerializable {
 		$parameters = ["breweryId" => $breweryId->getBytes()];
 		$statement->execute($parameters);
 
-		// array for brewery
-//		$brewery = new \SplFixedArray($statement->rowCount());
-//		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-//		while(($row = $statement->fetch()) !== false) {
-//			try {
-//				$brewery = new brewery($row["breweryId"], $row["breweryId"], $row["breweryAddress"], $row["breweryDescription"], $row[breweryEmail], $row[breweryName],);
-//				$brewery[$brewery->key()] = $brewey;
-//				$brewey->next();
-//			} catch(\Exception $exception) {
-//				// if the row couldn't be converted, rethrow it
-//				throw(new \PDOException($exception->getMessage(), 0, $exception));
-//			}
-//		}
-		return ($brewery);
+		// get brewery from MySQL
+
 	}
+	public static function getAllBreweries(\PDO $pdo) {
+		$query = "SELECT breweryId, breweryAddress, breweryAvatarUrl, breweryDescription, breweryEmail, breweryName, breweryLat, breweryLong, breweryPhone, breweryUrl FROM brewery WHERE breweryId = :breweryId";
+		$statement = $pdo->prepare($query);
+		$breweryArray = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$breweries = new Brewery($row["breweryId"], $row["breweryAddress"], $row["breweryAvatarUrl"], $row["breweryDescription"], $row[breweryEmail], $row[breweryName], $row[breweryName], $row[breweryLat], $row[breweryLong], $row[breweryPhone], $row[breweryUrl]);
+				$breweryArray[$breweryArray->key()] = $breweries;
+				$breweries->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return ($breweries);
+
+
+	}
+	/**
+	 * @param \PDO $pdo
+	 * @param $breweryName
+	 * @return Brewery|null
+	 */
+	public static function getBreweryByBreweryName(\PDO $pdo, $breweryName): ?Brewery {
+		$breweryName = trim($breweryName);
+		$breweryName = filter_var($breweryName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($breweryName)===true){
+				throw(new \PDOException("Brewery name is invalid"));
+		}
+
+		// created query
+		$query = "SELECT breweryId, breweryAddress, breweryAvatarUrl, breweryDescription, breweryEmail, breweryName, breweryLat, breweryLong, breweryPhone, breweryUrl FROM brewery WHERE breweryId = :breweryId";
+		$statement = $pdo->prepare($query);
+
+		// connect the brewery name to the place holder in the template
+		$parameters = ["breweryName" => $breweryName->getBytes()];
+		$statement->execute($parameters);
+
+		// array for brewery
+		$breweries = new \SplFixedArray(($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+				try {
+						$breweryName = new Brewery($row["breweryId"], $row["breweryAddress"], $row["breweryAvatarUrl"], $row["breweryDescription"], $row["breweryEmail"], $row["breweryName"], $row["breweryLat"], $row["breweryLong"], $row["breweryPhone"], $row["breweryUrl"]);
+
+				$breweries[$breweries->key()] = $breweryName;
+				$breweries->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return ($breweryName);
+	}
+
+
+
+
+}
