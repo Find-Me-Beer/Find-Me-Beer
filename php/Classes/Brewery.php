@@ -190,7 +190,7 @@ public function setbreweryDescription ($newbreweryDescription) {
 
 	/*verify the brewery email content will fit in database
 
-	if(strlen($newbreweryEmail > 128) {
+	if(strlen($newBreweryEmail > 128) {
 
 		throw(new \RangeException(\"brewery email content too large\"));
 	}
