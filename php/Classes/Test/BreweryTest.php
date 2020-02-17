@@ -54,9 +54,9 @@ class BreweryTest extends FindMeBeerTest {
 	protected $VALID_BREWERY_ADDRESS = "2316 56th st";
 
 	/**
-	 * @var string $VALID_BREWERY_AVATARURL
+	 * @var string $VALID_BREWERY_AVATAR_URL
 	 */
-	protected $VALID_BREWERY_AVATARURL = "https://gravatar.com/avatar/60d845492a4bb0fa50049511ec139ce8?s=400&d=robohash&r=x";
+	protected $VALID_BREWERY_AVATAR_URL = "https://gravatar.com/avatar/60d845492a4bb0fa50049511ec139ce8?s=400&d=robohash&r=x";
 	/**
 	 * Description of Brewery
 	 * @var string $VALID_BREWERY_DESCRIPTION
@@ -130,19 +130,19 @@ class BreweryTest extends FindMeBeerTest {
 	 * Brewery URL
 	 * @var string $VALID_BREWERY_URL
 	 */
-	protected  $VALID_BREWERYURL = "https://marblebrewery.com/";
+	protected  $VALID_BREWERY_URL = "https://marblebrewery.com/";
 
 	/**
 	 * Testing Brewery URL
-	 * @var string $VALID_BREWERYURL2
+	 * @var string $VALID_BREWERY_URL2
 	 */
-	protected $VALID_BREWERYURL2 = "Brewery URL2 Test";
+	protected $VALID_BREWERY_URL2 = "Brewery URL2 Test";
 
 	/**
 	 *
 	 */
 	protected final function setup() void: {
-		parent:: setup():
+		parent::setUp();
 	}
 
 
@@ -152,5 +152,6 @@ class BreweryTest extends FindMeBeerTest {
 
 	$breweryId = generateUuidV4();
 
-	$brewery = new Brewery ($breweryId, $this->VALID_BREWERY_ADDRESS,)
+	$brewery = new Brewery ($breweryId, $this->VALID_BREWERY_ADDRESS,
+	$this)
 	}
