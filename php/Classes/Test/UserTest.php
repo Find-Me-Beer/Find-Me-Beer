@@ -91,7 +91,7 @@ class UserTest extends FindMeBeerTest {
 
 		// create a new User and insert to into mySQL
 		$userId = generateUuidV4();
-		$user = new User($userId, $this->profile->getUserId(), $this->$VALID_USERID, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $VALID_FIRSTNAME, $VALID_HASH, $VALID_LASTNAME);
+		$user = new User($userId, $this->profile->getUserId(), $this->$VALID_USERID, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $this->$VALID_FIRSTNAME, $this->$VALID_HASH, $this->$VALID_LASTNAME);
 		$user->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
@@ -114,7 +114,7 @@ class UserTest extends FindMeBeerTest {
 		$numRows = $this->getConnection()->getRowCount("user");
 		// create a new User and insert to into mySQL
 		$userId = generateUuidV4();
-		$user = new User($userId, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $VALID_FIRSTNAME, $VALID_HASH, $VALID_LASTNAME);
+		$user = new User($userId, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $this->$VALID_FIRSTNAME, $this->$VALID_HASH, $this->$VALID_LASTNAME);
 		$user->insert($this->getPDO());
 		// edit the User and update it in mySQL
 		$user->setUserActivationToken($this->$VALID_ACTIVATIONTOKEN);
@@ -148,7 +148,7 @@ class UserTest extends FindMeBeerTest {
 		$numRows = $this->getConnection()->getRowCount("user");
 
 		$userId = generateUuidV4();
-		$user = new User($userId, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $VALID_FIRSTNAME, $VALID_HASH, $VALID_LASTNAME);
+		$user = new User($userId, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $this->$VALID_FIRSTNAME, $this->$VALID_HASH,$this->$VALID_LASTNAME);
 		$user->insert($this->getPDO());
 
 
@@ -171,7 +171,7 @@ class UserTest extends FindMeBeerTest {
 
 		// create a new User and insert to into mySQL
 		$userId = generateUuidV4();
-		$user = new User($userId, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $VALID_FIRSTNAME, $VALID_HASH, $VALID_LASTNAME);
+		$user = new User($userId, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $this->$VALID_FIRSTNAME, $this->$VALID_HASH, $this->$VALID_LASTNAME);
 		$user->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
@@ -195,7 +195,7 @@ class UserTest extends FindMeBeerTest {
 		$numRows = $this->getConnection()->getRowCount("user");
 
 		$userId = generateUuidV4();
-		$user = new User($userId, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $VALID_FIRSTNAME, $VALID_HASH, $VALID_LASTNAME);
+		$user = new User($userId, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $this->$VALID_FIRSTNAME, $this->$VALID_HASH, $this->$VALID_LASTNAME);
 		$user->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
@@ -219,7 +219,7 @@ class UserTest extends FindMeBeerTest {
 		$numRows = $this->getConnection()->getRowCount("user");
 
 		$userId = generateUuidV4();
-		$user = new User($userId, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $VALID_FIRSTNAME, $VALID_HASH, $VALID_LASTNAME);
+		$user = new User($userId, $this->$VALID_ACTIVATIONTOKEN, $this->$VALID_AVATARURL, $this->$VALID_DOB, $this->$VALID_EMAIL, $this-> $VALID_FIRSTNAME, $this-> $VALID_HASH, $this-> $VALID_LASTNAME);
 		$user->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
