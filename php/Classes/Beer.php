@@ -11,7 +11,7 @@ use Ramsey\Uuid\Uuid;
  *
  * This class will hold all the necessary state variables and methods for Beer objects
  *
- * @author Reece Nunn <
+ * @author Reece Nunn <rnunn4@cnm.edu>
  **/
 class Beer implements \JsonSerializable {
 	use ValidateDate;
@@ -446,20 +446,6 @@ class Beer implements \JsonSerializable {
 			return($beerArray);
 		}
 
-	/**
-	 * formats the state variables for JSON serialization
-	 *
-	 * @return array resulting state variables to serialize
-	 **/
-	public function jsonSerialize() : array {
-		$fields = get_object_vars($this);
-
-		$fields["beerId"] = $this->beerId->toString();
-		$fields["beerBreweryId"] = $this->beerBreweryId->toString();
-
-		return($fields);
-	}
-
 		/**
 		 * gets beer by tag id
 		 *
@@ -468,7 +454,7 @@ class Beer implements \JsonSerializable {
 		 * @return \SplFixedArray SplFixedArray of beer found or null if not found
 		 * @throws \PDOException when mySQL related errors occur
 		 * @throws \TypeError when variables are not the correct data type
-
+		 */
 		public static function getBeerByTagId(\PDO $pdo, $tagId) :\SplFixedArray {
 			// sanitizes the tag id
 			try {
@@ -478,7 +464,7 @@ class Beer implements \JsonSerializable {
 			}
 
 			//Create query
-			$query = "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerId = beerTag.beerId AND beerTag WHERE beerTag.tagId = :tagId";
+			$query = "SELECT beer.beerId, beer.beerAbv, beer.beerBreweryId, beer.beerDescription, beer.beerName, beer.beerType, beerTag.beerTagBeerId, beerTag.beerTagTagId FROM beer INNER JOIN beerTag ON beer.beerId = beerTag.beerTagBeerId WHERE beerTag.beerTagTagId = :tagId";
 			//Or "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerId = beerTag.beerId AND beerTag.tagId = :beerTag.tagId";
 			$statement = $pdo->prepare($query);
 
@@ -501,5 +487,18 @@ class Beer implements \JsonSerializable {
 			}
 			return ($beerArray);
 		}
-		 */
+
+		/**
+		 * formats the state variables for JSON serialization
+		 *
+		 * @return array resulting state variables to serialize
+		 **/
+		public function jsonSerialize() : array {
+			$fields = get_object_vars($this);
+
+			$fields["beerId"] = $this->beerId->toString();
+			$fields["beerBreweryId"] = $this->beerBreweryId->toString();
+
+			return($fields);
+		}
 }
