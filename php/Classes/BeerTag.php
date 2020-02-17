@@ -214,7 +214,7 @@ class BeerTag implements \JsonSerializable {
 	 * @throws \TypeError when a variable are not the correct data type
 	 * @return beerTags|null Like found or null if not found
 	 **/
-	public static function getBeerTagsByBeerTagBeerIdAndBeerTagTagId(\PDO $pdo, string $beerTagBeerId, string $beerTagTagId ) : ?BeerTag {
+	public static function getBeerTagByBeerTagBeerIdAndBeerTagTagId(\PDO $pdo, string $beerTagBeerId, string $beerTagTagId ) : ?BeerTag {
 		// sanitize the beerTagBeerId and beerTagTagId before searching
 		try {
 			$beerTagBeerId = self::validateUuid($beerTagBeerId);
