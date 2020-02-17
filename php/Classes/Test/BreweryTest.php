@@ -94,4 +94,63 @@ class BreweryTest extends FindMeBeerTest {
 	 * Brewery Latitude
 	 * @var string
 	 */
-	protected $VALID_BREWERY_LAT = "
+	protected $VALID_BREWERY_LAT = "00001000";
+
+	/**
+	 * Testing Brewery Lat
+	 * @var string  $VALID_BREWERY_LAT2
+	 */
+	protected $VALID_BREWERY_LAT2 = "Testing LAT2";
+
+	/**
+	 * Brewery Longitude
+	 * @var string $VALID_BREWERY_LONG
+	 */
+	protected $VALID_BREWERY_LONG = "1111000";
+
+	/**
+	 * Testing Brewery Longitude
+	 * @var string $VALID_BREWERY_LONG2
+	 */
+	protected $VALID_BREWERY_LONG2 = "Testing LONG2";
+
+	/**
+	 * Brewery Phone Number
+	 * @var string $VALID_BREWERY_PHONE
+	 */
+	protected $VALID_BREWERY_PHONE = "(505)337-3333";
+
+	/**
+	 * Testing Brewery Phone Number
+	 * @var string $VALID_BREWERY_PHONE2
+	 */
+	protected $VALID_BREWERY_PHONE2 = "Testing Brewery Phone";
+
+	/**
+	 * Brewery URL
+	 * @var string $VALID_BREWERY_URL
+	 */
+	protected  $VALID_BREWERYURL = "https://marblebrewery.com/";
+
+	/**
+	 * Testing Brewery URL
+	 * @var string $VALID_BREWERYURL2
+	 */
+	protected $VALID_BREWERYURL2 = "Brewery URL2 Test";
+
+	/**
+	 *
+	 */
+	protected final function setup() void: {
+		parent:: setup():
+	}
+
+
+	public function testInsertValidBrewery() : void {
+	//
+	$numRows = $this->getConnection()->getRowCount("brewery");
+
+	$breweryId = generateUuidV4();
+
+	$brewery = new Brewery ($breweryId, $this->VALID_BREWERY_ADDRESS,)
+	}
