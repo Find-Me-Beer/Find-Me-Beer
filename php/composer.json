@@ -8,6 +8,7 @@
     "lcobucci/jwt": "3.2",
     "ramsey/uuid": "@stable",
 
+
     "ext-pdo": "*",
     "ext-json": "*"
 
