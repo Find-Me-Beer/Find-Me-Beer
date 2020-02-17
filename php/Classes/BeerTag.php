@@ -14,7 +14,7 @@ use Ramsey\Uuid\Uuid;
  * @author Patrick Leyba <pleyba4@cnm.edu>
  * @version 0.0.1
  **/
-class Favorite implements \JsonSerializable {
+class BeerTag implements \JsonSerializable {
 	use ValidateUuid;
 	/**
 	 * id of the Profile that sent this Tweet; this is a foreign key
