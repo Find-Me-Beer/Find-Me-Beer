@@ -59,13 +59,13 @@ class BeerTagTest extends DataDesignTest {
 		$brewery = 'kljlkjsllk';
 
 		//TODO add the rest of the parameters needed to instantiate Brewery Tag and Beer
-		$this->brewery = new Brewery($breweryId);
+		$this->brewery = new Brewery(generateUuidV4(), "123 main st Albuqueruqe NM 87102", "http://meows.cat.com", "A relaxed atmosphere", "brewery@email.com", "32° 18.385' N", "122° 36.875' W", "Marble Brewery", "505-798-7980", "www.marble.com");
 		$this->brewery->insert($this->getPDO());
 
-		$this->tag = new Tag($tagId);
+		$this->tag = new Tag(generateUuidV4(), "beer tag content goes here");
 		$this->tag->insert($this->getPDO());
 
-		$this->beer = new Beer($beerTagBeerId);
+		$this->beer = new Beer(generateUuidV4(), "5.25%", $this->brewery->getbreweryId(), "hoppy", "Duff", "Lager");
 		$this->beer->insert($this->getPDO());
 
 
@@ -90,7 +90,7 @@ class BeerTagTest extends DataDesignTest {
 		$pdoBeerTag = BeerTag::getBeerTagBeerIdAndBeerTagTagId($this->getPDO(), $this->beer->getBeerId(), $this->tag->getTagId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beerTag"));
 		$this->assertEquals($pdoBeerTag->getBeerTagBeerId(), $this->tag->getTagId());
-		$this->assertEquals($pdoLike->getLikeProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoBeerTag->getLikeProfileId(), $this->profile->getProfileId());
 	}
 
 	/**
@@ -181,7 +181,7 @@ class BeerTagTest extends DataDesignTest {
 	 * test grabbing a beerTag that does not exist
 	 **/
 	public function testGetInvalidBeerTagByBeerIdAndTagId() {
-		$beerTag = ::getLikeByLikePostIdAndLikeProfileId($this->getPDO(), generateUuidV4(), generateUuidV4());
+		$beerTag = beerTag ::getLikeByLikePostIdAndLikeProfileId($this->getPDO(), generateUuidV4(), generateUuidV4());
 		$this->assertNull($beerTag);
 	}
 
@@ -192,7 +192,7 @@ class BeerTagTest extends DataDesignTest {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("beerTag");
 
-		//create a like and insert
+		//create a beerTag and insert
 		$beerTag = new BeerTag($this->beer->getBeerId(), $this->tag->getTagId());
 		$beerTag->insert($this->getPDO());
 
@@ -204,7 +204,7 @@ class BeerTagTest extends DataDesignTest {
 
 		//verify that all fields match
 		$pdoTag = $results[0];
-		$this->assertEquals($pdoBeer->getBeerTagBeerId(), $this->beer->getBeerId());
+		$this->assertEquals($pdoTag->getBeerTagBeerId(), $this->beer->getBeerId());
 		$this->assertEquals($pdoTag->getBeerTagTagId(), $this->tag->getTagId());
 	}
 }
