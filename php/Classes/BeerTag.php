@@ -17,12 +17,12 @@ use Ramsey\Uuid\Uuid;
 class BeerTag implements \JsonSerializable {
 	use ValidateUuid;
 	/**
-	 * id of the Profile that sent this Tweet; this is a foreign key
+	 * BeerTagBeerId; this is a foreign key
 	 * @var Uuid $beerTagBeerId
 	 **/
 	private $beerTagBeerId;
 	/**
-	 * actual beer favorite of this beer
+	 * beerTagTagId of this beer
 	 * @var string $beerTagTagId
 	 **/
 	private $beerTagTagId;
@@ -30,8 +30,8 @@ class BeerTag implements \JsonSerializable {
 	/**
 	 * constructor for BeerTag
 	 *
-	 * @param string|Uuid $newbeerTagBeerId id of the Profile that sent this Tweet
-	 * @param string $newbeerTagTagId string containing actual tweet data
+	 * @param string|Uuid $newBeerTagBeerId beer
+	 * @param string $newBeerTagTagId int containing actual tag and id beer data
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
@@ -64,7 +64,7 @@ class BeerTag implements \JsonSerializable {
 	 *
 	 * @param string $newBeerTagBeerId new value of beerTagBeerId
 	 * @throws \InvalidArgumentException if $newBeerTagBeerId is not a string or insecure
-	 * @throws \RangeException if $newbeerTagBeerId is > 140 characters
+	 * @throws \RangeException if $newBeerTagBeerId is > 140 characters
 	 * @throws \TypeError if $newFavoriteBeerId is not a string
 	 **/
 	public function setBeerTagBeerId( $newBeerTagBeerId) : void {
@@ -91,9 +91,9 @@ class BeerTag implements \JsonSerializable {
 	/**
 	 * mutator method for beerTagTagId
 	 *
-	 * @param string | Uuid $newBeerTagTagId new value of favoritesUserId
-	 * @throws \RangeException if $newFavoritesUserId is not positive
-	 * @throws \TypeError if $newFavoritesUserId is not an integer
+	 * @param string | Uuid $newBeerTagTagId new value of beerTagTagId
+	 * @throws \RangeException if $newBeerTagTagId is not positive
+	 * @throws \TypeError if $newBeerTagTagId is not an integer
 	 **/
 	public function setBeerTagTagId( $newBeerTagTagId) : void {
 		try {
@@ -103,7 +103,7 @@ class BeerTag implements \JsonSerializable {
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 
-		// convert and store the profile id
+		// convert and store the beerTagTagid
 		$this->beerTagTagId = $uuid;
 	}
 
@@ -126,16 +126,16 @@ class BeerTag implements \JsonSerializable {
 	}
 
 	/***********getFooByBar Methods for BeerTag class beerTagBeerId and beerTagTagId************************
-	 * gets beerTag by beerTagBeerId (unfinished)
+	 * gets beerTag by beerTagBeerId
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param Uuid|string $beerTagBeerId id to search by
 	 * @param  $beerTagTagId
-	 * @return \SplFixedArray SplFixedArray of Favorite found
+	 * @return \SplFixedArray SplFixedArray of beerTag found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 */
-	public static function getBeerTagByBeerTagBeerId(\PDO $pdo, $beerTagBeerId, $beerTagTagId) : \SplFixedArray {
+	public static function getBeerTagsByBeerTagBeerId(\PDO $pdo, $beerTagBeerId) : \SplFixedArray {
 
 		try {
 			$beerTagBeerId = self::validateUuid($beerTagBeerId);
@@ -146,8 +146,8 @@ class BeerTag implements \JsonSerializable {
 		// create query template
 		$query = "SELECT beerTagBeerId FROM beerTag WHERE beerTagTagId = :beerTagTagId";
 		$statement = $pdo->prepare($query);
-		// bind the favoriteUserId to the place holder in the template
-		$parameters = ["beerTagTagId" => $beerTagTagId->getBytes()];
+		// bind the beerTagTagId to the place holder in the template
+		$parameters = ["beerTagBeerId" => $beerTagBeerId->getBytes()];
 		$statement->execute($parameters);
 		// build an array of beerTags
 		$beerTags = new \SplFixedArray($statement->rowCount());
@@ -155,7 +155,7 @@ class BeerTag implements \JsonSerializable {
 		while(($row = $statement->fetch()) !== false) {
 			try {
 				$favorites = new Favorite($row["beerTagBeerId"], $row["beerTagTagId"]);
-				$beerTagss[$beerTags->key()] = $beerTags;
+				$beerTags[$beerTags->key()] = $beerTags;
 				$favorites->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
@@ -168,14 +168,13 @@ class BeerTag implements \JsonSerializable {
 
 	/**
 	 * gets beerTag by beerTagTagId
-	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param Uuid|string $favoriteUserId profile id to search by
+	 * @param Uuid|string $beerTagTagId profile id to search by
 	 * @return \SplFixedArray SplFixedArray of Favorite found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-	public static function getBeerTagByBeerTagTagId(\PDO $pdo, $beerTagTagId) : \SplFixedArray {
+	public static function getBeerTagsByBeerTagTagId(\PDO $pdo, $beerTagTagId) : \SplFixedArray {
 
 		try {
 			$beerTagTagId = self::validateUuid($beerTagTagId);
@@ -186,7 +185,7 @@ class BeerTag implements \JsonSerializable {
 		// create query template
 		$query = "SELECT beerTagTagId FROM beerTag WHERE beerTagTagId = :beerTagTagId";
 		$statement = $pdo->prepare($query);
-		// bind the favoriteUserId to the place holder in the template
+		// bind the Id to the place holder in the template
 		$parameters = ["beerTagTagId" => $beerTagTagId->getBytes()];
 		$statement->execute($parameters);
 		// build an array of beerTags
@@ -213,9 +212,9 @@ class BeerTag implements \JsonSerializable {
 	 * @param string $beerTagTagId beerTagTagId to search for
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable are not the correct data type
-	 * @return favorites|null Like found or null if not found
+	 * @return beerTags|null Like found or null if not found
 	 **/
-	public static function getBeerTagByBeerTagBeerIdAndBeerTagTagId(\PDO $pdo, string $beerTagBeerId, string $beerTagTagId ) : ?BeerTag {
+	public static function getBeerTagsByBeerTagBeerIdAndBeerTagTagId(\PDO $pdo, string $beerTagBeerId, string $beerTagTagId ) : ?BeerTag {
 		// sanitize the beerTagBeerId and beerTagTagId before searching
 		try {
 			$beerTagBeerId = self::validateUuid($beerTagBeerId);

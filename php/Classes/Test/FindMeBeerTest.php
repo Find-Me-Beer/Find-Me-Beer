@@ -16,8 +16,8 @@ require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 /**
  * Abstract class containing universal and project specific mySQL parameters
  *
- * This class is designed to lay the foundation of the unit tests per project. It loads the all the database
- * parameters about the project so that table specific tests can share the parameters in on place. To use it:
+ * This class is designed to lay the foundation of the unit tests per project. It loads all the database
+ * parameters about the project so that table specific tests can share the parameters in one place. To use it:
  *
  * 1. Rename the class from DataDesignTest to a project specific name (e.g., ProjectNameTest)
  * 2. Rename the namespace to be the same as in (1) (e.g., Edu\Cnm\ProjectName\Test)
@@ -95,7 +95,7 @@ abstract class DataDesignTest extends TestCase {
 		// if the connection hasn't been established, create it
 		if($this->connection === null) {
 			// connect to mySQL and provide the interface to PHPUnit
-			$secrets =  new \Secrets("/etc/apache2/capstone-mysql/ddctwitter.ini");
+			$secrets =  new \Secrets("/etc/apache2/capstone-mysql/beerme.ini");
 
 			$pdo = $secrets->getPdoObject();
 			$this->connection = $this->createDefaultDBConnection($pdo, $secrets->getDatabase());
