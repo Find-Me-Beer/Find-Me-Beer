@@ -58,16 +58,21 @@ class BeerTagTest extends DataDesignTest {
 		$tag = "pofjvijiovhj";
 		$brewery = 'kljlkjsllk';
 
-		$this->beer = new Beer($beerTagBeerId);
-		$this->beer->insert($this->getPDO());
-		}
-
+		//TODO add the rest of the parameters needed to instantiate Brewery Tag and Beer
 		$this->brewery = new Brewery($breweryId);
 		$this->brewery->insert($this->getPDO());
-		}
 
 		$this->tag = new Tag($tagId);
 		$this->tag->insert($this->getPDO());
+
+		$this->beer = new Beer($beerTagBeerId);
+		$this->beer->insert($this->getPDO());
+
+
+
+
+
+
 		}
 
 	/**
