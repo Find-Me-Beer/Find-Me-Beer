@@ -287,7 +287,7 @@ class Beer implements \JsonSerializable {
 		 */
 		public function update(\PDO $pdo) :void {
 			//Query
-			$query = "UPDATE beer WHERE beerId = :beerId, beerAbv = :beerAbv, beerBreweryId = :beerBreweryId, beerDescription = :beerDescription, beerName = :beerName, beerType = :beerType";
+			$query = "UPDATE beer SET beerId = :beerId, beerAbv = :beerAbv, beerBreweryId = :beerBreweryId, beerDescription = :beerDescription, beerName = :beerName, beerType = :beerType";
 			$statement = $pdo->prepare($query);
 
 			//Bind member variables to placeholders
@@ -468,7 +468,7 @@ class Beer implements \JsonSerializable {
 			//Or "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerId = beerTag.beerId AND beerTag.tagId = :beerTag.tagId";
 			$statement = $pdo->prepare($query);
 
-			//Bind beer brewery id to placeholder
+			//Bind tag id to placeholder
 			$parameters = ["tagId" => $tagId->getBytes()];
 			$statement->execute($parameters);
 

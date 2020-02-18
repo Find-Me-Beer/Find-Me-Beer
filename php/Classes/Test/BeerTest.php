@@ -2,7 +2,7 @@
 
 namespace FindMeBeer\FindMeBeer\Test;
 
-use FindMeBeer\FindMeBeer\{Brewery, Beer, BeerTag};
+use FindMeBeer\FindMeBeer\{Brewery, Beer, BeerTag, Tag};
 
 // grab the class you're testing
 require_once(dirname(__DIR__) . "/autoload.php");
@@ -69,7 +69,14 @@ class BeerTest extends FindMeBeerTest {
 	protected $beerTag = null;
 
 	/**
+	 * tag that beerTag needs to exist; for foreign key relations
+	 * @var Tag tag
+	 */
+	protected $tag = null;
+
+	/**
 	 * create dependent objects before running each test
+	 * @throws \Exception
 	 */
 	public final function setUp(): void {
 		//run setUp() method first
@@ -92,6 +99,12 @@ class BeerTest extends FindMeBeerTest {
 			"(505)243-2739",
 			"https://marblebrewery.com/");
 		$this->brewery->insert($this->getPDO());
+
+		//TODO create a tag and insert it into the database
+		$tagId = generateUuidV4();
+		$this->tag = new Tag(
+			$tagId,
+			"ThisIsTag");
 	}
 
 	/**
@@ -104,8 +117,8 @@ class BeerTest extends FindMeBeerTest {
 		//create a new Beer and insert it into mySQL
 		$beerId = generateUuidV4();
 		$beer = new Beer($beerId,
-			$this->brewery->getbreweryId(),
 			$this->VALID_BEERABV,
+			$this->brewery->getbreweryId(),
 			$this->VALID_BEERDESCRIPTION,
 			$this->VALID_BEERNAME,
 			$this->VALID_BEERTYPE);
@@ -307,6 +320,19 @@ class BeerTest extends FindMeBeerTest {
 		// create a new beer and insert it into mySQL
 		$beerId = generateUuidV4();
 		$beer = new Beer($beerId,
+			$this->VALID_BEERABV,
+			$this->brewery->getbreweryId(),
+			$this->VALID_BEERDESCRIPTION,
+			$this->VALID_BEERNAME,
+			$this->VALID_BEERTYPE);
+		$beer->insert($this->getPDO());
+
+		//TODO create a beertag and insert it into the database (use the beerId and tagId accessors for foreign keys on beerTag)
+
+		// create a new tag and insert it into mySQL
+		$beerTagId = generateUuidV4();
+		$beerTag = new BeerTag(
+			$beerId,
 			$this->VALID_BEERABV,
 			$this->brewery->getbreweryId(),
 			$this->VALID_BEERDESCRIPTION,
