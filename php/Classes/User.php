@@ -187,7 +187,8 @@ class User implements \JsonSerializable {
  * accessor method for userAvatarUrl
  * @return String value of userAvatarUrl
  **/
-	public function getUserAvatarUrl(){
+
+	public function getUserAvatarUrl()	: string {
 		return $this-> userAvatarUrl;
 	}
 
@@ -196,13 +197,24 @@ class User implements \JsonSerializable {
 	 * @param $newUserAvatarUrl
 	 * @return String value of userAvatarUrl
 	 */
-	public function setUserAvatarUrl($newUserAvatarUrl){
+	public function setUserAvatarUrl(string $newUserAvatarUrl) :void {
+
+		$newUserAvatarUrl = trim($newUserAvatarUrl);
+		$newUserAvatarUrl = filter_var($newUserAvatarUrl, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+
+		//verify the avatar URL will fit in the database
+		if(strlen($newUserAvatarUrl) > 255){
+				throw(new \RangeException("image cloudinary content is too large"));
+		}
 		$this -> userAvatarUrl = $newUserAvatarUrl;
+
+
+
 	}
 
 	/**
-	 * accessor method for userAvatarUrl
-	 * @return String value of userAvatarUrl
+	 * accessor method for userUserDateofBirth
+	 * @return String value of Date of Birth
 	 **/
 	public function getUserDOB(){
 		return $this->userDOB;
@@ -219,7 +231,13 @@ class User implements \JsonSerializable {
 		if($drinkDate < $newUserDOB) {
 			throw (new \OutOfRangeException("Must be 21"));
 		}
-		// store the userDOBh date
+		// store the userDOB date
+		try {
+			$newUserDOB = self::validateDateTime($newUserDOB);
+		} catch(\InvalidArgumentException | \RangeException $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
 		$this->userDOB = $newUserDOB;
 
 		}
@@ -421,6 +439,9 @@ class User implements \JsonSerializable {
 	public function delete(\PDO $pdo): void {
 		$query = "DELETE FROM user WHERE userId = :userId";
 		$statement = $pdo->prepare($query);
+		//bind the member variables to the place holders in the template
+		$parameters = ["userId" => $this->userId->getBytes()];
+		$statement->execute($parameters);
 
 	}
 		/**
@@ -471,37 +492,37 @@ class User implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-
-	public static function getUsersByUserId(\PDO $pdo, $userId): \SplFixedArray {
-
-			try {
-					$userId = self::validateUuid($userId);
-			} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
-				throw(new \PDOException($exception->getMessage(), 0, $exception));
-			}
-		// create query template
-		$query = "SELECT userId, userActivationToken, userAvatarUrl, userDOB, userEmail, userFirstName, userHash, userLastName, userUsername FROM user WHERE userid= :userId";
-		$statement =$pdo->prepare($query);
-
-		//bind the user id to the place holder in the template
-		$parameters = ["userId" => $userId ->getBytes()];
-		$statement->execute($parameters);
-
-		// build an array of Users
-		$users = new \SplFixedArray($statement->rowCount());
-		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-		while(($row = $statement->fetch()) !==false) {
-				try{
-						$users = new User($row["userId"], $row["userActivationToken"], $row["userAvatarUrl"], $row["userDOB"], $row["userEmail"], $row["userFirstName"], $row["userHash"],$row["userLastName"], $row["userUsername"]);
-						$users[$users->key()] = $users;
-						$users->next();
-					}  catch(\Exception $exception) {
-					// if the row couldn't be converted, rethrow it
-					throw(new \PDOException($exception->getMessage(), 0, $exception));
-				}
-		}
-		return($users);
-	}
+//
+//	public static function getUsersByUserId(\PDO $pdo, $userId): \SplFixedArray {
+//
+//			try {
+//					$userId = self::validateUuid($userId);
+//			} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+//				throw(new \PDOException($exception->getMessage(), 0, $exception));
+//			}
+//		// create query template
+//		$query = "SELECT userId, userActivationToken, userAvatarUrl, userDOB, userEmail, userFirstName, userHash, userLastName, userUsername FROM user WHERE userid= :userId";
+//		$statement =$pdo->prepare($query);
+//
+//		//bind the user id to the place holder in the template
+//		$parameters = ["userId" => $userId ->getBytes()];
+//		$statement->execute($parameters);
+//
+//		// build an array of Users
+//		$users = new \SplFixedArray($statement->rowCount());
+//		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+//		while(($row = $statement->fetch()) !==false) {
+//				try{
+//						$users = new User($row["userId"], $row["userActivationToken"], $row["userAvatarUrl"], $row["userDOB"], $row["userEmail"], $row["userFirstName"], $row["userHash"],$row["userLastName"], $row["userUsername"]);
+//						$users[$users->key()] = $users;
+//						$users->next();
+//					}  catch(\Exception $exception) {
+//					// if the row couldn't be converted, rethrow it
+//					throw(new \PDOException($exception->getMessage(), 0, $exception));
+//				}
+//		}
+//		return($users);
+//	}
 
 
 	/**
@@ -521,7 +542,7 @@ class User implements \JsonSerializable {
 
 		}
 		//query template
-		$query = "SELECT userId, userActivationToken, userAvatarUrl, userDOB, userEmail, userFirstName, userHash, userLastName, userUsername FROM user WHERE userid= :userId";
+		$query = "SELECT userId, userActivationToken, userAvatarUrl, userDOB, userEmail, userFirstName, userHash, userLastName, userUsername FROM user WHERE userActivationToken= :userActivationToken";
 		$statement =$pdo->prepare($query);
 
 		//Token to Placeholder
@@ -557,17 +578,17 @@ class User implements \JsonSerializable {
 	public static function getUserByUserEmail(\PDO $pdo, $userEmail) : ?User {
 		// sanitize the user Email before searching
 		$userEmail = trim($userEmail);
-		$userEmail = filter_var($userEmail, FILTER_SANITIZE_EMAIL, FILTER_FLAG_NO_ENCODE_QUOTES);
+		$userEmail = filter_var($userEmail, FILTER_VALIDATE_EMAIL, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($userEmail) === true) {
 			throw(new \PDOException("Invalid Email"));
 		}
 
 		// create query template
-		$query = "SELECT userId, userActivationToken, userAvatarUrl, userDOB, userEmail, userFirstName, userHash, userLastName, userUsername FROM user WHERE userid= :userId";
+		$query = "SELECT userId, userActivationToken, userAvatarUrl, userDOB, userEmail, userFirstName, userHash, userLastName, userUsername FROM user WHERE userEmail = :userEmail";
 		$statement = $pdo->prepare($query);
 
 		// bind the user email to the place holder in the template
-		$parameters = ["profileEmail" => $userEmail];
+		$parameters = ["userEmail" => $userEmail];
 		$statement->execute($parameters);
 
 		// grab the User from mySQL

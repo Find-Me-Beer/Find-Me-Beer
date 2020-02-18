@@ -34,7 +34,7 @@ class UserTest extends FindMeBeerTest {
 	/**
 	 * @var string $newUserAvatarUrl string with user avatar url
 	 **/
-	protected $VALID_AVATARURL = null;
+	protected $VALID_AVATARURL= "www.image.com";
 
 	/**
 	 * @var \DateTime $newUserDOB user DateOfBirth date as a DateTime object
@@ -76,7 +76,7 @@ class UserTest extends FindMeBeerTest {
 		//
 		$password = "abc123";
 		$this->VALID_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 9]);
-		$this->VALID_ACTIVATION = bin2hex(random_bytes(16));
+		$this->VALID_ACTIVATIONTOKEN = bin2hex(random_bytes(16));
 
 		$this->VALID_DOB = new \DateTime("1999-02-17");
 	}
@@ -109,7 +109,6 @@ class UserTest extends FindMeBeerTest {
 		$this->assertEquals($pdoUser->getUserEmail(), $this->VALID_EMAIL);
 		$this->assertEquals($pdoUser->getUserFirstName(), $this->VALID_FIRSTNAME);
 		$this->assertEquals($pdoUser->getUserHash(), $this->VALID_HASH);
-		$this->assertEquals($pdoUser->getUserLastName(), $this->VALID_LASTNAME);
 		$this->assertEquals($pdoUser->getUserLastName(), $this->VALID_LASTNAME);
 		$this->assertEquals($pdoUser->getUserUsername(), $this->VALID_USERUSERNAME);
 	}
@@ -151,7 +150,9 @@ class UserTest extends FindMeBeerTest {
 
 	/**
 	 * test creating a User and then deleting it
-	 **/
+	 *
+	 * @throws \Exception
+	 */
 	public function testDeleteValidUser() : void {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("user");
@@ -180,7 +181,7 @@ class UserTest extends FindMeBeerTest {
 
 		// create a new User and insert to into mySQL
 		$userId = generateUuidV4();
-		$user = new User($userId, $this->VALID_ACTIVATIONTOKEN, $this->VALID_AVATARURL, $this->VALID_DOB, $this->VALID_EMAIL, $this->VALID_FIRSTNAME, $this->VALID_HASH, $this->VALID_LASTNAME, $this->VALID_LASTNAME, $this->VALID_USERUSERNAME);
+		$user = new User($userId, $this->VALID_ACTIVATIONTOKEN, $this->VALID_AVATARURL, $this->VALID_DOB, $this->VALID_EMAIL, $this->VALID_FIRSTNAME, $this->VALID_HASH, $this->VALID_LASTNAME, $this->VALID_USERUSERNAME);
 		$user->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
@@ -214,12 +215,12 @@ class UserTest extends FindMeBeerTest {
 		$this->assertEquals($pdoUser->getUserId(), $userId);
 		$this->assertEquals($pdoUser->getUserActivationToken(), $this->VALID_ACTIVATIONTOKEN);
 		$this->assertEquals($pdoUser->getUserAvatarUrl(), $this->VALID_AVATARURL);
-		$this->assertEquals($pdoUser->getUserDOB()->format("Y-m-d"), $this->VALID_DOB);
+		$this->assertEquals($pdoUser->getUserDOB(), $this->VALID_DOB);
 		$this->assertEquals($pdoUser->getUserEmail(), $this->VALID_EMAIL);
 		$this->assertEquals($pdoUser->getUserFirstName(), $this->VALID_FIRSTNAME);
 		$this->assertEquals($pdoUser->getUserHash(), $this->VALID_HASH);
 		$this->assertEquals($pdoUser->getUserLastName(), $this->VALID_LASTNAME);
-		$this->assertEquals($pdoUser->getUserLastName(), $this->VALID_USERUSERNAME);
+		$this->assertEquals($pdoUser->getUserUsername(), $this->VALID_USERUSERNAME);
 	}
 
 	/**
@@ -239,12 +240,12 @@ class UserTest extends FindMeBeerTest {
 		$this->assertEquals($pdoUser->getUserId(), $userId);
 		$this->assertEquals($pdoUser->getUserActivationToken(), $this->VALID_ACTIVATIONTOKEN);
 		$this->assertEquals($pdoUser->getUserAvatarUrl(), $this->VALID_AVATARURL);
-		$this->assertEquals($pdoUser->getUserDOB()->format("Y-m-d"), $this->VALID_DOB);
+		$this->assertEquals($pdoUser->getUserDOB(), $this->VALID_DOB);
 		$this->assertEquals($pdoUser->getUserEmail(), $this->VALID_EMAIL);
 		$this->assertEquals($pdoUser->getUserFirstName(), $this->VALID_FIRSTNAME);
 		$this->assertEquals($pdoUser->getUserHash(), $this->VALID_HASH);
 		$this->assertEquals($pdoUser->getUserLastName(), $this->VALID_LASTNAME);
-		$this->assertEquals($pdoUser->getUserLastName(), $this->VALID_USERUSERNAME);
+		$this->assertEquals($pdoUser->getUserUsername(), $this->VALID_USERUSERNAME);
 	}
 
 
