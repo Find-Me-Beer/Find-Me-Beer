@@ -210,10 +210,10 @@ class BeerTag implements \JsonSerializable {
 	 * @param \PDO $pdo PDO connection object
 	 * @param Uuid|string $beerTagBeerId beerTag id to search for
 	 * @param string $beerTagTagId beerTagTagId to search for
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError when a variable are not the correct data type
 	 * @return beerTags|null Like found or null if not found
-	 **/
+	 **@throws \TypeError when a variable are not the correct data type
+	 * @throws \PDOException when mySQL related errors occur
+	 */
 	public static function getBeerTagByBeerTagBeerIdAndBeerTagTagId(\PDO $pdo, string $beerTagBeerId, string $beerTagTagId ) : ?BeerTag {
 		// sanitize the beerTagBeerId and beerTagTagId before searching
 		try {

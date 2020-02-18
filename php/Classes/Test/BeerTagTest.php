@@ -69,7 +69,9 @@ class BeerTagTest extends DataDesignTest {
 
 	/**
 	 * test inserting a valid BeerTag and verify that the actual mySQL data matches
-	 **/
+	 *
+	 * @throws Exception
+	 */
 	public function testInsertValidBeerTag() : void {
 		//count the current number of rows and save for later
 		$numRows = $this->getConnection()->getRowCount("beerTag");
@@ -87,7 +89,9 @@ class BeerTagTest extends DataDesignTest {
 
 	/**
 	 * test getting a BeerTag by tag id and verify
-	 **/
+	 *
+	 * @throws Exception
+	 */
 	public function testGetBeerTagsByBeerTagTagId() {
 		//count the current number of rows and save for later
 		$numRows = $this->getConnection()->getRowCount("beerTag");
@@ -125,7 +129,7 @@ class BeerTagTest extends DataDesignTest {
 	 */
 	public function testGetBeerTagByBeerTagBeerId() {
 		//count the current number of rows and save for later
-		$numRows = $this->getConnection()->getRowCount("beerTag");
+		$numRows = $this->getConnection()->getRowCount("BeerTag");
 
 		//create a beerTag and insert
 		$beerTag = new BeerTag($this->beer->getBeerId(), $this->tag->getTagId());
@@ -155,7 +159,9 @@ class BeerTagTest extends DataDesignTest {
 
 	/**
 	 * test getting a BeerTag by beerId and tagId, and verify
-	 **/
+	 *
+	 * @throws Exception
+	 */
 	public function testGetBeerTagsByBeerTagBeerIdAndBeerTagTagId() {
 		//count the current number of rows and save for later
 		$numRows = $this->getConnection()->getRowCount("beerTag");
@@ -181,7 +187,9 @@ class BeerTagTest extends DataDesignTest {
 
 	/**
 	 * test grabbing all beerTags
-	 **/
+	 *
+	 * @throws Exception
+	 */
 	public function testGetAllValidBeerTags() {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("beerTag");
@@ -199,7 +207,7 @@ class BeerTagTest extends DataDesignTest {
 		//verify that all fields match
 
 		$pdoTag = $results[0];
-		$this->assertEquals($pdoTag->getBeerTagTagId(), $this->beer->getBeerId());
-		$this->assertEquals($pdoTag->getTagId(), $this->tag->getTagId());
+		$this->assertEquals($pdoTag->getBeerTagBeerId(), $this->beer->getBeerId());
+		$this->assertEquals($pdoTag->getBeerTagTagId(), $this->tag->getTagId());
 	}
 }
