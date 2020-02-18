@@ -142,6 +142,7 @@ class BreweryTest extends FindMeBeerTest {
 	 *
 	 */
 	protected final function setup() void: {
+		//run the default setUp() method
 		parent::setUp();
 	}
 
@@ -152,6 +153,17 @@ class BreweryTest extends FindMeBeerTest {
 
 	$breweryId = generateUuidV4();
 
-	$brewery = new Brewery ($breweryId, $this->VALID_BREWERY_ADDRESS,
-	$this)
+	$brewery = new Brewery ($breweryId,
+		$this->VALID_BREWERY_ADDRESS,
+	   $this->VALID_BREWERY_AVATARURL,
+		$this->VALID_BREWERY_DESCRIPTION,
+		$this->VALID_BREWERY_EMAIL,
+		$this->VALID_BREWERY_NAME,
+		$this->VALID_BREWERY_LAT,
+		$this->VALID_BREWERY_LONG,
+		$this->VALID_BREWERY_PHONE,
+		$this->VALID_BREWERY_URL);
+	$breweryId = ($this->getPDO());
+	// grab the data from mySQL and enforce the fields match our expectations
+
 	}

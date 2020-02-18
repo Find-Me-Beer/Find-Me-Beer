@@ -236,7 +236,7 @@ public function getBreweryName(): string {
  */
 
 
-public function getbreweryPhone(): string {
+public function getBreweryPhone(): string {
 	return($this->breweryPhone);
 }
 	/**
