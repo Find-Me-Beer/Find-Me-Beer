@@ -186,7 +186,7 @@ class Brewery implements \JsonSerializable {
 	 */
 	public function setBreweryAvatarUrl($newBreweryAvatarUrl): void {
 
-		// this mutator needs to be finished - trimmed and santized like the others. check length too.
+		// this mutator needs to be finished - trimmed and sanitized like the others. check length too.
 		$newBreweryAvatarUrl = trim($newBreweryAvatarUrl);
 		$newBreweryAvatarUrl = filter_var($newBreweryAvatarUrl, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		$this->breweryAvatarUrl = $newBreweryAvatarUrl;

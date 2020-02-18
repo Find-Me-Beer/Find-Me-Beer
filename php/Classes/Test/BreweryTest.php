@@ -146,7 +146,7 @@ class BreweryTest extends FindMeBeerTest {
 	 * test inserting a valid Brewery and verify that the actual mySQL data matches
 	 **/
 	public function testInsertValidBrewery() : void {
-	//
+	// count the number of rows and save it for later
 	$numRows = $this->getConnection()->getRowCount("brewery");
 
 	$breweryId = generateUuidV4();
@@ -162,29 +162,66 @@ class BreweryTest extends FindMeBeerTest {
 		$this->VALID_BREWERY_PHONE,
 		$this->VALID_BREWERY_URL);
 	$breweryId = ($this->getPDO());
+
 	// grab the data from mySQL and enforce the fields match our expectations
 	$pdoBrewery = Brewery::getBreweryByBreweryId($this->getPDO(), $brewery->getBreweryId());
-
 	$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("brewery"));
-
 	$this->assertEquals($pdoBrewery->getBreweryId(), $breweryId);
-
 	$this->assertEquals($pdoBrewery->getBreweryAddress(), $this->VALID_BREWERY_ADDRESS);
-
 	$this->assertEquals($pdoBrewery->getBreweryAvatarUrl(), $this->VALID_BREWERY_AVATAR_URL);
-
 	$this->assertEquals($pdoBrewery->getBreweryDescription(), $this->VALID_BREWERY_DESCRIPTION);
-
 	$this->assertEquals($pdoBrewery->getBreweryEmail(), $this->VALID_BREWERY_EMAIL);
-
 	$this->assertEquals($pdoBrewery->getBreweryName(), $this->VALID_BREWERY_NAME);
-
 	$this->assertEquals($pdoBrewery->getBreweryLat(), $this->VALID_BREWERY_LAT);
-
 	$this->assertEquals($pdoBrewery->getBreweryLong(), $this->VALID_BREWERY_LONG);
-
 	$this->assertEquals($pdoBrewery->getBreweryPhone(), $this->VALID_BREWERY_PHONE);
-
 	$this->assertEquals($pdoBrewery->getBreweryUrl(), $this->VALID_BREWERY_URL);
 	}
+
+	/**
+	 * test inserting Brewery, editing it, and then updating it
+	 */
+	public function testUpdateValidBrewery() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("brewery");
+
+		// create a new Brewery and insert to into mySQL
+		$breweryId = generateUuidV4();
+		$brewery = new Brewery($breweryId,
+			$this->VALID_BREWERY_ADDRESS,
+			$this->VALID_BREWERY_AVATAR_URL,
+			$this->VALID_BREWERY_DESCRIPTION,
+			$this->VALID_BREWERY_EMAIL,
+			$this->VALID_BREWERY_NAME,
+			$this->VALID_BREWERY_LAT,
+			$this->VALID_BREWERY_LONG,
+			$this->VALID_BREWERY_PHONE,
+			$this->VALID_BREWERY_URL);
+		$brewery->insert($this->getPDO());
+
+		// edit the Brewery and update it in mySQL
+		$brewery->setBrewery($this->VALID_BREWERY_DESCRIPTION2);
+		$brewery->update($this->getPDO());
+
+		// set the data from mySQL and enforce the fields match our expectations
+		$pdoBrewery = Brewery::setBreweryByBreweryId($this->getPDO(), $brewery->getBreweryId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("brewery"));
+		$this->assertEquals($pdoBrewery->getBreweryId(), $breweryId);
+		$this->assertEquals($pdoBrewery->getBreweryAddress(), $this->VALID_BREWERY_ADDRESS);
+		$this->assertEquals($pdoBrewery->getBreweryAvatarUrl(), $this->VALID_BREWERY_AVATAR_URL);
+		$this->assertEquals($pdoBrewery->getBreweryDescription(), $this->VALID_BREWERY_DESCRIPTION);
+		$this->assertEquals($pdoBrewery->getBreweryEmail(), $this->VALID_BREWERY_EMAIL);
+		$this->assertEquals($pdoBrewery->getBreweryName(), $this->VALID_BREWERY_NAME);
+		$this->assertEquals($pdoBrewery->getBreweryLat(), $this->VALID_BREWERY_LAT);
+		$this->assertEquals($pdoBrewery->getBreweryLong(), $this->VALID_BREWERY_LONG);
+		$this->assertEquals($pdoBrewery->getBreweryPhone(), $this->VALID_BREWERY_PHONE);
+		$this->assertEquals($pdoBrewery->getBreweryUrl(), $this->VALID_BREWERY_URL);
+	}
+
+	}
+
+
+
+
+
 
