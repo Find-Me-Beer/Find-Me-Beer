@@ -34,7 +34,7 @@ class BeerTest extends FindMeBeerTest {
 
 	/**
 	 * valid updated float/decimal of beer abv
-	 *
+	 * @var float $VALID_BEERABV2
 	 */
 	protected $VALID_BEERABV2 = 12.75;
 
@@ -86,9 +86,9 @@ class BeerTest extends FindMeBeerTest {
 			 and raise expectations. We package a variety of styles and distribute throughout New Mexico, Arizona, Southwest
 			 Texas and Southwest Colorado.",
 			"marblebrewery@marble.com",
-			"35.094880",
-			"-106.665270",
 			"Marble Brewery",
+			-54.6666666,
+			-106.665270,
 			"(505)243-2739",
 			"https://marblebrewery.com/");
 		$this->brewery->insert($this->getPDO());
@@ -115,7 +115,7 @@ class BeerTest extends FindMeBeerTest {
 		$pdoBeer = Beer::getBeerByBeerId($this->getPDO(), $beer->getBeerId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beer"));
 		$this->assertEquals($pdoBeer->getBeerId(), $this->VALID_BEERID);
-		$this->assertEquals($pdoBeer->getBeerAbv(), $this->VALID_BEERABV2);
+		$this->assertEquals($pdoBeer->getBeerAbv(), $this->VALID_BEERABV);
 		$this->assertEquals($pdoBeer->getBeerDescription(), $this->VALID_BEERDESCRIPTION);
 		$this->assertEquals($pdoBeer->getBeerName(), $this->VALID_BEERNAME);
 		$this->assertEquals($pdoBeer->getBeerType(), $this->VALID_BEERTYPE);
