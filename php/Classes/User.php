@@ -47,7 +47,7 @@ class User implements \JsonSerializable {
 	private $userAvatarUrl;
 
 	/**user userDOB validates Day of Birth must be 21 or older
-	@var string  $userDOB
+	@var \Datetime userDOB
 	 **/
 
 	private $userDOB;
@@ -184,9 +184,9 @@ class User implements \JsonSerializable {
 		$this->userActivationToken = $newUserActivationToken;
 	}
 	/**
-	 * accessor method for userAvatarUrl
-	 * @return String value of userAvatarUrl
-	 **/
+ * accessor method for userAvatarUrl
+ * @return String value of userAvatarUrl
+ **/
 	public function getUserAvatarUrl(){
 		return $this-> userAvatarUrl;
 	}
@@ -212,24 +212,15 @@ class User implements \JsonSerializable {
 	 * @param  \DateTime $newUserDOB user DateOfBirth date as a DateTime object
 	 * @throws \OutOfRangeException if $newUserDOB is < 21
 	 */
-	public function setUserDOB($newUserDOB = null){
-		//user enters DOB if null.
-		if($newUserDOB === null){
-			throw(new \OutOfBoundsException("Enter your date of Birth"));
-		}
-
+	public function setUserDOB($newUserDOB){
 		$newUserDOB = self::validateDate($newUserDOB);
-			//with dateDiff()
-			$dateOfBirth = new\DateTime($newUserDOB);
-//			$dateOfBirth=;
-			$today = date("Y-m-d");
-			$diff = date_diff(date_create($dateOfBirth), date_create($today));
-			//echo 'Age is ' .$diff->format('%y');
-			if($diff<21){
-				throw (new \OutOfRangeException("You Must Be 21 Years Old to Use This App"));
-			}
-
-			$this->userDOB = $newUserDOB;
+		$drinkDate = new \DateTime();
+		$drinkDate = $drinkDate->sub(new \DateInterval('P21Y'));
+		if($drinkDate < $newUserDOB) {
+			throw (new \OutOfRangeException("Must be 21"));
+		}
+		// store the userDOBh date
+		$this->userDOB = $newUserDOB;
 
 		}
 
@@ -261,7 +252,7 @@ class User implements \JsonSerializable {
 		}
 
 		// store the profile email content
-		$this->UserEmail = $newUserEmail;
+		$this->userEmail = $newUserEmail;
 	}
 	// userFirst Name Accessors/ Mutators
 
@@ -320,9 +311,10 @@ class User implements \JsonSerializable {
 			throw(new \InvalidArgumentException("User hash is not a valid hash"));
 		}
 		//enforce that the hash is exactly 96 characters.
-		if(strlen($newUserHash) !== 96) {
-			throw(new\RangeException("User hash must be 96 characters"));
-		}
+		if(strlen($newUserHash) > 97 || strlen($newUserHash) < 89 ) {
+			throw(new \RangeException("user hash is out of range"));
+}
+
 		//store the hash
 		$this->userHash = $newUserHash;
 	}
@@ -397,11 +389,11 @@ class User implements \JsonSerializable {
 	 **/
 	public function insert(\PDO $pdo) : void {
 
-		$query = "INSERT INTO user(userId, userActivationToken, userAvatarUrl, userDOB, userEmail, userFirstName, userHash, userLastName, userUsername, profileUsername) VALUES(:userId, :userActivationToken, :userAvatarUrl, :userDOB, :userEmail, :userFirstName, :userHash, :userLastName, :userUsername)";
+		$query = "INSERT INTO user(userId, userActivationToken, userAvatarUrl, userDOB, userEmail, userFirstName, userHash, userLastName, userUsername) VALUES(:userId, :userActivationToken, :userAvatarUrl, :userDOB, :userEmail, :userFirstName, :userHash, :userLastName, :userUsername)";
 		$statement = $pdo->prepare($query);
 
 		// bind the member variables to the place holders in the template
-		$parameters = ["userId" => $this->userId->getBytes(), "userActivationToken" => $this->userActivationToken, "userAvatarUrl" => $this->userAvatarUrl, "userDOB" => $this->userDOB, "userEmail" => $this->userEmail, "userFirstName" => $this->userFirstName, "userHash" => $this->userHash, "userLastName" => $this->userLastName, "userUsername" => $this->userUsername];
+		$parameters = ["userId" => $this->userId->getBytes(), "userActivationToken" => $this->userActivationToken, "userAvatarUrl" => $this->userAvatarUrl, "userDOB" => $this->userDOB->format("Y-m-d"), "userEmail" => $this->userEmail, "userFirstName" => $this->userFirstName, "userHash" => $this->userHash, "userLastName" => $this->userLastName, "userUsername" => $this->userUsername];
 		$statement->execute($parameters);
 	}
 

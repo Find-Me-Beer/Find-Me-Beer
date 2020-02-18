@@ -29,7 +29,7 @@ require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
  *
  * @author Dylan McDonald <dmcdonald21@cnm.edu>
  **/
-abstract class FindMeBeerTest extends TestCase {
+abstract class FindMeBeerTest	 extends TestCase {
 	use TestCaseTrait;
 
 	/**
@@ -95,7 +95,7 @@ abstract class FindMeBeerTest extends TestCase {
 		// if the connection hasn't been established, create it
 		if($this->connection === null) {
 			// connect to mySQL and provide the interface to PHPUnit
-			$secrets =  new \Secrets("/etc/apache2/capstone-mysql/ddctwitter.ini");
+			$secrets =  new \Secrets("/etc/apache2/capstone-mysql/beerme.ini");
 
 			$pdo = $secrets->getPdoObject();
 			$this->connection = $this->createDefaultDBConnection($pdo, $secrets->getDatabase());
