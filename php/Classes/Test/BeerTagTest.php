@@ -3,13 +3,14 @@
 namespace FindMeBeer\FindMeBeer\Test;
 
 use FindMeBeer\FindMeBeer\{Beer, BeerTag, Brewery, Tag};
+use Exception;
 
 
 //grab the classes under scrutiny
 require_once (dirname(__DIR__) . "/autoload.php");
 
 //grab the uuid generator
-require_once (dirname(__DIR__, 2) . "/php/lib/uuid.php");
+require_once (dirname(__DIR__) . "/lib/uuid.php");
 
 /**
  * Full PHPUnit test for the BeerTag class
@@ -48,7 +49,7 @@ class BeerTagTest extends DataDesignTest {
 	/**
 	 * create dependent objects before running each test
 	 *
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public final function setUp() : void {
 		//run the default setUp() method first
@@ -120,7 +121,7 @@ class BeerTagTest extends DataDesignTest {
 	/**
 	 * test getting a BeerTag by BeerTagBeerId and verify
 	 *
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testGetBeerTagByBeerTagBeerId() {
 		//count the current number of rows and save for later
