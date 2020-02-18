@@ -9,7 +9,7 @@ use FindMeBeer\FindMeBeer\{Beer, BeerTag, Brewery, Tag};
 require_once (dirname(__DIR__) . "/autoload.php");
 
 //grab the uuid generator
-require_once (dirname(__DIR__, 2) . "/lib/uuid.php");
+require_once (dirname(__DIR__, 2) . "/php/lib/uuid.php");
 
 /**
  * Full PHPUnit test for the BeerTag class
@@ -101,7 +101,7 @@ class BeerTagTest extends DataDesignTest {
 		$this->assertCount(1, $results);
 
 		// enforce no other objects are bleeding into the test
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\FindMeBeer\\BeerTag", $results);
+		$this->assertContainsOnlyInstancesOf("FindMeBeer\\FindMeBeer\\BeerTag", $results);
 
 		//grab the first array index and validate
 		$pdoBeerTag = $results[0];
@@ -136,7 +136,7 @@ class BeerTagTest extends DataDesignTest {
 		$this->assertCount(1, $results);
 
 		// enforce no other objects are bleeding into the test
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\FindMeBeer\\BeerTag", $results);
+		$this->assertContainsOnlyInstancesOf("FindMeBeer\\FindMeBeer\\BeerTag", $results);
 
 		//grab the first array index and validate
 		$pdoBeerTag = $results[0];
@@ -167,7 +167,7 @@ class BeerTagTest extends DataDesignTest {
 		$result = BeerTag::getBeerTagByBeerTagBeerIdAndBeerTagTagId()($this->getPDO(), $this->beer->getBeerId(), $this->tag->getTagId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beerTag"));
 		$this->assertEquals($result->getBeerTagBeerId(), $this->beer->getBeerId());
-		$this->assertEquals($result->getTagId(), $this->tag->getTagId());
+		$this->assertEquals($result->getBeerTagTagId(), $this->tag->getTagId());
 	}
 
 	/**
@@ -198,7 +198,7 @@ class BeerTagTest extends DataDesignTest {
 		//verify that all fields match
 
 		$pdoTag = $results[0];
-		$this->assertEquals($pdoTag->getBeerTagBeerId(), $this->beer->getBeerId());
-		$this->assertEquals($pdoTag->getBeerTagTagId(), $this->tag->getTagId());
+		$this->assertEquals($pdoTag->getBeerTagTagId(), $this->beer->getBeerId());
+		$this->assertEquals($pdoTag->getTagId(), $this->tag->getTagId());
 	}
 }

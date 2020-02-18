@@ -84,6 +84,7 @@ public function getbreweryId(): Uuid {
 		return ($this->breweryId);
 		}
 }
+
 /**
 * mutator of breweryId
  * @param Uuid $newbreweryId
