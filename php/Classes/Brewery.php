@@ -91,7 +91,7 @@ class Brewery implements \JsonSerializable {
 	 * @param $newBreweryUrl
 	 */
 
-	public function __construct($newBreweryId, string $newBreweryAddress, string $newBreweryAvatarUrl, ?string $newBreweryDescription, string $newBreweryEmail, string $newBreweryName, float $newBreweryLat, float $newBreweryLong, string $newBreweryPhone, $newBreweryUrl) {
+	public function __construct($newBreweryId, string $newBreweryAddress, string $newBreweryAvatarUrl, ?string $newBreweryDescription, string $newBreweryEmail, string $newBreweryName, float $newBreweryLat, float $newBreweryLong, string $newBreweryPhone, string $newBreweryUrl) {
 		try {
 			$this->setBreweryId($newBreweryId);
 			$this->setBreweryAddress($newBreweryAddress);
@@ -293,9 +293,7 @@ class Brewery implements \JsonSerializable {
 	 * @throws \RangeException if $newBreweryLat is outside of range
 	 **/
 	public function setBreweryLat(float $newBreweryLat): void {
-		//verify that brewery latitude is valid and secure
-		$newBreweryLat = trim($newBreweryLat);
-		$newBreweryLat = filter_var($newBreweryLat, FILTER_SANITIZE_NUMBER_FLOAT);
+
 
 		if(floatval($newBreweryLat) < -90) {
 			throw(new \RangeException("Error latitude is incorrect"));
@@ -328,9 +326,7 @@ class Brewery implements \JsonSerializable {
 
 	public function setBreweryLong(float $newBreweryLong): void {
 
-//		//verify that brewery longitude is valid and secure
-		$newBreweryLong = trim($newBreweryLong);
-		$newBreweryLong = filter_var($newBreweryLong, FILTER_SANITIZE_NUMBER_FLOAT);
+
 		if(floatval($newBreweryLong) < -180) {
 			throw(new \RangeException("Brewery longitude is incorrect"));
 
