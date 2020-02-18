@@ -137,12 +137,14 @@ class BreweryTest extends FindMeBeerTest {
 	/**
 	 *
 	 */
-	protected final function setup() void: {
+	protected final function setUp() : void {
 		//run the default setUp() method
 		parent::setUp();
 	}
 
-
+	/**
+	 * test inserting a valid Brewery and verify that the actual mySQL data matches
+	 **/
 	public function testInsertValidBrewery() : void {
 	//
 	$numRows = $this->getConnection()->getRowCount("brewery");
@@ -151,7 +153,7 @@ class BreweryTest extends FindMeBeerTest {
 
 	$brewery = new Brewery ($breweryId,
 		$this->VALID_BREWERY_ADDRESS,
-	   $this->VALID_BREWERY_AVATARURL,
+	   $this->VALID_BREWERY_AVATAR_URL,
 		$this->VALID_BREWERY_DESCRIPTION,
 		$this->VALID_BREWERY_EMAIL,
 		$this->VALID_BREWERY_NAME,
@@ -169,7 +171,7 @@ class BreweryTest extends FindMeBeerTest {
 
 	$this->assertEquals($pdoBrewery->getBreweryAddress(), $this->VALID_BREWERY_ADDRESS);
 
-	$this->assertEquals($pdoBrewery->getBreweryAvatarur(), $this->VALID_BREWERY_AVATARUR);
+	$this->assertEquals($pdoBrewery->getBreweryAvatarUrl(), $this->VALID_BREWERY_AVATAR_URL);
 
 	$this->assertEquals($pdoBrewery->getBreweryDescription(), $this->VALID_BREWERY_DESCRIPTION);
 
@@ -184,6 +186,5 @@ class BreweryTest extends FindMeBeerTest {
 	$this->assertEquals($pdoBrewery->getBreweryPhone(), $this->VALID_BREWERY_PHONE);
 
 	$this->assertEquals($pdoBrewery->getBreweryUrl(), $this->VALID_BREWERY_URL);
-
-
 	}
+
