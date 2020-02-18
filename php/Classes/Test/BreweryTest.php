@@ -3,11 +3,7 @@
 
 namespace FindMeBeer\FindMeBeer\Test;
 
-use FindMeBeer\FindMeBeer\{
-
-
-
-};
+use FindMeBeer\FindMeBeer\{Brewery};
 
 
 
@@ -165,5 +161,29 @@ class BreweryTest extends FindMeBeerTest {
 		$this->VALID_BREWERY_URL);
 	$breweryId = ($this->getPDO());
 	// grab the data from mySQL and enforce the fields match our expectations
+	$pdoBrewery = Brewery::getBreweryByBreweryId($this->getPDO(), $brewery->getBreweryId());
+
+	$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("brewery"));
+
+	$this->assertEquals($pdoBrewery->getBreweryId(), $breweryId);
+
+	$this->assertEquals($pdoBrewery->getBreweryAddress(), $this->VALID_BREWERY_ADDRESS);
+
+	$this->assertEquals($pdoBrewery->getBreweryAvatarur(), $this->VALID_BREWERY_AVATARUR);
+
+	$this->assertEquals($pdoBrewery->getBreweryDescription(), $this->VALID_BREWERY_DESCRIPTION);
+
+	$this->assertEquals($pdoBrewery->getBreweryEmail(), $this->VALID_BREWERY_EMAIL);
+
+	$this->assertEquals($pdoBrewery->getBreweryName(), $this->VALID_BREWERY_NAME);
+
+	$this->assertEquals($pdoBrewery->getBreweryLat(), $this->VALID_BREWERY_LAT);
+
+	$this->assertEquals($pdoBrewery->getBreweryLong(), $this->VALID_BREWERY_LONG);
+
+	$this->assertEquals($pdoBrewery->getBreweryPhone(), $this->VALID_BREWERY_PHONE);
+
+	$this->assertEquals($pdoBrewery->getBreweryUrl(), $this->VALID_BREWERY_URL);
+
 
 	}
