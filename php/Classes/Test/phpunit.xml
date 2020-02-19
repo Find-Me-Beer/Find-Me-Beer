@@ -7,6 +7,8 @@
 			<file>BeerTest.php</file>
 <!--		<file>FavoriteTest.php</file><-->
 			<!--	<file>BeerTagTest.php</file> <-->
+<!--			<file>TagTest.php</file>-->
+<!--			<file>UserTest.php</file>-->
 		</testsuite>
 	</testsuites>
 	<filter>

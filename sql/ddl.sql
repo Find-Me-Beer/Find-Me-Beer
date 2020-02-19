@@ -15,12 +15,12 @@ CREATE TABLE tag (
 
 CREATE TABLE `user` (
   userId Binary(16) NOT NULL,
-  userActivationToken Varchar(255) NOT NULL,
+  userActivationToken CHAR(32),
   userAvatarUrl Varchar(128),
   userDOB Date NOT NULL,
   userEmail Varchar(128) NOT NULL,
   userFirstName Varchar(32) NOT NULL,
-  userHash Varchar(96) NOT NULL,
+  userHash Varchar(98) NOT NULL,
   userLastName Varchar(32) NOT NULL,
   userUsername Varchar(32) NOT NULL,
   UNIQUE (userEmail),
