@@ -10,7 +10,7 @@ use Exception;
 require_once (dirname(__DIR__) . "/autoload.php");
 
 //grab the uuid generator
-require_once (dirname(__DIR__) . "/lib/uuid.php");
+require_once (dirname(__DIR__) . "/../lib/uuid.php");
 
 /**
  * Full PHPUnit test for the BeerTag class
@@ -129,7 +129,7 @@ class BeerTagTest extends DataDesignTest {
 	 */
 	public function testGetBeerTagByBeerTagBeerId() {
 		//count the current number of rows and save for later
-		$numRows = $this->getConnection()->getRowCount("BeerTag");
+		$numRows = $this->getConnection()->getRowCount("Beertag");
 
 		//create a beerTag and insert
 		$beerTag = new BeerTag($this->beer->getBeerId(), $this->tag->getTagId());
@@ -145,6 +145,7 @@ class BeerTagTest extends DataDesignTest {
 
 		//grab the first array index and validate
 		$pdoBeerTag = $results[0];
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beerTag"));
 		$this->assertEquals($pdoBeerTag->getBeerTagBeerId(), $this->beer->getBeerId());
 		$this->assertEquals($pdoBeerTag->getBeerTagTagId(), $this->tag->getTagId());
 	}
@@ -162,6 +163,7 @@ class BeerTagTest extends DataDesignTest {
 	 *
 	 * @throws Exception
 	 */
+
 	public function testGetBeerTagsByBeerTagBeerIdAndBeerTagTagId() {
 		//count the current number of rows and save for later
 		$numRows = $this->getConnection()->getRowCount("beerTag");

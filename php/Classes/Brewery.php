@@ -83,6 +83,9 @@ catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exc
 public function getbreweryId(): Uuid {
 		return ($this->breweryId);
 		}
+
+	public function insert(\PDO $getPDO) {
+	}
 }
 
 /**
