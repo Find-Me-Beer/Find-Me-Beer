@@ -214,7 +214,7 @@ class BeerTest extends FindMeBeerTest {
 		$this->assertEquals($pdoBeer->getBeerBreweryId(), $this->brewery->getbreweryId());
 		$this->assertEquals($pdoBeer->getBeerDescription(), $this->VALID_BEERDESCRIPTION);
 		$this->assertEquals($pdoBeer->getBeerName(), $this->VALID_BEERNAME);
-		$this->assertEquals($pdoBeer->getBeerName(), $this->VALID_BEERTYPE);
+		$this->assertEquals($pdoBeer->getBeerType(), $this->VALID_BEERTYPE);
 	}
 
 	/**
@@ -242,7 +242,7 @@ class BeerTest extends FindMeBeerTest {
 		$this->assertEquals($pdoBeer->getBeerBreweryId(), $this->brewery->getbreweryId());
 		$this->assertEquals($pdoBeer->getBeerDescription(), $this->VALID_BEERDESCRIPTION);
 		$this->assertEquals($pdoBeer->getBeerName(), $this->VALID_BEERNAME);
-		$this->assertEquals($pdoBeer->getBeerName(), $this->VALID_BEERTYPE);
+		$this->assertEquals($pdoBeer->getBeerType(), $this->VALID_BEERTYPE);
 	}
 
 	/**
@@ -275,7 +275,7 @@ class BeerTest extends FindMeBeerTest {
 		$this->assertEquals($pdoBeer->getBeerBreweryId(), $this->brewery->getbreweryId());
 		$this->assertEquals($pdoBeer->getBeerDescription(), $this->VALID_BEERDESCRIPTION);
 		$this->assertEquals($pdoBeer->getBeerName(), $this->VALID_BEERNAME);
-		$this->assertEquals($pdoBeer->getBeerName(), $this->VALID_BEERTYPE);
+		$this->assertEquals($pdoBeer->getBeerType(), $this->VALID_BEERTYPE);
 	}
 
 	/**
@@ -308,7 +308,7 @@ class BeerTest extends FindMeBeerTest {
 		$this->assertEquals($pdoBeer->getBeerBreweryId(), $this->brewery->getbreweryId());
 		$this->assertEquals($pdoBeer->getBeerDescription(), $this->VALID_BEERDESCRIPTION);
 		$this->assertEquals($pdoBeer->getBeerName(), $this->VALID_BEERNAME);
-		$this->assertEquals($pdoBeer->getBeerName(), $this->VALID_BEERTYPE);
+		$this->assertEquals($pdoBeer->getBeerType(), $this->VALID_BEERTYPE);
 	}
 
 	/**
@@ -339,7 +339,7 @@ class BeerTest extends FindMeBeerTest {
 		$beerTag->insert($this->getPDO());
 
 		//grab the data from mySQL and check the fields against our expectations
-		$results = Beer::getBeerByTagId($this->getPDO(), $this->beerTag->getBeerTagTagId());
+		$results = Beer::getBeerByTagId($this->getPDO(), $this->tag->getTagId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beer"));
 		$this->assertCount(1, $results);
 		$this->assertContainsOnlyInstancesOf("FindMeBeer\\FindMeBeer\\Beer", $results);
@@ -351,7 +351,7 @@ class BeerTest extends FindMeBeerTest {
 		$this->assertEquals($pdoBeer->getBeerBreweryId(), $this->brewery->getbreweryId());
 		$this->assertEquals($pdoBeer->getBeerDescription(), $this->VALID_BEERDESCRIPTION);
 		$this->assertEquals($pdoBeer->getBeerName(), $this->VALID_BEERNAME);
-		$this->assertEquals($pdoBeer->getBeerName(), $this->VALID_BEERTYPE);
+		$this->assertEquals($pdoBeer->getBeerType(), $this->VALID_BEERTYPE);
 
 	}
 
