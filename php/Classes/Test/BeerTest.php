@@ -105,6 +105,7 @@ class BeerTest extends FindMeBeerTest {
 		$this->tag = new Tag(
 			$tagId,
 			"ThisIsTag");
+		$this->tag->insert($this->getPDO());
 	}
 
 	/**
@@ -127,7 +128,7 @@ class BeerTest extends FindMeBeerTest {
 		//grab data from mySQL and enforce the fields match our expectations
 		$pdoBeer = Beer::getBeerByBeerId($this->getPDO(), $beer->getBeerId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beer"));
-		$this->assertEquals($pdoBeer->getBeerId(), $this->VALID_BEERID);
+		$this->assertEquals($pdoBeer->getBeerId(), $beerId);
 		$this->assertEquals($pdoBeer->getBeerAbv(), $this->VALID_BEERABV);
 		$this->assertEquals($pdoBeer->getBeerDescription(), $this->VALID_BEERDESCRIPTION);
 		$this->assertEquals($pdoBeer->getBeerName(), $this->VALID_BEERNAME);
@@ -153,7 +154,7 @@ class BeerTest extends FindMeBeerTest {
 		// grab the data from mySQL and enforce the fields match our expectations
 		$pdoBeer = Beer::getBeerByBeerId($this->getPDO(), $beer->getBeerId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beer"));
-		$this->assertEquals($pdoBeer->getBeerId(), $this->VALID_BEERID);
+		$this->assertEquals($pdoBeer->getBeerId(), $beerId);
 		$this->assertEquals($pdoBeer->getBeerAbv(), $this->VALID_BEERABV2);
 		$this->assertEquals($pdoBeer->getBeerDescription(), $this->VALID_BEERDESCRIPTION);
 		$this->assertEquals($pdoBeer->getBeerName(), $this->VALID_BEERNAME);
@@ -333,6 +334,7 @@ class BeerTest extends FindMeBeerTest {
 		// create a new beerTag and insert it into mySQL
 		$beerTag = new BeerTag(
 			$beerId,
+			//$this->beer->getBeerId(),
 			$this->tag->getTagId());
 		$beerTag->insert($this->getPDO());
 
