@@ -1,8 +1,11 @@
 <phpunit>
 	<testsuites>
 		<testsuite name="Find Me Beer">
-			<file>TagTest.php</file>
+<!--			<file>TagTest.php</file>-->
 <!--			<file>UserTest.php</file>-->
+
+<!--			<file>TagTest.php</file>-->
+			<file>UserTest.php</file>
 <!--			<file>BreweryTest.php</file>-->
 <!--			<file>BeerTest.php</file>-->
 <!--			<file>FavoriteTest.php</file>-->

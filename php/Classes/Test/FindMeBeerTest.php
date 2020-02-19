@@ -29,7 +29,11 @@ require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
  *
  * @author Dylan McDonald <dmcdonald21@cnm.edu>
  **/
+
 abstract class FindMeBeerTest extends TestCase {
+=======
+abstract class FindMeBeerTest	 extends TestCase {
+>>>>>>> user-test
 	use TestCaseTrait;
 
 	/**

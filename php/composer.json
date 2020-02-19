@@ -7,6 +7,10 @@
     "swiftmailer/swiftmailer": "@stable",
     "lcobucci/jwt": "3.2",
     "ramsey/uuid": "@stable",
+<<<<<<< HEAD
+=======
+
+>>>>>>> user-test
 
     "ext-pdo": "*",
     "ext-json": "*"
