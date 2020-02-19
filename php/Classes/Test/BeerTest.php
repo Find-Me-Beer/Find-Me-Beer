@@ -312,6 +312,7 @@ class BeerTest extends FindMeBeerTest {
 
 	/**
 	 * tests getting beer by tag id
+	 * @throws \Exception
 	 */
 	public function testGetValidBeerByTagId() {
 		//count the number of rows and save for later
@@ -329,16 +330,11 @@ class BeerTest extends FindMeBeerTest {
 
 		//TODO create a beertag and insert it into the database (use the beerId and tagId accessors for foreign keys on beerTag)
 
-		// create a new tag and insert it into mySQL
-		$beerTagId = generateUuidV4();
+		// create a new beerTag and insert it into mySQL
 		$beerTag = new BeerTag(
 			$beerId,
-			$this->VALID_BEERABV,
-			$this->brewery->getbreweryId(),
-			$this->VALID_BEERDESCRIPTION,
-			$this->VALID_BEERNAME,
-			$this->VALID_BEERTYPE);
-		$beer->insert($this->getPDO());
+			$this->tag->getTagId());
+		$beerTag->insert($this->getPDO());
 
 		//grab the data from mySQL and check the fields against our expectations
 		$results = Beer::getBeerByTagId($this->getPDO(), $this->beerTag->getBeerTagTagId());

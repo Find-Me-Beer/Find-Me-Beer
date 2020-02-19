@@ -23,7 +23,7 @@ class BeerTag implements \JsonSerializable {
 	private $beerTagBeerId;
 	/**
 	 * actual beer favorite of this beer
-	 * @var string $beerTagTagId
+	 * @var Uuid $beerTagTagId
 	 **/
 	private $beerTagTagId;
 
@@ -121,7 +121,7 @@ class BeerTag implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		// bind the member variables to the place holders in the template
-		$parameters = ["beerTagBeerId" => $this->beerTagBeerId->getBytes(), "beerTagBeerId" => $this->beerTagTagId->getBytes()];
+		$parameters = ["beerTagBeerId" => $this->beerTagBeerId->getBytes(), "beerTagTagId" => $this->beerTagTagId->getBytes()];
 		$statement->execute($parameters);
 	}
 
@@ -194,8 +194,8 @@ class BeerTag implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$beerTags = new BeerTag($row["beerTagBeerId"], $row["beerTagTagId"]);
-				$beerTags[$beerTags->key()] = $beerTags;
+				$beerTag = new BeerTag($row["beerTagBeerId"], $row["beerTagTagId"]);
+				$beerTags[$beerTags->key()] = $beerTag;
 				$beerTags->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
