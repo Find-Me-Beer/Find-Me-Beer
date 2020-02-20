@@ -136,7 +136,7 @@ class FavoriteTest extends FindMeBeerTest {
 		// grab data from database and enforce that the Favorite doesn't exist
 		$pdoFavorite = Favorite::getFavoriteByFavoriteBeerIdAndFavoriteUserId($this->getPDO(), $this->beer->getBeerId(), $this->user->getUserId());
 		$this->assertNull($pdoFavorite);
-		$this->assertEquals($numRows, $this->getConnection()->getRowCount("Favorite"));
+		$this->assertEquals($numRows, $this->getConnection()->getRowCount("favorite"));
 	}
 
 	/**
