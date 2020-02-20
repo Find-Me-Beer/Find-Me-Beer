@@ -217,7 +217,7 @@ class Beer implements \JsonSerializable {
 		 * @return String value of beer type
 		 */
 		public function getBeerType() : String {
-			return($this->beerName);
+			return($this->beerType);
 		}
 		/**
 		 * mutator method for beer type
@@ -287,7 +287,7 @@ class Beer implements \JsonSerializable {
 		 */
 		public function update(\PDO $pdo) :void {
 			//Query
-			$query = "UPDATE beer WHERE beerId = :beerId, beerAbv = :beerAbv, beerBreweryId = :beerBreweryId, beerDescription = :beerDescription, beerName = :beerName, beerType = :beerType";
+			$query = "UPDATE beer SET beerId = :beerId, beerAbv = :beerAbv, beerBreweryId = :beerBreweryId, beerDescription = :beerDescription, beerName = :beerName, beerType = :beerType";
 			$statement = $pdo->prepare($query);
 
 			//Bind member variables to placeholders
@@ -307,6 +307,7 @@ class Beer implements \JsonSerializable {
 			//Create Query
 			$query = "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer";
 			$statement = $pdo->prepare($query);
+			$statement->execute();
 
 			//build array of beers
 			$beerArray = new \SplFixedArray($statement->rowCount());
@@ -429,7 +430,6 @@ class Beer implements \JsonSerializable {
 			$statement = $pdo->prepare($query);
 
 			//bind beer type to placeholder
-			$beerType = "%$beerType%";
 			$parameters = ["beerType" => $beerType];
 			$statement->execute($parameters);
 
@@ -438,7 +438,9 @@ class Beer implements \JsonSerializable {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			while(($row = $statement->fetch()) !== false) {
 				try {
-					$beerArray = new Beer($row["beerId"], $row["beerAbv"], $row["beerBreweryId"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
+					$beer = new Beer($row["beerId"], $row["beerAbv"], $row["beerBreweryId"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
+					$beerArray[$beerArray->key()] = $beer;
+					$beerArray->next();
 				} catch(\Exception $exception) {
 					throw (new \PDOException($exception->getMessage(), 0, $exception));
 				}
@@ -468,7 +470,7 @@ class Beer implements \JsonSerializable {
 			//Or "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerId = beerTag.beerId AND beerTag.tagId = :beerTag.tagId";
 			$statement = $pdo->prepare($query);
 
-			//Bind beer brewery id to placeholder
+			//Bind tag id to placeholder
 			$parameters = ["tagId" => $tagId->getBytes()];
 			$statement->execute($parameters);
 

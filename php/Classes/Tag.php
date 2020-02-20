@@ -8,7 +8,7 @@ use Ramsey\Uuid\Uuid;
 
 
 class Tag implements \JsonSerializable {
-	//use ValidateDate;
+	use ValidateDate;
 	use ValidateUuid;
 
 //CREATE TABLE tag (
@@ -16,6 +16,9 @@ class Tag implements \JsonSerializable {
 //tagContent Varchar(32),
 //PRIMARY KEY (tagId)
 //);
+//getAllTags
+//getTagsByTagId
+
 
 	/**
 	 * id for this Tag; this is the primary key
@@ -34,7 +37,7 @@ class Tag implements \JsonSerializable {
 	 * constructor for this Tag
 	 *
 	 * @param string|Uuid $newtagId of this Tag or null if a new Tag
-	 * @param string $newTagContent string containing url.
+	 * @param string $newTagContent string containing content.
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
@@ -77,6 +80,7 @@ class Tag implements \JsonSerializable {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
+		//convert and store the Tag Id
 		$this->tagId = $uuid;
 	}
 	// tagContent Name Accessors/ Mutators
@@ -94,16 +98,20 @@ class Tag implements \JsonSerializable {
 	 **/
 
 	public function setTagContent(string $newTagContent):void {
-		//verify new tag Id is secure
+		if($newTagContent === null ){
+				$this->tagContent = null;
+		}
+
+		//verify new tag content is secure
 		$newTagContent = trim($newTagContent);
-		$newTagContent = FILTER_VAR($newTagContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		$newTagContent = filter_var($newTagContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		//verify if tag content is valid
 
 		if(empty($newTagContent) === true){
 				throw(new\InvalidArgumentException("tag content insecure"));
 		}
-		//verify size of string is less than 64 characters
-		if(strlen($newTagContent)>64){
+		//verify size of string is less than 32characters
+		if(strlen($newTagContent)>32){
 			throw(new \RangeException("Tag Content is too long"));
 		}
 		// store Tag Content
@@ -124,7 +132,7 @@ class Tag implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		// bind the member variables to the place holders in the template
-		$parameters = ["tagId" => $this->tagId, "tagContent" => $this->tagContent];
+		$parameters = ["tagId" => $this->tagId->getBytes(), "tagContent" => $this->tagContent];
 		$statement->execute($parameters);
 
 	}
@@ -140,7 +148,7 @@ class Tag implements \JsonSerializable {
 		$query = "DELETE FROM tag WHERE tagId = :tagId";
 		$statement = $pdo->prepare($query);
 		// bind the member variables to the place holders in the template
-		$parameters = ["tagId" => $this->tagId];
+		$parameters = ["tagId" => $this->tagId->getBytes()];
 		$statement->execute($parameters);
 	}
 	/**
@@ -152,13 +160,20 @@ class Tag implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable are not the correct data type
 	 **/
-	public static function getTagByTagId(\PDO $pdo, int $tagId): ?Tag {
+	public static function getTagByTagId(\PDO $pdo, $tagId): ?Tag {
+		// sanitize the tag id before searching
+		try {
+			$tagId = self::validateUuid($tagId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
 		// create query template
 		$query = "SELECT tagId, tagContent FROM tag WHERE tagId = :tagId";
 		$statement = $pdo->prepare($query);
 
 		// bind the Tag ID to the place holder in the template
-		$parameters = ["tagId" => $tagId];
+		$parameters = ["tagId" => $tagId->getBytes()];
 		$statement->execute($parameters);
 
 		// grab the tag from mySQL
@@ -213,6 +228,9 @@ class Tag implements \JsonSerializable {
 	 **/
 	public function jsonSerialize(): array {
 		$fields = get_object_vars($this);
+
+		$fields["tagId"] = $this->tagId;
+		$fields["tagContent"] = $this->tagContent;
 		return ($fields);
 	}
 
