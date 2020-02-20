@@ -23,7 +23,7 @@ class Favorite implements \JsonSerializable {
 	private $favoriteUserId;
 	/**
 	 * actual beer favorite of this beer
-	 * @var string $favoriteBeerId
+	 * @var Uuid $favoriteBeerId
 	 **/
 	private $favoriteBeerId;
 
@@ -178,17 +178,17 @@ class Favorite implements \JsonSerializable {
 
 		// grab the favorite from mySQL
 		try {
-			$favorites = null;
+			$favorite = null;
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$favorite = new Favorite($row["favoritesBeerId"], $row["favoritesUserId"]);
+				$favorite = new Favorite($row["favoriteBeerId"], $row["favoriteUserId"]);
 			}
 		} catch(\Exception $exception) {
 			// if the row couldn't be converted, rethrow it
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return($favorites);
+		return($favorite);
 	}
 
 	/**
@@ -219,8 +219,8 @@ class Favorite implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$favorites = new Favorite($row["favoriteBeerId"], $row["favoriteUserId"]);
-				$favorites[$favorites->key()] = $favorites;
+				$favorite = new Favorite($row["favoriteBeerId"], $row["favoriteUserId"]);
+				$favorites[$favorites->key()] = $favorite;
 				$favorites->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
