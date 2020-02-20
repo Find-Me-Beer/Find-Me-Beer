@@ -275,4 +275,3 @@ class BeerTag implements JsonSerializable {
 	private function key() {
 	}
 }
-
