@@ -8,6 +8,11 @@ require_once(dirname(__DIR__) . "/vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
 
 /**
+ *
+ * Trait to validate a uuid
+ *
+ * This trait will validate a uuid in any of the following three
+ *
  * Class  Brewery
  *
  * @Author Celeste Whitaker <cwhitaker4@cnm.edu>
@@ -26,6 +31,7 @@ use Ramsey\Uuid\Uuid;
  * breweryLong Decimal
  * breweryPhone Varchar(32)
  * breweryUrl Varchar(2083)
+ *
  *
  *
  *
@@ -193,8 +199,34 @@ class Brewery implements \JsonSerializable {
 	}
 
 	/**
+	 * accessor method for brewery description
+	 * @param string $newBrewery
+	 * @throws \InvalidArgumentException
+	 */
+	public function getBreweryDescription(string $newBreweryDescription): void {
+		// if address is empty throw them out early
+		if(empty($newBreweryDescription) === true) {
+			throw(new \InvalidArgumentException("Brewery address is not valid"));
+		}
+
+
+		$newBreweryDescription = trim($newBreweryDescription);
+		$newBreweryDescription = filter_var($newBreweryDescription, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+
+		// verify the brewery description will fit in the database
+		if(strlen($newBreweryDescription) > 512) {
+			throw(new \RangeException("Brewery description is over 512 characters"));
+		}
+
+		// store the brewery description
+		$this->breweryDescription = $newBreweryDescription;
+	}
+
+
+	/**
 	 * accessor method for breweryDescription
 	 * @return String value of breweryDescription
+	 * @throws \InvalidArgumentException
 	 **/
 	public function setBreweryDescription(string $newBreweryDescription): void {
 
@@ -520,7 +552,7 @@ class Brewery implements \JsonSerializable {
 	 * @param $breweryName
 	 * @return Brewery|null
 	 */
-	public static function getBreweryByBreweryName(\PDO $pdo, $breweryName): ?Brewery {
+	public static function getBreweryByBreweryName(\PDO $pdo, $breweryName): \SplFixedArray {
 		$breweryName = trim($breweryName);
 		$breweryName = filter_var($breweryName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($breweryName)===true){
@@ -528,7 +560,7 @@ class Brewery implements \JsonSerializable {
 		}
 
 		// created query
-		$query = "SELECT breweryId, breweryAddress, breweryAvatarUrl, breweryDescription, breweryEmail, breweryName, breweryLat, breweryLong, breweryPhone, breweryUrl FROM brewery WHERE breweryId = :breweryId";
+		$query = "SELECT breweryId, breweryAddress, breweryAvatarUrl, breweryDescription, breweryEmail, breweryName, breweryLat, breweryLong, breweryPhone, breweryUrl FROM brewery WHERE breweryName = :breweryName";
 		$statement = $pdo->prepare($query);
 
 		// connect the brewery name to the place holder in the template
