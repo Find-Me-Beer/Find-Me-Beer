@@ -11,7 +11,7 @@ use Ramsey\Uuid\Uuid;
  *
  * This class will hold all the necessary state variables and methods for Beer objects
  *
- * @author Reece Nunn <
+ * @author Reece Nunn <rnunn4@cnm.edu>
  **/
 class Beer implements \JsonSerializable {
 	use ValidateDate;
@@ -217,7 +217,7 @@ class Beer implements \JsonSerializable {
 		 * @return String value of beer type
 		 */
 		public function getBeerType() : String {
-			return($this->beerName);
+			return($this->beerType);
 		}
 		/**
 		 * mutator method for beer type
@@ -287,7 +287,7 @@ class Beer implements \JsonSerializable {
 		 */
 		public function update(\PDO $pdo) :void {
 			//Query
-			$query = "UPDATE beer WHERE beerId = :beerId, beerAbv = :beerAbv, beerBreweryId = :beerBreweryId, beerDescription = :beerDescription, beerName = :beerName, beerType = :beerType";
+			$query = "UPDATE beer SET beerId = :beerId, beerAbv = :beerAbv, beerBreweryId = :beerBreweryId, beerDescription = :beerDescription, beerName = :beerName, beerType = :beerType";
 			$statement = $pdo->prepare($query);
 
 			//Bind member variables to placeholders
@@ -307,6 +307,7 @@ class Beer implements \JsonSerializable {
 			//Create Query
 			$query = "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer";
 			$statement = $pdo->prepare($query);
+			$statement->execute();
 
 			//build array of beers
 			$beerArray = new \SplFixedArray($statement->rowCount());
@@ -429,7 +430,6 @@ class Beer implements \JsonSerializable {
 			$statement = $pdo->prepare($query);
 
 			//bind beer type to placeholder
-			$beerType = "%$beerType%";
 			$parameters = ["beerType" => $beerType];
 			$statement->execute($parameters);
 
@@ -438,27 +438,15 @@ class Beer implements \JsonSerializable {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			while(($row = $statement->fetch()) !== false) {
 				try {
-					$beerArray = new Beer($row["beerId"], $row["beerAbv"], $row["beerBreweryId"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
+					$beer = new Beer($row["beerId"], $row["beerAbv"], $row["beerBreweryId"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
+					$beerArray[$beerArray->key()] = $beer;
+					$beerArray->next();
 				} catch(\Exception $exception) {
 					throw (new \PDOException($exception->getMessage(), 0, $exception));
 				}
 			}
 			return($beerArray);
 		}
-
-	/**
-	 * formats the state variables for JSON serialization
-	 *
-	 * @return array resulting state variables to serialize
-	 **/
-	public function jsonSerialize() : array {
-		$fields = get_object_vars($this);
-
-		$fields["beerId"] = $this->beerId->toString();
-		$fields["beerBreweryId"] = $this->beerBreweryId->toString();
-
-		return($fields);
-	}
 
 		/**
 		 * gets beer by tag id
@@ -468,7 +456,7 @@ class Beer implements \JsonSerializable {
 		 * @return \SplFixedArray SplFixedArray of beer found or null if not found
 		 * @throws \PDOException when mySQL related errors occur
 		 * @throws \TypeError when variables are not the correct data type
-
+		 */
 		public static function getBeerByTagId(\PDO $pdo, $tagId) :\SplFixedArray {
 			// sanitizes the tag id
 			try {
@@ -478,11 +466,11 @@ class Beer implements \JsonSerializable {
 			}
 
 			//Create query
-			$query = "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerId = beerTag.beerId AND beerTag WHERE beerTag.tagId = :tagId";
+			$query = "SELECT beer.beerId, beer.beerAbv, beer.beerBreweryId, beer.beerDescription, beer.beerName, beer.beerType, beerTag.beerTagBeerId, beerTag.beerTagTagId FROM beer INNER JOIN beerTag ON beer.beerId = beerTag.beerTagBeerId WHERE beerTag.beerTagTagId = :tagId";
 			//Or "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerId = beerTag.beerId AND beerTag.tagId = :beerTag.tagId";
 			$statement = $pdo->prepare($query);
 
-			//Bind beer brewery id to placeholder
+			//Bind tag id to placeholder
 			$parameters = ["tagId" => $tagId->getBytes()];
 			$statement->execute($parameters);
 
@@ -501,5 +489,18 @@ class Beer implements \JsonSerializable {
 			}
 			return ($beerArray);
 		}
-		 */
+
+		/**
+		 * formats the state variables for JSON serialization
+		 *
+		 * @return array resulting state variables to serialize
+		 **/
+		public function jsonSerialize() : array {
+			$fields = get_object_vars($this);
+
+			$fields["beerId"] = $this->beerId->toString();
+			$fields["beerBreweryId"] = $this->beerBreweryId->toString();
+
+			return($fields);
+		}
 }
