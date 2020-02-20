@@ -161,7 +161,10 @@ class BeerTagTest extends FindMeBeerTest {
 
 	/**
 	 * test getting a BeerTag by beerId and tagId, and verify
-	 *
+	 * @param getBeerTagBeerId
+	 * @param getBeerTagTagId
+	 * @param getBeerId
+	 * @param getTagId
 	 * @throws Exception
 	 */
 
@@ -210,7 +213,7 @@ class BeerTagTest extends FindMeBeerTest {
 		//verify that all fields match
 
 		$pdoTag = $results[0];
-		$this->assertEquals($pdoTag->getBeerTagBeerId(), $this->beer->getBeerId());
-		$this->assertEquals($pdoTag->getBeerTagTagId(), $this->tag->getTagId());
+		$this->assertEquals($pdoTag->getTagId(), $this->beer->getBeerId());
+		$this->assertEquals($pdoTag->getTagId(), $this->tag->getTagId());
 	}
 }

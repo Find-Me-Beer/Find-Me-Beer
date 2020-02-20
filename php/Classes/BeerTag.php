@@ -2,7 +2,7 @@
 namespace FindMeBeer\FindMeBeer;
 
 require_once("autoload.php");
-require_once(dirname(__DIR__,2) . "/vendor/autoload.php");
+require_once(dirname(__DIR__,1) . "/vendor/autoload.php");
 
 use Exception;
 use InvalidArgumentException;
@@ -50,7 +50,7 @@ class BeerTag implements JsonSerializable {
 	public function __construct($newBeerTagBeerId, $newBeerTagTagId) {
 		try {
 			$this->setBeerTagBeerId($newBeerTagBeerId);
-			$this->setBeerTagtagId($newBeerTagTagId);
+			$this->setBeerTagTagId($newBeerTagTagId);
 		}
 			//determine what exception type was thrown
 		catch(InvalidArgumentException | RangeException | Exception | TypeError $exception) {
@@ -130,7 +130,7 @@ class BeerTag implements JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		// bind the member variables to the place holders in the template
-		$parameters = ["beertagbeerid" => $this->beerTagBeerId->getbytes(), "beertagbeerid" => $this->beerTagTagId->getbytes()];
+		$parameters = ["beertagbeerid" => $this->beerTagBeerId->getBytes(), "beertagtagid" => $this->beerTagTagId->getBytes()];
 		$statement->execute($parameters);
 	}
 
@@ -216,11 +216,11 @@ class BeerTag implements JsonSerializable {
 	 * @param PDO $pdo PDO connection object
 	 * @param Uuid|string $beerTagBeerId beerTag id to search for
 	 * @param string $beerTagTagId beerTagTagId to search for
-	 * @return beerTag|null Like found or null if not found
+	 * @return Favorite
 	 **@throws TypeError when a variable are not the correct data type
 	 * @throws PDOException when mySQL related errors occur
 	 */
-	public static function getBeerTagByBeerTagBeerIdAndBeerTagTagId(PDO $pdo, string $beerTagBeerId, string $beerTagTagId ) : ?BeerTag {
+	public static function getBeerTagByBeerTagBeerIdAndBeerTagTagId(PDO $pdo, string $beerTagBeerId, string $beerTagTagId ) : Favorite {
 		// sanitize the beerTagBeerId and beerTagTagId before searching
 		try {
 			$beerTagBeerId = self::validateUuid($beerTagBeerId);
@@ -270,6 +270,9 @@ class BeerTag implements JsonSerializable {
 
 
 		return($fields);
+	}
+
+	private function key() {
 	}
 }
 
