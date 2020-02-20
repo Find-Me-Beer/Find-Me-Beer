@@ -7,6 +7,7 @@ use Exception;
 
 
 //grab the classes under scrutiny
+require_once ("FindMeBeerTest.php");
 require_once (dirname(__DIR__) . "/autoload.php");
 
 //grab the uuid generator
@@ -25,7 +26,7 @@ require_once (dirname(__DIR__) . "/../lib/uuid.php");
  * @author Patrick Leyba <pleyba4@cnm.edu>
  **/
 
-class BeerTagTest extends DataDesignTest {
+class BeerTagTest extends FindMeBeerTest {
 
 	/**
 	 * Beer this is to test foreign key relations inside BeerTag
