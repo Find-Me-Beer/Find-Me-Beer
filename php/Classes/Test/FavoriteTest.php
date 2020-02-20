@@ -59,41 +59,45 @@ class FavoriteTest extends FindMeBeerTest {
 
 		//create a salt and hash for the user
 		$password = "123456789";
-		$this->VALID_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 384]);
+		$this->VALID_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 9]);
 		$this->VALID_ACTIVATION = bin2hex(random_bytes(16));
+
 
 		//create and insert the user
 		$this->user = new User(generateUuidV4(),
 		null,
 		"https://gravatar.com/avatar/a1af3caae33a1123bb2cb0fc4aab8228?s=400&d=robohash&r=x",
-			10-15-93,
+			"1999-02-17",
 		"email@smdmd.com",
 		"Reece",
 		$this->VALID_HASH,
 		"Nunn",
 		"rmnunn");
+		$this->user->insert($this->getPDO());
+
+		//create and insert a brewery
+		$breweryId = generateUuidV4();
+		$this->brewery = new Brewery($breweryId,
+			"111 Marble Ave NW, Albuquerque, NM 87102",
+			"https://gravatar.com/avatar/9f53b21feac95285d0080ad4161f1aac?s=400&d=robohash&r=x",
+			"Marble Brewery. You hate it or love it.",
+			"marble@brewery.com",
+			"Marble Brewery",
+			35.092812,
+			-106.646729,
+			"505-322-8765",
+			"marblebrewery.com");
+		$this->brewery->insert($this->getPDO());
 
 		//create and insert the beer
-		$this->beer = generateUuidV4();
-		$this->beer = new Beer(generateUuidV4(),
+		$beerId = generateUuidV4();
+		$this->beer = new Beer($beerId,
 			"8.3",
 			$this->brewery->getBreweryId(),
 		"Delicious ale that beer snobs don't like",
 		"Double White",
 		"Ale");
-		;
-
-		//create and insert a brewery
-		$this->brewery = new Brewery(generateUuidV4(),
-		"111 Marble Ave NW, Albuquerque, NM 87102",
-		"https://gravatar.com/avatar/9f53b21feac95285d0080ad4161f1aac?s=400&d=robohash&r=x",
-		"Marble Brewery. You hate it or love it.",
-		"marble@brewery.com",
-		"35.092812",
-		"-106.646729",
-		"Marble Brewery",
-		"505-322-8765",
-		"marblebrewery.com");
+		$this->beer->insert($this->getPDO());
 	}
 
 	/**
@@ -162,6 +166,7 @@ class FavoriteTest extends FindMeBeerTest {
 
 	/**
 	 * test getting a favorite by beer id and user id
+	 * @throws \Exception
 	 */
 	public function getValidFavoriteByUserIdAndBeerId() {
 		// count the number of rows and save it for later
