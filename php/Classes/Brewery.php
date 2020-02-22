@@ -529,22 +529,24 @@ class Brewery implements \JsonSerializable {
 		return($brewery);
 	}
 	public static function getAllBreweries(\PDO $pdo) {
-		$query = "SELECT breweryId, breweryAddress, breweryAvatarUrl, breweryDescription, breweryEmail, breweryName, breweryLat, breweryLong, breweryPhone, breweryUrl FROM brewery WHERE breweryId = :breweryId";
+		$query = "SELECT breweryId, breweryAddress, breweryAvatarUrl, breweryDescription, breweryEmail, breweryName, breweryLat, breweryLong, breweryPhone, breweryUrl FROM brewery";
 		$statement = $pdo->prepare($query);
+		$statement->execute();
+
+		//build array of brewery
 		$breweryArray = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$breweries = new Brewery($row["breweryId"], $row["breweryAddress"], $row["breweryAvatarUrl"], $row["breweryDescription"], $row[breweryEmail], $row[breweryName], $row[breweryName], $row[breweryLat], $row[breweryLong], $row[breweryPhone], $row[breweryUrl]);
-				$breweryArray[$breweryArray->key()] = $breweries;
-				$breweries->next();
+				$brewery = new Brewery($row["breweryId"], $row["breweryAddress"], $row["breweryAvatarUrl"], $row["breweryDescription"], $row["breweryEmail"], $row["breweryName"], $row["breweryLat"], $row["breweryLong"], $row["breweryPhone"], $row["breweryUrl"]);
+				$breweryArray[$breweryArray->key()] = $brewery;
+				$breweryArray->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return ($breweries);
-
+		return ($breweryArray);
 
 	}
 	/**
@@ -601,20 +603,21 @@ class Brewery implements \JsonSerializable {
 		$statement->execute($parameters);
 
 		//Grab the Breweries from mySQL
-		$breweries = new \SplFixedArray($statement->rowCount());
+		$breweryArray = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while($row=$statement->fetch() !== false){
 
 			try {
-				$breweries = new Brewery($row["breweryId"], $row["breweryAddress"], $row["breweryAvatarUrl"], $row["breweryDescription"], $row[breweryEmail], $row[breweryName], $row[breweryName], $row[breweryLat], $row[breweryLong], $row[breweryPhone], $row[breweryUrl]);
-				$breweryArray[$breweryArray->key()] = $breweries;
-				$breweries->next();
+				$brewery = new Brewery($row["breweryId"], $row["breweryAddress"], $row["breweryAvatarUrl"], $row["breweryDescription"], $row["breweryEmail"], $row["breweryName"], $row["breweryName"], $row["breweryLat"], $row["breweryLong"], $row["breweryPhone"], $row["breweryUrl"]);
+
+				$breweryArray[$breweryArray->key()] = $brewery;
+				$breweryArray->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return ($breweries);
+		return ($breweryArray);
 
 		}
 //		public function jsonSerialize() {
