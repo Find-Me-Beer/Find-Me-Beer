@@ -5,6 +5,7 @@ namespace FindMeBeer\FindMeBeer;
 require_once("autoload.php");
 require_once(dirname(__DIR__) . "/vendor/autoload.php");
 
+use mysql_xdevapi\Exception;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -200,33 +201,20 @@ class Brewery implements \JsonSerializable {
 
 	/**
 	 * accessor method for brewery description
-	 * @param string $newBrewery
+	 * @return string value for Brewery Description
 	 * @throws \InvalidArgumentException
 	 */
-	public function getBreweryDescription(string $newBreweryDescription): void {
-		// if address is empty throw them out early
-		if(empty($newBreweryDescription) === true) {
-			throw(new \InvalidArgumentException("Brewery address is not valid"));
-		}
+	public function getBreweryDescription(): string {
+		return ($this->breweryDescription);
 
-
-		$newBreweryDescription = trim($newBreweryDescription);
-		$newBreweryDescription = filter_var($newBreweryDescription, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-
-		// verify the brewery description will fit in the database
-		if(strlen($newBreweryDescription) > 512) {
-			throw(new \RangeException("Brewery description is over 512 characters"));
-		}
-
-		// store the brewery description
-		$this->breweryDescription = $newBreweryDescription;
 	}
 
 
 	/**
-	 * accessor method for breweryDescription
-	 * @return String value of breweryDescription
-	 * @throws \InvalidArgumentException
+	 * mutator method for breweryDescription
+	 * @param string $newBreweryDescription new brewery description
+	 * @throws \InvalidArgumentException when brewery is null or not void
+	 * @throws \RangeException if range Exception is over 1000 characters
 	 **/
 	public function setBreweryDescription(string $newBreweryDescription): void {
 
