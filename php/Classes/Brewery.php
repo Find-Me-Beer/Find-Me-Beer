@@ -91,7 +91,7 @@ class Brewery implements \JsonSerializable {
 	 * @param $newBreweryUrl
 	 */
 
-	public function __construct($newBreweryId, string $newBreweryAddress, string $newBreweryAvatarUrl, ?string $newBreweryDescription, string $newBreweryEmail, string $newBreweryName, float $newBreweryLat, float $newBreweryLong, string $newBreweryPhone, string $newBreweryUrl) {
+	public function __construct($newBreweryId, string $newBreweryAddress, string $newBreweryAvatarUrl, string $newBreweryDescription, string $newBreweryEmail, string $newBreweryName, float $newBreweryLat, float $newBreweryLong, string $newBreweryPhone, string $newBreweryUrl) {
 		try {
 			$this->setBreweryId($newBreweryId);
 			$this->setBreweryAddress($newBreweryAddress);

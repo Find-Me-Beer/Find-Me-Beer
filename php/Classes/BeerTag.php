@@ -32,7 +32,7 @@ class BeerTag implements JsonSerializable {
 	private $beerTagBeerId;
 	/**
 	 * beerTagTagId of this beer
-	 * @var string $beerTagTagId
+	 * @var Uuid $beerTagTagId
 	 **/
 	private $beerTagTagId;
 
@@ -40,7 +40,7 @@ class BeerTag implements JsonSerializable {
 	 * constructor for BeerTag
 	 *
 	 * @param string|Uuid $newBeerTagBeerId beer
-	 * @param string $newBeerTagTagId int containing actual tag and id beer data
+	 * @param string|Uuid $newBeerTagTagId int containing actual tag and id beer data
 	 * @throws InvalidArgumentException if data types are not valid
 	 * @throws RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws TypeError if data types violate type hints
@@ -51,8 +51,7 @@ class BeerTag implements JsonSerializable {
 		try {
 			$this->setBeerTagBeerId($newBeerTagBeerId);
 			$this->setBeerTagTagId($newBeerTagTagId);
-		}
-			//determine what exception type was thrown
+		} //determine what exception type was thrown
 		catch(InvalidArgumentException | RangeException | Exception | TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
@@ -64,19 +63,19 @@ class BeerTag implements JsonSerializable {
 	 *
 	 * @return Uuid value of beerTagBeerId
 	 */
-	public function getBeerTagBeerId() : uuid {
-		return($this->beerTagBeerId);
+	public function getBeerTagBeerId(): uuid {
+		return ($this->beerTagBeerId);
 	}
 
 	/**
 	 * mutator method for beerTagBeerId
 	 *
-	 * @param string $newBeerTagBeerId new value of beerTagBeerId
+	 * @param Uuid\string $newBeerTagBeerId new value of beerTagBeerId
 	 * @throws InvalidArgumentException if $newBeerTagBeerId is not a string or insecure
 	 * @throws RangeException if $newBeerTagBeerId is > 140 characters
 	 * @throws TypeError if $newFavoriteBeerId is not a string
 	 **/
-	public function setBeerTagBeerId( $newBeerTagBeerId) : void {
+	public function setBeerTagBeerId($newBeerTagBeerId): void {
 		try {
 			$uuid = self::validateUuid($newBeerTagBeerId);
 		} catch(InvalidArgumentException | RangeException | Exception | TypeError $exception) {
@@ -91,10 +90,10 @@ class BeerTag implements JsonSerializable {
 	/**
 	 * accessor method for beerTagTagId
 	 *
-	 * @return string
+	 * @return Uuid
 	 **/
-	public function getBeerTagTagId() : string {
-		return($this->beerTagTagId);
+	public function getBeerTagTagId(): Uuid {
+		return ($this->beerTagTagId);
 	}
 
 	/**
@@ -104,7 +103,7 @@ class BeerTag implements JsonSerializable {
 	 * @throws RangeException if $newBeerTagTagId is not positive
 	 * @throws TypeError if $newBeerTagTagId is not an integer
 	 **/
-	public function setBeerTagTagId( $newBeerTagTagId) : void {
+	public function setBeerTagTagId($newBeerTagTagId): void {
 		try {
 			$uuid = self::validateUuid($newBeerTagTagId);
 		} catch(InvalidArgumentException | RangeException | Exception | TypeError $exception) {
@@ -123,14 +122,14 @@ class BeerTag implements JsonSerializable {
 	 * @throws PDOException when mySQL related errors occur
 	 * @throws TypeError if $pdo is not a PDO connection object
 	 **/
-	public function insert(PDO $pdo) : void {
+	public function insert(PDO $pdo): void {
 
 		// create query template
 		$query = "INSERT INTO beerTag(beerTagBeerId, beerTagTagId) VALUES(:beerTagBeerId, :beerTagTagId)";
 		$statement = $pdo->prepare($query);
 
 		// bind the member variables to the place holders in the template
-		$parameters = ["beertagbeerid" => $this->beerTagBeerId->getBytes(), "beertagtagid" => $this->beerTagTagId->getBytes()];
+		$parameters = ["beerTagBeerId" => $this->beerTagBeerId->getBytes(), "beerTagTagId" => $this->beerTagTagId->getBytes()];
 		$statement->execute($parameters);
 	}
 
@@ -141,7 +140,7 @@ class BeerTag implements JsonSerializable {
 	 * @param Uuid|string $beerTagBeerId id to search by
 	 * @return SplFixedArray SplFixedArray of beerTag found
 	 */
-	public static function getBeerTagsByBeerTagBeerId(PDO $pdo, $beerTagBeerId) : SplFixedArray {
+	public static function getBeerTagsByBeerTagBeerId(PDO $pdo, $beerTagBeerId): SplFixedArray {
 
 		try {
 			$beerTagBeerId = self::validateUuid($beerTagBeerId);
@@ -150,7 +149,7 @@ class BeerTag implements JsonSerializable {
 		}
 
 		// create query template
-		$query = "SELECT beerTagBeerId FROM beerTag WHERE beerTagTagId = :beerTagTagId";
+		$query = "SELECT beerTagBeerId, beerTagTagId FROM beerTag WHERE beerTagBeerId = :beerTagBeerId";
 		$statement = $pdo->prepare($query);
 		// bind the beerTagTagId to the place holder in the template
 		$parameters = ["beerTagBeerId" => $beerTagBeerId->getBytes()];
@@ -160,15 +159,15 @@ class BeerTag implements JsonSerializable {
 		$statement->setFetchMode(PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$favorites = new Favorite($row["beerTagBeerId"], $row["beerTagTagId"]);
-				$beerTags[$beerTags->key()] = $beerTags;
-				$favorites->next();
+				$beerTag = new BeerTag($row["beerTagBeerId"], $row["beerTagTagId"]);
+				$beerTags[$beerTags->key()] = $beerTag;
+				$beerTags->next();
 			} catch(Exception $exception) {
 				// if the row couldn't be converted, rethrow it
 				throw(new PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return($beerTags);
+		return ($beerTags);
 	}
 
 
@@ -180,7 +179,7 @@ class BeerTag implements JsonSerializable {
 	 * @throws PDOException when mySQL related errors occur
 	 * @throws TypeError when variables are not the correct data type
 	 **/
-	public static function getBeerTagsByBeerTagTagId(PDO $pdo, $beerTagTagId) : SplFixedArray {
+	public static function getBeerTagsByBeerTagTagId(PDO $pdo, $beerTagTagId): SplFixedArray {
 
 		try {
 			$beerTagTagId = self::validateUuid($beerTagTagId);
@@ -189,7 +188,7 @@ class BeerTag implements JsonSerializable {
 		}
 
 		// create query template
-		$query = "SELECT beerTagTagId FROM beerTag WHERE beerTagTagId = :beerTagTagId";
+		$query = "SELECT beerTagBeerId, beerTagTagId FROM beerTag WHERE beerTagTagId = :beerTagTagId";
 		$statement = $pdo->prepare($query);
 		// bind the Id to the place holder in the template
 		$parameters = ["beerTagTagId" => $beerTagTagId->getBytes()];
@@ -199,15 +198,15 @@ class BeerTag implements JsonSerializable {
 		$statement->setFetchMode(PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$beerTags = new BeerTag($row["beerTagBeerId"], $row["beerTagTagId"]);
-				$beerTags[$beerTags->key()] = $beerTags;
+				$beerTag = new BeerTag($row["beerTagBeerId"], $row["beerTagTagId"]);
+				$beerTags[$beerTags->key()] = $beerTag;
 				$beerTags->next();
 			} catch(Exception $exception) {
 				// if the row couldn't be converted, rethrow it
 				throw(new PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return($beerTags);
+		return ($beerTags);
 	}
 
 	/**
@@ -216,11 +215,11 @@ class BeerTag implements JsonSerializable {
 	 * @param PDO $pdo PDO connection object
 	 * @param Uuid|string $beerTagBeerId beerTag id to search for
 	 * @param string $beerTagTagId beerTagTagId to search for
-	 * @return Favorite
+	 * @return BeerTag
 	 **@throws TypeError when a variable are not the correct data type
 	 * @throws PDOException when mySQL related errors occur
 	 */
-	public static function getBeerTagByBeerTagBeerIdAndBeerTagTagId(PDO $pdo, string $beerTagBeerId, string $beerTagTagId ) : Favorite {
+	public static function getBeerTagByBeerTagBeerIdAndBeerTagTagId(PDO $pdo, string $beerTagBeerId, string $beerTagTagId): BeerTag {
 		// sanitize the beerTagBeerId and beerTagTagId before searching
 		try {
 			$beerTagBeerId = self::validateUuid($beerTagBeerId);
@@ -235,7 +234,7 @@ class BeerTag implements JsonSerializable {
 		}
 
 		// create query template
-		$query = "SELECT beerTagBeerId, beerTagTagId FROM beerTag WHERE beerTagBeerId = :beertagBeerId AND beerTagTagId = :beerTagTagId";
+		$query = "SELECT beerTagBeerId, beerTagTagId FROM beerTag WHERE beerTagBeerId = :beerTagBeerId AND beerTagTagId = :beerTagTagId";
 		$statement = $pdo->prepare($query);
 
 		// bind the beerTagBeerId to the place holder in the template
@@ -248,13 +247,13 @@ class BeerTag implements JsonSerializable {
 			$statement->setFetchMode(PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$beerTags = new Favorite($row["beerTagBeerId"], $row["beerTagTagId"]);
+				$beerTags = new BeerTag($row["beerTagBeerId"], $row["beerTagTagId"]);
 			}
 		} catch(Exception $exception) {
 			// if the row couldn't be converted, rethrow it
 			throw(new PDOException($exception->getMessage(), 0, $exception));
 		}
-		return($beerTags);
+		return ($beerTags);
 	}
 
 	/**
@@ -262,16 +261,14 @@ class BeerTag implements JsonSerializable {
 	 *
 	 * @return array resulting state variables to serialize
 	 **/
-	public function jsonSerialize() : array {
+	public function jsonSerialize(): array {
 		$fields = get_object_vars($this);
 
 		$fields["beerTagBeerId"] = $this->beerTagBeerId->toString();
 		$fields["beerTagTagId"] = $this->beerTagTagId->toString();
 
 
-		return($fields);
-	}
-
-	private function key() {
+		return ($fields);
 	}
 }
+

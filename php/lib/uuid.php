@@ -19,8 +19,8 @@ function generateUuidV4() : UuidInterface {
 		$exceptionType = get_class($exception);
 		throw(new $exceptionType($exception->getMessage(), 0, $exception));
 	}
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> sprint-01
+
+
+

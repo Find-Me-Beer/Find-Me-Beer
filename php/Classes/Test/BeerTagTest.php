@@ -58,13 +58,21 @@ class BeerTagTest extends FindMeBeerTest {
 
 		//create a beer a tag and a brewery for the beerTag test example
 
-		$this->brewery = new Brewery(generateUuidV4(), "123 main st Albuquerque NM 87102", "http://meows.cat.com", "A relaxed atmosphere", "brewery@email.com", 40.741895, -73.989308, "Marble Brewery", "505-798-7980", "www.marble.com");
+		/** @var TYPE_NAME $beerId
+		 * @var TYPE_NAME $breweryId
+		 * @var TYPE_NAME $tagId
+		 */
+		$beerId = generateUuidV4();
+		$breweryId = generateUuidV4();
+		$tagId = generateUuidV4();
+
+		$this->brewery = new Brewery($breweryId, "123 main st Albuquerque NM 87102", "http://meows.cat.com", "A relaxed atmosphere", "brewery@email.com", "Marble Brewery", -73.989308, 40.741895, "505-798-7980", "www.marble.com");
 		$this->brewery->insert($this->getPDO());
 
-		$this->tag = new Tag(generateUuidV4(), "beer tag content goes here");
+		$this->tag = new Tag($tagId, "beer tag content goes here");
 		$this->tag->insert($this->getPDO());
 
-		$this->beer = new Beer(generateUuidV4(), 5.25, $this->brewery->getbreweryId(), "hoppy", "Duff", "Lager");
+		$this->beer = new Beer($beerId, 5.25, $this->brewery->getbreweryId(), "hoppy", "Duff", "Lager");
 		$this->beer->insert($this->getPDO());
 	}
 
@@ -78,7 +86,7 @@ class BeerTagTest extends FindMeBeerTest {
 		$numRows = $this->getConnection()->getRowCount("beerTag");
 
 		//create a beerTag and insert
-		$beerTag = new BeerTag($this->tag->getTagId(), $this->beer->getBeerId());
+		$beerTag = new BeerTag($this->beer->getBeerId(), $this->tag->getTagId());
 		$beerTag->insert($this->getPDO());
 
 		//verify the rowCount matches
@@ -130,11 +138,10 @@ class BeerTagTest extends FindMeBeerTest {
 	 */
 	public function testGetBeerTagByBeerTagBeerId() {
 		//count the current number of rows and save for later
-		$numRows = $this->getConnection()->getRowCount("Beertag");
+		$numRows = $this->getConnection()->getRowCount("beerTag");
 
 		//create a beerTag and insert
 		$beerTag = new BeerTag($this->beer->getBeerId(), $this->tag->getTagId());
-		$beerTag->insert($this->getPDO());
 		$beerTag->insert($this->getPDO());
 
 		//grab from mysql and verify count
@@ -149,14 +156,6 @@ class BeerTagTest extends FindMeBeerTest {
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beerTag"));
 		$this->assertEquals($pdoBeerTag->getBeerTagBeerId(), $this->beer->getBeerId());
 		$this->assertEquals($pdoBeerTag->getBeerTagTagId(), $this->tag->getTagId());
-	}
-
-	/**
-	 * test grabbing a BeerTag by a BeerTagBeerId that does not exist
-	 **/
-	public function testGetInvalidBeerTagByBeerTagBeerId() {
-		$beerTag = BeerTag::getBeerTagByBeerTagBeerIdAndBeerTagTagId()($this->getPDO(), generateUuidV4());
-		$this->assertCount(0, $beerTag);
 	}
 
 	/**
@@ -177,7 +176,7 @@ class BeerTagTest extends FindMeBeerTest {
 		$beerTag->insert($this->getPDO());
 
 		//grab from mysql and verify count
-		$result = BeerTag::getBeerTagByBeerTagBeerIdAndBeerTagTagId()($this->getPDO(), $this->beer->getBeerId(), $this->tag->getTagId());
+		$result = BeerTag::getBeerTagByBeerTagBeerIdAndBeerTagTagId($this->getPDO(), $this->beer->getBeerId(), $this->tag->getTagId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beerTag"));
 		$this->assertEquals($result->getBeerTagBeerId(), $this->beer->getBeerId());
 		$this->assertEquals($result->getBeerTagTagId(), $this->tag->getTagId());
@@ -205,8 +204,9 @@ class BeerTagTest extends FindMeBeerTest {
 		$beerTag->insert($this->getPDO());
 
 		//grab the posts from mysql, verify row count and namespace is correct
-		$results = BeerTag::getBeerTagByBeerTagBeerIdAndBeerTagTagId()($this->getPDO());
-		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beerTags"));
+		$results = BeerTag::getBeerTagByBeerTagBeerIdAndBeerTagTagId($this->getPDO(), $this->beer->getBeerId(), $this->tag->getTagId());
+		var_dump($results);
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beerTag"));
 		$this->assertCount(1, $results);
 		$this->assertContainsOnlyInstancesOf("FindMeBeer\\FindMeBeer\\BeerTag", $results);
 

@@ -33,9 +33,6 @@ require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 abstract class FindMeBeerTest	 extends TestCase {
 
 
-abstract class FindMeBeerTest extends TestCase {
-
-
 	use TestCaseTrait;
 
 	/**
