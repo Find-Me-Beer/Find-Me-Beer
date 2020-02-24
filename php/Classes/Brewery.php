@@ -5,37 +5,12 @@ namespace FindMeBeer\FindMeBeer;
 require_once("autoload.php");
 require_once(dirname(__DIR__) . "/vendor/autoload.php");
 
-use mysql_xdevapi\Exception;
 use Ramsey\Uuid\Uuid;
 
 /**
- *
- * Trait to validate a uuid
- *
- * This trait will validate a uuid in any of the following three
- *
  * Class  Brewery
  *
  * @Author Celeste Whitaker <cwhitaker4@cnm.edu>
- */
-
-/**
- *
- *
- * breweryId binary(16) PRIMARY KEY
- * breweryAddress Varchar(512)
- * breweryAvatarUrl Varchar(128)
- * breweryDescription Varchar(1000)
- * breweryEmail Varchar(128)
- * breweryName Varchar(32)
- * breweryLat Decimal
- * breweryLong Decimal
- * breweryPhone Varchar(32)
- * breweryUrl Varchar(2083)
- *
- *
- *
- *
  */
 class Brewery implements \JsonSerializable {
 	use ValidateUuid;
@@ -45,9 +20,7 @@ class Brewery implements \JsonSerializable {
 	 */
 	private $breweryId;
 	/**
-	 *
 	 * @var string $breweryAddress
-	 *
 	 */
 	private $breweryAddress;
 	/**
@@ -97,7 +70,6 @@ class Brewery implements \JsonSerializable {
 	 * @param $newBreweryPhone
 	 * @param $newBreweryUrl
 	 */
-
 	public function __construct($newBreweryId, string $newBreweryAddress, string $newBreweryAvatarUrl, ?string $newBreweryDescription, string $newBreweryEmail, string $newBreweryName, float $newBreweryLat, float $newBreweryLong, string $newBreweryPhone, string $newBreweryUrl) {
 		try {
 			$this->setBreweryId($newBreweryId);
@@ -132,7 +104,6 @@ class Brewery implements \JsonSerializable {
 	 * @throws \RangeException if $newBreweryId is not positive
 	 * @throws \TypeError if $newBreweryId is not a uuid or string
 	 */
-
 	public function setBreweryId($newBreweryId): void {
 		try {
 			$uuid = self::validateUuid($newBreweryId);
@@ -142,7 +113,6 @@ class Brewery implements \JsonSerializable {
 		}
 		//convert and store breweryId
 		$this->breweryId = $uuid;
-
 	}
 
 	/**
@@ -179,7 +149,6 @@ class Brewery implements \JsonSerializable {
 	/**
 	 * accessor method for breweryAvatarUrl
 	 * @return String value for breweryAvatarUrl
-	 *
 	 */
 	public function getBreweryAvatarUrl(): string {
 		return ($this->breweryAvatarUrl);
@@ -189,7 +158,6 @@ class Brewery implements \JsonSerializable {
 	 * mutator method for breweryAvatarUrl
 	 *
 	 * @param $newBreweryAvatarUrl
-	 *
 	 */
 	public function setBreweryAvatarUrl($newBreweryAvatarUrl): void {
 
@@ -202,13 +170,10 @@ class Brewery implements \JsonSerializable {
 	/**
 	 * accessor method for brewery description
 	 * @return string value for Brewery Description
-	 * @throws \InvalidArgumentException
 	 */
 	public function getBreweryDescription(): string {
 		return ($this->breweryDescription);
-
 	}
-
 
 	/**
 	 * mutator method for breweryDescription
@@ -243,6 +208,13 @@ class Brewery implements \JsonSerializable {
 		return ($this->breweryEmail);
 	}
 
+	/**
+	 * mutator method for breweryEmail
+	 *
+	 * @param string $newBreweryEmail new brewery email
+	 * @throws \InvalidArgumentException when brewery is null or not void
+	 * @throws \RangeException if range Exception is over 128 characters
+	 **/
 	public function setBreweryEmail(string $newBreweryEmail): void {
 
 		if(empty($newBreweryEmail) === true) {
@@ -266,20 +238,19 @@ class Brewery implements \JsonSerializable {
 	 * accessor method for brewery name
 	 *
 	 * @return string
-	 *
 	 */
 	public function getBreweryName(): string {
 		return ($this->breweryName);
 	}
 
 	/*
-	 * mutator method for brewery Name
+	 * mutator method for Brewery Name
+	 *
 	 * @param string $newBreweryName
 	 * @throws \RangeException if $newBreweryName is > 32 characters
 	 * @throws \TypeError if $newBreweryName is not a string
 	 */
 	public function setBreweryName(string $newBreweryName): void {
-
 		// check for null - if so, throw exception
 		if(empty($newBreweryName) === true) {
 			throw(new \InvalidArgumentException("Brewery name is not valid"));
@@ -296,11 +267,11 @@ class Brewery implements \JsonSerializable {
 
 		// store brewery Name
 		$this->breweryName = $newBreweryName;
-
 	}
 
 	/**
 	 * accessor for brewery latitude
+	 *
 	 * @return float brewery latitude between -90 and 90
 	 **/
 	public function getBreweryLat(): float {
@@ -313,9 +284,6 @@ class Brewery implements \JsonSerializable {
 	 * @throws \RangeException if $newBreweryLat is outside of range
 	 **/
 	public function setBreweryLat(float $newBreweryLat): void {
-
-
-
 		if(floatval($newBreweryLat) < -90) {
 			throw(new \RangeException("Error latitude is incorrect"));
 		}
@@ -331,31 +299,26 @@ class Brewery implements \JsonSerializable {
 
 	/**
 	 * accessor for brewery longitude
+	 *
 	 * @return float brewery longitude in degrees between -180 and 180
 	 **/
-
 	public function getBreweryLong(): float {
 		return ($this->breweryLong);
-
 	}
 
 	/**
 	 * mutator for brewery longitude
+	 *
 	 * @param float $newBreweryLong new value of the brewery longitude
 	 * @throws \RangeException if $newBreweryLong is outside of range
 	 **/
-
 	public function setBreweryLong(float $newBreweryLong): void {
-
-
 		if(floatval($newBreweryLong) < -180) {
 			throw(new \RangeException("Brewery longitude is incorrect"));
-
 		}
 
 		if(floatval($newBreweryLong) > 180) {
 			throw(new \RangeException("Brewery longitude is incorrect"));
-
 		}
 
 		//store the latitude data
@@ -364,6 +327,7 @@ class Brewery implements \JsonSerializable {
 
 	/**
 	 *  accessor for brewery phone
+	 *
 	 * @return string value for brewery phone
 	 */
 	public function getBreweryPhone(): string {
@@ -373,11 +337,10 @@ class Brewery implements \JsonSerializable {
 
 	/**
 	 * mutator method for brewery Phone
+	 *
 	 * @param string $newBreweryPhone
 	 * @throws \RangeException if $newBreweryPhone is > 64 characters
-	 * @throws \TypeError if $newBreweryPhone is not a string
 	 **/
-
 	public function setBreweryPhone(string $newBreweryPhone): void {
 
 		// if phone is null, set to null and return - just like we did for description
@@ -395,12 +358,18 @@ class Brewery implements \JsonSerializable {
 		$this->breweryPhone = $newBreweryPhone;
 	}
 
+	/**
+	 *  accessor for brewery Url
+	 *
+	 * @return string value for brewery Url
+	 */
 	public function getBreweryUrl(): string {
 		return ($this->breweryUrl);
 	}
 
 	/**
 	 * mutator method for breweryUrl
+	 *
 	 * @param string $newBreweryUrl
 	 * @throws \RangeException if $newBreweryUrl is > 2083 characters
 	 * @throws \TypeError if $newBreweryUrl is not a string
@@ -418,13 +387,6 @@ class Brewery implements \JsonSerializable {
 		$this->breweryUrl = $newBreweryUrl;
 	}
 
-	public function jsonSerialize(): array {
-		$fields = get_object_vars($this);
-		$fields["breweryId"] = $this->breweryId->toString();
-		return ($fields);
-	}
-	// TODO: Implement jsonSerialize() method.}
-
 	/**
 	 * inserts this User into mySQL
 	 *
@@ -432,8 +394,6 @@ class Brewery implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 **/
-
-
 	public function insert(\PDO $pdo): void {
 
 		// create query template
@@ -457,18 +417,34 @@ class Brewery implements \JsonSerializable {
 	}
 
 	/**
+	 * update this Brewery in mySQL
 	 * @param \PDO $pdo
 	 */
 	public function update(\PDO $pdo): void {
 
 		// create query
-		$query = "UPDATE brewery SET breweryId=:breweryId, breweryAddress =:breweryAddress, breweryAvatarUrl=: breweryAvatarUrl, breweryDescription =:breweryDescription,  breweryEmail= :breweryEmail, breweryName=: breweryName, breweryLat=:breweryLat,breweryLong=:breweryLong,breweryPhone=:breweryPhone,breweryUrl=:breweryUrl,  WHERE breweryId = :breweryId";
+		$query = "UPDATE brewery SET breweryAddress = :breweryAddress, breweryAvatarUrl = :breweryAvatarUrl, breweryDescription = :breweryDescription,  breweryEmail = :breweryEmail, breweryName = :breweryName, breweryLat = :breweryLat, breweryLong = :breweryLong, breweryPhone = :breweryPhone,breweryUrl = :breweryUrl WHERE breweryId = :breweryId";
 		$statement = $pdo->prepare($query);
 
+		$parameters = [
+			"breweryAddress" => $this->breweryAddress,
+			"breweryAvatarUrl" => $this->breweryAvatarUrl,
+			"breweryDescription" => $this->breweryDescription,
+			"breweryEmail" => $this->breweryEmail,
+			"breweryName" => $this->breweryName,
+			"breweryLat" => $this->breweryLat,
+			"breweryLong" => $this->breweryLong,
+			"breweryPhone" => $this->breweryPhone,
+			"breweryUrl" => $this->breweryUrl,
+			"breweryId" => $this->breweryId->getBytes()
+		];
+
+		$statement->execute($parameters);
 	}
 
 	/**
 	 * deletes this brewery from mySQL
+	 *
 	 * @param \PDO $pdo
 	 */
 	public function delete(\PDO $pdo): void {
@@ -483,8 +459,10 @@ class Brewery implements \JsonSerializable {
 	}
 
 	/**
+	 * gets brewery by id
+	 *
 	 * @param \PDO $pdo
-	 * @param $breweryId
+	 * @param Uuid $breweryId
 	 * @return Brewery|null
 	 */
 	public static function getBreweryByBreweryId(\PDO $pdo, $breweryId): ?Brewery {
@@ -516,7 +494,15 @@ class Brewery implements \JsonSerializable {
 		}
 		return($brewery);
 	}
-	public static function getAllBreweries(\PDO $pdo) {
+
+	/*
+	 * gets all breweries
+	 *
+	 * @param \PDO $pdo
+	 * @return \SplFixedArray SplFixedArray breweries found
+	 * @throws \PDOException
+	 */
+	public static function getAllBreweries(\PDO $pdo) : \SplFixedArray {
 		$query = "SELECT breweryId, breweryAddress, breweryAvatarUrl, breweryDescription, breweryEmail, breweryName, breweryLat, breweryLong, breweryPhone, breweryUrl FROM brewery";
 		$statement = $pdo->prepare($query);
 		$statement->execute();
@@ -535,9 +521,11 @@ class Brewery implements \JsonSerializable {
 			}
 		}
 		return ($breweryArray);
-
 	}
+
 	/**
+	 *gets Breweries by brewery Name
+	 *
 	 * @param \PDO $pdo
 	 * @param $breweryName
 	 * @return Brewery|null
@@ -546,15 +534,19 @@ class Brewery implements \JsonSerializable {
 		$breweryName = trim($breweryName);
 		$breweryName = filter_var($breweryName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($breweryName)===true){
-				throw(new \PDOException("Brewery name is invalid"));
+				throw(new \InvalidArgumentException("Brewery name is invalid"));
 		}
 
 		// created query
-		$query = "SELECT breweryId, breweryAddress, breweryAvatarUrl, breweryDescription, breweryEmail, breweryName, breweryLat, breweryLong, breweryPhone, breweryUrl FROM brewery WHERE breweryName = :breweryName";
+		$query = "SELECT breweryId, breweryAddress, breweryAvatarUrl, breweryDescription, breweryEmail, breweryName, breweryLat, breweryLong, breweryPhone, breweryUrl FROM brewery WHERE breweryName Like :breweryName";
 		$statement = $pdo->prepare($query);
 
+// escape any mySQL wild cards
+		$breweryName = str_replace("_", "\\_", str_replace("%", "\\%", $breweryName));
+
 		// connect the brewery name to the place holder in the template
-		$parameters = ["breweryName" => $breweryName->getBytes()];
+		$breweryName = "%$breweryName%";
+		$parameters = ["breweryName" => $breweryName];
 		$statement->execute($parameters);
 
 		// array for brewery
@@ -571,33 +563,40 @@ class Brewery implements \JsonSerializable {
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return ($breweryName);
+		return ($breweries);
 	}
 
-	public static function getBreweryByBreweryLocation(\PDO $pdo, $breweryLocation) :\SplFixedArray {
-// santize location
-		$breweryLocation = trim($breweryLocation);
-		$breweryLocation = filter_var($breweryLocation, FILTER_SANITIZE_STRING);
-		if(empty($breweryLocation) == true) {
-			throw (new \PDOException("Brewery location not valid"));
-		}
-		//query statement
-		$query = "SELECT breweryId, breweryAddress, breweryAvatarUrl, breweryDescription, breweryEmail, breweryName, breweryLat, breweryLong, breweryPhone, breweryUrl FROM brewery WHERE breweryId = :breweryId";
+	/**
+	 * gets the Brewery by distance
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param float $userLat latitude coordinate of where user is
+	 * @param float $userLong longitude coordinate of where user is
+	 * @param float $distance distance in miles that the user is searching by
+	 * @return \SplFixedArray SplFixedArray of pieces of brewery found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 * **/
+	public static function getBreweryByLocation(\PDO $pdo, float $userLong, float $userLat, float $distance) : \SplFixedArray {
+		// create query template
+		$query = "SELECT breweryId, breweryAddress, breweryAvatarUrl, breweryDescription, breweryEmail, breweryName, breweryLat, breweryLong, breweryPhone, breweryUrl FROM brewery WHERE haversine(:userLong, :userLat, breweryLong, breweryLat) < :distance";
 		$statement = $pdo->prepare($query);
 
-		//bind placeholder in template
-		$breweryLocation = "#" . $breweryLocation . "#";
-		$parameters = array("breweryLocation" => $breweryLocation);
+		// bind the brewery distance to the place holder in the template
+		$parameters = [
+			"distance" => $distance,
+			"userLat" => $userLat,
+			"userLong" => $userLong
+		];
 		$statement->execute($parameters);
 
-		//Grab the Breweries from mySQL
+		// build an array of brewery
 		$breweryArray = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-		while($row=$statement->fetch() !== false){
 
+		while(($row = $statement->fetch()) !== false) {
 			try {
-				$brewery = new Brewery($row["breweryId"], $row["breweryAddress"], $row["breweryAvatarUrl"], $row["breweryDescription"], $row["breweryEmail"], $row["breweryName"], $row["breweryName"], $row["breweryLat"], $row["breweryLong"], $row["breweryPhone"], $row["breweryUrl"]);
-
+				$brewery = new Brewery($row["breweryId"], $row["breweryAddress"], $row["breweryAvatarUrl"], $row["breweryDescription"], $row["breweryEmail"], $row["breweryName"], $row["breweryLat"], $row["breweryLong"], $row["breweryPhone"], $row["breweryUrl"]);
 				$breweryArray[$breweryArray->key()] = $brewery;
 				$breweryArray->next();
 			} catch(\Exception $exception) {
@@ -606,11 +605,17 @@ class Brewery implements \JsonSerializable {
 			}
 		}
 		return ($breweryArray);
+	}
 
-		}
-//		public function jsonSerialize() {
-//
-//				return (get_object_vars($this));
-//		}
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize(): array {
+		$fields = get_object_vars($this);
+		$fields["breweryId"] = $this->breweryId->toString();
+		return ($fields);
+	}
 
 }
