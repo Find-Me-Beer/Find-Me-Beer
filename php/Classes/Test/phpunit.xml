@@ -8,7 +8,12 @@
 			<file>BeerTest.php</file>
 			<file>FavoriteTest.php</file>
 			<file>BeerTagTest.php</file>
-
+			<file>TagTest.php</file>
+			<file>UserTest.php</file>
+			<file>BreweryTest.php</file>
+			<file>BeerTest.php</file>
+			<file>FavoriteTest.php</file>
+			<file>BeerTagTest.php</file>
 		</testsuite>
 	</testsuites>
 	<filter>
