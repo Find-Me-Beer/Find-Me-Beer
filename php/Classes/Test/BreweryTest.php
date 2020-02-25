@@ -63,13 +63,13 @@ class BreweryTest extends FindMeBeerTest {
 
 	/**
 	 * Brewery Latitude
-	 * @var string
+	 * @var float
 	 */
 	protected $VALID_BREWERY_LAT = 35.084251;
 
 	/**
 	 * Brewery Longitude
-	 * @var string $VALID_BREWERY_LONG
+	 * @var float $VALID_BREWERY_LONG
 	 */
 	protected $VALID_BREWERY_LONG = -106.649239;
 
@@ -119,7 +119,7 @@ class BreweryTest extends FindMeBeerTest {
 		// grab the data from mySQL and enforce the fields match our expectations
 		$pdoBrewery = Brewery::getBreweryByBreweryId($this->getPDO(), $brewery->getBreweryId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("brewery"));
-		//$this->assertEquals($pdoBrewery->getBreweryId(), $breweryId);
+		$this->assertEquals($pdoBrewery->getBreweryId(), $breweryId);
 		$this->assertEquals($pdoBrewery->getBreweryAddress(), $this->VALID_BREWERY_ADDRESS);
 		$this->assertEquals($pdoBrewery->getBreweryAvatarUrl(), $this->VALID_BREWERY_AVATAR_URL);
 		$this->assertEquals($pdoBrewery->getBreweryDescription(), $this->VALID_BREWERY_DESCRIPTION);
@@ -200,7 +200,7 @@ class BreweryTest extends FindMeBeerTest {
 
 		// grab the Brewery from mySQL and enforce that the Brewery does not exist
 		$pdoBrewery = Brewery::getBreweryByBreweryId($this->getPDO(), $brewery->getBreweryId());
-		$this->asserNull($pdoBrewery);
+		$this->assertNull($pdoBrewery);
 		$this->assertEquals($numRows, $this->getConnection()->getRowCount("brewery"));
 
 	}
@@ -312,7 +312,7 @@ public function testGetValidBreweryByBreweryName() : void {
 	$results = Brewery::GetBreweryByBreweryName($this->getPDO(), $brewery->getBreweryName());
 	$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("brewery"));
 	$this->assertCount(1, $results);
-	$this->assertContainsOnlyInstancesOf("FindMeBeer\\FindMeBeer\\Beer", $results);
+	$this->assertContainsOnlyInstancesOf("FindMeBeer\\FindMeBeer\\Brewery", $results);
 
 	//get the result from the array and validate it
 	$pdoBrewery = $results[0];

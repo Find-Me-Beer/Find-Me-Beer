@@ -64,8 +64,8 @@ class Brewery implements \JsonSerializable {
 	 * @param string $newBreweryAvatarUrl
 	 * @param string|null $newBreweryDescription
 	 * @param $newBreweryEmail
-	 * @param $newBreweryLat
-	 * @param $newBreweryLong
+	 * @param float $newBreweryLat
+	 * @param float $newBreweryLong
 	 * @param $newBreweryName
 	 * @param $newBreweryPhone
 	 * @param $newBreweryUrl
@@ -334,7 +334,6 @@ class Brewery implements \JsonSerializable {
 		return ($this->breweryPhone);
 	}
 
-
 	/**
 	 * mutator method for brewery Phone
 	 *
@@ -342,6 +341,10 @@ class Brewery implements \JsonSerializable {
 	 * @throws \RangeException if $newBreweryPhone is > 64 characters
 	 **/
 	public function setBreweryPhone(string $newBreweryPhone): void {
+
+		if(empty($newBreweryPhone) === true){
+			throw(new \InvalidArgumentException("Phone is invalid"));
+		}
 
 		// if phone is null, set to null and return - just like we did for description
 
@@ -487,7 +490,7 @@ class Brewery implements \JsonSerializable {
 				$statement->setFetchMode(\PDO::FETCH_ASSOC);
 				$row =$statement->fetch();
 				if($row !== false){
-						$brewery = new Brewery($row["breweryId"], $row["breweryAddress"], $row["breweryAvatarUrl"], $row["breweryDescription"], $row[breweryEmail], $row[breweryName], $row[breweryName], $row[breweryLat], $row[breweryLong], $row[breweryPhone], $row[breweryUrl]);
+						$brewery = new Brewery($row["breweryId"], $row["breweryAddress"], $row["breweryAvatarUrl"], $row["breweryDescription"], $row["breweryEmail"], $row["breweryName"], $row["breweryLat"], $row["breweryLong"], $row["breweryPhone"], $row["breweryUrl"]);
 				}
 		}catch(\Exception $exception){
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
