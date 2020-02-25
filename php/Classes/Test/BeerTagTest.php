@@ -204,16 +204,17 @@ class BeerTagTest extends FindMeBeerTest {
 		$beerTag->insert($this->getPDO());
 
 		//grab the posts from mysql, verify row count and namespace is correct
-		$results = BeerTag::getBeerTagByBeerTagBeerIdAndBeerTagTagId($this->getPDO(), $this->beer->getBeerId(), $this->tag->getTagId());
-		var_dump($results);
+		$results = BeerTag::getBeerTagsByBegiterTagBeerId($this->getPDO(), $this->beer->getBeerId(), $this->tag->getTagId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beerTag"));
 		$this->assertCount(1, $results);
+
+		// enforce no other objects are bleeding into the test
 		$this->assertContainsOnlyInstancesOf("FindMeBeer\\FindMeBeer\\BeerTag", $results);
 
 		//verify that all fields match
 
 		$pdoTag = $results[0];
-		$this->assertEquals($pdoTag->getTagId(), $this->beer->getBeerId());
-		$this->assertEquals($pdoTag->getTagId(), $this->tag->getTagId());
+		$this->assertEquals($pdoTag->getBeerTagBeerId(), $this->beer->getBeerId());
+		$this->assertEquals($pdoTag->getBeerTagTagId(), $this->tag->getTagId());
 	}
 }
