@@ -334,7 +334,7 @@ class Beer implements \JsonSerializable {
 		 * @throws \PDOException when mySQL related errors occur
 		 * @throws \TypeError when a variable are not the correct data type
 		 */
-		public static function getBeerByBeerId(\PDO $pdo, $beerId) :?Beer {
+		public static function getBeerByBeerId(\PDO $pdo, Uuid $beerId) :?Beer {
 			//Sanitize beerId before searching
 			try {
 				$beerId = self::validateUuid($beerId);
@@ -374,7 +374,7 @@ class Beer implements \JsonSerializable {
 		 * @throws \PDOException when mySQL related errors occur
 		 * @throws \TypeError when variables are not the correct data type
 		 */
-		public static function getBeerByBeerBreweryId(\PDO $pdo, $beerBreweryId) :\SplFixedArray {
+		public static function getBeerByBeerBreweryId(\PDO $pdo, Uuid $beerBreweryId) :\SplFixedArray {
 			// sanitizes the beer brewery id
 			try {
 				$beerBreweryId = self::validateUuid($beerBreweryId);
@@ -415,7 +415,7 @@ class Beer implements \JsonSerializable {
 		 * @throws \PDOException when mySQL related errors occur
 		 * @throws \TypeError when a variable are not the correct data type
 		 */
-		public static function getBeerByBeerType(\PDO $pdo, $beerType) :\SplFixedArray {
+		public static function getBeerByBeerType(\PDO $pdo, string $beerType) :\SplFixedArray {
 			//Sanitize $beerType
 			$beerType = trim($beerType);
 			$beerType = filter_var($beerType, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -457,7 +457,7 @@ class Beer implements \JsonSerializable {
 		 * @throws \PDOException when mySQL related errors occur
 		 * @throws \TypeError when variables are not the correct data type
 		 */
-		public static function getBeerByTagId(\PDO $pdo, $tagId) :\SplFixedArray {
+		public static function getBeerByTagId(\PDO $pdo, Uuid $tagId) :\SplFixedArray {
 			// sanitizes the tag id
 			try {
 				$tagId = self::validateUuid($tagId);
