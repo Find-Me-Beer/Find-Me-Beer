@@ -204,7 +204,7 @@ class BeerTagTest extends FindMeBeerTest {
 		$beerTag->insert($this->getPDO());
 
 		//grab the posts from mysql, verify row count and namespace is correct
-		$results = BeerTag::getBeerTagsByBegiterTagBeerId($this->getPDO(), $this->beer->getBeerId(), $this->tag->getTagId());
+		$results = BeerTag::getBeerTagsByBeerTagBeerId($this->getPDO(), $this->beer->getBeerId(), $this->tag->getTagId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("beerTag"));
 		$this->assertCount(1, $results);
 

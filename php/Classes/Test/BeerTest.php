@@ -330,7 +330,7 @@ class BeerTest extends FindMeBeerTest {
 		$beer->insert($this->getPDO());
 
 		// create a new beerTag and insert it into mySQL
-		$beerTag = new BeerTag($beerId, $this->beer->getBeerId(), $this->tag->getTagId());
+		$beerTag = new BeerTag($beerId, $this->tag->getTagId());
 		$beerTag->insert($this->getPDO());
 
 		//grab the data from mySQL and check the fields against our expectations
