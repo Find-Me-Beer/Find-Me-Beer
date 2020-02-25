@@ -329,13 +329,8 @@ class BeerTest extends FindMeBeerTest {
 			$this->VALID_BEERTYPE);
 		$beer->insert($this->getPDO());
 
-		//TODO create a beertag and insert it into the database (use the beerId and tagId accessors for foreign keys on beerTag)
-
 		// create a new beerTag and insert it into mySQL
-		$beerTag = new BeerTag(
-			$beerId,
-			//$this->beer->getBeerId(),
-			$this->tag->getTagId());
+		$beerTag = new BeerTag($beerId, $this->tag->getTagId());
 		$beerTag->insert($this->getPDO());
 
 		//grab the data from mySQL and check the fields against our expectations

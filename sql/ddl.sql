@@ -28,8 +28,6 @@ CREATE TABLE `user` (
   PRIMARY KEY (userId)
 );
 
-
-
 CREATE TABLE brewery (
   breweryId Binary(16) NOT NULL,
   breweryAddress Varchar(512) NOT NULL,
@@ -37,12 +35,13 @@ CREATE TABLE brewery (
   breweryDescription Varchar(1000),
   breweryEmail Varchar(128) NOT NULL,
   breweryName Varchar(32) NOT NULL,
-  breweryLat Decimal(9,6) NOT NULL,
-  breweryLong Decimal(9,6) NOT NULL,
+  breweryLat FLOAT(9,6) NOT NULL,
+  breweryLong FLOAT(9,6) NOT NULL,
   breweryPhone Varchar(64),
   breweryUrl Varchar(2083) NOT NULL,
   PRIMARY KEY (breweryId)
 );
+
 CREATE TABLE beer (
 	beerId Binary(16) NOT NULL,
 	beerBreweryId Binary(16) NOT NULL,
@@ -75,6 +74,41 @@ CREATE TABLE beerTag (
   PRIMARY KEY (beerTagBeerId, beerTagTagId)
 );
 
+-- @author Dylan McDonald <dmcdonald21@cnm.edu>
 
+    -- drop the procedure if already defined
+    DROP FUNCTION IF EXISTS haversine;
 
+    -- procedure to calculate the distance between two points
+    -- @param FLOAT $userX point of origin, x coordinate
+    -- @param FLOAT $userY point of origin, y coordinate
+    -- @param FLOAT $breweryX point heading out, x coordinate
+    -- @param FLOAT $breweryY point heading out, y coordinate
+    -- @return FLOAT distance between the points, in miles
+    CREATE FUNCTION haversine(userX FLOAT, userY FLOAT, breweryX FLOAT, breweryY FLOAT) RETURNS FLOAT
+    	BEGIN
+    		-- first, declare all variables; I don't think you can declare later
+    		DECLARE radius FLOAT;
+    		DECLARE latitudeAngle1 FLOAT;
+    		DECLARE latitudeAngle2 FLOAT;
+    		DECLARE latitudePhase FLOAT;
+    		DECLARE longitudePhase FLOAT;
+    		DECLARE alpha FLOAT;
+    		DECLARE corner FLOAT;
+    		DECLARE distance FLOAT;
 
+    		-- assign the variables that were declared & use them
+    		SET radius = 3958.7613; -- radius of the earth in miles
+    		SET latitudeAngle1 = RADIANS(userY);
+    		SET latitudeAngle2 = RADIANS(breweryY);
+    		SET latitudePhase = RADIANS(breweryY - userY);
+    		SET longitudePhase = RADIANS(breweryX - userX);
+
+    		SET alpha = POW(SIN(latitudePhase / 2), 2)
+    						+ POW(SIN(longitudePhase / 2), 2)
+    						  * COS(latitudeAngle1) * COS(latitudeAngle2);
+    		SET corner = 2 * ASIN(SQRT(alpha));
+    		SET distance = radius * corner;
+
+    		RETURN distance;
+    	END;
