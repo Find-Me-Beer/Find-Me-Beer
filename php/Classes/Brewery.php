@@ -5,6 +5,7 @@ namespace FindMeBeer\FindMeBeer;
 require_once("autoload.php");
 require_once(dirname(__DIR__) . "/vendor/autoload.php");
 
+use http\Exception\InvalidArgumentException;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -57,7 +58,7 @@ class Brewery implements \JsonSerializable {
 	private $breweryUrl;
 
 	/**
-	 * Brewery constructor.
+	 * constructor for Brewery
 	 *
 	 * @param $newBreweryId string|Uuid
 	 * @param string $newBreweryAddress
@@ -69,9 +70,11 @@ class Brewery implements \JsonSerializable {
 	 * @param $newBreweryName
 	 * @param $newBreweryPhone
 	 * @param $newBreweryUrl
-	 */
-
-
+	 ** @throws \InvalidArgumentException if data types are not valid
+	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
+	 *  @throws \Exception if some other exception occurs
+	 * @throws \TypeError if data types violate type hints
+	 **/
 	public function __construct($newBreweryId, string $newBreweryAddress, string $newBreweryAvatarUrl, string $newBreweryDescription, string $newBreweryEmail, string $newBreweryName, float $newBreweryLat, float $newBreweryLong, string $newBreweryPhone, string $newBreweryUrl) {
 
 		try {
@@ -95,6 +98,7 @@ class Brewery implements \JsonSerializable {
 
 	/**
 	 * accessor method for brewery id
+	 *
 	 * @return Uuid value of brewery Id
 	 */
 	public function getBreweryId(): Uuid {
@@ -103,6 +107,7 @@ class Brewery implements \JsonSerializable {
 
 	/**
 	 * mutator of breweryId
+	 *
 	 * @param Uuid $newBreweryId
 	 * @throws \RangeException if $newBreweryId is not positive
 	 * @throws \TypeError if $newBreweryId is not a uuid or string
@@ -120,6 +125,7 @@ class Brewery implements \JsonSerializable {
 
 	/**
 	 * accessor for brewery address
+	 *
 	 * @return string brewery address
 	 */
 	public function getBreweryAddress(): string {
@@ -128,8 +134,10 @@ class Brewery implements \JsonSerializable {
 
 	/**
 	 * mutator for brewery address
+	 *
 	 * @param string $newBreweryAddress
 	 * @throws \InvalidArgumentException if $newBreweryAddress if address is too long
+	 * @throws \RangeException
 	 */
 	public function setBreweryAddress(string $newBreweryAddress): void {
 		// if address is empty throw them out early
@@ -151,6 +159,7 @@ class Brewery implements \JsonSerializable {
 
 	/**
 	 * accessor method for breweryAvatarUrl
+	 *
 	 * @return String value for breweryAvatarUrl
 	 */
 	public function getBreweryAvatarUrl(): string {
@@ -172,6 +181,7 @@ class Brewery implements \JsonSerializable {
 
 	/**
 	 * accessor method for brewery description
+	 *
 	 * @return string value for Brewery Description
 	 */
 	public function getBreweryDescription(): string {
@@ -180,6 +190,7 @@ class Brewery implements \JsonSerializable {
 
 	/**
 	 * mutator method for breweryDescription
+	 *
 	 * @param string $newBreweryDescription new brewery description
 	 * @throws \InvalidArgumentException when brewery is null or not void
 	 * @throws \RangeException if range Exception is over 1000 characters
@@ -283,8 +294,10 @@ class Brewery implements \JsonSerializable {
 
 	/**
 	 * mutator for brewery latitude
+	 *
 	 * @param float $newBreweryLat new value of the brewery latitude
 	 * @throws \RangeException if $newBreweryLat is outside of range
+	 * @throws \TypeError if $newBreweryLat is incorrect
 	 **/
 	public function setBreweryLat(float $newBreweryLat): void {
 		if(floatval($newBreweryLat) < -90) {
@@ -314,6 +327,7 @@ class Brewery implements \JsonSerializable {
 	 *
 	 * @param float $newBreweryLong new value of the brewery longitude
 	 * @throws \RangeException if $newBreweryLong is outside of range
+	 * @throws \TypeError if $newBreweryLong is not a string
 	 **/
 	public function setBreweryLong(float $newBreweryLong): void {
 		if(floatval($newBreweryLong) < -180) {
@@ -341,7 +355,9 @@ class Brewery implements \JsonSerializable {
 	 * mutator method for brewery Phone
 	 *
 	 * @param string $newBreweryPhone
+	 * @throws \InvalidArgumentException
 	 * @throws \RangeException if $newBreweryPhone is > 64 characters
+	 * @throws \TypeError if $newBreweryPhone is not a string
 	 **/
 	public function setBreweryPhone(string $newBreweryPhone): void {
 
@@ -389,6 +405,7 @@ class Brewery implements \JsonSerializable {
 		if(strlen($newBreweryUrl) > 2083) {
 			throw(new \RangeException("Brewery URL is too long"));
 		}
+
 		// store breweryUrl
 		$this->breweryUrl = $newBreweryUrl;
 	}
@@ -424,7 +441,8 @@ class Brewery implements \JsonSerializable {
 
 	/**
 	 * update this Brewery in mySQL
-	 * @param \PDO $pdo
+	 *
+	 * @param \PDO $pdo PDO connection object
 	 */
 	public function update(\PDO $pdo): void {
 
@@ -451,7 +469,7 @@ class Brewery implements \JsonSerializable {
 	/**
 	 * deletes this brewery from mySQL
 	 *
-	 * @param \PDO $pdo
+	 * @param \PDO $pdo PDO connection object
 	 */
 	public function delete(\PDO $pdo): void {
 
@@ -467,9 +485,11 @@ class Brewery implements \JsonSerializable {
 	/**
 	 * gets brewery by id
 	 *
-	 * @param \PDO $pdo
-	 * @param Uuid $breweryId
-	 * @return Brewery|null
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid $breweryId brewery id to search for
+	 * @return Brewery|null Brewery found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @return $brewery
 	 */
 	public static function getBreweryByBreweryId(\PDO $pdo, $breweryId): ?Brewery {
 
@@ -504,9 +524,9 @@ class Brewery implements \JsonSerializable {
 	/*
 	 * gets all breweries
 	 *
-	 * @param \PDO $pdo
+	 * @param \PDO $pdo PDO connection object
 	 * @return \SplFixedArray SplFixedArray breweries found
-	 * @throws \PDOException
+	 * @throws \PDOException when mySQL related errors occur
 	 */
 	public static function getAllBreweries(\PDO $pdo) : \SplFixedArray {
 		$query = "SELECT breweryId, breweryAddress, breweryAvatarUrl, breweryDescription, breweryEmail, breweryName, breweryLat, breweryLong, breweryPhone, breweryUrl FROM brewery";
@@ -532,7 +552,7 @@ class Brewery implements \JsonSerializable {
 	/**
 	 *gets Breweries by brewery Name
 	 *
-	 * @param \PDO $pdo
+	 * @param \PDO $pdo PDO connection object
 	 * @param $breweryName
 	 * @return Brewery|null
 	 */
