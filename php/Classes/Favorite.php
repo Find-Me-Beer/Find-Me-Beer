@@ -55,7 +55,7 @@ class Favorite implements \JsonSerializable {
 	 *
 	 * @return string value of favoriteBeerId
 	 **/
-	public function getFavoriteBeerId() : uuid {
+	public function getFavoriteBeerId() : Uuid {
 		return($this->favoriteBeerId);
 	}
 
@@ -158,15 +158,12 @@ class Favorite implements \JsonSerializable {
 		// sanitize the favoriteBeerId and favoriteUserId before searching
 		try {
 			$favoriteBeerId = self::validateUuid($favoriteBeerId);
-		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
-		}
-
-		try {
 			$favoriteUserId = self::validateUuid($favoriteUserId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
+
+
 
 		// create query template
 		$query = "SELECT favoriteBeerId, favoriteUserId FROM favorite WHERE favoriteBeerId = :favoriteBeerId AND favoriteUserId = :favoriteUserId";

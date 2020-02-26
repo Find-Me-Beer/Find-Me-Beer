@@ -57,6 +57,7 @@ class Beer implements \JsonSerializable {
 	 * @param String $newBeerName name of this beer
 	 * @param String $newBeerType type of this beer
 	 */
+	//TODO:Type Hints for attributes, pk/ fk alphabetical (change worth making)
 	public function __construct($newBeerId, $newBeerAbv, $newBeerBreweryId, $newBeerDescription, $newBeerName, $newBeerType) {
 		try {
 			$this->setBeerId($newBeerId);
@@ -423,7 +424,7 @@ class Beer implements \JsonSerializable {
 				throw(new \PDOException("Beer type is empty of invalid"));
 			}
 			// escape mySQL wild cards
-			$beerType = str_replace("_", "\\_", str_replace("%", "\\%", $beerType));
+//			$beerType = str_replace("_", "\\_", str_replace("%", "\\%", $beerType)); commenting out.
 
 			//create query
 			$query = "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerType = :beerType";
