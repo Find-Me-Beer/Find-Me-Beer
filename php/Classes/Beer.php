@@ -22,15 +22,15 @@ class Beer implements \JsonSerializable {
 	 */
 	private $beerId;
 	/**
-	 * abv for this beer
-	 * @var float $beerAbv
-	 */
-	private $beerAbv;
-	/**
 	 * brewery id for this beer; this is the foreign key
 	 * @var Uuid $beerBreweryId
 	 */
 	private $beerBreweryId;
+	/**
+	 * abv for this beer
+	 * @var float $beerAbv
+	 */
+	private $beerAbv;
 	/**
 	 * description for the beer
 	 * @var String $beerDescription
@@ -51,13 +51,13 @@ class Beer implements \JsonSerializable {
 	 * constructor method for this beer
 	 *
 	 * @param String|Uuid $newBeerId id of this beer
+	 * @param String|Uuid $newBeerBreweryId id of the brewery that made the beer
 	 * @param String|float $newBeerAbv abv of this beer
-	 * @param String|Uuid $newBeerBreweryId
 	 * @param String $newBeerDescription description of this beer
 	 * @param String $newBeerName name of this beer
 	 * @param String $newBeerType type of this beer
 	 */
-	public function __construct($newBeerId, $newBeerAbv, $newBeerBreweryId, $newBeerDescription, $newBeerName, $newBeerType) {
+	public function __construct(Uuid $newBeerId, Uuid $newBeerBreweryId, float $newBeerAbv, string $newBeerDescription, string $newBeerName, string $newBeerType) {
 		try {
 			$this->setBeerId($newBeerId);
 			$this->setBeerAbv($newBeerAbv);
@@ -98,31 +98,6 @@ class Beer implements \JsonSerializable {
 	}
 
 	/**
-	 * accessor method for beer abv
-	 * @return float abv for this beer
-	 */
-	public function getBeerAbv(): float {
-		return ($this->beerAbv);
-	}
-
-	/**
-	 * mutator method for beer abv
-	 *
-	 * @param float $newBeerAbv new abv for beer
-	 * @throws \RangeException if abv is out of appropriate range
-	 */
-	public function setBeerAbv(float $newBeerAbv): void {
-		//Verify the abv is between 0 - 100% ABV
-		if($newBeerAbv < 0 || $newBeerAbv > 100) {
-			throw (new\RangeException("beer abv is out of appropriate range"));
-		}
-
-		//store new beer abv
-		$this->beerAbv = $newBeerAbv;
-
-	}
-
-	/**
 	 * accessor method for beer brewery id
 	 * @return Uuid value of beer brewery id
 	 */
@@ -147,6 +122,31 @@ class Beer implements \JsonSerializable {
 
 		//Store new beer brewery id
 		$this->beerBreweryId = $uuid;
+	}
+
+	/**
+	 * accessor method for beer abv
+	 * @return float abv for this beer
+	 */
+	public function getBeerAbv(): float {
+		return ($this->beerAbv);
+	}
+
+	/**
+	 * mutator method for beer abv
+	 *
+	 * @param float $newBeerAbv new abv for beer
+	 * @throws \RangeException if abv is out of appropriate range
+	 */
+	public function setBeerAbv(float $newBeerAbv): void {
+		//Verify the abv is between 0 - 100% ABV
+		if($newBeerAbv < 0 || $newBeerAbv > 100) {
+			throw (new\RangeException("beer abv is out of appropriate range"));
+		}
+
+		//store new beer abv
+		$this->beerAbv = $newBeerAbv;
+
 	}
 
 	/**
@@ -254,11 +254,11 @@ class Beer implements \JsonSerializable {
 		public function insert(\PDO $pdo) : void {
 
 			//Create query
-			$query = "INSERT INTO beer(beerId, beerAbv, beerBreweryId, beerDescription,  beerName, beerType) VALUES(:beerId, :beerAbv, :beerBreweryId, :beerDescription, :beerName, :beerType)";
+			$query = "INSERT INTO beer(beerId, beerBreweryId, beerAbv, beerDescription,  beerName, beerType) VALUES(:beerId, :beerBreweryId, :beerAbv, :beerDescription, :beerName, :beerType)";
 			$statement = $pdo->prepare($query);
 
 			//bind variables to placeholders
-			$parameters = ["beerId" => $this->beerId->getBytes(), "beerAbv" => $this->beerAbv, "beerBreweryId" => $this->beerBreweryId->getBytes(), "beerDescription" => $this->beerDescription, "beerName" => $this->beerName, "beerType" => $this->beerType];
+			$parameters = ["beerId" => $this->beerId->getBytes(), "beerBreweryId" => $this->beerAbv, "beerAbv" => $this->beerBreweryId->getBytes(), "beerDescription" => $this->beerDescription, "beerName" => $this->beerName, "beerType" => $this->beerType];
 			$statement->execute($parameters);
 		}
 
@@ -267,7 +267,7 @@ class Beer implements \JsonSerializable {
 		 *
 		 * @param \PDO $pdo PDO Connection Object
 		 * @throws \PDOException when mySQL error occurs
-		 * @throws /\TypeError if $pdo is not a PDO Connection Object
+		 * @throws \TypeError if $pdo is not a PDO Connection Object
 		 */
 		public function delete(\PDO $pdo) :void {
 			//Create Query
@@ -287,11 +287,11 @@ class Beer implements \JsonSerializable {
 		 */
 		public function update(\PDO $pdo) :void {
 			//Query
-			$query = "UPDATE beer SET beerId = :beerId, beerAbv = :beerAbv, beerBreweryId = :beerBreweryId, beerDescription = :beerDescription, beerName = :beerName, beerType = :beerType";
+			$query = "UPDATE beer SET beerId = :beerId, beerBreweryId = :beerBreweryId, beerAbv = :beerAbv, beerDescription = :beerDescription, beerName = :beerName, beerType = :beerType";
 			$statement = $pdo->prepare($query);
 
 			//Bind member variables to placeholders
-			$parameters = ["beerId" => $this->beerId->getBytes(), "beerAbv" => $this->beerAbv, "beerBreweryId" => $this->beerBreweryId->getBytes(), "beerDescription" => $this->beerDescription, "beerName" => $this->beerName, "beerType" => $this->beerType];
+			$parameters = ["beerId" => $this->beerId->getBytes(), "beerBreweryId" => $this->beerAbv, "beerAbv" => $this->beerBreweryId->getBytes(), "beerDescription" => $this->beerDescription, "beerName" => $this->beerName, "beerType" => $this->beerType];
 			$statement->execute($parameters);
 		}
 
@@ -305,7 +305,7 @@ class Beer implements \JsonSerializable {
 		 */
 		public static function getAllBeer(\PDO $pdo) :\SplFixedArray {
 			//Create Query
-			$query = "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer";
+			$query = "SELECT beerId, beerBreweryId, beerAbv, beerDescription, beerName, beerType FROM beer";
 			$statement = $pdo->prepare($query);
 			$statement->execute();
 
@@ -314,7 +314,7 @@ class Beer implements \JsonSerializable {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			while(($row = $statement->fetch()) !==false) {
 				try {
-					$beer = new Beer($row["beerId"], $row["beerAbv"], $row["beerBreweryId"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
+					$beer = new Beer($row["beerId"], $row["beerBreweryId"], $row["beerAbv"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
 					$beerArray[$beerArray->key()] = $beer;
 					$beerArray->next();
 				} catch(\Exception $exception) {
@@ -343,7 +343,7 @@ class Beer implements \JsonSerializable {
 			}
 
 			//Creates Query
-			$query = "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerId = :beerId";
+			$query = "SELECT beerId, beerBreweryId, beerAbv, beerDescription, beerName, beerType FROM beer WHERE beerId = :beerId";
 			$statement = $pdo->prepare($query);
 
 			//bind beer id to placeholder
@@ -356,7 +356,7 @@ class Beer implements \JsonSerializable {
 				$statement->setFetchMode(\PDO::FETCH_ASSOC);
 				$row = $statement->fetch();
 				if($row !== false) {
-					$beer = new Beer($row["beerId"], $row["beerAbv"], $row["beerBreweryId"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
+					$beer = new Beer($row["beerId"], $row["beerBreweryId"], $row["beerAbv"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
 				}
 			} catch(\Exception $exception) {
 				//if the row couldn't be converted, rethrow it
@@ -383,7 +383,7 @@ class Beer implements \JsonSerializable {
 			}
 
 			//Create query
-			$query = "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerBreweryId = :beerBreweryId";
+			$query = "SELECT beerId, beerBreweryId, beerAbv, beerDescription, beerName, beerType FROM beer WHERE beerBreweryId = :beerBreweryId";
 			$statement = $pdo->prepare($query);
 
 			//Bind beer brewery id to placeholder
@@ -395,7 +395,7 @@ class Beer implements \JsonSerializable {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			while(($row = $statement->fetch()) !== false) {
 				try {
-					$beer = new Beer($row["beerId"], $row["beerAbv"], $row["beerBreweryId"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
+					$beer = new Beer($row["beerId"], $row["beerBreweryId"], $row["beerAbv"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
 					$beerArray[$beerArray->key()] = $beer;
 					$beerArray->next();
 				} catch(\Exception $exception) {
@@ -422,11 +422,9 @@ class Beer implements \JsonSerializable {
 			if(empty($beerType) === true) {
 				throw(new \PDOException("Beer type is empty of invalid"));
 			}
-			// escape mySQL wild cards
-			$beerType = str_replace("_", "\\_", str_replace("%", "\\%", $beerType));
 
 			//create query
-			$query = "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerType = :beerType";
+			$query = "SELECT beerId, beerBreweryId, beerAbv, beerDescription, beerName, beerType FROM beer WHERE beerType = :beerType";
 			$statement = $pdo->prepare($query);
 
 			//bind beer type to placeholder
@@ -438,7 +436,7 @@ class Beer implements \JsonSerializable {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			while(($row = $statement->fetch()) !== false) {
 				try {
-					$beer = new Beer($row["beerId"], $row["beerAbv"], $row["beerBreweryId"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
+					$beer = new Beer($row["beerId"], $row["beerBreweryId"], $row["beerAbv"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
 					$beerArray[$beerArray->key()] = $beer;
 					$beerArray->next();
 				} catch(\Exception $exception) {
@@ -466,8 +464,7 @@ class Beer implements \JsonSerializable {
 			}
 
 			//Create query
-			$query = "SELECT beer.beerId, beer.beerAbv, beer.beerBreweryId, beer.beerDescription, beer.beerName, beer.beerType, beerTag.beerTagBeerId, beerTag.beerTagTagId FROM beer INNER JOIN beerTag ON beer.beerId = beerTag.beerTagBeerId WHERE beerTag.beerTagTagId = :tagId";
-			//Or "SELECT beerId, beerAbv, beerBreweryId, beerDescription, beerName, beerType FROM beer WHERE beerId = beerTag.beerId AND beerTag.tagId = :beerTag.tagId";
+			$query = "SELECT beer.beerId, beer.beerBreweryId, beer.beerAbv, beer.beerDescription, beer.beerName, beer.beerType, beerTag.beerTagBeerId, beerTag.beerTagTagId FROM beer INNER JOIN beerTag ON beer.beerId = beerTag.beerTagBeerId WHERE beerTag.beerTagTagId = :tagId";
 			$statement = $pdo->prepare($query);
 
 			//Bind tag id to placeholder
@@ -479,7 +476,7 @@ class Beer implements \JsonSerializable {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			while(($row = $statement->fetch()) !== false) {
 				try {
-					$beer = new Beer($row["beerId"], $row["beerAbv"], $row["beerBreweryId"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
+					$beer = new Beer($row["beerId"], $row["beerBreweryId"], $row["beerAbv"], $row["beerDescription"], $row["beerName"], $row["beerType"]);
 					$beerArray[$beerArray->key()] = $beer;
 					$beerArray->next();
 				} catch(\Exception $exception) {
