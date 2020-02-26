@@ -57,7 +57,9 @@ class Beer implements \JsonSerializable {
 	 * @param String $newBeerName name of this beer
 	 * @param String $newBeerType type of this beer
 	 */
+
 	public function __construct(Uuid $newBeerId, Uuid $newBeerBreweryId, float $newBeerAbv, string $newBeerDescription, string $newBeerName, string $newBeerType) {
+
 		try {
 			$this->setBeerId($newBeerId);
 			$this->setBeerAbv($newBeerAbv);

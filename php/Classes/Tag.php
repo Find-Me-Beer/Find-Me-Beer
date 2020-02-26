@@ -11,14 +11,6 @@ class Tag implements \JsonSerializable {
 	use ValidateDate;
 	use ValidateUuid;
 
-//CREATE TABLE tag (
-//tagId Binary(16),
-//tagContent Varchar(32),
-//PRIMARY KEY (tagId)
-//);
-//getAllTags
-//getTagsByTagId
-
 
 	/**
 	 * id for this Tag; this is the primary key

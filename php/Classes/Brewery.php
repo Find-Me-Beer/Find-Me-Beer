@@ -165,8 +165,9 @@ class Brewery implements \JsonSerializable {
 	public function setBreweryAvatarUrl($newBreweryAvatarUrl): void {
 
 		// this mutator needs to be finished - trimmed and sanitized like the others. check length too.
+		// TODO: write a check length if block
 		$newBreweryAvatarUrl = trim($newBreweryAvatarUrl);
-		$newBreweryAvatarUrl = filter_var($newBreweryAvatarUrl, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		$newBreweryAvatarUrl = filter_var($newBreweryAvatarUrl, FILTER_SANITIZE_URL);
 		$this->breweryAvatarUrl = $newBreweryAvatarUrl;
 	}
 
@@ -240,7 +241,7 @@ class Brewery implements \JsonSerializable {
 	/**
 	 * accessor method for brewery name
 	 *
-	 * @return string
+	 * @return string value of Brewery Name
 	 */
 	public function getBreweryName(): string {
 		return ($this->breweryName);
@@ -386,7 +387,7 @@ class Brewery implements \JsonSerializable {
 		// we can use php FILTER_SANITIZE_URL
 		$newBreweryUrl = FILTER_VAR($newBreweryUrl, FILTER_SANITIZE_URL, FILTER_FLAG_NO_ENCODE_QUOTES);
 		//verify size of string is less than 2083 characters
-		if(strlen($newBreweryUrl) > 2083) {
+		if(strlen($newBreweryUrl) > 283) {
 			throw(new \RangeException("Brewery URL is too long"));
 		}
 		// store breweryUrl
