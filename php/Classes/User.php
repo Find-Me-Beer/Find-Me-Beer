@@ -10,19 +10,7 @@ use Ramsey\Uuid\Uuid;
 class User implements \JsonSerializable {
 	use ValidateDate;
 	use ValidateUuid;
-	/** User Class to input/store user data */
-	//userId Binary(16) NOT NULL,
-	//userAuthenticationToken Varchar(255) NOT NULL,
-	//userAvatarUrl Varchar(128),
-	//userDOB Date NOT NULL,
-	//userEmail Varchar(128) NOT NULL,
-	//userFirstName Varchar(64) NOT NULL,
-	//userHash Varchar(96) NOT NULL,
-	//userLastName Varchar(64) NOT NULL,
-	//userUsername Varchar(64) NOT NULL,
-	//UNIQUE (userEmail),
-	//UNIQUE (userUsername),
-	//PRIMARY KEY (userId)
+
 
 	/**
 	 * id for User, Primary Key
@@ -102,8 +90,8 @@ class User implements \JsonSerializable {
 	 * @throws \Exception if some other exception occurs
 	 * @throws \TypeError if data types violate type hints
 	 **/
-
-		public function __construct($newUserId, $newUserActivationToken,$newUserAvatarUrl,$newUserDOB,$newUserEmail,$newUserFirstName,$newUserHash, $newUserLastName,$newUserUsername) {
+//TODO: Type hint
+		public function __construct( $newUserId, $newUserActivationToken,string $newUserAvatarUrl, $newUserDOB,string $newUserEmail,string $newUserFirstName,$newUserHash, string $newUserLastName,string $newUserUsername) {
 			try{
 					$this->setUserId($newUserId);
 					$this->setUserActivationToken($newUserActivationToken);
@@ -219,10 +207,12 @@ class User implements \JsonSerializable {
 	public function getUserDOB(){
 		return $this->userDOB;
 	}
+
 	/**
 	 * mutator method for userDOB
-	 * @param  \DateTime $newUserDOB user DateOfBirth date as a DateTime object
+	 * @param \DateTime $newUserDOB user DateOfBirth date as a DateTime object
 	 * @throws \OutOfRangeException if $newUserDOB is < 21
+	 * @throws \Exception if generic exception occurs
 	 */
 	public function setUserDOB($newUserDOB){
 		$newUserDOB = self::validateDate($newUserDOB);
@@ -370,7 +360,7 @@ class User implements \JsonSerializable {
 
 	/**
 	 * mutator method for profile username
-	 * @param string $newProfileUsername
+	 * @param string $newUserUsername
 	 * @throws \InvalidArgumentException if $newProfileUsername is not a string or insecure
 	 * @throws \RangeException if $newProfileUsername is > 48 characters
 	 * @throws \TypeError if $newProfileUsername is not a string
@@ -392,12 +382,6 @@ class User implements \JsonSerializable {
 		$this->userUsername = $newUserUsername;
 	}
 
-	public function jsonSerialize() : array{
-		$fields = get_object_vars($this);
-		$fields["userId"] = $this->userId->toString();
-		return($fields);
-	}
-	// TODO: Implement jsonSerialize() method.}
 	/**
 	 * inserts this User into mySQL
 	 *
@@ -483,57 +467,14 @@ class User implements \JsonSerializable {
 			}
 			return ($user);
 	}
-	/**
-	 * gets the user by user id and returns an array
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @param Uuid|string $userId user id to search by
-	 * @return \SplFixedArray SplFixedArray of User Id's found
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError when variables are not the correct data type
-	 **/
-//
-//	public static function getUsersByUserId(\PDO $pdo, $userId): \SplFixedArray {
-//
-//			try {
-//					$userId = self::validateUuid($userId);
-//			} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
-//				throw(new \PDOException($exception->getMessage(), 0, $exception));
-//			}
-//		// create query template
-//		$query = "SELECT userId, userActivationToken, userAvatarUrl, userDOB, userEmail, userFirstName, userHash, userLastName, userUsername FROM user WHERE userid= :userId";
-//		$statement =$pdo->prepare($query);
-//
-//		//bind the user id to the place holder in the template
-//		$parameters = ["userId" => $userId ->getBytes()];
-//		$statement->execute($parameters);
-//
-//		// build an array of Users
-//		$users = new \SplFixedArray($statement->rowCount());
-//		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-//		while(($row = $statement->fetch()) !==false) {
-//				try{
-//						$users = new User($row["userId"], $row["userActivationToken"], $row["userAvatarUrl"], $row["userDOB"], $row["userEmail"], $row["userFirstName"], $row["userHash"],$row["userLastName"], $row["userUsername"]);
-//						$users[$users->key()] = $users;
-//						$users->next();
-//					}  catch(\Exception $exception) {
-//					// if the row couldn't be converted, rethrow it
-//					throw(new \PDOException($exception->getMessage(), 0, $exception));
-//				}
-//		}
-//		return($users);
-//	}
-
 
 	/**
 	 * Get user by user activation token
 	 *
-	 * @param string $userActivationToken
 	 * @param \PDO object $pdo
+	 * @param string $userActivationToken
 	 * @return User|null User or null if not found
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError when variables are not the correct data type
-	 **/
+	 */
 	public static function getUserByUserActivationToken(\PDO $pdo, string $userActivationToken) : ?User {
 		//verifies token format and hex
 		$userActivationToken = trim($userActivationToken);
@@ -605,5 +546,12 @@ class User implements \JsonSerializable {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
 		return ($user);
+	}
+	public function jsonSerialize() : array{
+		$fields = get_object_vars($this);
+		$fields["userId"] = $this->userId->toString();
+		unset($fields["userHash"]);
+		unset($fields["userActivationToken"]);
+		return($fields);
 	}
 }

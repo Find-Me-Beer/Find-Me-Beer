@@ -92,8 +92,8 @@ class FavoriteTest extends FindMeBeerTest {
 		//create and insert the beer
 		$beerId = generateUuidV4();
 		$this->beer = new Beer($beerId,
-			"8.3",
 			$this->brewery->getBreweryId(),
+			8.3,
 		"Delicious ale that beer snobs don't like",
 		"Double White",
 		"Ale");
