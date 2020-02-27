@@ -70,9 +70,9 @@ class Brewery implements \JsonSerializable {
 	 * @param $newBreweryName
 	 * @param $newBreweryPhone
 	 * @param $newBreweryUrl
-	 ** @throws \InvalidArgumentException if data types are not valid
+	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
-	 *  @throws \Exception if some other exception occurs
+	 * @throws \Exception if some other exception occurs
 	 * @throws \TypeError if data types violate type hints
 	 **/
 	public function __construct($newBreweryId, string $newBreweryAddress, string $newBreweryAvatarUrl, string $newBreweryDescription, string $newBreweryEmail, string $newBreweryName, float $newBreweryLat, float $newBreweryLong, string $newBreweryPhone, string $newBreweryUrl) {
