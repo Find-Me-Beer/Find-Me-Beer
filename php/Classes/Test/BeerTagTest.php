@@ -72,7 +72,7 @@ class BeerTagTest extends FindMeBeerTest {
 		$this->tag = new Tag($tagId, "beer tag content goes here");
 		$this->tag->insert($this->getPDO());
 
-		$this->beer = new Beer($beerId, 5.25, $this->brewery->getbreweryId(), "hoppy", "Duff", "Lager");
+		$this->beer = new Beer($beerId, $this->brewery->getbreweryId(), 5.25, "hoppy", "Duff", "Lager");
 		$this->beer->insert($this->getPDO());
 	}
 
