@@ -50,20 +50,20 @@ class Beer implements \JsonSerializable {
 	/**
 	 * constructor method for this beer
 	 *
-	 * @param String|Uuid $newBeerId id of this beer
-	 * @param String|Uuid $newBeerBreweryId id of the brewery that made the beer
-	 * @param String|float $newBeerAbv abv of this beer
+	 * @param Uuid|string $newBeerId id of this beer
+	 * @param Uuid|string $newBeerBreweryId id of the brewery that made the beer
+	 * @param float|string $newBeerAbv abv of this beer
 	 * @param String $newBeerDescription description of this beer
 	 * @param String $newBeerName name of this beer
 	 * @param String $newBeerType type of this beer
 	 */
 
-	public function __construct(Uuid $newBeerId, Uuid $newBeerBreweryId, float $newBeerAbv, string $newBeerDescription, string $newBeerName, string $newBeerType) {
+	public function __construct($newBeerId, $newBeerBreweryId, float $newBeerAbv, string $newBeerDescription, string $newBeerName, string $newBeerType) {
 
 		try {
 			$this->setBeerId($newBeerId);
-			$this->setBeerAbv($newBeerAbv);
 			$this->setBeerBreweryId($newBeerBreweryId);
+			$this->setBeerAbv($newBeerAbv);
 			$this->setBeerDescription($newBeerDescription);
 			$this->setBeerName($newBeerName);
 			$this->setBeerType($newBeerType);
@@ -84,7 +84,7 @@ class Beer implements \JsonSerializable {
 	/**
 	 * mutator method for beer id
 	 *
-	 * @param String | Uuid $newBeerId new id of this beer
+	 * @param Uuid|string $newBeerId new id of this beer
 	 * @throws \RangeException if $newBeerId is not positive
 	 * @throws \TypeError if $newBeerId is not an integer
 	 */
@@ -260,7 +260,7 @@ class Beer implements \JsonSerializable {
 			$statement = $pdo->prepare($query);
 
 			//bind variables to placeholders
-			$parameters = ["beerId" => $this->beerId->getBytes(), "beerBreweryId" => $this->beerAbv, "beerAbv" => $this->beerBreweryId->getBytes(), "beerDescription" => $this->beerDescription, "beerName" => $this->beerName, "beerType" => $this->beerType];
+			$parameters = ["beerId" => $this->beerId->getBytes(), "beerBreweryId" => $this->beerBreweryId->getBytes(), "beerAbv" => $this->beerAbv, "beerDescription" => $this->beerDescription, "beerName" => $this->beerName, "beerType" => $this->beerType];
 			$statement->execute($parameters);
 		}
 
@@ -293,7 +293,7 @@ class Beer implements \JsonSerializable {
 			$statement = $pdo->prepare($query);
 
 			//Bind member variables to placeholders
-			$parameters = ["beerId" => $this->beerId->getBytes(), "beerBreweryId" => $this->beerAbv, "beerAbv" => $this->beerBreweryId->getBytes(), "beerDescription" => $this->beerDescription, "beerName" => $this->beerName, "beerType" => $this->beerType];
+			$parameters = ["beerId" => $this->beerId->getBytes(), "beerBreweryId" => $this->beerBreweryId->getBytes(), "beerAbv" => $this->beerAbv, "beerDescription" => $this->beerDescription, "beerName" => $this->beerName, "beerType" => $this->beerType];
 			$statement->execute($parameters);
 		}
 
@@ -331,7 +331,7 @@ class Beer implements \JsonSerializable {
 		 * gets beer by its beer id
 		 *
 		 * @param \PDO $pdo PDO connection object
-		 * @param Uuid|string $beerId beer id to search for
+		 * @param string|Uuid $beerId beer id to search for
 		 * @return Beer|null Beer found or null if not found
 		 * @throws \PDOException when mySQL related errors occur
 		 * @throws \TypeError when a variable are not the correct data type

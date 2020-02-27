@@ -84,7 +84,8 @@ class BeerTest extends FindMeBeerTest {
 
 		//create and insert brewery that created the beer
 		$breweryId = generateUuidV4();
-		$this->brewery = new Brewery($breweryId,
+		$this->brewery = new Brewery(
+			$breweryId,
 			"111 Marble Ave NW, Albuquerque, NM 87102",
 			"https://gravatar.com/avatar/07e75bbcdc08eca3d8db273bc7d3f7f8?s=400&d=robohash&r=x",
 			"Founded in 2008 in the heart of downtown Albuquerque, Marble Brewery is devoted to brewing
@@ -111,13 +112,14 @@ class BeerTest extends FindMeBeerTest {
 	/**
 	 * test inserting valid beer and verify the mySQL data matches
 	 */
-	public function testInsertValidBeer() {
+	public function testInsertValidBeer() : void {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("beer");
 
 		//create a new Beer and insert it into mySQL
 		$beerId = generateUuidV4();
-		$beer = new Beer($beerId,
+		$beer = new Beer(
+			$beerId,
 			$this->brewery->getbreweryId(),
 			$this->VALID_BEERABV,
 			$this->VALID_BEERDESCRIPTION,
@@ -145,7 +147,8 @@ class BeerTest extends FindMeBeerTest {
 
 		// create a new Beer and insert to into mySQL
 		$beerId = generateUuidV4();
-		$beer = new Beer($beerId,
+		$beer = new Beer(
+			$beerId,
 			$this->brewery->getbreweryId(),
 			$this->VALID_BEERABV,
 			$this->VALID_BEERDESCRIPTION,
@@ -177,7 +180,8 @@ class BeerTest extends FindMeBeerTest {
 
 		//create a new Beer and insert it into mySQL
 		$beerId = generateUuidV4();
-		$beer = new Beer($beerId,
+		$beer = new Beer(
+			$beerId,
 			$this->brewery->getBreweryId(),
 			$this->VALID_BEERABV,
 			$this->VALID_BEERDESCRIPTION,
@@ -204,7 +208,8 @@ class BeerTest extends FindMeBeerTest {
 
 		// create a new beer and insert it into mySQL
 		$beerId = generateUuidV4();
-		$beer = new Beer($beerId,
+		$beer = new Beer(
+			$beerId,
 			$this->brewery->getbreweryId(),
 			$this->VALID_BEERABV,
 			$this->VALID_BEERDESCRIPTION,
@@ -237,7 +242,8 @@ class BeerTest extends FindMeBeerTest {
 
 		// create a new beer and insert it into mySQL
 		$beerId = generateUuidV4();
-		$beer = new Beer($beerId,
+		$beer = new Beer(
+			$beerId,
 			$this->brewery->getbreweryId(),
 			$this->VALID_BEERABV,
 			$this->VALID_BEERDESCRIPTION,
@@ -265,7 +271,8 @@ class BeerTest extends FindMeBeerTest {
 
 		// create a new beer and insert it into mySQL
 		$beerId = generateUuidV4();
-		$beer = new Beer($beerId,
+		$beer = new Beer(
+			$beerId,
 			$this->brewery->getbreweryId(),
 			$this->VALID_BEERABV,
 			$this->VALID_BEERDESCRIPTION,
@@ -298,7 +305,8 @@ class BeerTest extends FindMeBeerTest {
 
 		// create a new beer and insert it into mySQL
 		$beerId = generateUuidV4();
-		$beer = new Beer($beerId,
+		$beer = new Beer(
+			$beerId,
 			$this->brewery->getbreweryId(),
 			$this->VALID_BEERABV,
 			$this->VALID_BEERDESCRIPTION,
@@ -332,7 +340,8 @@ class BeerTest extends FindMeBeerTest {
 
 		// create a new beer and insert it into mySQL
 		$beerId = generateUuidV4();
-		$beer = new Beer($beerId,
+		$beer = new Beer(
+			$beerId,
 			$this->brewery->getbreweryId(),
 			$this->VALID_BEERABV,
 			$this->VALID_BEERDESCRIPTION,
