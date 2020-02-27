@@ -169,14 +169,17 @@ class Brewery implements \JsonSerializable {
 	/**
 	 * mutator method for breweryAvatarUrl
 	 *
-	 * @param $newBreweryAvatarUrl
+	 * @param string $newBreweryAvatarUrl
+	 * @throws \RangeException
+	 *
 	 */
 	public function setBreweryAvatarUrl($newBreweryAvatarUrl): void {
 
-		// this mutator needs to be finished - trimmed and sanitized like the others. check length too.
-		// TODO: write a check length if block
 		$newBreweryAvatarUrl = trim($newBreweryAvatarUrl);
 		$newBreweryAvatarUrl = filter_var($newBreweryAvatarUrl, FILTER_SANITIZE_URL);
+		if(strlen($newBreweryAvatarUrl) > 128) {
+			throw(new\RangeException("Brewery Avatar is invalid"));
+		}
 		$this->breweryAvatarUrl = $newBreweryAvatarUrl;
 	}
 
@@ -644,5 +647,4 @@ class Brewery implements \JsonSerializable {
 		$fields["breweryId"] = $this->breweryId->toString();
 		return ($fields);
 	}
-
 }
