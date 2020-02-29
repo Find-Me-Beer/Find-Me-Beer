@@ -39,6 +39,8 @@ try {
 	$beerName = filter_input(INPUT_GET, "beerName", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$beerType = filter_input(INPUT_GET, "beerType", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
+	$tagId = filter_input(INPUT_GET, "tagId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+
 	// make sure the id provided is valid
 	if(($method === "DELETE" || $method === "PUT") && (empty($id) === true)) {
 		throw(new InvalidArgumentException("id cannot be empty or negative", 402));
@@ -49,16 +51,33 @@ try {
 		//set XSRF cookie
 		setXsrfCookie();
 
-		//get a specific tweet or all tweets and update reply
+		//get a specific beer or all beers and update reply
 		if(empty($id) === false) {
 			$reply->data = Beer::getBeerByBeerId($pdo, $id);
-		} else if (empty($beerId) === false) {
 
+		} else if (empty($beerBreweryId) === false) {
+			$reply->data = Beer::getBeerByBeerBreweryId($pdo, $beerBreweryId)->toArray();
+
+		} else if (empty($beerType) === false) {
+			$reply->data = Beer::getBeerByBeerType($pdo, $beerType)->toArray();
+
+		} else if (empty($tagId) === false) {
+			$reply->data = Beer::getBeerByTagId($pdo, $tagId)->toArray();
+
+		} else {
+			$reply->data = Beer::getAllBeer($pdo)->toArray();
 		}
 
+	} else {
+		throw (new InvalidArgumentException("Invalid HTTP method request", 418));
 	}
 
-
-
+	// update the $reply->status $reply->message
+	} catch(\Exception | \TypeError $exception) {
+	$reply->status = $exception->getCode();
+	$reply->message = $exception->getMessage();
 }
 
+// encode and return reply to front end caller
+header("Content-type: application/json");
+echo json_encode($reply);
