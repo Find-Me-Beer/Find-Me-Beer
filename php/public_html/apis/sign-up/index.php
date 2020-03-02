@@ -44,7 +44,7 @@ try {
 		}
 
 		//the dob is a required field
-		if(empty($requestObject->UserDOB) === true) {
+		if(empty($requestObject->userDOB) === true) {
 			throw(new \InvalidArgumentException ("Must input valid date of birth", 405));
 		}
 
