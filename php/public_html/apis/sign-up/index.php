@@ -94,7 +94,7 @@ try {
 			generateUuidV4(),
 			$userActivationToken,
 			$requestObject->userAvatarUrl,
-			$requestObject->UserDOB,
+			$requestObject->userDOB,
 			$requestObject->userEmail,
 			$requestObject->userFirstName,
 			$hash,
