@@ -119,10 +119,107 @@ $craftroom = new Brewery(
 	"(505) 717-1985",
 	"https://www.thecraftroomnm.com/");
 
-//insert Marble Brewery into database
-$marble->insert($pdo);
-echo "Marble Brewery";
-var_dump($marble->getBreweryId()->toString());
+//insert The Craftroom into database
+$craftroom->insert($pdo);
+echo "The Craftroom";
+var_dump($craftroom->getBreweryId()->toString());
+
+//create Craftroom Double Belgium
+$craftroomBelgium = new Beer(
+	generateUuidV4(),
+	$craftroom->getBreweryId(),
+	7.5,
+	"Bright and light, but bold and dry.",
+	"Double Belgium",
+	"Belgian Witbier");
+
+//Insert Craftroom Double Belgium into database
+$craftroomBelgium->insert($pdo);
+echo "The Craftroom Double Belgium";
+var_dump($craftroomBelgium->getBeerId()->toString());
+
+//create Craftroom Honey IPA
+$craftroomIPA = new Beer(
+	generateUuidV4(),
+	$craftroom->getBreweryId(),
+	6.7,
+	"Mix of caramel, caravienne and vienna malts laden with tropical fruits and doused with a splash of honey.",
+	"Honey IPA",
+	"IPA");
+
+//Insert Craftroom Honey IPA into database
+$craftroomIPA->insert($pdo);
+echo "Craftroom Honey IPA";
+var_dump($craftroomIPA->getBeerId()->toString());
+
+//create Craftroom Red Ale
+$craftroomRedAle = new Beer(
+	generateUuidV4(),
+	$craftroom->getBreweryId(),
+	7.3,
+	"Sweet caramel and toasted malt flavors leading to a bold bitter bite on the tongue.",
+	"Red Ale",
+	"IPA");
+
+//Insert Craftroom Red Ale into database
+$craftroomRedAle->insert($pdo);
+echo "Craftroom Red Ale";
+var_dump($craftroomRedAle->getBeerId()->toString());
+
+//create Craftroom Blueberry Wheat
+$craftroomBlueberryWheat = new Beer(
+	generateUuidV4(),
+	$craftroom->getBreweryId(),
+	5.2,
+	"American-style Amber with medium body, caramel and roasted malt characteristics together with a 
+	light doing of American hops.",
+	"Blueberry Wheat",
+	"American-style Amber");
+
+//Insert Craftroom Blueberry Wheat into database
+$craftroomBlueberryWheat->insert($pdo);
+echo "Craftroom Blueberry Wheat";
+var_dump($craftroomBlueberryWheat->getBeerId()->toString());
+
+//create Craftroom Hefen
+$craftroomHefen = new Beer(
+	generateUuidV4(),
+	$craftroom->getBreweryId(),
+	6.7,
+	"Classic German style hefeweizen with hints of banana.",
+	"Hefen",
+	"Hefen");
+
+//Insert Craftroom Red Ale into database
+$craftroomHefen->insert($pdo);
+echo "Craftroom Hefen";
+var_dump($craftroomHefen->getBeerId()->toString());
+
+//Create Santa Fe Brewing Company
+$craftroom = new Brewery(
+	generateUuidV4(),
+	"35 Fire Place Santa Fe, New Mexico, 87508",
+	"https://bit.ly/2IkcgIj",
+	"Santa Fe Brewing Company is New Mexico's oldest and most award-winning microbrewery. 
+	We brew in Santa Fe, serve in our taprooms in Santa Fe and Albuquerque, and distribute around the southwest. 
+	We're known for our iconic flagships like Santa Fe Gold, State Pen Porter, and Happy Camper IPA, but we always have 
+	something new and exciting on tap or up our sleeves.",
+	"hello@santafebrewing.com",
+	"Santa Fe Brewing Company",
+	35.11296,
+	-106.62869,
+	"(505) 717-1985",
+	"https://www.thecraftroomnm.com/"
+);
+
+//insert The Craftroom into database
+$craftroom->insert($pdo);
+echo "The Craftroom";
+var_dump($craftroom->getBreweryId()->toString());
+
+
+
+
 
 
 
