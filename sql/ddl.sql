@@ -38,7 +38,7 @@ CREATE TABLE brewery (
   breweryLat FLOAT(9,6) NOT NULL,
   breweryLong FLOAT(9,6) NOT NULL,
   breweryPhone Varchar(64),
-  breweryUrl Varchar(2083) NOT NULL,
+  breweryUrl Varchar(283) NOT NULL,
   PRIMARY KEY (breweryId)
 );
 
