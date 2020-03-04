@@ -211,10 +211,21 @@ $santaFe = new Brewery(
 	"(505) 424-3333",
 	"https://santafebrewing.com/");
 
-//insert The Craftroom into database
+//insert Santa Fe Brewing Company into database
 $santaFe->insert($pdo);
 echo "Santa Fe Brewing Company";
 var_dump($craftroom->getBreweryId()->toString());
+
+// Create Santa Fe Pale Ale
+$santaFeIPA = new Beer(
+	generateUuidV4(),
+	$santaFe->getBreweryId(),
+	6.6,
+	"Classic German style hefeweizen with hints of banana.",
+	"Hefen",
+	"Hefen");
+
+
 
 
 
