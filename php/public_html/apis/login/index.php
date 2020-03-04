@@ -43,7 +43,7 @@ try {
 
 		//check to make sure the password and email field is not empty.s
 		if(empty($requestObject->userEmail) === true) {
-			throw(new \InvalidArgumentException("email address not provided.", 401));
+			throw(new \InvalidArgumentException("Email address not provided.", 401));
 		} else {
 			$userEmail = filter_var($requestObject->userEmail, FILTER_SANITIZE_EMAIL);
 		}
@@ -78,7 +78,7 @@ try {
 			"userUsername" => $user->getUserUsername()
 		];
 
-		// create and set th JWT TOKEN
+		// create and set the JWT TOKEN
 		setJwtAndAuthHeader("auth",$authObject);
 
 		$reply->message = "Login was successful.";
