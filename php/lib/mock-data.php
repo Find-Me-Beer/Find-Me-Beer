@@ -216,14 +216,19 @@ $santaFe->insert($pdo);
 echo "Santa Fe Brewing Company";
 var_dump($craftroom->getBreweryId()->toString());
 
-// Create Santa Fe Pale Ale
-$santaFeIPA = new Beer(
+// Create Santa Fe Freestyle Pilsner
+$santaFePilsner = new Beer(
 	generateUuidV4(),
 	$santaFe->getBreweryId(),
 	6.6,
-	"Classic German style hefeweizen with hints of banana.",
-	"Hefen",
-	"Hefen");
+	"For people who like their pilsners crisp, refreshing, and highly ranked.",
+	"Freestyle Pilsner",
+	"German Pilsner");
+
+//Insert Santa Fe Freestyle Pilsner into database
+$santaFePilsner->insert($pdo);
+echo "Santa Fe Brewing Co Freestyle Pilsner";
+var_dump($santaFePilsner->getBeerId()->toString());
 
 
 
