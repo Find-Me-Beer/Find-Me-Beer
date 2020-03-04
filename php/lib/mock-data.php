@@ -196,7 +196,7 @@ echo "Craftroom Hefen";
 var_dump($craftroomHefen->getBeerId()->toString());
 
 //Create Santa Fe Brewing Company
-$craftroom = new Brewery(
+$santaFe = new Brewery(
 	generateUuidV4(),
 	"35 Fire Place Santa Fe, New Mexico, 87508",
 	"https://bit.ly/2IkcgIj",
@@ -206,15 +206,14 @@ $craftroom = new Brewery(
 	something new and exciting on tap or up our sleeves.",
 	"hello@santafebrewing.com",
 	"Santa Fe Brewing Company",
-	35.11296,
-	-106.62869,
-	"(505) 717-1985",
-	"https://www.thecraftroomnm.com/"
-);
+	35.59705,
+	-106.05154,
+	"(505) 424-3333",
+	"https://santafebrewing.com/");
 
 //insert The Craftroom into database
-$craftroom->insert($pdo);
-echo "The Craftroom";
+$santaFe->insert($pdo);
+echo "Santa Fe Brewing Company";
 var_dump($craftroom->getBreweryId()->toString());
 
 
