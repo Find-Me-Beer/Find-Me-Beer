@@ -1,0 +1,135 @@
+<?php
+
+use FindMeBeer\FindMeBeer\{Brewery, Beer, Tag, BeerTag};
+
+require_once (dirname(__dir__) . "/classes/autoload.php");
+
+require_once ("/etc/apache2/capstone-mysql/encrypted-config.php");
+
+require_once ("uuid.php");
+
+$pdo = connectToMySQL("/etc/apache2/capstone-mysql/beerme.ini");
+
+//Create Marble Brewery
+$marble = new Brewery(
+	generateUuidV4(),
+	"111 Marble Ave NW, Albuquerque, NM 87102",
+	"https://beerpulse.com/wp-content/uploads/2012/05/marble-brewery-logo1.jpg",
+	"Founded in 2008 in the heart of downtown Albuquerque, Marble Brewery is devoted to brewing 
+	premium craft beer that satisfies the thirsts and discriminating tastes of our diverse and loyal customers. 
+	Not only do we brew quality craft beer classics, our fresh cutting-edge specials relentlessly push boundaries and 
+	raise expectations. We package a variety of styles and distribute throughout New Mexico, Arizona, Southwest Texas 
+	and Southwest Colorado.",
+	"info@marblebrewery.com",
+	"Marble Brewery",
+	35.09316,
+	-106.65065,
+	"(505) 243-2739",
+	"marblebrewery.com");
+
+//insert Marble Brewery into database
+$marble->insert($pdo);
+echo "Marble Brewery";
+var_dump($marble->getBreweryId()->toString());
+
+//create Marble Double White
+$marbleDoubleWhite = new Beer(
+	generateUuidV4(),
+	$marble->getBreweryId(),
+	7,
+	"A delicate, dry, pale & hazy Belgian­-inspired wheat ale accented with traditional spices.",
+	"Double White",
+	"Belgian Witbier");
+
+//Insert Double White into database
+$marbleDoubleWhite->insert($pdo);
+echo "Marble Double White";
+var_dump($marbleDoubleWhite->getBeerId()->toString());
+
+//create Marble India Pale Ale
+$marbleIPA = new Beer(
+	generateUuidV4(),
+	$marble->getBreweryId(),
+	6.8,
+	"A variety of hops deliver a fragrant citrus aroma & snappy hop character to this eminently quaffable IPA.",
+	"India Pale Ale",
+	"IPA");
+
+//Insert Marble India Pale Ale into database
+$marbleIPA->insert($pdo);
+echo "Marble India Pale Ale";
+var_dump($marbleIPA->getBeerId()->toString());
+
+//create Marble Passionate Gose
+$marblePassionateGose = new Beer(
+	generateUuidV4(),
+	$marble->getBreweryId(),
+	4.3,
+	"Fantastically fruity & bright, this sour ale is seasoned with passion fruit and a hint of salt.",
+	"Passionate Gose",
+	"Sour Gose");
+
+//Insert Marble Passionate Gose into database
+$marblePassionateGose->insert($pdo);
+echo "Marble Passionate Gose";
+var_dump($marblePassionateGose->getBeerId()->toString());
+
+//create Marble Cholo Stout
+$marbleCholoStout = new Beer(
+	generateUuidV4(),
+	$marble->getBreweryId(),
+	6.9,
+	"This all-sick stout rides low & slow with a dark blend of roasted malts & bounces high with a pop 
+	of bright PNW hops.",
+	"Cholo Stout",
+	"American Stout");
+
+//Insert Marble Cholo Stout into database
+$marbleCholoStout->insert($pdo);
+echo "Marble Cholo Stout";
+var_dump($marbleCholoStout->getBeerId()->toString());
+
+//create Marble Red Ale
+$marbleRedAle = new Beer(
+	generateUuidV4(),
+	$marble->getBreweryId(),
+	6.5,
+	"Bursting with Pacific Northwest hops, balanced by a blend of caramel & toasted malts.",
+	"Red Ale",
+	"Red Ale");
+
+//Insert Marble Red Ale into database
+$marbleRedAle->insert($pdo);
+echo "Marble Cholo Stout";
+var_dump($marbleRedAle->getBeerId()->toString());
+
+
+//Create The Craftroom
+$craftroom = new Brewery(
+	generateUuidV4(),
+	"2809 Broadbent Pkwy NE, Albuquerque, NM 87107",
+	"https://bit.ly/2TyZtXE",
+	"The Craftroom focuses on providing an excellent selection of craft beer and hard cider that 
+	caters to everyone's taste buds. Whether you like IPA's or want to try something unique like Sandia (Watermelon) 
+	Cider, or get creative and mix a beer and cider together, we have something for YOU!",
+	"sandiahardcider002@gmail.com",
+	"The Craftroom",
+	35.11296,
+	-106.62869,
+	"(505) 717-1985",
+	"https://www.thecraftroomnm.com/");
+
+//insert Marble Brewery into database
+$marble->insert($pdo);
+echo "Marble Brewery";
+var_dump($marble->getBreweryId()->toString());
+
+
+
+
+
+
+
+
+
+
