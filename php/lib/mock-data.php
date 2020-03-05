@@ -230,6 +230,54 @@ $santaFePilsner->insert($pdo);
 echo "Santa Fe Brewing Co Freestyle Pilsner";
 var_dump($santaFePilsner->getBeerId()->toString());
 
+// Create Santa Fe 7k IPA
+$santaFe7k = new Beer(
+	generateUuidV4(),
+	$santaFe->getBreweryId(),
+	7,
+	"7K is a dry, West Coast-ish style IPA with notes of grapefruit, citrus and tropical flavors. ",
+	"7K IPA",
+	"IPA");
+
+//Insert Santa Fe 7K IPA into database
+$santaFe7k->insert($pdo);
+echo "Santa Fe Brewing Co 7K IPA";
+var_dump($santaFe7k->getBeerId()->toString());
+
+// Create Santa Fe Oktoberfest
+$santaFeOktoberfest = new Beer(
+	generateUuidV4(),
+	$santaFe->getBreweryId(),
+	6,
+	"The crisp maltiness of classic Munich malt compounded with the delicious notes of Bavarian hops 
+	gives this clean-finishing beer just the right flavor for the end of the summer. ",
+	"Oktoberfest",
+	"German Märzen");
+
+//Insert Santa Fe Oktoberfest into database
+$santaFeOktoberfest->insert($pdo);
+echo "Santa Fe Brewing Co Oktoberfest";
+var_dump($santaFeOktoberfest->getBeerId()->toString());
+
+// Create Santa Fe Oktoberfest
+$santaFeOktoberfest = new Beer(
+	generateUuidV4(),
+	$santaFe->getBreweryId(),
+	6,
+	"The crisp maltiness of classic Munich malt compounded with the delicious notes of Bavarian hops 
+	gives this clean-finishing beer just the right flavor for the end of the summer. ",
+	"Oktoberfest",
+	"German Märzen");
+
+//Insert Santa Fe Oktoberfest into database
+$santaFeOktoberfest->insert($pdo);
+echo "Santa Fe Brewing Co Oktoberfest";
+var_dump($santaFeOktoberfest->getBeerId()->toString());
+
+
+
+
+
 
 
 
