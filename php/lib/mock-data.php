@@ -53,7 +53,7 @@ $marbleIPA = new Beer(
 	6.8,
 	"A variety of hops deliver a fragrant citrus aroma & snappy hop character to this eminently quaffable IPA.",
 	"India Pale Ale",
-	"IPA");
+	"India Pale Ale (IPA)");
 
 //Insert Marble India Pale Ale into database
 $marbleIPA->insert($pdo);
@@ -145,7 +145,7 @@ $craftroomIPA = new Beer(
 	6.7,
 	"Mix of caramel, caravienne and vienna malts laden with tropical fruits and doused with a splash of honey.",
 	"Honey IPA",
-	"IPA");
+	"India Pale Ale (IPA)");
 
 //Insert Craftroom Honey IPA into database
 $craftroomIPA->insert($pdo);
@@ -159,7 +159,7 @@ $craftroomRedAle = new Beer(
 	7.3,
 	"Sweet caramel and toasted malt flavors leading to a bold bitter bite on the tongue.",
 	"Red Ale",
-	"IPA");
+	"India Pale Ale (IPA)");
 
 //Insert Craftroom Red Ale into database
 $craftroomRedAle->insert($pdo);
@@ -237,7 +237,7 @@ $santaFe7k = new Beer(
 	7,
 	"7K is a dry, West Coast-ish style IPA with notes of grapefruit, citrus and tropical flavors. ",
 	"7K IPA",
-	"IPA");
+	"India Pale Ale (IPA)");
 
 //Insert Santa Fe 7K IPA into database
 $santaFe7k->insert($pdo);
@@ -303,6 +303,70 @@ $santaFePepeLoco = new Beer(
 $santaFePepeLoco->insert($pdo);
 echo "Santa Fe Brewing Co Pale Ale";
 var_dump($santaFePepeLoco->getBeerId()->toString());
+
+//Create Bosque Brewing Co.
+$bosque = new Brewery(
+	generateUuidV4(),
+	"106 Girard Blvd SE, Ste. B Albuquerque NM 87106",
+	"https://i.pinimg.com/474x/9c/b6/16/9cb6166e8ae36ffab7db96119ee8363a--brewery-mexico.jpg",
+	"Bosque Brewing Company is a microbrewery based in New Mexico with taprooms in Albuquerque and
+	 Las Cruces. The company produces beers inspired by American and European style traditions that are distributed 
+	 throughout the state of New Mexico.",
+	"hello@santafebrewing.com",
+	"Santa Fe Brewing Company",
+	35.59705,
+	-106.05154,
+	"(505) 424-3333",
+	"https://santafebrewing.com/");
+
+//insert Bosque Brewing Co into database
+$bosque->insert($pdo);
+echo "Bosque Brewing Co.";
+var_dump($bosque->getBreweryId()->toString());
+
+// Create Bosque IPA
+$bosqueIPA = new Beer(
+	generateUuidV4(),
+	$bosque->getBreweryId(),
+	6.5,
+	"IPA with pale, caramel, and wheat malts.",
+	"Bosque IPA",
+	"India Pale ALe (IPA)");
+
+//Insert Bosque IPA into database
+$bosqueIPA->insert($pdo);
+echo "Bosque Brewing Co. IPA";
+var_dump($bosqueIPA->getBeerId()->toString());
+
+// Create Bosque Lager
+$bosqueLager = new Beer(
+	generateUuidV4(),
+	$bosque->getBreweryId(),
+	4.8,
+	"Inspired by German Pilsner.",
+	"Bosque Lager",
+	"German Pilsner");
+
+//Insert Bosque Lager into database
+$bosqueLager->insert($pdo);
+echo "Bosque Brewing Co. IPA";
+var_dump($bosqueLager->getBeerId()->toString());
+
+// Create Bosque Lager
+$bosqueLager = new Beer(
+	generateUuidV4(),
+	$bosque->getBreweryId(),
+	4.8,
+	"Inspired by German Pilsner.",
+	"Bosque Lager",
+	"German Pilsner");
+
+//Insert Bosque IPA into database
+$bosqueLager->insert($pdo);
+echo "Bosque Brewing Co. IPA";
+var_dump($bosqueLager->getBeerId()->toString());
+
+
 
 
 
