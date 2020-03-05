@@ -254,25 +254,58 @@ $santaFeOktoberfest = new Beer(
 	"Oktoberfest",
 	"German Märzen");
 
-//Insert Santa Fe Oktoberfest into database
+//Insert Santa Fe Pale Ale
 $santaFeOktoberfest->insert($pdo);
 echo "Santa Fe Brewing Co Oktoberfest";
 var_dump($santaFeOktoberfest->getBeerId()->toString());
 
 // Create Santa Fe Oktoberfest
-$santaFeOktoberfest = new Beer(
+$santaFePaleAle = new Beer(
 	generateUuidV4(),
 	$santaFe->getBreweryId(),
-	6,
-	"The crisp maltiness of classic Munich malt compounded with the delicious notes of Bavarian hops 
-	gives this clean-finishing beer just the right flavor for the end of the summer. ",
-	"Oktoberfest",
-	"German Märzen");
+	5.4,
+	"Santa Fe Pale Ale is as full bodied as its most robust English counterparts, while asserting its
+	 American origin with a healthy nose resplendent with Cascade and Willamette hops.  ",
+	"Santa Fe Pale Ale",
+	"American Pale Ale (APA)");
 
 //Insert Santa Fe Oktoberfest into database
-$santaFeOktoberfest->insert($pdo);
-echo "Santa Fe Brewing Co Oktoberfest";
-var_dump($santaFeOktoberfest->getBeerId()->toString());
+$santaFePaleAle->insert($pdo);
+echo "Santa Fe Brewing Co Pale Ale";
+var_dump($santaFePaleAle->getBeerId()->toString());
+
+// Create Santa Fe Pale Ale
+$santaFePaleAle = new Beer(
+	generateUuidV4(),
+	$santaFe->getBreweryId(),
+	5.4,
+	"Santa Fe Pale Ale is as full bodied as its most robust English counterparts, while asserting its
+	 American origin with a healthy nose resplendent with Cascade and Willamette hops.",
+	"Santa Fe Pale Ale",
+	"American Pale Ale (APA)");
+
+//Insert Santa Fe Pale Ale into database
+$santaFePaleAle->insert($pdo);
+echo "Santa Fe Brewing Co Pale Ale";
+var_dump($santaFePaleAle->getBeerId()->toString());
+
+// Create Santa Fe Pepe Loco
+$santaFePepeLoco = new Beer(
+	generateUuidV4(),
+	$santaFe->getBreweryId(),
+	4.8,
+	"Santa Fe Pale Ale is as full bodied as its most robust English counterparts, while asserting its
+	 American origin with a healthy nose resplendent with Cascade and Willamette hops.",
+	"Santa Fe Pale Ale",
+	"American Pale Ale (APA)");
+
+//Insert Santa Fe Pepe Loco into database
+$santaFePepeLoco->insert($pdo);
+echo "Santa Fe Brewing Co Pale Ale";
+var_dump($santaFePepeLoco->getBeerId()->toString());
+
+
+
 
 
 
