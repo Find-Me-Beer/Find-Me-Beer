@@ -349,22 +349,74 @@ $bosqueLager = new Beer(
 
 //Insert Bosque Lager into database
 $bosqueLager->insert($pdo);
-echo "Bosque Brewing Co. IPA";
+echo "Bosque Brewing Co. Lager";
 var_dump($bosqueLager->getBeerId()->toString());
 
-// Create Bosque Lager
-$bosqueLager = new Beer(
+// Create Bosque Elephants on Parade
+$bosqueElephants = new Beer(
 	generateUuidV4(),
 	$bosque->getBreweryId(),
-	4.8,
-	"Inspired by German Pilsner.",
-	"Bosque Lager",
-	"German Pilsner");
+	5.5,
+	"Packed with raspberry puree and unfiltered American-style wheat ale.",
+	"Elephants on Parade",
+	"Wheat Ale");
 
-//Insert Bosque IPA into database
-$bosqueLager->insert($pdo);
-echo "Bosque Brewing Co. IPA";
-var_dump($bosqueLager->getBeerId()->toString());
+//Insert Bosque Elephants on Parade into database
+$bosqueElephants->insert($pdo);
+echo "Bosque Brewing Co. Elephants on Parade";
+var_dump($bosqueElephants->getBeerId()->toString());
+
+// Create Bosque Jetty Jack
+$bosqueJettyJack = new Beer(
+	generateUuidV4(),
+	$bosque->getBreweryId(),
+	5.8,
+	"Amber Ale with a rusty, auburn complexion full of biscuit, toasted, caramel, and earthy tones.",
+	"Jetty Jack",
+	"Amber Ale");
+
+//Insert Bosque Jetty Jack into database
+$bosqueJettyJack->insert($pdo);
+echo "Bosque Brewing Co. Jetty Jack";
+var_dump($bosqueJettyJack->getBeerId()->toString());
+
+// Create Bosque Scotia
+$bosqueScotia = new Beer(
+	generateUuidV4(),
+	$bosque->getBreweryId(),
+	8.4,
+	"Bold Flavors. Deep Amber Hue and lucious viscosity, heavy on the alcohol, caramel, and malt.",
+	"Scotia",
+	"Scotch Ale");
+
+//Insert Bosque Scotia into database
+$bosqueScotia->insert($pdo);
+echo "Bosque Brewing Co. Scotia";
+var_dump($bosqueScotia->getBeerId()->toString());
+
+
+
+
+// START CREATING AND INSERTING THE TAGS
+
+//create Ale tag
+$aleTag = new Tag(generateUuidV4(), "Ale");
+//Insert Ale Tag into database
+$aleTag->insert($pdo);
+echo "Ale Tag";
+var_dump($aleTag->getTagId()->toString());
+
+//create Lager tag
+$lagerTag = new Tag(generateUuidV4(), "Lager");
+//Insert Lager Tag into database
+$lagerTag->insert($pdo);
+echo "Lager Tag";
+var_dump($lagerTag->getTagId()->toString());
+
+
+
+
+
 
 
 
