@@ -413,6 +413,105 @@ $lagerTag->insert($pdo);
 echo "Lager Tag";
 var_dump($lagerTag->getTagId()->toString());
 
+//create IPA Tag
+$ipaTag = new Tag(generateUuidV4(), "IPA");
+//Insert IPA Tag into database
+$ipaTag->insert($pdo);
+echo "IPA Tag";
+var_dump($ipaTag->getTagId()->toString());
+
+//create APA Tag
+$apaTag = new Tag(generateUuidV4(), "APA");
+//Insert APA Tag into database
+$apaTag->insert($pdo);
+echo "APA Tag";
+var_dump($apaTag->getTagId()->toString());
+
+//create Sour Tag
+$sourTag = new Tag(generateUuidV4(), "Sour");
+//Insert Sour Tag into database
+$sourTag->insert($pdo);
+echo "Sour Tag";
+var_dump($sourTag->getTagId()->toString());
+
+//create Wheat Tag
+$wheatTag = new Tag(generateUuidV4(), "Wheat");
+//Insert Wheat Tag into database
+$wheatTag->insert($pdo);
+echo "Wheat Tag";
+var_dump($wheatTag->getTagId()->toString());
+
+//create Pilsner Tag
+$pilsnerTag = new Tag(generateUuidV4(), "Pilsner");
+//Insert Pilsner Tag into database
+$pilsnerTag->insert($pdo);
+echo "Pilsner Tag";
+var_dump($pilsnerTag->getTagId()->toString());
+
+//create Stout Tag
+$stoutTag = new Tag(generateUuidV4(), "Stout");
+//Insert Stout Tag into database
+$stoutTag->insert($pdo);
+echo "Stout Tag";
+var_dump($stoutTag->getTagId()->toString());
+
+//create Sweet Tag
+$sweetTag = new Tag(generateUuidV4(), "Sweet");
+//Insert Sweet Tag into database
+$sweetTag->insert($pdo);
+echo "Sweet Tag";
+var_dump($sweetTag->getTagId()->toString());
+
+//create Bitter Tag
+$bitterTag = new Tag(generateUuidV4(), "Bitter");
+//Insert Bitter Tag into database
+$bitterTag->insert($pdo);
+echo "Bitter Tag";
+var_dump($bitterTag->getTagId()->toString());
+
+//create Dark Tag
+$darkTag = new Tag(generateUuidV4(), "Dark");
+//Insert Dark Tag into database
+$darkTag->insert($pdo);
+echo "Dark Tag";
+var_dump($darkTag->getTagId()->toString());
+
+//create Light Tag
+$lightTag = new Tag(generateUuidV4(), "Light");
+//Insert Light Tag into database
+$lightTag->insert($pdo);
+echo "Light Tag";
+var_dump($lightTag->getTagId()->toString());
+
+//create Light Tag
+$lightTag = new Tag(generateUuidV4(), "Light");
+//Insert Light Tag into database
+$lightTag->insert($pdo);
+echo "Light Tag";
+var_dump($lightTag->getTagId()->toString());
+
+//create Fruity Tag
+$fruityTag = new Tag(generateUuidV4(), "Fruity");
+//Insert Fruity Tag into database
+$fruityTag->insert($pdo);
+echo "Fruity Tag";
+var_dump($fruityTag->getTagId()->toString());
+
+
+
+// BEER TAG CREATION
+
+// MARBLE BEERS
+
+// Marble Double White Beer Tag
+$marbleDoubleWhiteAleTag = new BeerTag($marbleDoubleWhite->getBeerId(), $aleTag->getTagId());
+echo "Double White Ale Tag";
+var_dump($lightTag->getTagId()->toString());
+
+
+
+
+
 
 
 
