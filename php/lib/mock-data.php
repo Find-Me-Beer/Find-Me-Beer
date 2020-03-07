@@ -2,13 +2,13 @@
 
 use FindMeBeer\FindMeBeer\{Brewery, Beer, Tag, BeerTag};
 
-require_once (dirname(__dir__) . "/classes/autoload.php");
+require_once (dirname(__dir__, 1) . "/classes/autoload.php");
 
 require_once ("/etc/apache2/capstone-mysql/encrypted-config.php");
 
 require_once ("uuid.php");
 
-$pdo = connectToMySQL("/etc/apache2/capstone-mysql/beerme.ini");
+$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/beerme.ini");
 
 //Create Marble Brewery
 $marble = new Brewery(
@@ -511,6 +511,13 @@ $smoothTag->insert($pdo);
 echo "Smooth Tag";
 var_dump($smoothTag->getTagId()->toString());
 
+//create Malty Tag
+$maltyTag = new Tag(generateUuidV4(), "Malty");
+//Insert Malty Tag into database
+$maltyTag->insert($pdo);
+echo "Malty Tag";
+var_dump($maltyTag->getTagId()->toString());
+
 
 
 
@@ -854,7 +861,157 @@ var_dump($santaFePepeLocoLightTag->getBeerTagTagId()->toString());
 
 // BOSQUE BREWING COMPANY
 
-//
+// Bosque IPA
+$bosqueIpaIpaTag = new BeerTag($bosqueIPA->getBeerId(), $ipaTag->getTagId());
+echo "Bosque IPA IPA Beer Tag Beer Id";
+var_dump($bosqueIpaIpaTag->getBeerTagBeerId()->toString());
+echo "Bosque IPA IPA Beer Tag Tag Id";
+var_dump($bosqueIpaIpaTag->getBeerTagTagId()->toString());
+
+$bosqueIpaHoppyTag = new BeerTag($bosqueIPA->getBeerId(), $hoppyTag->getTagId());
+echo "Bosque IPA Hoppy Beer Tag Beer Id";
+var_dump($bosqueIpaHoppyTag->getBeerTagBeerId()->toString());
+echo "Bosque IPA Hoppy Beer Tag Tag Id";
+var_dump($bosqueIpaHoppyTag->getBeerTagTagId()->toString());
+
+$bosqueIpaSmoothTag = new BeerTag($bosqueIPA->getBeerId(), $smoothTag->getTagId());
+echo "Bosque IPA Smooth Beer Tag Beer Id";
+var_dump($bosqueIpaSmoothTag->getBeerTagBeerId()->toString());
+echo "Bosque IPA Smooth Beer Tag Tag Id";
+var_dump($bosqueIpaSmoothTag->getBeerTagTagId()->toString());
+
+$bosqueIpaSweetTag = new BeerTag($bosqueIPA->getBeerId(), $sweetTag->getTagId());
+echo "Bosque IPA Sweet Beer Tag Beer Id";
+var_dump($bosqueIpaSweetTag->getBeerTagBeerId()->toString());
+echo "Bosque IPA Sweet Beer Tag Tag Id";
+var_dump($bosqueIpaSweetTag->getBeerTagTagId()->toString());
+
+$bosqueIpaFruityTag = new BeerTag($bosqueIPA->getBeerId(), $fruityTag->getTagId());
+echo "Bosque IPA Fruit Beer Tag Beer Id";
+var_dump($bosqueIpaFruityTag->getBeerTagBeerId()->toString());
+echo "Bosque IPA Fruit Beer Tag Tag Id";
+var_dump($bosqueIpaFruityTag->getBeerTagTagId()->toString());
+
+
+// Bosque Lager
+$bosqueLagerLagerTag = new BeerTag($bosqueLager->getBeerId(), $lagerTag->getTagId());
+echo "Bosque Lager Lager Beer Tag Beer Id";
+var_dump($bosqueLagerLagerTag->getBeerTagBeerId()->toString());
+echo "Bosque Lager Lager Beer Tag Tag Id";
+var_dump($bosqueLagerLagerTag->getBeerTagTagId()->toString());
+
+$bosqueLagerLightTag = new BeerTag($bosqueLager->getBeerId(), $lightTag->getTagId());
+echo "Bosque Lager Light Beer Tag Beer Id";
+var_dump($bosqueLagerLightTag->getBeerTagBeerId()->toString());
+echo "Bosque Lager Light Beer Tag Tag Id";
+var_dump($bosqueLagerLightTag->getBeerTagTagId()->toString());
+
+$bosqueLagerSmoothTag = new BeerTag($bosqueLager->getBeerId(), $smoothTag->getTagId());
+echo "Bosque Lager Smooth Beer Tag Beer Id";
+var_dump($bosqueLagerSmoothTag->getBeerTagBeerId()->toString());
+echo "Bosque Lager Smooth Beer Tag Tag Id";
+var_dump($bosqueLagerSmoothTag->getBeerTagTagId()->toString());
+
+$bosqueLagerHoppyTag = new BeerTag($bosqueLager->getBeerId(), $hoppyTag->getTagId());
+echo "Bosque Lager Hoppy Beer Tag Beer Id";
+var_dump($bosqueLagerHoppyTag->getBeerTagBeerId()->toString());
+echo "Bosque Lager Hoppy Beer Tag Tag Id";
+var_dump($bosqueLagerHoppyTag->getBeerTagTagId()->toString());
+
+$bosqueLagerSweetTag = new BeerTag($bosqueLager->getBeerId(), $sweetTag->getTagId());
+echo "Bosque Lager Sweet Beer Tag Beer Id";
+var_dump($bosqueLagerSweetTag->getBeerTagBeerId()->toString());
+echo "Bosque Lager Sweet Beer Tag Tag Id";
+var_dump($bosqueLagerSweetTag->getBeerTagTagId()->toString());
+
+
+//Elephants on Parade
+$bosqueElephantsWheatTag = new BeerTag($bosqueElephants->getBeerId(), $wheatTag->getTagId());
+echo "Bosque Elephants On Parade Wheat Beer Tag Beer Id";
+var_dump($bosqueElephantsWheatTag->getBeerTagBeerId()->toString());
+echo "Bosque Elephants On Parade Wheat Beer Tag Tag Id";
+var_dump($bosqueElephantsWheatTag->getBeerTagTagId()->toString());
+
+$bosqueElephantsFruityTag = new BeerTag($bosqueElephants->getBeerId(), $fruityTag->getTagId());
+echo "Bosque Elephants On Parade Fruity Beer Tag Beer Id";
+var_dump($bosqueElephantsFruityTag->getBeerTagBeerId()->toString());
+echo "Bosque Elephants On Parade Fruity Beer Tag Tag Id";
+var_dump($bosqueElephantsFruityTag->getBeerTagTagId()->toString());
+
+$bosqueElephantsSweetTag = new BeerTag($bosqueElephants->getBeerId(), $fruityTag->getTagId());
+echo "Bosque Elephants On Parade Sweet Beer Tag Beer Id";
+var_dump($bosqueElephantsSweetTag->getBeerTagBeerId()->toString());
+echo "Bosque Elephants On Parade Sweet Beer Tag Tag Id";
+var_dump($bosqueElephantsSweetTag->getBeerTagTagId()->toString());
+
+$bosqueElephantsLightTag = new BeerTag($bosqueElephants->getBeerId(), $lightTag->getTagId());
+echo "Bosque Elephants On Parade Light Beer Tag Beer Id";
+var_dump($bosqueElephantsLightTag->getBeerTagBeerId()->toString());
+echo "Bosque Elephants On Parade Light Beer Tag Tag Id";
+var_dump($bosqueElephantsLightTag->getBeerTagTagId()->toString());
+
+$bosqueElephantsSourTag = new BeerTag($bosqueElephants->getBeerId(), $sourTag->getTagId());
+echo "Bosque Elephants On Parade Sour Beer Tag Beer Id";
+var_dump($bosqueElephantsSourTag->getBeerTagBeerId()->toString());
+echo "Bosque Elephants On Parade Sour Beer Tag Tag Id";
+var_dump($bosqueElephantsSourTag->getBeerTagTagId()->toString());
+
+
+// Jetty Jack
+$bosqueJettyJackAleTag = new BeerTag($bosqueJettyJack->getBeerId(), $aleTag->getTagId());
+echo "Bosque Jetty Jack Ale Beer Tag Beer Id";
+var_dump($bosqueJettyJackAleTag->getBeerTagBeerId()->toString());
+echo "Bosque Jetty Jack Ale Beer Tag Tag Id";
+var_dump($bosqueJettyJackAleTag->getBeerTagTagId()->toString());
+
+$bosqueJettyJackHoppyTag = new BeerTag($bosqueJettyJack->getBeerId(), $hoppyTag->getTagId());
+echo "Bosque Jetty Jack Hoppy Beer Tag Beer Id";
+var_dump($bosqueJettyJackHoppyTag->getBeerTagBeerId()->toString());
+echo "Bosque Jetty Jack Hoppy Beer Tag Tag Id";
+var_dump($bosqueJettyJackHoppyTag->getBeerTagTagId()->toString());
+
+$bosqueJettyJackMaltyTag = new BeerTag($bosqueJettyJack->getBeerId(), $maltyTag->getTagId());
+echo "Bosque Jetty Jack Malty Beer Tag Beer Id";
+var_dump($bosqueJettyJackMaltyTag->getBeerTagBeerId()->toString());
+echo "Bosque Jetty Jack Malty Beer Tag Tag Id";
+var_dump($bosqueJettyJackMaltyTag->getBeerTagTagId()->toString());
+
+
+// Scotia
+$bosqueScotiaAleTag = new BeerTag($bosqueScotia->getBeerId(), $aleTag->getTagId());
+echo "Bosque Scotia Ale Beer Tag Beer Id";
+var_dump($bosqueScotiaAleTag->getBeerTagBeerId()->toString());
+echo "Bosque Scotia Ale Beer Tag Tag Id";
+var_dump($bosqueScotiaAleTag->getBeerTagTagId()->toString());
+
+$bosqueScotiaMaltyTag = new BeerTag($bosqueScotia->getBeerId(), $maltyTag->getTagId());
+echo "Bosque Scotia Malty Beer Tag Beer Id";
+var_dump($bosqueScotiaMaltyTag->getBeerTagBeerId()->toString());
+echo "Bosque Scotia Malty Beer Tag Tag Id";
+var_dump($bosqueScotiaMaltyTag->getBeerTagTagId()->toString());
+
+$bosqueScotiaSweetTag = new BeerTag($bosqueScotia->getBeerId(), $sweetTag->getTagId());
+echo "Bosque Scotia Sweet Beer Tag Beer Id";
+var_dump($bosqueScotiaSweetTag->getBeerTagBeerId()->toString());
+echo "Bosque Scotia Sweet Beer Tag Tag Id";
+var_dump($bosqueScotiaSweetTag->getBeerTagTagId()->toString());
+
+$bosqueScotiaSmoothTag = new BeerTag($bosqueScotia->getBeerId(), $smoothTag->getTagId());
+echo "Bosque Scotia Smooth Beer Tag Beer Id";
+var_dump($bosqueScotiaSmoothTag->getBeerTagBeerId()->toString());
+echo "Bosque Scotia Smooth Beer Tag Tag Id";
+var_dump($bosqueScotiaSmoothTag->getBeerTagTagId()->toString());
+
+
+
+
+
+
+
+
+
+
+
 
 
 
