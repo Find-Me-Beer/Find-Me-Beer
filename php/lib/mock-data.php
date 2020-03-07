@@ -811,6 +811,57 @@ echo "Santa Fe Oktoberfest Sweet Beer Tag Tag Id";
 var_dump($santaFeOktoberfestSweetTag->getBeerTagTagId()->toString());
 
 
+// Santa Fe Pale Ale
+$santaFePaleAleApaTag = new BeerTag($santaFePaleAle->getBeerId(), $apaTag->getTagId());
+echo "Santa Fe Pale Ale APA Beer Tag Beer Id";
+var_dump($santaFePaleAleApaTag->getBeerTagBeerId()->toString());
+echo "Santa Fe Pale Ale APA Beer Tag Tag Id";
+var_dump($santaFePaleAleApaTag->getBeerTagTagId()->toString());
+
+$santaFePaleAleHoppyTag = new BeerTag($santaFePaleAle->getBeerId(), $hoppyTag->getTagId());
+echo "Santa Fe Pale Ale Hoppy Beer Tag Beer Id";
+var_dump($santaFePaleAleHoppyTag->getBeerTagBeerId()->toString());
+echo "Santa Fe Pale Ale Hoppy Beer Tag Tag Id";
+var_dump($santaFePaleAleHoppyTag->getBeerTagTagId()->toString());
+
+$santaFePaleAleSmoothTag = new BeerTag($santaFePaleAle->getBeerId(), $smoothTag->getTagId());
+echo "Santa Fe Pale Ale Smooth Beer Tag Beer Id";
+var_dump($santaFePaleAleSmoothTag->getBeerTagBeerId()->toString());
+echo "Santa Fe Pale Ale Smooth Beer Tag Tag Id";
+var_dump($santaFePaleAleSmoothTag->getBeerTagTagId()->toString());
+
+$santaFePaleAleLightTag = new BeerTag($santaFePaleAle->getBeerId(), $lightTag->getTagId());
+echo "Santa Fe Pale Ale Light Beer Tag Beer Id";
+var_dump($santaFePaleAleLightTag->getBeerTagBeerId()->toString());
+echo "Santa Fe Pale Ale Light Beer Tag Tag Id";
+var_dump($santaFePaleAleLightTag->getBeerTagTagId()->toString());
+
+
+// Santa Fe Pepe Loco
+$santaFePepeLocoLagerTag = new BeerTag($santaFePepeLoco->getBeerId(), $lagerTag->getTagId());
+echo "Santa Fe Pepe Loco Lager Beer Tag Beer Id";
+var_dump($santaFePepeLocoLagerTag->getBeerTagBeerId()->toString());
+echo "Santa Fe Pepe Loco Lager Beer Tag Tag Id";
+var_dump($santaFePepeLocoLagerTag->getBeerTagTagId()->toString());
+
+$santaFePepeLocoLightTag = new BeerTag($santaFePepeLoco->getBeerId(), $lightTag->getTagId());
+echo "Santa Fe Pepe Loco Light Beer Tag Beer Id";
+var_dump($santaFePepeLocoLightTag->getBeerTagBeerId()->toString());
+echo "Santa Fe Pepe Loco Light Beer Tag Tag Id";
+var_dump($santaFePepeLocoLightTag->getBeerTagTagId()->toString());
+
+
+
+// BOSQUE BREWING COMPANY
+
+//
+
+
+
+
+
+
+
 
 
 
