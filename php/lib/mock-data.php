@@ -628,6 +628,97 @@ echo "Marble Red Ale Sweet Beer Tag Tag Id";
 var_dump($marbleRedAleSweetTag->getBeerTagTagId()->toString());
 
 
+// THE CRAFTROOM BEERS
+
+// Craftroom Double Belgium
+$craftroomBelgiumAleTag = new BeerTag($craftroomBelgium->getBeerId(), $aleTag->getTagId());
+echo "Craftroom Double Belgium Ale Beer Tag Beer Id";
+var_dump($craftroomBelgiumAleTag->getBeerTagBeerId()->toString());
+echo "Craftroom Double Belgium Ale Beer Tag Tag Id";
+var_dump($craftroomBelgiumAleTag->getBeerTagTagId()->toString());
+
+$craftroomBelgiumWheatTag = new BeerTag($craftroomBelgium->getBeerId(), $wheatTag->getTagId());
+echo "Craftroom Double Belgium Wheat Beer Tag Beer Id";
+var_dump($craftroomBelgiumWheatTag->getBeerTagBeerId()->toString());
+echo "Craftroom Double Belgium Wheat Beer Tag Tag Id";
+var_dump($craftroomBelgiumWheatTag->getBeerTagTagId()->toString());
+
+$craftroomBelgiumSweetTag = new BeerTag($craftroomBelgium->getBeerId(), $sweetTag->getTagId());
+echo "Craftroom Double Belgium Sweet Beer Tag Beer Id";
+var_dump($craftroomBelgiumSweetTag->getBeerTagBeerId()->toString());
+echo "Craftroom Double Belgium Sweet Beer Tag Tag Id";
+var_dump($craftroomBelgiumSweetTag->getBeerTagTagId()->toString());
+
+
+// Craftroom Honey IPA
+$craftroomIpaIpaTag = new BeerTag($craftroomIPA->getBeerId(), $ipaTag->getTagId());
+echo "Craftroom Honey IPA IPA Beer Tag Beer Id";
+var_dump($craftroomIpaIpaTag->getBeerTagBeerId()->toString());
+echo "Craftroom Honey IPA IPA Beer Tag Tag Id";
+var_dump($craftroomIpaIpaTag->getBeerTagTagId()->toString());
+
+$craftroomIpaHoppyTag = new BeerTag($craftroomIPA->getBeerId(), $hoppyTag->getTagId());
+echo "Craftroom Honey IPA Hoppy Beer Tag Beer Id";
+var_dump($craftroomIpaHoppyTag->getBeerTagBeerId()->toString());
+echo "Craftroom Honey IPA Hoppy Beer Tag Tag Id";
+var_dump($craftroomIpaHoppyTag->getBeerTagTagId()->toString());
+
+$craftroomIpaSweetTag = new BeerTag($craftroomIPA->getBeerId(), $sweetTag->getTagId());
+echo "Craftroom Honey IPA Sweet Beer Tag Beer Id";
+var_dump($craftroomIpaSweetTag->getBeerTagBeerId()->toString());
+echo "Craftroom Honey IPA Sweet Beer Tag Tag Id";
+var_dump($craftroomIpaSweetTag->getBeerTagTagId()->toString());
+
+
+// Craftroom Red Ale
+$craftroomRedAleAleTag = new BeerTag($craftroomRedAle->getBeerId(), $aleTag->getTagId());
+echo "Craftroom Red Ale Ale Beer Tag Beer Id";
+var_dump($craftroomRedAleAleTag->getBeerTagBeerId()->toString());
+echo "Craftroom Red ALe Ale Beer Tag Tag Id";
+var_dump($craftroomRedAleAleTag->getBeerTagTagId()->toString());
+
+$craftroomRedAleSmoothTag = new BeerTag($craftroomRedAle->getBeerId(), $smoothTag->getTagId());
+echo "Craftroom Red Ale Smooth Beer Tag Beer Id";
+var_dump($craftroomRedAleSmoothTag->getBeerTagBeerId()->toString());
+echo "Craftroom Red ALe Ale Smooth Tag Tag Id";
+var_dump($craftroomRedAleSmoothTag->getBeerTagTagId()->toString());
+
+
+// Craftroom Blueberry Wheat
+$craftroomBlueberryWheatAleTag = new BeerTag($craftroomBlueberryWheat->getBeerId(), $aleTag->getTagId());
+echo "Craftroom Blueberry Wheat Ale Beer Tag Beer Id";
+var_dump($craftroomBlueberryWheatAleTag->getBeerTagBeerId()->toString());
+echo "Craftroom Blueberry Wheat Ale Beer Tag Tag Id";
+var_dump($craftroomBlueberryWheatAleTag->getBeerTagTagId()->toString());
+
+$craftroomBlueberryWheatWheatTag = new BeerTag($craftroomBlueberryWheat->getBeerId(), $wheatTag->getTagId());
+echo "Craftroom Blueberry Wheat Wheat Beer Tag Beer Id";
+var_dump($craftroomBlueberryWheatWheatTag->getBeerTagBeerId()->toString());
+echo "Craftroom Blueberry Wheat Wheat Beer Tag Tag Id";
+var_dump($craftroomBlueberryWheatWheatTag->getBeerTagTagId()->toString());
+
+$craftroomBlueberryWheatSweetTag = new BeerTag($craftroomBlueberryWheat->getBeerId(), $sweetTag->getTagId());
+echo "Craftroom Blueberry Wheat Sweet Beer Tag Beer Id";
+var_dump($craftroomBlueberryWheatSweetTag->getBeerTagBeerId()->toString());
+echo "Craftroom Blueberry Wheat Sweet Beer Tag Tag Id";
+var_dump($craftroomBlueberryWheatSweetTag->getBeerTagTagId()->toString());
+
+$craftroomBlueberryWheatFruityTag = new BeerTag($craftroomBlueberryWheat->getBeerId(), $fruityTag->getTagId());
+echo "Craftroom Blueberry Wheat Fruity Beer Tag Beer Id";
+var_dump($craftroomBlueberryWheatFruityTag->getBeerTagBeerId()->toString());
+echo "Craftroom Blueberry Wheat Fruity Beer Tag Tag Id";
+var_dump($craftroomBlueberryWheatFruityTag->getBeerTagTagId()->toString());
+
+$craftroomBlueberryWheatLightTag = new BeerTag($craftroomBlueberryWheat->getBeerId(), $lightTag->getTagId());
+echo "Craftroom Blueberry Wheat Light Beer Tag Beer Id";
+var_dump($craftroomBlueberryWheatLightTag->getBeerTagBeerId()->toString());
+echo "Craftroom Blueberry Wheat Light Beer Tag Tag Id";
+var_dump($craftroomBlueberryWheatLightTag->getBeerTagTagId()->toString());
+
+
+
+
+
 
 
 
