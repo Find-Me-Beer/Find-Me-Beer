@@ -497,16 +497,107 @@ $fruityTag->insert($pdo);
 echo "Fruity Tag";
 var_dump($fruityTag->getTagId()->toString());
 
+//create Hoppy Tag
+$hoppyTag = new Tag(generateUuidV4(), "Hoppy");
+//Insert Hoppy Tag into database
+$hoppyTag->insert($pdo);
+echo "Hoppy Tag";
+var_dump($hoppyTag->getTagId()->toString());
+
+//create Smooth Tag
+$smoothTag = new Tag(generateUuidV4(), "Smooth");
+//Insert Hoppy Tag into database
+$smoothTag->insert($pdo);
+echo "Smooth Tag";
+var_dump($smoothTag->getTagId()->toString());
+
+
 
 
 // BEER TAG CREATION
 
 // MARBLE BEERS
 
-// Marble Double White Beer Tag
+//Marble Double White
+
+// Marble Double White Beer Tags
 $marbleDoubleWhiteAleTag = new BeerTag($marbleDoubleWhite->getBeerId(), $aleTag->getTagId());
-echo "Double White Ale Tag";
-var_dump($lightTag->getTagId()->toString());
+echo "Double White Ale Beer Tag Beer Id";
+var_dump($marbleDoubleWhiteAleTag->getBeerTagBeerId()->toString());
+echo "Double White Ale Beer Tag Tag Id";
+var_dump($marbleDoubleWhiteAleTag->getBeerTagTagId()->toString());
+
+$marbleDoubleWhiteWheatTag = new BeerTag($marbleDoubleWhite->getBeerId(), $wheatTag->getTagId());
+echo "Double White Wheat Beer Tag Beer Id";
+var_dump($marbleDoubleWhiteWheatTag->getBeerTagBeerId()->toString());
+echo "Double White Wheat Beer Tag Tag Id";
+var_dump($marbleDoubleWhiteWheatTag->getBeerTagTagId()->toString());
+
+$marbleDoubleWhiteLightTag = new BeerTag($marbleDoubleWhite->getBeerId(), $lightTag->getTagId());
+echo "Double White Light Beer Tag Beer Id";
+var_dump($marbleDoubleWhiteLightTag->getBeerTagBeerId()->toString());
+echo "Double White Light Beer Tag Tag Id";
+var_dump($marbleDoubleWhiteLightTag->getBeerTagTagId()->toString());
+
+$marbleDoubleWhiteSweetTag = new BeerTag($marbleDoubleWhite->getBeerId(), $sweetTag->getTagId());
+echo "Double White Sweet Beer Tag Beer Id";
+var_dump($marbleDoubleWhiteSweetTag->getBeerTagBeerId()->toString());
+echo "Double White Sweet Beer Tag Tag Id";
+var_dump($marbleDoubleWhiteSweetTag->getBeerTagTagId()->toString());
+
+
+// Marble India Pale Ale
+
+$marbleIpaIpaTag = new BeerTag($marbleIPA->getBeerId(), $ipaTag->getTagId());
+echo "Marble IPA IPA Beer Tag Beer Id";
+var_dump($marbleIpaIpaTag->getBeerTagBeerId()->toString());
+echo "Marble IPA IPA Beer Tag Tag Id";
+var_dump($marbleIpaIpaTag->getBeerTagTagId()->toString());
+
+$marbleIpaLightTag = new BeerTag($marbleIPA->getBeerId(), $lightTag->getTagId());
+echo "Marble IPA Light Beer Tag Beer Id";
+var_dump($marbleIpaLightTag->getBeerTagBeerId()->toString());
+echo "Marble IPA Light Beer Tag Tag Id";
+var_dump($marbleIpaLightTag->getBeerTagTagId()->toString());
+
+$marbleIpaHoppyTag = new BeerTag($marbleIPA->getBeerId(), $hoppyTag->getTagId());
+echo "Marble IPA Hoppy Beer Tag Beer Id";
+var_dump($marbleIpaHoppyTag->getBeerTagBeerId()->toString());
+echo "Marble IPA Hoppy Beer Tag Tag Id";
+var_dump($marbleIpaHoppyTag->getBeerTagTagId()->toString());
+
+$marbleIpaSmoothTag = new BeerTag($marbleIPA->getBeerId(), $smoothTag->getTagId());
+echo "Marble IPA Smooth Beer Tag Beer Id";
+var_dump($marbleIpaSmoothTag->getBeerTagBeerId()->toString());
+echo "Marble IPA Smooth Beer Tag Tag Id";
+var_dump($marbleIpaSmoothTag->getBeerTagTagId()->toString());
+
+
+// Marble Passionate Gose
+$marblePassionateGoseSourTag = new BeerTag($marblePassionateGose->getBeerId(), $sourTag->getTagId());
+echo "Marble Passionate Gose Sour Beer Tag Beer Id";
+var_dump($marblePassionateGoseSourTag->getBeerTagBeerId()->toString());
+echo "Marble Passionate Gose Sour Beer Tag Tag Id";
+var_dump($marblePassionateGoseSourTag->getBeerTagTagId()->toString());
+
+$marblePassionateGoseFruityTag = new BeerTag($marblePassionateGose->getBeerId(), $fruityTag->getTagId());
+echo "Marble Passionate Gose Fruity Beer Tag Beer Id";
+var_dump($marblePassionateGoseFruityTag->getBeerTagBeerId()->toString());
+echo "Marble Passionate Gose Fruity Beer Tag Tag Id";
+var_dump($marblePassionateGoseFruityTag->getBeerTagTagId()->toString());
+
+
+// Marble Cholo Stout
+$marbleCholoStoutStoutTag = new BeerTag($marblePassionateGose->getBeerId(), $stoutTag->getTagId());
+echo "Marble Cholo Stout Stout Beer Tag Beer Id";
+var_dump($marbleCholoStoutStoutTag->getBeerTagBeerId()->toString());
+echo "Marble Cholo Stout Stout Beer Tag Tag Id";
+var_dump($marbleCholoStoutStoutTag->getBeerTagTagId()->toString());
+
+
+
+
+
 
 
 
