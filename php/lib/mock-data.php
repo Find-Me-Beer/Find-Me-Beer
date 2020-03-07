@@ -716,6 +716,118 @@ echo "Craftroom Blueberry Wheat Light Beer Tag Tag Id";
 var_dump($craftroomBlueberryWheatLightTag->getBeerTagTagId()->toString());
 
 
+// craftroom Hefen
+$craftroomHefenWheatTag = new BeerTag($craftroomHefen->getBeerId(), $wheatTag->getTagId());
+echo "Craftroom Hefen Wheat Beer Tag Beer Id";
+var_dump($craftroomHefenWheatTag->getBeerTagBeerId()->toString());
+echo "Craftroom Hefen Wheat Beer Tag Tag Id";
+var_dump($craftroomHefenWheatTag->getBeerTagTagId()->toString());
+
+$craftroomHefenLightTag = new BeerTag($craftroomHefen->getBeerId(), $lightTag->getTagId());
+echo "Craftroom Hefen Light Beer Tag Beer Id";
+var_dump($craftroomHefenLightTag->getBeerTagBeerId()->toString());
+echo "Craftroom Hefen Light Beer Tag Tag Id";
+var_dump($craftroomHefenLightTag->getBeerTagTagId()->toString());
+
+$craftroomHefenFruityTag = new BeerTag($craftroomHefen->getBeerId(), $fruityTag->getTagId());
+echo "Craftroom Hefen Fruity Beer Tag Beer Id";
+var_dump($craftroomHefenFruityTag->getBeerTagBeerId()->toString());
+echo "Craftroom Hefen Fruity Beer Tag Tag Id";
+var_dump($craftroomHefenFruityTag->getBeerTagTagId()->toString());
+
+
+
+// SANTA FE BREWING COMPANY BEERS
+
+// Freestyle Pilsner
+$santaFePilsnerPilsnerTag = new BeerTag($santaFePilsner->getBeerId(), $pilsnerTag->getTagId());
+echo "Santa Fe Freestyle Pilsner Pilsner Beer Tag Beer Id";
+var_dump($santaFePilsnerPilsnerTag->getBeerTagBeerId()->toString());
+echo "Santa Fe Freestyle Pilsner Pilsner Beer Tag Tag Id";
+var_dump($santaFePilsnerPilsnerTag->getBeerTagTagId()->toString());
+
+$santaFePilsnerLightTag = new BeerTag($santaFePilsner->getBeerId(), $lightTag->getTagId());
+echo "Santa Fe Freestyle Pilsner Light Beer Tag Beer Id";
+var_dump($santaFePilsnerLightTag->getBeerTagBeerId()->toString());
+echo "Santa Fe Freestyle Pilsner Light Beer Tag Tag Id";
+var_dump($santaFePilsnerLightTag->getBeerTagTagId()->toString());
+
+$santaFePilsnerSmoothTag = new BeerTag($santaFePilsner->getBeerId(), $smoothTag->getTagId());
+echo "Santa Fe Freestyle Pilsner Smooth Beer Tag Beer Id";
+var_dump($santaFePilsnerSmoothTag->getBeerTagBeerId()->toString());
+echo "Santa Fe Freestyle Pilsner Smooth Beer Tag Tag Id";
+var_dump($santaFePilsnerSmoothTag->getBeerTagTagId()->toString());
+
+
+//7K IPA
+$santaFe7kIpaTag = new BeerTag($santaFe7k->getBeerId(), $ipaTag->getTagId());
+echo "Santa Fe 7K IPA IPA Beer Tag Beer Id";
+var_dump($santaFe7kIpaTag->getBeerTagBeerId()->toString());
+echo "Santa Fe 7K IPA IPA Beer Tag Tag Id";
+var_dump($santaFe7kIpaTag->getBeerTagTagId()->toString());
+
+$santaFe7kHoppyTag = new BeerTag($santaFe7k->getBeerId(), $hoppyTag->getTagId());
+echo "Santa Fe 7K IPA Hoppy Beer Tag Beer Id";
+var_dump($santaFe7kHoppyTag->getBeerTagBeerId()->toString());
+echo "Santa Fe 7K IPA Hoppy Beer Tag Tag Id";
+var_dump($santaFe7kHoppyTag->getBeerTagTagId()->toString());
+
+$santaFe7kSmoothTag = new BeerTag($santaFe7k->getBeerId(), $smoothTag->getTagId());
+echo "Santa Fe 7K IPA Smooth Beer Tag Beer Id";
+var_dump($santaFe7kSmoothTag->getBeerTagBeerId()->toString());
+echo "Santa Fe 7K IPA Smooth Beer Tag Tag Id";
+var_dump($santaFe7kSmoothTag->getBeerTagTagId()->toString());
+
+$santaFe7kLightTag = new BeerTag($santaFe7k->getBeerId(), $lightTag->getTagId());
+echo "Santa Fe 7K IPA Light Beer Tag Beer Id";
+var_dump($santaFe7kLightTag->getBeerTagBeerId()->toString());
+echo "Santa Fe 7K IPA Light Beer Tag Tag Id";
+var_dump($santaFe7kLightTag->getBeerTagTagId()->toString());
+
+
+//Oktoberfest
+$santaFeOktoberfestLagerTag = new BeerTag($santaFeOktoberfest->getBeerId(), $lagerTag->getTagId());
+echo "Santa Fe Oktoberfest Lager Beer Tag Beer Id";
+var_dump($santaFeOktoberfestLagerTag->getBeerTagBeerId()->toString());
+echo "Santa Fe Oktoberfest Lager Beer Tag Tag Id";
+var_dump($santaFeOktoberfestLagerTag->getBeerTagTagId()->toString());
+
+$santaFeOktoberfestSmoothTag = new BeerTag($santaFeOktoberfest->getBeerId(), $smoothTag->getTagId());
+echo "Santa Fe Oktoberfest Smooth Beer Tag Beer Id";
+var_dump($santaFeOktoberfestSmoothTag->getBeerTagBeerId()->toString());
+echo "Santa Fe Oktoberfest Smooth Beer Tag Tag Id";
+var_dump($santaFeOktoberfestSmoothTag->getBeerTagTagId()->toString());
+
+$santaFeOktoberfestSweetTag = new BeerTag($santaFeOktoberfest->getBeerId(), $sweetTag->getTagId());
+echo "Santa Fe Oktoberfest Sweet Beer Tag Beer Id";
+var_dump($santaFeOktoberfestSweetTag->getBeerTagBeerId()->toString());
+echo "Santa Fe Oktoberfest Sweet Beer Tag Tag Id";
+var_dump($santaFeOktoberfestSweetTag->getBeerTagTagId()->toString());
+
+$santaFeOktoberfestTag = new BeerTag($santaFeOktoberfest->getBeerId(), $sweetTag->getTagId());
+echo "Santa Fe Oktoberfest Sweet Beer Tag Beer Id";
+var_dump($santaFeOktoberfestSweetTag->getBeerTagBeerId()->toString());
+echo "Santa Fe Oktoberfest Sweet Beer Tag Tag Id";
+var_dump($santaFeOktoberfestSweetTag->getBeerTagTagId()->toString());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
