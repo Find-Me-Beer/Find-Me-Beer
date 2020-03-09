@@ -53,10 +53,10 @@ try {
 			}
 			//if none of the search parameters are met throw an exception
 		} else if(empty($beerTagBeerId) === false) {
-			$reply->data = BeerTag::getBeerTagByBeerTagBeerId($pdo, $beerTagBeerId)->toArray();
+			$reply->data = BeerTag::getBeerTagsByBeerTagBeerId($pdo, $beerTagBeerId)->toArray();
 			//get all the likes associated with the tweetId
 		} else if(empty($beerTagTagId) === false) {
-			$reply->data = BeerTag::getBeerTagByBeerTagTagId($pdo, $beerTagTagId)->toArray();
+			$reply->data = BeerTag::getBeerTagsByBeerTagTagId($pdo, $beerTagTagId)->toArray();
 		} else {
 			throw new InvalidArgumentException("incorrect search parameters ", 404);
 		}
