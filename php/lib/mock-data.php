@@ -855,13 +855,6 @@ var_dump($santaFeOktoberfestSweetTag->getBeerTagBeerId()->toString());
 echo "Santa Fe Oktoberfest Sweet Beer Tag Tag Id";
 var_dump($santaFeOktoberfestSweetTag->getBeerTagTagId()->toString());
 
-$santaFeOktoberfestTag = new BeerTag($santaFeOktoberfest->getBeerId(), $sweetTag->getTagId());
-$santaFeOktoberfestTag->insert($pdo);
-echo "Santa Fe Oktoberfest Sweet Beer Tag Beer Id";
-var_dump($santaFeOktoberfestSweetTag->getBeerTagBeerId()->toString());
-echo "Santa Fe Oktoberfest Sweet Beer Tag Tag Id";
-var_dump($santaFeOktoberfestSweetTag->getBeerTagTagId()->toString());
-
 
 // Santa Fe Pale Ale
 $santaFePaleAleApaTag = new BeerTag($santaFePaleAle->getBeerId(), $apaTag->getTagId());
@@ -1001,7 +994,7 @@ var_dump($bosqueElephantsFruityTag->getBeerTagBeerId()->toString());
 echo "Bosque Elephants On Parade Fruity Beer Tag Tag Id";
 var_dump($bosqueElephantsFruityTag->getBeerTagTagId()->toString());
 
-$bosqueElephantsSweetTag = new BeerTag($bosqueElephants->getBeerId(), $fruityTag->getTagId());
+$bosqueElephantsSweetTag = new BeerTag($bosqueElephants->getBeerId(), $sweetTag->getTagId());
 $bosqueElephantsSweetTag->insert($pdo);
 echo "Bosque Elephants On Parade Sweet Beer Tag Beer Id";
 var_dump($bosqueElephantsSweetTag->getBeerTagBeerId()->toString());
