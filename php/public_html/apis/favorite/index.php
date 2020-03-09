@@ -1,14 +1,14 @@
 <?php
 
-require_once dirname(__DIR__, 4) . "/vendor/autoload.php";
+require_once dirname(__DIR__, 3) . "/vendor/autoload.php";
 require_once dirname(__DIR__, 3) . "/Classes/autoload.php";
 require_once("/etc/apache2/capstone-mysql/Secrets.php");
 require_once dirname(__DIR__, 3) . "/lib/xsrf.php";
 require_once dirname(__DIR__, 3) . "/lib/jwt.php";
 require_once dirname(__DIR__, 3) . "/lib/uuid.php";
+require_once("/etc/apache2/capstone-mysql/Secrets.php");
 
-
-use \FindMeBeer\FindMeBeer\Favorite;
+use FindMeBeer\FindMeBeer\{Favorite, Brewery, Beer};
 
 /**
  * Api for the Favorite class
@@ -52,8 +52,8 @@ try {
 				$reply->data = $favorite;
 			}
 			//if none of the search parameters are met throw an exception
-		} else if(empty($favoriteBeerId) === false) {
-			$reply->data = Favorite::getFavoriteByFavoriteBeerId($pdo, $favoriteBeerId)->toArray();
+		//else if(empty($favoriteBeerId) === false) {
+			//$reply->data = Favorite::getFavoriteByFavoriteBeerId($pdo, $favoriteBeerId)->toArray();
 			//get all the likes associated with the beerId
 		} else if(empty($favoriteUserId) === false) {
 			$reply->data = Favorite::getFavoriteByFavoriteUserId($pdo, $favoriteUserId)->toArray();
@@ -85,13 +85,14 @@ try {
 			//validateJwtHeader();
 
 			// enforce the user is signed in
-			if(empty($_SESSION["beer"]) === true) {
-				throw(new \InvalidArgumentException("you must be logged in too favorite beer", 403));
+			if(empty($_SESSION["user"]) === true) {
+				throw(new \InvalidArgumentException("you must be logged in to favorite beer", 403));
 			}
 
 			validateJwtHeader();
-
-			$favorite = new Favorite($_SESSION["beer"]->getFavoriteUserId(), $requestObject->favoriteUserId);
+			var_dump($requestObject->favoriteBeerId);
+			var_dump($_SESSION);
+			$favorite = new Favorite($requestObject->favoriteBeerId, $_SESSION["user"]->getUserId());
 			$favorite->insert($pdo);
 			$reply->message = "favorite beer successful";
 
@@ -111,7 +112,7 @@ try {
 			}
 
 			//enforce the user is signed in and only trying to edit their own like
-			if(empty($_SESSION["beer"]) === true || $_SESSION["beer"]->getBeerId()->toString() !== $favorite->getFavoriteBeerId()->toString()) {
+			if(empty($_SESSION["user"]) === true || $_SESSION["user"]->getUserId()->toString() !== $favorite->getFavoriteUserId()->toString()) {
 				throw(new \InvalidArgumentException("You are not allowed to delete this beer", 403));
 			}
 

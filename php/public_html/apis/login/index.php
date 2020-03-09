@@ -68,9 +68,9 @@ try {
 		}
 
 		//grab user from database and put into a session
-		$profile = User::getUserByUserId($pdo, $user->getUserId());
+		$user = User::getUserByUserId($pdo, $user->getUserId());
 
-		$_SESSION["profile"] = $profile;
+		$_SESSION["user"] = $user;
 
 		//create the Auth payload
 		$authObject = (object) [
