@@ -1,14 +1,16 @@
 <?php
+namespace FindMeBeer\FindMeBeer;
 
 use FindMeBeer\FindMeBeer\{Brewery, Beer, Tag, BeerTag};
 
-require_once (dirname(__dir__, 1) . "/classes/autoload.php");
+require_once (dirname(__dir__, 1) . "/Classes/autoload.php");
 
-require_once ("/etc/apache2/capstone-mysql/encrypted-config.php");
 
 require_once ("uuid.php");
 
-$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/beerme.ini");
+require_once("/etc/apache2/capstone-mysql/Secrets.php");
+$secrets = new \Secrets("/etc/apache2/capstone-mysql/beerme.ini");
+$pdo = $secrets->getPdoObject();
 
 //Create Marble Brewery
 $marble = new Brewery(
@@ -529,24 +531,28 @@ var_dump($maltyTag->getTagId()->toString());
 
 // Marble Double White Beer Tags
 $marbleDoubleWhiteAleTag = new BeerTag($marbleDoubleWhite->getBeerId(), $aleTag->getTagId());
+$marbleDoubleWhiteAleTag->insert($pdo);
 echo "Double White Ale Beer Tag Beer Id";
 var_dump($marbleDoubleWhiteAleTag->getBeerTagBeerId()->toString());
 echo "Double White Ale Beer Tag Tag Id";
 var_dump($marbleDoubleWhiteAleTag->getBeerTagTagId()->toString());
 
 $marbleDoubleWhiteWheatTag = new BeerTag($marbleDoubleWhite->getBeerId(), $wheatTag->getTagId());
+$marbleDoubleWhiteWheatTag->insert($pdo);
 echo "Double White Wheat Beer Tag Beer Id";
 var_dump($marbleDoubleWhiteWheatTag->getBeerTagBeerId()->toString());
 echo "Double White Wheat Beer Tag Tag Id";
 var_dump($marbleDoubleWhiteWheatTag->getBeerTagTagId()->toString());
 
 $marbleDoubleWhiteLightTag = new BeerTag($marbleDoubleWhite->getBeerId(), $lightTag->getTagId());
+$marbleDoubleWhiteLightTag->insert($pdo);
 echo "Double White Light Beer Tag Beer Id";
 var_dump($marbleDoubleWhiteLightTag->getBeerTagBeerId()->toString());
 echo "Double White Light Beer Tag Tag Id";
 var_dump($marbleDoubleWhiteLightTag->getBeerTagTagId()->toString());
 
 $marbleDoubleWhiteSweetTag = new BeerTag($marbleDoubleWhite->getBeerId(), $sweetTag->getTagId());
+$marbleDoubleWhiteSweetTag->insert($pdo);
 echo "Double White Sweet Beer Tag Beer Id";
 var_dump($marbleDoubleWhiteSweetTag->getBeerTagBeerId()->toString());
 echo "Double White Sweet Beer Tag Tag Id";
@@ -556,24 +562,28 @@ var_dump($marbleDoubleWhiteSweetTag->getBeerTagTagId()->toString());
 // Marble India Pale Ale
 
 $marbleIpaIpaTag = new BeerTag($marbleIPA->getBeerId(), $ipaTag->getTagId());
+$marbleIpaIpaTag->insert($pdo);
 echo "Marble IPA IPA Beer Tag Beer Id";
 var_dump($marbleIpaIpaTag->getBeerTagBeerId()->toString());
 echo "Marble IPA IPA Beer Tag Tag Id";
 var_dump($marbleIpaIpaTag->getBeerTagTagId()->toString());
 
 $marbleIpaLightTag = new BeerTag($marbleIPA->getBeerId(), $lightTag->getTagId());
+$marbleIpaLightTag->insert($pdo);
 echo "Marble IPA Light Beer Tag Beer Id";
 var_dump($marbleIpaLightTag->getBeerTagBeerId()->toString());
 echo "Marble IPA Light Beer Tag Tag Id";
 var_dump($marbleIpaLightTag->getBeerTagTagId()->toString());
 
 $marbleIpaHoppyTag = new BeerTag($marbleIPA->getBeerId(), $hoppyTag->getTagId());
+$marbleIpaHoppyTag->insert($pdo);
 echo "Marble IPA Hoppy Beer Tag Beer Id";
 var_dump($marbleIpaHoppyTag->getBeerTagBeerId()->toString());
 echo "Marble IPA Hoppy Beer Tag Tag Id";
 var_dump($marbleIpaHoppyTag->getBeerTagTagId()->toString());
 
 $marbleIpaSmoothTag = new BeerTag($marbleIPA->getBeerId(), $smoothTag->getTagId());
+$marbleIpaSmoothTag->insert($pdo);
 echo "Marble IPA Smooth Beer Tag Beer Id";
 var_dump($marbleIpaSmoothTag->getBeerTagBeerId()->toString());
 echo "Marble IPA Smooth Beer Tag Tag Id";
@@ -582,12 +592,14 @@ var_dump($marbleIpaSmoothTag->getBeerTagTagId()->toString());
 
 // Marble Passionate Gose
 $marblePassionateGoseSourTag = new BeerTag($marblePassionateGose->getBeerId(), $sourTag->getTagId());
+$marblePassionateGoseSourTag->insert($pdo);
 echo "Marble Passionate Gose Sour Beer Tag Beer Id";
 var_dump($marblePassionateGoseSourTag->getBeerTagBeerId()->toString());
 echo "Marble Passionate Gose Sour Beer Tag Tag Id";
 var_dump($marblePassionateGoseSourTag->getBeerTagTagId()->toString());
 
 $marblePassionateGoseFruityTag = new BeerTag($marblePassionateGose->getBeerId(), $fruityTag->getTagId());
+$marblePassionateGoseFruityTag->insert($pdo);
 echo "Marble Passionate Gose Fruity Beer Tag Beer Id";
 var_dump($marblePassionateGoseFruityTag->getBeerTagBeerId()->toString());
 echo "Marble Passionate Gose Fruity Beer Tag Tag Id";
@@ -596,18 +608,21 @@ var_dump($marblePassionateGoseFruityTag->getBeerTagTagId()->toString());
 
 // Marble Cholo Stout
 $marbleCholoStoutStoutTag = new BeerTag($marbleCholoStout->getBeerId(), $stoutTag->getTagId());
+$marbleCholoStoutStoutTag->insert($pdo);
 echo "Marble Cholo Stout Stout Beer Tag Beer Id";
 var_dump($marbleCholoStoutStoutTag->getBeerTagBeerId()->toString());
 echo "Marble Cholo Stout Stout Beer Tag Tag Id";
 var_dump($marbleCholoStoutStoutTag->getBeerTagTagId()->toString());
 
 $marbleCholoStoutDarkTag = new BeerTag($marbleCholoStout->getBeerId(), $darkTag->getTagId());
+$marbleCholoStoutDarkTag->insert($pdo);
 echo "Marble Cholo Stout Dark Beer Tag Beer Id";
 var_dump($marbleCholoStoutDarkTag->getBeerTagBeerId()->toString());
 echo "Marble Cholo Stout Dark Beer Tag Tag Id";
 var_dump($marbleCholoStoutDarkTag->getBeerTagTagId()->toString());
 
 $marbleCholoStoutHoppyTag = new BeerTag($marbleCholoStout->getBeerId(), $hoppyTag->getTagId());
+$marbleCholoStoutHoppyTag->insert($pdo);
 echo "Marble Cholo Stout Hoppy Beer Tag Beer Id";
 var_dump($marbleCholoStoutHoppyTag->getBeerTagBeerId()->toString());
 echo "Marble Cholo Stout Hoppy Beer Tag Tag Id";
@@ -617,18 +632,21 @@ var_dump($marbleCholoStoutHoppyTag->getBeerTagTagId()->toString());
 // Marble Red Ale
 
 $marbleRedAleAleTag = new BeerTag($marbleRedAle->getBeerId(), $aleTag->getTagId());
+$marbleRedAleAleTag->insert($pdo);
 echo "Marble Red Ale Ale Beer Tag Beer Id";
 var_dump($marbleRedAleAleTag->getBeerTagBeerId()->toString());
 echo "Marble Red Ale Ale Beer Tag Tag Id";
 var_dump($marbleRedAleAleTag->getBeerTagTagId()->toString());
 
 $marbleRedAleSmoothTag = new BeerTag($marbleRedAle->getBeerId(), $smoothTag->getTagId());
+$marbleRedAleSmoothTag->insert($pdo);
 echo "Marble Red Ale Smooth Beer Tag Beer Id";
 var_dump($marbleRedAleSmoothTag->getBeerTagBeerId()->toString());
 echo "Marble Red Ale Smooth Beer Tag Tag Id";
 var_dump($marbleRedAleSmoothTag->getBeerTagTagId()->toString());
 
 $marbleRedAleSweetTag = new BeerTag($marbleRedAle->getBeerId(), $sweetTag->getTagId());
+$marbleRedAleSweetTag->insert($pdo);
 echo "Marble Red Ale Sweet Beer Tag Beer Id";
 var_dump($marbleRedAleSweetTag->getBeerTagBeerId()->toString());
 echo "Marble Red Ale Sweet Beer Tag Tag Id";
@@ -639,18 +657,21 @@ var_dump($marbleRedAleSweetTag->getBeerTagTagId()->toString());
 
 // Craftroom Double Belgium
 $craftroomBelgiumAleTag = new BeerTag($craftroomBelgium->getBeerId(), $aleTag->getTagId());
+$craftroomBelgiumAleTag->insert($pdo);
 echo "Craftroom Double Belgium Ale Beer Tag Beer Id";
 var_dump($craftroomBelgiumAleTag->getBeerTagBeerId()->toString());
 echo "Craftroom Double Belgium Ale Beer Tag Tag Id";
 var_dump($craftroomBelgiumAleTag->getBeerTagTagId()->toString());
 
 $craftroomBelgiumWheatTag = new BeerTag($craftroomBelgium->getBeerId(), $wheatTag->getTagId());
+$craftroomBelgiumWheatTag->insert($pdo);
 echo "Craftroom Double Belgium Wheat Beer Tag Beer Id";
 var_dump($craftroomBelgiumWheatTag->getBeerTagBeerId()->toString());
 echo "Craftroom Double Belgium Wheat Beer Tag Tag Id";
 var_dump($craftroomBelgiumWheatTag->getBeerTagTagId()->toString());
 
 $craftroomBelgiumSweetTag = new BeerTag($craftroomBelgium->getBeerId(), $sweetTag->getTagId());
+$craftroomBelgiumSweetTag->insert($pdo);
 echo "Craftroom Double Belgium Sweet Beer Tag Beer Id";
 var_dump($craftroomBelgiumSweetTag->getBeerTagBeerId()->toString());
 echo "Craftroom Double Belgium Sweet Beer Tag Tag Id";
@@ -659,18 +680,21 @@ var_dump($craftroomBelgiumSweetTag->getBeerTagTagId()->toString());
 
 // Craftroom Honey IPA
 $craftroomIpaIpaTag = new BeerTag($craftroomIPA->getBeerId(), $ipaTag->getTagId());
+$craftroomIpaIpaTag->insert($pdo);
 echo "Craftroom Honey IPA IPA Beer Tag Beer Id";
 var_dump($craftroomIpaIpaTag->getBeerTagBeerId()->toString());
 echo "Craftroom Honey IPA IPA Beer Tag Tag Id";
 var_dump($craftroomIpaIpaTag->getBeerTagTagId()->toString());
 
 $craftroomIpaHoppyTag = new BeerTag($craftroomIPA->getBeerId(), $hoppyTag->getTagId());
+$craftroomIpaHoppyTag->insert($pdo);
 echo "Craftroom Honey IPA Hoppy Beer Tag Beer Id";
 var_dump($craftroomIpaHoppyTag->getBeerTagBeerId()->toString());
 echo "Craftroom Honey IPA Hoppy Beer Tag Tag Id";
 var_dump($craftroomIpaHoppyTag->getBeerTagTagId()->toString());
 
 $craftroomIpaSweetTag = new BeerTag($craftroomIPA->getBeerId(), $sweetTag->getTagId());
+$craftroomIpaSweetTag->insert($pdo);
 echo "Craftroom Honey IPA Sweet Beer Tag Beer Id";
 var_dump($craftroomIpaSweetTag->getBeerTagBeerId()->toString());
 echo "Craftroom Honey IPA Sweet Beer Tag Tag Id";
@@ -679,12 +703,14 @@ var_dump($craftroomIpaSweetTag->getBeerTagTagId()->toString());
 
 // Craftroom Red Ale
 $craftroomRedAleAleTag = new BeerTag($craftroomRedAle->getBeerId(), $aleTag->getTagId());
+$craftroomRedAleAleTag->insert($pdo);
 echo "Craftroom Red Ale Ale Beer Tag Beer Id";
 var_dump($craftroomRedAleAleTag->getBeerTagBeerId()->toString());
 echo "Craftroom Red ALe Ale Beer Tag Tag Id";
 var_dump($craftroomRedAleAleTag->getBeerTagTagId()->toString());
 
 $craftroomRedAleSmoothTag = new BeerTag($craftroomRedAle->getBeerId(), $smoothTag->getTagId());
+$craftroomRedAleSmoothTag->insert($pdo);
 echo "Craftroom Red Ale Smooth Beer Tag Beer Id";
 var_dump($craftroomRedAleSmoothTag->getBeerTagBeerId()->toString());
 echo "Craftroom Red ALe Ale Smooth Tag Tag Id";
@@ -693,30 +719,35 @@ var_dump($craftroomRedAleSmoothTag->getBeerTagTagId()->toString());
 
 // Craftroom Blueberry Wheat
 $craftroomBlueberryWheatAleTag = new BeerTag($craftroomBlueberryWheat->getBeerId(), $aleTag->getTagId());
+$craftroomBlueberryWheatAleTag->insert($pdo);
 echo "Craftroom Blueberry Wheat Ale Beer Tag Beer Id";
 var_dump($craftroomBlueberryWheatAleTag->getBeerTagBeerId()->toString());
 echo "Craftroom Blueberry Wheat Ale Beer Tag Tag Id";
 var_dump($craftroomBlueberryWheatAleTag->getBeerTagTagId()->toString());
 
 $craftroomBlueberryWheatWheatTag = new BeerTag($craftroomBlueberryWheat->getBeerId(), $wheatTag->getTagId());
+$craftroomBlueberryWheatWheatTag->insert($pdo);
 echo "Craftroom Blueberry Wheat Wheat Beer Tag Beer Id";
 var_dump($craftroomBlueberryWheatWheatTag->getBeerTagBeerId()->toString());
 echo "Craftroom Blueberry Wheat Wheat Beer Tag Tag Id";
 var_dump($craftroomBlueberryWheatWheatTag->getBeerTagTagId()->toString());
 
 $craftroomBlueberryWheatSweetTag = new BeerTag($craftroomBlueberryWheat->getBeerId(), $sweetTag->getTagId());
+$craftroomBlueberryWheatSweetTag->insert($pdo);
 echo "Craftroom Blueberry Wheat Sweet Beer Tag Beer Id";
 var_dump($craftroomBlueberryWheatSweetTag->getBeerTagBeerId()->toString());
 echo "Craftroom Blueberry Wheat Sweet Beer Tag Tag Id";
 var_dump($craftroomBlueberryWheatSweetTag->getBeerTagTagId()->toString());
 
 $craftroomBlueberryWheatFruityTag = new BeerTag($craftroomBlueberryWheat->getBeerId(), $fruityTag->getTagId());
+$craftroomBlueberryWheatFruityTag->insert($pdo);
 echo "Craftroom Blueberry Wheat Fruity Beer Tag Beer Id";
 var_dump($craftroomBlueberryWheatFruityTag->getBeerTagBeerId()->toString());
 echo "Craftroom Blueberry Wheat Fruity Beer Tag Tag Id";
 var_dump($craftroomBlueberryWheatFruityTag->getBeerTagTagId()->toString());
 
 $craftroomBlueberryWheatLightTag = new BeerTag($craftroomBlueberryWheat->getBeerId(), $lightTag->getTagId());
+$craftroomBlueberryWheatLightTag->insert($pdo);
 echo "Craftroom Blueberry Wheat Light Beer Tag Beer Id";
 var_dump($craftroomBlueberryWheatLightTag->getBeerTagBeerId()->toString());
 echo "Craftroom Blueberry Wheat Light Beer Tag Tag Id";
@@ -725,18 +756,21 @@ var_dump($craftroomBlueberryWheatLightTag->getBeerTagTagId()->toString());
 
 // craftroom Hefen
 $craftroomHefenWheatTag = new BeerTag($craftroomHefen->getBeerId(), $wheatTag->getTagId());
+$craftroomHefenWheatTag->insert($pdo);
 echo "Craftroom Hefen Wheat Beer Tag Beer Id";
 var_dump($craftroomHefenWheatTag->getBeerTagBeerId()->toString());
 echo "Craftroom Hefen Wheat Beer Tag Tag Id";
 var_dump($craftroomHefenWheatTag->getBeerTagTagId()->toString());
 
 $craftroomHefenLightTag = new BeerTag($craftroomHefen->getBeerId(), $lightTag->getTagId());
+$craftroomHefenLightTag->insert($pdo);
 echo "Craftroom Hefen Light Beer Tag Beer Id";
 var_dump($craftroomHefenLightTag->getBeerTagBeerId()->toString());
 echo "Craftroom Hefen Light Beer Tag Tag Id";
 var_dump($craftroomHefenLightTag->getBeerTagTagId()->toString());
 
 $craftroomHefenFruityTag = new BeerTag($craftroomHefen->getBeerId(), $fruityTag->getTagId());
+$craftroomHefenFruityTag->insert($pdo);
 echo "Craftroom Hefen Fruity Beer Tag Beer Id";
 var_dump($craftroomHefenFruityTag->getBeerTagBeerId()->toString());
 echo "Craftroom Hefen Fruity Beer Tag Tag Id";
@@ -748,18 +782,21 @@ var_dump($craftroomHefenFruityTag->getBeerTagTagId()->toString());
 
 // Freestyle Pilsner
 $santaFePilsnerPilsnerTag = new BeerTag($santaFePilsner->getBeerId(), $pilsnerTag->getTagId());
+$santaFePilsnerPilsnerTag->insert($pdo);
 echo "Santa Fe Freestyle Pilsner Pilsner Beer Tag Beer Id";
 var_dump($santaFePilsnerPilsnerTag->getBeerTagBeerId()->toString());
 echo "Santa Fe Freestyle Pilsner Pilsner Beer Tag Tag Id";
 var_dump($santaFePilsnerPilsnerTag->getBeerTagTagId()->toString());
 
 $santaFePilsnerLightTag = new BeerTag($santaFePilsner->getBeerId(), $lightTag->getTagId());
+$santaFePilsnerLightTag->insert($pdo);
 echo "Santa Fe Freestyle Pilsner Light Beer Tag Beer Id";
 var_dump($santaFePilsnerLightTag->getBeerTagBeerId()->toString());
 echo "Santa Fe Freestyle Pilsner Light Beer Tag Tag Id";
 var_dump($santaFePilsnerLightTag->getBeerTagTagId()->toString());
 
 $santaFePilsnerSmoothTag = new BeerTag($santaFePilsner->getBeerId(), $smoothTag->getTagId());
+$santaFePilsnerSmoothTag->insert($pdo);
 echo "Santa Fe Freestyle Pilsner Smooth Beer Tag Beer Id";
 var_dump($santaFePilsnerSmoothTag->getBeerTagBeerId()->toString());
 echo "Santa Fe Freestyle Pilsner Smooth Beer Tag Tag Id";
@@ -768,24 +805,28 @@ var_dump($santaFePilsnerSmoothTag->getBeerTagTagId()->toString());
 
 //7K IPA
 $santaFe7kIpaTag = new BeerTag($santaFe7k->getBeerId(), $ipaTag->getTagId());
+$santaFe7kIpaTag->insert($pdo);
 echo "Santa Fe 7K IPA IPA Beer Tag Beer Id";
 var_dump($santaFe7kIpaTag->getBeerTagBeerId()->toString());
 echo "Santa Fe 7K IPA IPA Beer Tag Tag Id";
 var_dump($santaFe7kIpaTag->getBeerTagTagId()->toString());
 
 $santaFe7kHoppyTag = new BeerTag($santaFe7k->getBeerId(), $hoppyTag->getTagId());
+$santaFe7kHoppyTag ->insert($pdo);
 echo "Santa Fe 7K IPA Hoppy Beer Tag Beer Id";
 var_dump($santaFe7kHoppyTag->getBeerTagBeerId()->toString());
 echo "Santa Fe 7K IPA Hoppy Beer Tag Tag Id";
 var_dump($santaFe7kHoppyTag->getBeerTagTagId()->toString());
 
 $santaFe7kSmoothTag = new BeerTag($santaFe7k->getBeerId(), $smoothTag->getTagId());
+$santaFe7kSmoothTag->insert($pdo);
 echo "Santa Fe 7K IPA Smooth Beer Tag Beer Id";
 var_dump($santaFe7kSmoothTag->getBeerTagBeerId()->toString());
 echo "Santa Fe 7K IPA Smooth Beer Tag Tag Id";
 var_dump($santaFe7kSmoothTag->getBeerTagTagId()->toString());
 
 $santaFe7kLightTag = new BeerTag($santaFe7k->getBeerId(), $lightTag->getTagId());
+$santaFe7kLightTag->insert($pdo);
 echo "Santa Fe 7K IPA Light Beer Tag Beer Id";
 var_dump($santaFe7kLightTag->getBeerTagBeerId()->toString());
 echo "Santa Fe 7K IPA Light Beer Tag Tag Id";
@@ -794,24 +835,28 @@ var_dump($santaFe7kLightTag->getBeerTagTagId()->toString());
 
 //Oktoberfest
 $santaFeOktoberfestLagerTag = new BeerTag($santaFeOktoberfest->getBeerId(), $lagerTag->getTagId());
+$santaFeOktoberfestLagerTag->insert($pdo);
 echo "Santa Fe Oktoberfest Lager Beer Tag Beer Id";
 var_dump($santaFeOktoberfestLagerTag->getBeerTagBeerId()->toString());
 echo "Santa Fe Oktoberfest Lager Beer Tag Tag Id";
 var_dump($santaFeOktoberfestLagerTag->getBeerTagTagId()->toString());
 
 $santaFeOktoberfestSmoothTag = new BeerTag($santaFeOktoberfest->getBeerId(), $smoothTag->getTagId());
+$santaFeOktoberfestSmoothTag->insert($pdo);
 echo "Santa Fe Oktoberfest Smooth Beer Tag Beer Id";
 var_dump($santaFeOktoberfestSmoothTag->getBeerTagBeerId()->toString());
 echo "Santa Fe Oktoberfest Smooth Beer Tag Tag Id";
 var_dump($santaFeOktoberfestSmoothTag->getBeerTagTagId()->toString());
 
 $santaFeOktoberfestSweetTag = new BeerTag($santaFeOktoberfest->getBeerId(), $sweetTag->getTagId());
+$santaFeOktoberfestSweetTag->insert($pdo);
 echo "Santa Fe Oktoberfest Sweet Beer Tag Beer Id";
 var_dump($santaFeOktoberfestSweetTag->getBeerTagBeerId()->toString());
 echo "Santa Fe Oktoberfest Sweet Beer Tag Tag Id";
 var_dump($santaFeOktoberfestSweetTag->getBeerTagTagId()->toString());
 
 $santaFeOktoberfestTag = new BeerTag($santaFeOktoberfest->getBeerId(), $sweetTag->getTagId());
+$santaFeOktoberfestTag->insert($pdo);
 echo "Santa Fe Oktoberfest Sweet Beer Tag Beer Id";
 var_dump($santaFeOktoberfestSweetTag->getBeerTagBeerId()->toString());
 echo "Santa Fe Oktoberfest Sweet Beer Tag Tag Id";
@@ -820,24 +865,28 @@ var_dump($santaFeOktoberfestSweetTag->getBeerTagTagId()->toString());
 
 // Santa Fe Pale Ale
 $santaFePaleAleApaTag = new BeerTag($santaFePaleAle->getBeerId(), $apaTag->getTagId());
+$santaFePaleAleApaTag->insert($pdo);
 echo "Santa Fe Pale Ale APA Beer Tag Beer Id";
 var_dump($santaFePaleAleApaTag->getBeerTagBeerId()->toString());
 echo "Santa Fe Pale Ale APA Beer Tag Tag Id";
 var_dump($santaFePaleAleApaTag->getBeerTagTagId()->toString());
 
 $santaFePaleAleHoppyTag = new BeerTag($santaFePaleAle->getBeerId(), $hoppyTag->getTagId());
+$santaFePaleAleHoppyTag->insert($pdo);
 echo "Santa Fe Pale Ale Hoppy Beer Tag Beer Id";
 var_dump($santaFePaleAleHoppyTag->getBeerTagBeerId()->toString());
 echo "Santa Fe Pale Ale Hoppy Beer Tag Tag Id";
 var_dump($santaFePaleAleHoppyTag->getBeerTagTagId()->toString());
 
 $santaFePaleAleSmoothTag = new BeerTag($santaFePaleAle->getBeerId(), $smoothTag->getTagId());
+$santaFePaleAleSmoothTag->insert($pdo);
 echo "Santa Fe Pale Ale Smooth Beer Tag Beer Id";
 var_dump($santaFePaleAleSmoothTag->getBeerTagBeerId()->toString());
 echo "Santa Fe Pale Ale Smooth Beer Tag Tag Id";
 var_dump($santaFePaleAleSmoothTag->getBeerTagTagId()->toString());
 
 $santaFePaleAleLightTag = new BeerTag($santaFePaleAle->getBeerId(), $lightTag->getTagId());
+$santaFePaleAleLightTag->insert($pdo);
 echo "Santa Fe Pale Ale Light Beer Tag Beer Id";
 var_dump($santaFePaleAleLightTag->getBeerTagBeerId()->toString());
 echo "Santa Fe Pale Ale Light Beer Tag Tag Id";
@@ -846,12 +895,14 @@ var_dump($santaFePaleAleLightTag->getBeerTagTagId()->toString());
 
 // Santa Fe Pepe Loco
 $santaFePepeLocoLagerTag = new BeerTag($santaFePepeLoco->getBeerId(), $lagerTag->getTagId());
+$santaFePepeLocoLagerTag->insert($pdo);
 echo "Santa Fe Pepe Loco Lager Beer Tag Beer Id";
 var_dump($santaFePepeLocoLagerTag->getBeerTagBeerId()->toString());
 echo "Santa Fe Pepe Loco Lager Beer Tag Tag Id";
 var_dump($santaFePepeLocoLagerTag->getBeerTagTagId()->toString());
 
 $santaFePepeLocoLightTag = new BeerTag($santaFePepeLoco->getBeerId(), $lightTag->getTagId());
+$santaFePepeLocoLightTag->insert($pdo);
 echo "Santa Fe Pepe Loco Light Beer Tag Beer Id";
 var_dump($santaFePepeLocoLightTag->getBeerTagBeerId()->toString());
 echo "Santa Fe Pepe Loco Light Beer Tag Tag Id";
@@ -863,30 +914,35 @@ var_dump($santaFePepeLocoLightTag->getBeerTagTagId()->toString());
 
 // Bosque IPA
 $bosqueIpaIpaTag = new BeerTag($bosqueIPA->getBeerId(), $ipaTag->getTagId());
+$bosqueIpaIpaTag->insert($pdo);
 echo "Bosque IPA IPA Beer Tag Beer Id";
 var_dump($bosqueIpaIpaTag->getBeerTagBeerId()->toString());
 echo "Bosque IPA IPA Beer Tag Tag Id";
 var_dump($bosqueIpaIpaTag->getBeerTagTagId()->toString());
 
 $bosqueIpaHoppyTag = new BeerTag($bosqueIPA->getBeerId(), $hoppyTag->getTagId());
+$bosqueIpaHoppyTag->insert($pdo);
 echo "Bosque IPA Hoppy Beer Tag Beer Id";
 var_dump($bosqueIpaHoppyTag->getBeerTagBeerId()->toString());
 echo "Bosque IPA Hoppy Beer Tag Tag Id";
 var_dump($bosqueIpaHoppyTag->getBeerTagTagId()->toString());
 
 $bosqueIpaSmoothTag = new BeerTag($bosqueIPA->getBeerId(), $smoothTag->getTagId());
+$bosqueIpaSmoothTag->insert($pdo);
 echo "Bosque IPA Smooth Beer Tag Beer Id";
 var_dump($bosqueIpaSmoothTag->getBeerTagBeerId()->toString());
 echo "Bosque IPA Smooth Beer Tag Tag Id";
 var_dump($bosqueIpaSmoothTag->getBeerTagTagId()->toString());
 
 $bosqueIpaSweetTag = new BeerTag($bosqueIPA->getBeerId(), $sweetTag->getTagId());
+$bosqueIpaSweetTag->insert($pdo);
 echo "Bosque IPA Sweet Beer Tag Beer Id";
 var_dump($bosqueIpaSweetTag->getBeerTagBeerId()->toString());
 echo "Bosque IPA Sweet Beer Tag Tag Id";
 var_dump($bosqueIpaSweetTag->getBeerTagTagId()->toString());
 
 $bosqueIpaFruityTag = new BeerTag($bosqueIPA->getBeerId(), $fruityTag->getTagId());
+$bosqueIpaFruityTag->insert($pdo);
 echo "Bosque IPA Fruit Beer Tag Beer Id";
 var_dump($bosqueIpaFruityTag->getBeerTagBeerId()->toString());
 echo "Bosque IPA Fruit Beer Tag Tag Id";
@@ -895,30 +951,35 @@ var_dump($bosqueIpaFruityTag->getBeerTagTagId()->toString());
 
 // Bosque Lager
 $bosqueLagerLagerTag = new BeerTag($bosqueLager->getBeerId(), $lagerTag->getTagId());
+$bosqueLagerLagerTag->insert($pdo);
 echo "Bosque Lager Lager Beer Tag Beer Id";
 var_dump($bosqueLagerLagerTag->getBeerTagBeerId()->toString());
 echo "Bosque Lager Lager Beer Tag Tag Id";
 var_dump($bosqueLagerLagerTag->getBeerTagTagId()->toString());
 
 $bosqueLagerLightTag = new BeerTag($bosqueLager->getBeerId(), $lightTag->getTagId());
+$bosqueLagerLightTag->insert($pdo);
 echo "Bosque Lager Light Beer Tag Beer Id";
 var_dump($bosqueLagerLightTag->getBeerTagBeerId()->toString());
 echo "Bosque Lager Light Beer Tag Tag Id";
 var_dump($bosqueLagerLightTag->getBeerTagTagId()->toString());
 
 $bosqueLagerSmoothTag = new BeerTag($bosqueLager->getBeerId(), $smoothTag->getTagId());
+$bosqueLagerSmoothTag->insert($pdo);
 echo "Bosque Lager Smooth Beer Tag Beer Id";
 var_dump($bosqueLagerSmoothTag->getBeerTagBeerId()->toString());
 echo "Bosque Lager Smooth Beer Tag Tag Id";
 var_dump($bosqueLagerSmoothTag->getBeerTagTagId()->toString());
 
 $bosqueLagerHoppyTag = new BeerTag($bosqueLager->getBeerId(), $hoppyTag->getTagId());
+$bosqueLagerHoppyTag->insert($pdo);
 echo "Bosque Lager Hoppy Beer Tag Beer Id";
 var_dump($bosqueLagerHoppyTag->getBeerTagBeerId()->toString());
 echo "Bosque Lager Hoppy Beer Tag Tag Id";
 var_dump($bosqueLagerHoppyTag->getBeerTagTagId()->toString());
 
 $bosqueLagerSweetTag = new BeerTag($bosqueLager->getBeerId(), $sweetTag->getTagId());
+$bosqueLagerSweetTag->insert($pdo);
 echo "Bosque Lager Sweet Beer Tag Beer Id";
 var_dump($bosqueLagerSweetTag->getBeerTagBeerId()->toString());
 echo "Bosque Lager Sweet Beer Tag Tag Id";
@@ -927,30 +988,35 @@ var_dump($bosqueLagerSweetTag->getBeerTagTagId()->toString());
 
 //Elephants on Parade
 $bosqueElephantsWheatTag = new BeerTag($bosqueElephants->getBeerId(), $wheatTag->getTagId());
+$bosqueElephantsWheatTag->insert($pdo);
 echo "Bosque Elephants On Parade Wheat Beer Tag Beer Id";
 var_dump($bosqueElephantsWheatTag->getBeerTagBeerId()->toString());
 echo "Bosque Elephants On Parade Wheat Beer Tag Tag Id";
 var_dump($bosqueElephantsWheatTag->getBeerTagTagId()->toString());
 
 $bosqueElephantsFruityTag = new BeerTag($bosqueElephants->getBeerId(), $fruityTag->getTagId());
+$bosqueElephantsFruityTag->insert($pdo);
 echo "Bosque Elephants On Parade Fruity Beer Tag Beer Id";
 var_dump($bosqueElephantsFruityTag->getBeerTagBeerId()->toString());
 echo "Bosque Elephants On Parade Fruity Beer Tag Tag Id";
 var_dump($bosqueElephantsFruityTag->getBeerTagTagId()->toString());
 
 $bosqueElephantsSweetTag = new BeerTag($bosqueElephants->getBeerId(), $fruityTag->getTagId());
+$bosqueElephantsSweetTag->insert($pdo);
 echo "Bosque Elephants On Parade Sweet Beer Tag Beer Id";
 var_dump($bosqueElephantsSweetTag->getBeerTagBeerId()->toString());
 echo "Bosque Elephants On Parade Sweet Beer Tag Tag Id";
 var_dump($bosqueElephantsSweetTag->getBeerTagTagId()->toString());
 
 $bosqueElephantsLightTag = new BeerTag($bosqueElephants->getBeerId(), $lightTag->getTagId());
+$bosqueElephantsLightTag->insert($pdo);
 echo "Bosque Elephants On Parade Light Beer Tag Beer Id";
 var_dump($bosqueElephantsLightTag->getBeerTagBeerId()->toString());
 echo "Bosque Elephants On Parade Light Beer Tag Tag Id";
 var_dump($bosqueElephantsLightTag->getBeerTagTagId()->toString());
 
 $bosqueElephantsSourTag = new BeerTag($bosqueElephants->getBeerId(), $sourTag->getTagId());
+$bosqueElephantsSourTag->insert($pdo);
 echo "Bosque Elephants On Parade Sour Beer Tag Beer Id";
 var_dump($bosqueElephantsSourTag->getBeerTagBeerId()->toString());
 echo "Bosque Elephants On Parade Sour Beer Tag Tag Id";
@@ -959,18 +1025,21 @@ var_dump($bosqueElephantsSourTag->getBeerTagTagId()->toString());
 
 // Jetty Jack
 $bosqueJettyJackAleTag = new BeerTag($bosqueJettyJack->getBeerId(), $aleTag->getTagId());
+$bosqueJettyJackAleTag->insert($pdo);
 echo "Bosque Jetty Jack Ale Beer Tag Beer Id";
 var_dump($bosqueJettyJackAleTag->getBeerTagBeerId()->toString());
 echo "Bosque Jetty Jack Ale Beer Tag Tag Id";
 var_dump($bosqueJettyJackAleTag->getBeerTagTagId()->toString());
 
 $bosqueJettyJackHoppyTag = new BeerTag($bosqueJettyJack->getBeerId(), $hoppyTag->getTagId());
+$bosqueJettyJackHoppyTag->insert($pdo);
 echo "Bosque Jetty Jack Hoppy Beer Tag Beer Id";
 var_dump($bosqueJettyJackHoppyTag->getBeerTagBeerId()->toString());
 echo "Bosque Jetty Jack Hoppy Beer Tag Tag Id";
 var_dump($bosqueJettyJackHoppyTag->getBeerTagTagId()->toString());
 
 $bosqueJettyJackMaltyTag = new BeerTag($bosqueJettyJack->getBeerId(), $maltyTag->getTagId());
+$bosqueJettyJackMaltyTag->insert($pdo);
 echo "Bosque Jetty Jack Malty Beer Tag Beer Id";
 var_dump($bosqueJettyJackMaltyTag->getBeerTagBeerId()->toString());
 echo "Bosque Jetty Jack Malty Beer Tag Tag Id";
@@ -979,24 +1048,28 @@ var_dump($bosqueJettyJackMaltyTag->getBeerTagTagId()->toString());
 
 // Scotia
 $bosqueScotiaAleTag = new BeerTag($bosqueScotia->getBeerId(), $aleTag->getTagId());
+$bosqueScotiaAleTag->insert($pdo);
 echo "Bosque Scotia Ale Beer Tag Beer Id";
 var_dump($bosqueScotiaAleTag->getBeerTagBeerId()->toString());
 echo "Bosque Scotia Ale Beer Tag Tag Id";
 var_dump($bosqueScotiaAleTag->getBeerTagTagId()->toString());
 
 $bosqueScotiaMaltyTag = new BeerTag($bosqueScotia->getBeerId(), $maltyTag->getTagId());
+$bosqueScotiaMaltyTag->insert($pdo);
 echo "Bosque Scotia Malty Beer Tag Beer Id";
 var_dump($bosqueScotiaMaltyTag->getBeerTagBeerId()->toString());
 echo "Bosque Scotia Malty Beer Tag Tag Id";
 var_dump($bosqueScotiaMaltyTag->getBeerTagTagId()->toString());
 
 $bosqueScotiaSweetTag = new BeerTag($bosqueScotia->getBeerId(), $sweetTag->getTagId());
+$bosqueScotiaSweetTag->insert($pdo);
 echo "Bosque Scotia Sweet Beer Tag Beer Id";
 var_dump($bosqueScotiaSweetTag->getBeerTagBeerId()->toString());
 echo "Bosque Scotia Sweet Beer Tag Tag Id";
 var_dump($bosqueScotiaSweetTag->getBeerTagTagId()->toString());
 
 $bosqueScotiaSmoothTag = new BeerTag($bosqueScotia->getBeerId(), $smoothTag->getTagId());
+$bosqueScotiaSmoothTag->insert($pdo);
 echo "Bosque Scotia Smooth Beer Tag Beer Id";
 var_dump($bosqueScotiaSmoothTag->getBeerTagBeerId()->toString());
 echo "Bosque Scotia Smooth Beer Tag Tag Id";
