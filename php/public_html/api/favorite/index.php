@@ -43,7 +43,7 @@ try {
 		//set XSRF cookie
 		setXsrfCookie();
 
-		//gets  a specific like associated based on its composite key
+		//gets  a specific favorite associated based on its composite key
 		if ($favoriteBeerId !== null && $favoriteUserId !== null) {
 			$favorite = Favorite::getFavoriteByFavoriteBeerIdAndFavoriteUserId($pdo, $favoriteBeerId, $favoriteUserId);
 

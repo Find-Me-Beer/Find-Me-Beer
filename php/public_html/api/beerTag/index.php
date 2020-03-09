@@ -117,9 +117,6 @@ try {
 
 			//validateJwtHeader();
 
-			//preform the actual delete
-			$beerTag->delete($pdo);
-
 			//update the message
 			$reply->message = "beerTag successfully deleted";
 		}
