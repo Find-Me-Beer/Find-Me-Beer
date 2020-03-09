@@ -33,12 +33,8 @@ try {
 // sanitize input
 	$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$breweryAddress = filter_input(INPUT_GET, "breweryAddress", FILTER_SANITIZE_STRING);
-	$breweryAvatarUrl = filter_input(INPUT_GET, "breweryAvatarUrl", FILTER_SANITIZE_STRING);
-	$breweryDescription = filter_input(INPUT_GET, "breweryDescription", FILTER_SANITIZE_STRING);
 	$breweryEmail = filter_input(INPUT_GET, "breweryEmail", FILTER_SANITIZE_STRING);
 	$breweryName = filter_input(INPUT_GET, "breweryName", FILTER_SANITIZE_STRING);
-	$breweryPhone = filter_input(INPUT_GET, "breweryPhone", FILTER_SANITIZE_STRING);
-	$breweryUrl = filter_input(INPUT_GET, "breweryUrl", FILTER_SANITIZE_STRING);
 	$distance = filter_input(INPUT_GET, "distance", FILTER_SANITIZE_STRING);
 	$userLat = filter_input(INPUT_GET, "userLat", FILTER_SANITIZE_STRING);
 	$userLong = filter_input(INPUT_GET, "userLong", FILTER_SANITIZE_STRING);
@@ -64,7 +60,7 @@ try {
 
 			$reply->data = Brewery::getBreweryByBreweryName($pdo, $breweryName);
 
-		} else if(empty($breweries) === false) {
+		} else {
 			$breweries = Brewery::getAllBreweries($pdo)->toArray();
 			$reply->data = $breweries;
 		}
