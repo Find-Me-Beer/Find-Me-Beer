@@ -7,6 +7,8 @@ use Ramsey\Uuid\Uuid;
 
 
 
+//@Author Vladimir Arias-Antonov
+
 class Tag implements \JsonSerializable {
 	use ValidateDate;
 	use ValidateUuid;
