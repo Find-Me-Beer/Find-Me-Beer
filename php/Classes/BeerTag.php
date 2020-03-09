@@ -210,7 +210,7 @@ class BeerTag implements JsonSerializable {
 	}
 
 	/**
-	 * gets the beerTag by beerTagBeerId and beerTagTagId
+	 * gets the beerTag by beerTagBeerIdAndBeerTagTagId
 	 *
 	 * @param PDO $pdo PDO connection object
 	 * @param Uuid|string $beerTagBeerId beerTag id to search for

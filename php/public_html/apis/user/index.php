@@ -58,7 +58,7 @@ try {
 			$reply->data = User::getUserByUserEmail($pdo, $userEmail);
 		}
 
-	} elseif($method === "PUT") {
+	} else if($method === "PUT") {
 
 		//enforce that the XSRF token is present in the header
 		verifyXsrf();
@@ -135,4 +135,3 @@ if($reply->data === null) {
 
 // encode and return reply to front end caller
 echo json_encode($reply);
-

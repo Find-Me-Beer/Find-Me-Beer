@@ -163,8 +163,6 @@ class Favorite implements \JsonSerializable {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
 
-
-
 		// create query template
 		$query = "SELECT favoriteBeerId, favoriteUserId FROM favorite WHERE favoriteBeerId = :favoriteBeerId AND favoriteUserId = :favoriteUserId";
 		$statement = $pdo->prepare($query);

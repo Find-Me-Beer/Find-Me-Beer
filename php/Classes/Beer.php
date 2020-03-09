@@ -336,7 +336,7 @@ class Beer implements \JsonSerializable {
 		 * @throws \PDOException when mySQL related errors occur
 		 * @throws \TypeError when a variable are not the correct data type
 		 */
-		public static function getBeerByBeerId(\PDO $pdo, Uuid $beerId) :?Beer {
+		public static function getBeerByBeerId(\PDO $pdo, $beerId) :?Beer {
 			//Sanitize beerId before searching
 			try {
 				$beerId = self::validateUuid($beerId);
@@ -376,7 +376,7 @@ class Beer implements \JsonSerializable {
 		 * @throws \PDOException when mySQL related errors occur
 		 * @throws \TypeError when variables are not the correct data type
 		 */
-		public static function getBeerByBeerBreweryId(\PDO $pdo, Uuid $beerBreweryId) :\SplFixedArray {
+		public static function getBeerByBeerBreweryId(\PDO $pdo, $beerBreweryId) :\SplFixedArray {
 			// sanitizes the beer brewery id
 			try {
 				$beerBreweryId = self::validateUuid($beerBreweryId);
@@ -457,7 +457,7 @@ class Beer implements \JsonSerializable {
 		 * @throws \PDOException when mySQL related errors occur
 		 * @throws \TypeError when variables are not the correct data type
 		 */
-		public static function getBeerByTagId(\PDO $pdo, Uuid $tagId) :\SplFixedArray {
+		public static function getBeerByTagId(\PDO $pdo, $tagId) :\SplFixedArray {
 			// sanitizes the tag id
 			try {
 				$tagId = self::validateUuid($tagId);

@@ -70,6 +70,7 @@ class User implements \JsonSerializable {
 	/**
 	 * User's Username  not null,
 	 * @var String $userUsername
+	 * @Author Vladimir Arias-Antonov
 	 **/
 
 	private $userUsername;
