@@ -5,6 +5,9 @@ import {BrowserRouter} from "react-router-dom";
 import {Route, Switch} from "react-router";
 import {FourOhFour} from "./pages/FourOhFour";
 import {Home} from "./pages/Home";
+import './pages/sign-up/style.scss';
+import {SignIn} from "./pages/sign-up/SignIn";
+import {SignUp} from "./pages/sign-up/SignUp";
 
 const Routing = () => (
 	<>

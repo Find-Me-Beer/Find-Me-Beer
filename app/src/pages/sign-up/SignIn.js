@@ -1,0 +1,31 @@
+import React from "react";
+import signInImg from "../../img/login.jfif";
+export class SignIn extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		return <div className="base-container">
+			<div className="header">Sign-In</div>
+			<div className="content">
+				<div className="image">
+					<img src={signInImg} alt={"SignIn"}/>
+				</div>
+				<div className="form">
+					<div className="form-group">
+					<label htmlFor="username">Username</label>
+					<input type="text" name="username" placeholder="username"/>
+					</div>
+					<div className="form-group">
+						<label htmlFor="password">Password</label>
+						<input type="password" name="password" placeholder="password"/>
+					</div>
+				</div>
+			</div>
+			<div className="footer">
+				<button type="button" className="btn">Login</button>
+			</div>
+		</div>
+	}
+}
