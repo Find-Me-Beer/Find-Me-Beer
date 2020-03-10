@@ -1,22 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter} from "react-router-dom";
 import {Route, Switch} from "react-router";
 import {FourOhFour} from "./pages/FourOhFour";
 import {Home} from "./pages/Home";
-import './pages/sign-up/style.scss';
-import {SignIn} from "./pages/sign-up/SignIn";
-import {SignUp} from "./pages/sign-up/SignUp";
+import {Signup} from "./signup/Signup";
 
 const Routing = () => (
 	<>
+
 		<BrowserRouter>
+		<div className="sfooter-content">
 			<Switch>
 				<Route exact path="/" component={Home}/>
 				<Route component={FourOhFour}/>
+				<Route exact path="/signup" component={Signup}/>
 			</Switch>
+		</div>
+		<Footer/>
 		</BrowserRouter>
+
 	</>
 );
 ReactDOM.render(<Routing/>, document.querySelector('#root'));
