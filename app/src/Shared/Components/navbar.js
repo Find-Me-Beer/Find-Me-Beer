@@ -21,5 +21,7 @@ const NavBar = () => {
 
 				<NavDropdown className="nav-link" title={"Preferences, Favorites, Profile"}>
 					<NavDropdown.Item href="/preference">
-
-
+					</NavDropdown.Item>
+					</>
+)
+};
