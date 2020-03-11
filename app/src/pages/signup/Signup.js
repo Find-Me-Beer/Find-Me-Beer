@@ -8,76 +8,47 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from 'react-bootstrap/FormControl'
 import Button from "react-bootstrap/Button";
-
+import Logo from "../../img/login.jfif"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export const Signup = () => {
 	return (
 		<>
-			<main className="d-flex align-items-center mh-80">
-				<Container fluid="true">
-					<Row>
-						<Col sm={6} lg={{span: 4, offset: 1}}>
-							<Card bg="transparent" className="border-0 rounded-0">
-								<Card.Body>
-									<Form>
-
-										<Form.Group>
-											<InputGroup>
-												<InputGroup.Prepend>
-													<InputGroup.Text>
-														<FontAwesomeIcon icon="user"/>
-													</InputGroup.Text>
-												</InputGroup.Prepend>
-												<FormControl type="text" placeholder="Pick a User Name"/>
-											</InputGroup>
-										</Form.Group>
-
-										<Form.Group>
-											<InputGroup>
-												<InputGroup.Prepend>
-													<InputGroup.Text>
-														<FontAwesomeIcon icon="envelope"/>
-													</InputGroup.Text>
-												</InputGroup.Prepend>
-												<FormControl type="email" placeholder="Your Email"/>
-											</InputGroup>
-										</Form.Group>
-
-										<Form.Group>
-											<InputGroup>
-												<InputGroup.Prepend>
-													<InputGroup.Text>
-														<FontAwesomeIcon icon="key"/>
-													</InputGroup.Text>
-												</InputGroup.Prepend>
-												<FormControl type="password" placeholder="Password"/>
-											</InputGroup>
-										</Form.Group>
-
-										<Form.Group>
-											<InputGroup>
-												<InputGroup.Prepend>
-													<InputGroup.Text>
-														<FontAwesomeIcon icon="ellipsis-h"/>
-													</InputGroup.Text>
-												</InputGroup.Prepend>
-												<FormControl type="password" placeholder="Confirm Password"/>
-											</InputGroup>
-										</Form.Group>
-
-										<Form.Group className="text-md-right">
-											<Button variant="primary" type="submit">
-												<FontAwesomeIcon icon="paw"/>&nbsp;Join Us!
-											</Button>
-										</Form.Group>
-
-									</Form>
-								</Card.Body>
+			<main>
+				<div className="container pt-sm-5 mt-sm-5">
+					<div className="row">
+						<div className="col-lg-8">
+							<Card className="border-right border-bottom-0 border-left-0 border-top-0 mr-5 pr-5 border-dark rounded-0">
+								<Card.Img src={Logo} id="logo"/>
 							</Card>
-						</Col>
-					</Row>
-				</Container>
+						</div>
+						<div className="col-lg-4 text-left">
+							<h2>Sign Up</h2>
+							<form>
+								<div className="form-group mb-lg-4 mt-lg-4">
+									<label>Name</label>
+									<input type="text" className="form-control" placeholder="Name" />
+								</div>
+								<div className="form-group mb-lg-4">
+									<label>Email:</label>
+									<input type="email" className="form-control" placeholder="Email@gmail.com" />
+								</div>
+								<div className="form-group mb-lg-4">
+									<label>Password:</label>
+									<input type="password" className="form-control" placeholder="Password" />
+								</div>
+								<div className="form-group mb-lg-4">
+									<label>Confirm Password:</label>
+									<input type="password" className="form-control" placeholder="Re-Enter Password" />
+								</div>
+								<button type="submit" className="btn btn-primary btn-block mt-5 mb-1">Sign Up</button>
+								<p className="forgot-password text-right">
+									Already registered <a href="#">sign in?</a>
+								</p>
+							</form>
+						</div>
+					</div>
+				</div>
 			</main>
 		</>
 	)

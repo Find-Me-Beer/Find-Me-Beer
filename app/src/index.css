@@ -44,10 +44,6 @@ hr {
 	background-color: rgba(255,255,255,0.9);
 }
 
-/***
-* Flexbox Sticky Footer
-* http://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
-***/
 
 /*corrects IE min-height bug*/
 html { display: flex;}
@@ -63,12 +59,12 @@ body { width: 100%;}
 	flex: 1 0 auto;
 }
 
-/* GLOBAL */
-/* this is how to apply a background image */
-/*#root {*/
-/*	background: url("shared/img/cat.jpg") no-repeat center left fixed;*/
-/*	background-size: cover;*/
-/*}*/
+ /*GLOBAL */
+ /*this is how to apply a background image */
+#root {
+	background-color: #f29f05;
+	background-size: cover;
+}
 
 /* HEADER */
 nav {
@@ -95,6 +91,9 @@ button.post-like-btn:disabled {
 	cursor: unset;
 }
 
+#logo {
+	width:700px;
+}
 @media only screen and (min-width: 768px){
 	.posts-panel {
 		margin-top: 0;
@@ -104,6 +103,18 @@ button.post-like-btn:disabled {
 @media only screen and (max-width: 768px) {
 	.posts-form-panel.panel-position-reset {
 		position: static !important;
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.column {
+		width: 50%;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.column {
+		width: 100%;
 	}
 }
 
