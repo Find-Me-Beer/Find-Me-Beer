@@ -6,7 +6,7 @@ import {BrowserRouter} from "react-router-dom";
 import {Route, Switch} from "react-router";
 import {FourOhFour} from "./pages/FourOhFour";
 import {Home} from "./pages/Home";
-import {Signup} from "./signup/Signup";
+import {Signup} from "./pages/signup/Signup";
 
 const Routing = () => (
 	<>
@@ -19,7 +19,6 @@ const Routing = () => (
 				<Route exact path="/signup" component={Signup}/>
 			</Switch>
 		</div>
-		<Footer/>
 		</BrowserRouter>
 
 	</>
