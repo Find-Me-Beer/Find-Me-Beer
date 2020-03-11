@@ -23,9 +23,10 @@ return (
 							<Card>
 								<Card.Img variant="top" src="https://www.placecage.com/1280/720" roundedCircle />
 								<Card.Body>
-									<Card.Title>Beer Name</Card.Title>
-									<Card.Subtitle>Beer Type</Card.Subtitle>
-									<Card.Subtitle>Brewery</Card.Subtitle>
+									<Card.Title className="mb-2">Beer Name</Card.Title>
+									<Card.Subtitle className="mb-2">Beer Type</Card.Subtitle>
+									<Card.Subtitle className="mb-2">Brewery</Card.Subtitle>
+									<Card.Subtitle className="mb-2">ABV</Card.Subtitle>
 									<Card.Text>
 										Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 										labore et dolore magna aliqua.
