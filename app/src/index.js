@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./index.css";
 import {BrowserRouter} from "react-router-dom";
 import {Route, Switch} from "react-router";
 import {FourOhFour} from "./pages/FourOhFour";
@@ -15,8 +16,9 @@ const Routing = () => (
 		<div className="sfooter-content">
 			<Switch>
 				<Route exact path="/" component={Home}/>
-				<Route component={FourOhFour}/>
 				<Route exact path="/signup" component={Signup}/>
+				<Route component={FourOhFour}/>
+
 			</Switch>
 		</div>
 		</BrowserRouter>

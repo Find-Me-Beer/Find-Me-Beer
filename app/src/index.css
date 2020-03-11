@@ -1,3 +1,5 @@
+
+
 /* GLOBAL */
 @import url('https://fonts.googleapis.com/css?family=Audiowide');
 
@@ -38,6 +40,10 @@ hr {
 	text-shadow: 1px 1px #000;
 }
 
+.bg-transparent-90 {
+	background-color: rgba(255,255,255,0.9);
+}
+
 /***
 * Flexbox Sticky Footer
 * http://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
@@ -57,11 +63,22 @@ body { width: 100%;}
 	flex: 1 0 auto;
 }
 
-/* BODY */
+/* GLOBAL */
+/* this is how to apply a background image */
+/*#root {*/
+/*	background: url("shared/img/cat.jpg") no-repeat center left fixed;*/
+/*	background-size: cover;*/
+/*}*/
 
 /* HEADER */
 nav {
 	border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+div.dropdown-item.sign-out-dropdown:active,
+div.dropdown-item.sign-out-dropdown:hover,
+.dropdown-item.active, .dropdown-item:active {
+	background-color: transparent;
 }
 
 /* POSTS */
@@ -73,9 +90,20 @@ nav {
 	margin-top: 60px;
 }
 
+/* no pointer on disabled like button! */
+button.post-like-btn:disabled {
+	cursor: unset;
+}
+
 @media only screen and (min-width: 768px){
 	.posts-panel {
 		margin-top: 0;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.posts-form-panel.panel-position-reset {
+		position: static !important;
 	}
 }
 
@@ -85,5 +113,3 @@ button,
 	border-radius: 0 !important;
 	border: none;
 }
-
-/* FOOTER */
