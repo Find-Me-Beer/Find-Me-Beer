@@ -6,6 +6,9 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import {Favorite} from "./Favorite";
+
+import {getAllFavorites} from "../shared/actions/get-favorite";
 
 export const Beer = () => {
 
@@ -31,7 +34,7 @@ return (
 										Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 										labore et dolore magna aliqua.
 									</Card.Text>
-									<Button variant="warning">Favorite</Button>
+									<Favorite beerId={beer.beerId} userId={userId}/>
 								</Card.Body>
 							</Card>
 						</Col>

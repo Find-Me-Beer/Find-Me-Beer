@@ -10,7 +10,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 //Based on Example from Rochelle Lewis
 
-export const Favorite = ({favoriteBeerId, favoriteUserId}) => {
+export const Favorite = ({beerId, userId}) => {
 
 	// grab the jwt for logged in users
 	const jwt = UseJwt();
