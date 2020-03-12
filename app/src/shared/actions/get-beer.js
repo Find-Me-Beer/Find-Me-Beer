@@ -2,7 +2,7 @@
 import {httpConfig} from "../misc/http-config";
 import _ from "lodash";
 
-export const getBeer = () => async dispatch => {
+export const getAllBeer = () => async dispatch => {
 	const {data} = await httpConfig(`/apis/beer/`);
 	dispatch({type: "GET_ALL_BEER", payload: data})
 };

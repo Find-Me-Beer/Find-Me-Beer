@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {useSelector} from "react-redux";
 import {httpConfig} from "../shared/misc/http-config";
 import {UseJwt} from "../shared/misc/JwtHelpers";
-import {handleSessionTimeout} from "../shared/misc/handle-session-timeout";
+
 import _ from "lodash";
 
 import Button from "react-bootstrap/Button";
@@ -24,7 +24,7 @@ export const Favorite = ({beerId, userId}) => {
 	};
 
 	// add favorites to inputs - this informs React that favorites are being updated from Redux. This ensures proper component rendering.
-	const inputs = [favorites, userId, beerId];
+	const inputs = [favorites, beerId, userId];
 	useEffect(effects, inputs);
 
 	const initializeFavorites = (userId) => {
@@ -64,10 +64,6 @@ export const Favorite = ({beerId, userId}) => {
 				if(reply.status === 200) {
 					toggleFavorite();
 				}
-				// if there's an issue with a $_SESSION mismatch with xsrf or jwt, alert user and do a sign out
-				if(reply.status === 401) {
-					handleSessionTimeout();
-				}
 			});
 	};
 
@@ -82,10 +78,6 @@ export const Favorite = ({beerId, userId}) => {
 				let {message, type} = reply;
 				if(reply.status === 200) {
 					toggleFavorite();
-				}
-				// if there's an issue with a $_SESSION mismatch with xsrf or jwt, alert user and do a sign out
-				if(reply.status === 401) {
-					handleSessionTimeout();
 				}
 			});
 	};

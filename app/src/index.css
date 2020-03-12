@@ -1,0 +1,35 @@
+
+
+
+/*Beer Page*/
+
+.search-container {
+	background: #f2b705;
+}
+
+.beerCard{
+	background: white;
+	border-radius: 0px;
+}
+
+.cardTop {
+	background: #f2b705;
+}
+
+.beer-description {
+	background: white;
+	border-radius: 8px;
+}
+
+.beer-container {
+	background: dimgrey;
+}
+
+.found-beer-title {
+	color: white;
+}
+
+.search-button {
+	background: #048ABF;
+	color: white;
+}
