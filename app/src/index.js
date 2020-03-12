@@ -4,15 +4,17 @@ import 'bootstrap/dist/css/bootstrap.css';
 import "./index.css"
 import {BrowserRouter} from "react-router-dom";
 import {Route, Switch} from "react-router";
+
 import {FourOhFour} from "./pages/FourOhFour";
 import {Home} from "./pages/Home";
 import {Beer} from "./pages/beer/Beer";
-import {applyMiddleware, createStore} from "redux";
+
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import {reducers} from "./shared/reducers";
 import thunk from "redux-thunk";
-import Provider from "react-redux/lib/components/Provider";
+import { Provider } from 'react-redux'
 
-const store = createStore(reducers, applyMiddleware(thunk));
+const store = createStore(combineReducers, applyMiddleware(thunk));
 
 const Routing = (store) => (
 	<>

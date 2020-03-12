@@ -1,8 +1,8 @@
 import {combineReducers} from "redux"
-import beerReducer from "./beerReducer";
-import favoriteReducer from "./favoriteReducer"
+import {beerReducer} from "./beerReducer";
+import {favoriteReducer} from "./favoriteReducer"
 
-export const reducers = combineReducers({
+export const combinedReducers = combineReducers({
 	beer: beerReducer,
 	favorites: favoriteReducer,
 });
