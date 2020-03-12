@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
+import CardColumns from "react-bootstrap/CardColumns";
 
 import {getAllBeer} from "../../shared/actions/get-beer";
 import {BeerCard} from "./BeerCard";
@@ -57,11 +58,10 @@ return (
 							<h1 className={"text-center found-beer-title"}>We Found You Beer!</h1>
 						</Col>
 					</Row>
-					<Row>
-						<Col md={3}>
+						<CardColumns>
 							{beer.map(beer => (<BeerCard beer={beer}/>))}
-						</Col>
-					</Row>
+						</CardColumns>
+
 				</Container>
 
 			</main>

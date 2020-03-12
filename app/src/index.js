@@ -10,11 +10,11 @@ import {Home} from "./pages/Home";
 import {Beer} from "./pages/beer/Beer";
 
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {reducers} from "./shared/reducers";
+import {combinedReducers} from "./shared/reducers/";
 import thunk from "redux-thunk";
 import { Provider } from 'react-redux'
 
-const store = createStore(combineReducers, applyMiddleware(thunk));
+const store = createStore(combinedReducers, applyMiddleware(thunk));
 
 const Routing = (store) => (
 	<>

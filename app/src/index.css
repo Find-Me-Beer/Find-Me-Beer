@@ -10,6 +10,7 @@
 .beerCard{
 	background: white;
 	border-radius: 0px;
+	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.4);
 }
 
 .cardTop {
@@ -22,11 +23,12 @@
 }
 
 .beer-container {
-	background: dimgrey;
+	background: #048ABF;
 }
 
 .found-beer-title {
 	color: white;
+	text-shadow: 2px 2px rgba(0, 0, 0, 0.4);;
 }
 
 .search-button {
