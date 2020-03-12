@@ -3,25 +3,47 @@ import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 import {BrowserRouter} from "react-router-dom";
 import {Route, Switch} from "react-router";
-import {FourOhFour} from "./pages/FourOhFour";
-import {Home} from "./pages/Home";
 import divWithClassName from "react-bootstrap/cjs/divWithClassName";
+import {Link} from "react-router-dom";
 
-const NavBar = () => {
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Button from "react-bootstrap/Button";
+
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
+
+export const NavBar = () => {
 	return (
 		<>
 			<header>
-				<NavBar bg="dark" fixed="top">
+				<Navbar bg="primary" expand="md" variant="light" fixed="top">
 					<Link to="/">
-						<Navbar.Brand>Navbar</Navbar.Brand>
-				</Link>
+						<Navbar.Brand>Find Me Beer!</Navbar.Brand>
+					</Link>
+					<Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
+					<Navbar.Collapse>
+						<Nav className="ml-auto">
+							<NavDropdown className="nav-link" title={"Preferences | Favorites | Profile"}>
+								<NavDropdown.Item href="/profile">
+									<FontAwesomeIcon icon="Preferences"/>&nbsp; Preferences
+									<FontAwesomeIcon icon="Favorites"/>&nbsp; Favorites
+									<FontAwesomeIcon icon="Profile"/>&nbsp; Profile
+								</NavDropdown.Item>
+								<div className="dropdown-divider"></div>
+								<div className="dropdown-item sign-out-dropdown">
+									<button className="btn btn-outline-dark">
+										Log Out&nbsp;<FontAwesomeIcon icon="log-out-alt"/>
+									</button>
+								</div>
+							</NavDropdown>
 
-				<Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
-				<Narbar.Collapse>
 
-				<NavDropdown className="nav-link" title={"Preferences, Favorites, Profile"}>
-					<NavDropdown.Item href="/preference">
-					</NavDropdown.Item>
-					</>
-)
+						</Nav>
+					</Navbar.Collapse>
+				</Navbar>
+			</header>
+		</>
+	)
 };

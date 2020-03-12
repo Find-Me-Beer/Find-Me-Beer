@@ -5,7 +5,8 @@ import {BrowserRouter} from "react-router-dom";
 import {Route, Switch} from "react-router";
 import {FourOhFour} from "./pages/FourOhFour";
 import {Home} from "./pages/Home";
-import {NavBar} from "./shared/components/NavBar";
+import {NavBar} from "./Shared/Components/navbar";
+
 
 const Routing = () => (
 	<>
@@ -13,6 +14,7 @@ const Routing = () => (
 
 			<NavBar/>
 			<Switch>
+				<Route exact path="/navbar" component={NavBar}/>
 				<Route exact path="/" component={Home}/>
 				<Route component={FourOhFour}/>
 			</Switch>
