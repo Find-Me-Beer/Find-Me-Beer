@@ -22,7 +22,7 @@ export const NavBar = () => {
 					<Link to="/">
 						<Navbar.Brand>Find Me Beer!</Navbar.Brand>
 					</Link>
-					<Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
+					<Navbar.Toggle aria-controls="basic-navbar-nav">Find Me Beer</Navbar.Toggle>
 					<Navbar.Collapse>
 						<Nav className="ml-auto">
 							<NavDropdown className="nav-link" title={"Preferences | Favorites | Profile"}>
@@ -38,8 +38,6 @@ export const NavBar = () => {
 									</button>
 								</div>
 							</NavDropdown>
-
-
 						</Nav>
 					</Navbar.Collapse>
 				</Navbar>
