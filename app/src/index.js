@@ -11,6 +11,7 @@ import {Home} from "./pages/Home";
 import {FourOhFour} from "./pages/FourOhFour";
 import {applyMiddleware, createStore} from "redux";
 import thunk from "redux-thunk";
+import Provider from "react-redux/lib/components/Provider";
 
 const store = createStore(applyMiddleware(thunk));
 
@@ -19,7 +20,7 @@ const Routing = () => (
 		<Provider store={store}>
 		<BrowserRouter>
 			<Switch>
-				<Route exact path="./pages/home" component={Home}/>
+				<Route component={Home}/>
 				<Route component={FourOhFour}/>
 			</Switch>
 		</BrowserRouter>

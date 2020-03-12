@@ -2,42 +2,47 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import {Button} from "react-bootstrap";
+import Image from "react-bootstrap/Image";
+import Image1 from "./shared/image/fmb-beer.jpg";
 
-/**
- * @return {undefined}
- */
-function UseJwt() {
 
-	return undefined;
-}
 
 export const Home = () => {
-
-	// grab the jwt to check for logged in users. See JwtHelpers.js
-	const jwt = UseJwt();
 
 	return (
 		<>
 			<main className="d-flex align-items-center mh-100">
 				<Container fluid="true">
 					<Row>
-						<Col sm={6} lg={{span: 4, offset: 1}}>
-
-							{/* only render the signin form if user does not have a jwt, otherwise output a message */}
-							{jwt === null ? (
-								<SignInForm/>
-							) : (
-								<div>
-									<span className="h2 mr-2">You're logged in!</span>
-									&nbsp;
-									<Link to="/posts">
-										<Button className="btn-sm mb-2" variant="outline-dark">Head to Posts&nbsp;&nbsp;
-										</Button>
-									</Link>
-								</div>
-							)}
-
+						<Col>
+							<br></br>
+							<br></br>
+							<br></br>
+							<Image className="img-fluid" src={Image1} alt="beer foam in a glass" id="background-image" fluid />
+						</Col>
+					</Row>
+				</Container>
+				<Container fluid="true">
+					<Row>
+						<Col>
+							<Card.Title>Card Title</Card.Title>
+							<Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
+							<Card.Text>
+								Some quick example text to build on the card title and make up the bulk of
+								the card's content.
+							</Card.Text>
+							<Card.Title>Card Title</Card.Title>
+							<Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
+							<Card.Text>
+								Some quick example text to build on the card title and make up the bulk of
+								the card's content.
+							</Card.Text>
+							<Card.Title>Card Title</Card.Title>
+							<Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
+							<Card.Text>
+								Some quick example text to build on the card title and make up the bulk of
+								the card's content.
+							</Card.Text>
 						</Col>
 					</Row>
 				</Container>
