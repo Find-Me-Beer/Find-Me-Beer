@@ -10,6 +10,7 @@ import FormControl from 'react-bootstrap/FormControl'
 import Button from "react-bootstrap/Button";
 import Logo from "../../img/login.jfif"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Link} from "react-router-dom";
 
 export const Signup = () => {
 	return (
@@ -18,9 +19,7 @@ export const Signup = () => {
 				<div className="container pt-sm-5 mt-sm-5">
 					<div className="row">
 						<div className="col-lg-8">
-							<Card className="border-right border-bottom-0 border-left-0 border-top-0 mr-5 pr-5 border-dark rounded-0">
-								<Card.Img src={Logo} id="logo"/>
-							</Card>
+								<img className="img-fluid img-thumbnail" src={Logo} id="logo" alt="Responsive-image"/>
 						</div>
 						<div className="col-lg-4 text-left">
 							<h2>Sign Up</h2>
@@ -43,7 +42,8 @@ export const Signup = () => {
 								</div>
 								<button type="submit" className="btn btn-primary btn-block mt-5 mb-1">Sign Up</button>
 								<p className="forgot-password text-right">
-									Already registered <a href="#">sign in?</a>
+									Already registered? <Link to="/signin">Sign In</Link>
+
 								</p>
 							</form>
 						</div>

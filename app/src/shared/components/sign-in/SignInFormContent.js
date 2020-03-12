@@ -26,10 +26,9 @@ export const SignInFormContent = (props) => {
 
 	return (
 		<>
-			<Card bg="transparent" className="border-0 rounded-0">
+			<Card bg="transparent" className="col-4 d-inline-block d-flex mx-auto align-items-center border-0 rounded-0">
 				<Card.Body>
 					<Form onSubmit={handleSubmit}>
-
 						<Form.Group>
 							<Form.Label className="sr-only">Email</Form.Label>
 							<InputGroup>
@@ -56,7 +55,7 @@ export const SignInFormContent = (props) => {
 							}
 						</Form.Group>
 
-						<Form.Group>
+						<Form.Group className="d-inline-block">
 							<Form.Label className="sr-only">Password</Form.Label>
 							<InputGroup>
 								<InputGroup.Prepend>
@@ -81,7 +80,6 @@ export const SignInFormContent = (props) => {
 								)
 							}
 						</Form.Group>
-
 						<Form.Group className="text-md-right">
 							<Button variant="primary" type="submit">
 								<FontAwesomeIcon icon="sign-in-alt"/>&nbsp;Sign In
