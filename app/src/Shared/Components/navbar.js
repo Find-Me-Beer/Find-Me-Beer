@@ -29,6 +29,7 @@ export const NavBar = () => {
 							<NavDropdown className="nav-link" title={"Profile"}>
 								<NavDropdown.Item href="/profile">
 									<FontAwesomeIcon icon="Favorites"/>&nbsp; Favorites
+									<link to="/"
 									<FontAwesomeIcon icon="Profile"/>&nbsp; Profile
 								</NavDropdown.Item>
 								<div className="dropdown-divider"></div>
@@ -44,4 +45,5 @@ export const NavBar = () => {
 			</header>
 		</>
 	)
-};
+}
+
