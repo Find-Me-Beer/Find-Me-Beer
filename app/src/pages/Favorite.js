@@ -52,7 +52,7 @@ export const Favorite = ({beerId, userId}) => {
 	const initializeFavorites = (userId) => {
 		const userFavorites = favorites.filter(favorite => favorite.favoriteUserId === userId);
 		const favorited = userFavorites.find(function(o) {return o.favoriteBeerId === beerId});
-		return (_.isEmpty(favorited) === false) && setIsFavorited("active");
+		return (isEmpty(favorited) === false) && setIsFavorited("active");
 	};
 
 	/*
@@ -62,7 +62,7 @@ export const Favorite = ({beerId, userId}) => {
 	* The favoriteCount state variable is set to the length of this set.
 	* */
 	const countFavorites = (beerId) => {
-		const postFavorites = favorites.filter(favorite => favorite.favoriteBeerId === beerId);
+		const beerFavorites = favorites.filter(favorite => favorite.favoriteBeerId === beerId);
 		return (setFavoriteCount(beerFavorites.length));
 	};
 
@@ -127,8 +127,9 @@ export const Favorite = ({beerId, userId}) => {
 		<>
 			<Button variant="outline-danger" size="sm" className={`post-favorite-btn ${(isFavorited !== null ? isFavorited : "")}`} disabled={!jwt && true} onClick={clickFavorite}>
 				<FontAwesomeIcon icon="star"/>&nbsp;
-				<Badge variant="danger">{favoriteCount}</Badge>
 			</Button>
 		</>
 	)
 };
+
+//<Badge variant="danger">{favoriteCount}</Badge>

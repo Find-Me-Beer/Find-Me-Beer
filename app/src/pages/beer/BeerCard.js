@@ -12,12 +12,11 @@ export function BeerCard (props) {
 			<Card.Body className="cardTop">
 				<Card.Title className="mb-2">{beerName}</Card.Title>
 				<Card.Subtitle className="mb-2">{beerType}</Card.Subtitle>
-				<Card.Subtitle className="mb-2">(breweryName}</Card.Subtitle>
+				<Card.Subtitle className="mb-2"><BeerBreweryName breweryId={beer.beerBreweryId} /></Card.Subtitle>
 				<Card.Subtitle className="mb-2">{beerAbv}% ABV</Card.Subtitle>
 			</Card.Body>
 			<Card.Body className="cardBottom">
 				<Card.Text className="beer-description\">{beerDescription}</Card.Text>
-				<Favorite beerId={beer.beerId} userId={userId}/>
 			</Card.Body>
 		</Card>
 	)
