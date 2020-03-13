@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import {BeerBreweryName} from "./BeerBreweryName";
+import {Favorite} from "../Favorite";
 
 export function BeerCard (props) {
 	console.log(props);
@@ -16,7 +17,12 @@ export function BeerCard (props) {
 			</Card.Body>
 			<Card.Body className="cardBottom">
 				<Card.Text className="beer-description\">{beerDescription}</Card.Text>
+				<Favorite favoriteId={favoriteId} beerId={beer.beerId}/>
 			</Card.Body>
 		</Card>
 	)
 }
+
+
+
+
