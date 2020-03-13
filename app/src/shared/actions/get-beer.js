@@ -1,6 +1,7 @@
 
 import {httpConfig} from "../misc/http-config";
 import _ from "lodash";
+import {getBreweryByBreweryId} from "./get-breweries";
 
 export const getAllBeer = () => async dispatch => {
 	const {data} = await httpConfig(`/apis/beer/`);
@@ -27,5 +28,12 @@ export const getBeerByTagId = (tagId) => async dispatch => {
 	dispatch({type: "GET_BEER_BY_BEER_TYPE", payload: data})
 };
 
+export const getBeerAndBreweries = () => async (dispatch, getState) => {
+	await dispatch(getAllBeer());
+
+	const breweryIds = _.uniq(_.map(getState().beer, "beerBreweryId"));
+	breweryIds.forEach(id => dispatch(getBreweryByBreweryId(id)));
+
+};
 
 

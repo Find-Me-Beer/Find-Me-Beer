@@ -9,7 +9,7 @@ import {FourOhFour} from "./pages/FourOhFour";
 import {Home} from "./pages/Home";
 import {Beer} from "./pages/beer/Beer";
 
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {applyMiddleware, createStore} from "redux";
 import {combinedReducers} from "./shared/reducers/";
 import thunk from "redux-thunk";
 import { Provider } from 'react-redux'

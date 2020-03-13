@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react"
 import {Link} from "react-router-dom";
 
-import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -13,9 +12,6 @@ import CardColumns from "react-bootstrap/CardColumns";
 import {getAllBeer} from "../../shared/actions/get-beer";
 import {BeerCard} from "./BeerCard";
 
-import {Favorite} from "../Favorite";
-
-import {getAllFavorites} from "../../shared/actions/get-favorite";
 import {useDispatch, useSelector} from "react-redux";
 
 export const Beer = () => {
@@ -25,6 +21,7 @@ const beer = useSelector(state => state.beer ? state.beer : []);
 const sideEffects = () => {
 	dispatch(getAllBeer())
 };
+
 
 const sideEffectInputs = [];
 
@@ -46,7 +43,7 @@ return (
 									aria-describedby="basic-addon2"
 								/>
 								<InputGroup.Append>
-									<Button variant="outline-light" className="search-button">Find Me Beer!</Button>
+									<Button variant="outline-info" className="search-button">Find Me Beer!</Button>
 								</InputGroup.Append>
 							</InputGroup>
 						</Col>
@@ -61,9 +58,7 @@ return (
 						<CardColumns>
 							{beer.map(beer => (<BeerCard beer={beer}/>))}
 						</CardColumns>
-
 				</Container>
-
 			</main>
 		</>
 )
