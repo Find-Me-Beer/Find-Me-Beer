@@ -17,7 +17,7 @@ export function BeerCard (props) {
 			</Card.Body>
 			<Card.Body className="cardBottom">
 				<Card.Text className="beer-description\">{beerDescription}</Card.Text>
-				<Favorite userId={userId} beerId={beer.beerId}/>
+				<Favorite beerId={beer.beerId} userId={userId}/>
 			</Card.Body>
 		</Card>
 	)

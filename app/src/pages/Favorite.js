@@ -51,7 +51,7 @@ export const Favorite = ({beerId, userId}) => {
 	* */
 	const initializeFavorites = (userId) => {
 		const userFavorites = favorites.filter(favorite => favorite.favoriteUserId === userId);
-		const favorited = _.find(userFavorites, {'favoriteBeerId': beerId});
+		const favorited = userFavorites.find(function(o) {return o.favoriteBeerId === beerId});
 		return (_.isEmpty(favorited) === false) && setIsFavorited("active");
 	};
 

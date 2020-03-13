@@ -9,7 +9,7 @@ import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import CardColumns from "react-bootstrap/CardColumns";
 
-import {getAllBeer} from "../../shared/actions/get-beer";
+import {getAllBeer, getBeerAndBreweries} from "../../shared/actions/get-beer";
 import {BeerCard} from "./BeerCard";
 
 import {useDispatch, useSelector} from "react-redux";
@@ -19,7 +19,8 @@ const dispatch = useDispatch();
 const beer = useSelector(state => state.beer ? state.beer : []);
 
 const sideEffects = () => {
-	dispatch(getAllBeer())
+	dispatch(getAllBeer());
+	dispatch(getBeerAndBreweries());
 };
 
 
