@@ -11,6 +11,7 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 
+
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
@@ -18,21 +19,20 @@ export const NavBar = () => {
 	return (
 		<>
 			<header>
-				<Navbar bg="primary" expand="md" variant="light" fixed="top">
+				<Navbar class="navbar" bg="primary" expand="md" variant="light" fixed="top">
 					<Link to="/">
 						<Navbar.Brand>Find Me Beer!</Navbar.Brand>
 					</Link>
 					<Navbar.Toggle aria-controls="basic-navbar-nav">Find Me Beer</Navbar.Toggle>
 					<Navbar.Collapse>
 						<Nav className="ml-auto">
-							<NavDropdown className="nav-link" title={"Preferences | Favorites | Profile"}>
+							<NavDropdown className="nav-link" title={"Profile"}>
 								<NavDropdown.Item href="/profile">
-									<FontAwesomeIcon icon="Preferences"/>&nbsp; Preferences
 									<FontAwesomeIcon icon="Favorites"/>&nbsp; Favorites
 									<FontAwesomeIcon icon="Profile"/>&nbsp; Profile
 								</NavDropdown.Item>
 								<div className="dropdown-divider"></div>
-								<div className="dropdown-item sign-out-dropdown">
+								<div className="dropdown-item log-out-dropdown">
 									<button className="btn btn-outline-dark">
 										Log Out&nbsp;<FontAwesomeIcon icon="log-out-alt"/>
 									</button>
