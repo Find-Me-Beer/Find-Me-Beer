@@ -23,8 +23,8 @@ export const SignUpForm = ({handleClose}) => {
 			.required('email is required'),
 		signupUsername: Yup.string()
 			.required("user name is required"),
-		// signupFullName: Yup.string()
-		// 	.required("user's full name is required"),
+		signupFullName: Yup.string()
+			.required("user's full name is required"),
 		signupPassword: Yup.string()
 			.required("Password is required")
 			.min(8, "Password must be at least eight characters"),
@@ -39,7 +39,7 @@ export const SignUpForm = ({handleClose}) => {
 					let {message, type} = reply;
 					if(reply.status === 200) {
 						resetForm();
-						// handleClose();
+						handleClose();
 						history.push("/sign-up-successful")
 					} setStatus({message, type});
 				}
