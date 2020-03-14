@@ -25,7 +25,7 @@ export const SignInForm = () => {
 	});
 
 	const submitSignIn = (values, {resetForm, setStatus}) => {
-		httpConfig.post("apis/signin/", values)
+		httpConfig.post("apis/login/", values)
 			.then(reply => {
 				let {message, type} = reply;
 				if(reply.status === 200 && reply.headers["x-jwt-token"]) {

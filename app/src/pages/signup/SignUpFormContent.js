@@ -171,6 +171,10 @@ export const SignUpFormContent = (props) => {
 							<Button variant="primary" type="submit" onSubmit={handleSubmit}>
 								<FontAwesomeIcon icon="paw"/>&nbsp;Join Us!
 							</Button>
+							<div className="my-2">
+								<span className="font-weight-light font-italic">Already Have an Account?&nbsp;</span>
+								<Link to="/signin">Sign In</Link>
+							</div>
 						</Form.Group>
 
 						{/*for testing purposes only*/}
