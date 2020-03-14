@@ -88,7 +88,7 @@ export const SignInFormContent = (props) => {
 						</Form.Group>
 
 						{/*for testing purposes only*/}
-						<FormDebugger {...props}/>
+						{/*<FormDebugger {...props}/>*/}
 
 					</Form>
 

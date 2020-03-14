@@ -1,10 +1,8 @@
-import {combineReducers} from "redux"
-import postReducer from "./post-reducer";
-import profileReducer from "./profile-reducer";
-import likeReducer from "./like-reducer"
+import {combineReducers} from "redux";
+import UserReducer from "./UserReducer";
+
 
 export default combineReducers({
-	posts: postReducer,
-	profile: profileReducer,
-	likes: likeReducer
+	user:UserReducer,
+
 })

@@ -91,9 +91,10 @@ button.post-like-btn:disabled {
 	cursor: unset;
 }
 
-/*#logo {*/
-/*	*/
-/*}*/
+#signup
+{
+	text-align: center;
+}
 
 
 button,

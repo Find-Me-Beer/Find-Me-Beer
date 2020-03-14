@@ -17,7 +17,7 @@ export const Signup = () => {
 					<Row>
 						<Col lg={4} lg={{span: 12, offset: 1}}>
 							<Card bg="transparent" className="border-0 rounded-0">
-								<Card.Header>
+								<Card.Header id="signup">
 									<h3>Sign Up!</h3>
 								</Card.Header>
 								<Card.Body>

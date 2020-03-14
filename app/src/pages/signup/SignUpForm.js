@@ -39,7 +39,7 @@ export const SignUpForm = ({handleClose}) => {
 					let {message, type} = reply;
 					if(reply.status === 200) {
 						resetForm();
-						handleClose();
+						// handleClose();
 						history.push("/sign-up-successful")
 					} setStatus({message, type});
 				}
