@@ -13,7 +13,7 @@ export const Signup = () => {
 	return (
 		<>
 			<main className="d-flex align-items-center mh-100 my-5 my-md-0">
-				<Container fluid="true" className="py-5">
+				<Container className="py-5">
 					<Row>
 						<Col lg={4} lg={{span: 12, offset: 1}}>
 							<Card bg="transparent" className="border-0 rounded-0">
