@@ -19,8 +19,8 @@ const dispatch = useDispatch();
 const beer = useSelector(state => state.beer ? state.beer : []);
 
 const sideEffects = () => {
-	dispatch(getAllBeer());
 	dispatch(getBeerAndBreweries());
+	dispatch(getAllBeer());
 };
 
 

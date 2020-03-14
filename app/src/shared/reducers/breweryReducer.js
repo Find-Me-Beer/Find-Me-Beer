@@ -6,7 +6,7 @@ export function breweryReducer (state = [], action) {
 			return [...state, action.payload];
 		case "GET_BREWERY_BY_LOCATION":
 			return [...state, action.payload];
-		case "GET_BEER_BY_BREWERY_NAME":
+		case "GET_BREWERY_BY_BREWERY_NAME":
 			return [...state, action.payload];
 		default:
 			return state
