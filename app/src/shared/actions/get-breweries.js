@@ -8,7 +8,7 @@ export const getAllBreweries = () => async dispatch => {
 };
 
 export const getBreweryByBreweryId = (breweryId) => async dispatch => {
-	const {data} = await httpConfig(`/apis/brewery/?breweryId=${breweryId}`);
+	const {data} = await httpConfig(`/apis/brewery/${breweryId}`);
 	dispatch({type: "GET_BREWERY_BY_BREWERY_ID", payload: data})
 };
 

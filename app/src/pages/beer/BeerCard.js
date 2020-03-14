@@ -1,31 +1,36 @@
-import React from "react";
+
+import React from 'react'
+import { useSelector } from 'react-redux'
 import Card from "react-bootstrap/Card";
-import {BeerBreweryName} from "./BeerBreweryName";
-import {Favorite} from "../Favorite"
-import {getBeerAndBreweries} from "../../shared/actions/get-beer";
 
-export function BeerCard (props) {
-	console.log(props);
-	const {beerAbv, beerDescription, beerName, beerType} = props.beer;
+export const BeerCard = ({ beer }) => {
+console.log(beer);
+	const breweries = useSelector((state) => state.breweries ? state.breweries : null);
 
-	const CardBreweryName = function findBreweryName() {
-		getBeerAndBreweries();
+	const FindBreweryName = () => {
+		const brewery = breweries.find(brewery => beer.beerBreweryId === brewery.breweryId);
+		console.log(brewery);
+		return (
+			<>
+				{brewery &&<Card.Subtitle className="mb-2">{brewery.breweryName}</Card.Subtitle>}
+			</>
+		)
 	};
 
 	return (
 		<Card className="beerCard">
 			<Card.Body className="cardTop">
-				<Card.Title className="mb-2">{beerName}</Card.Title>
-				<Card.Subtitle className="mb-2">{beerType}</Card.Subtitle>
-				<Card.Subtitle className="mb-2"><CardBreweryName breweryId={beer.beerBreweryId} /></Card.Subtitle>
-				<Card.Subtitle className="mb-2">{beerAbv}% ABV</Card.Subtitle>
+				<Card.Title className="mb-2">{beer.beerName}</Card.Title>
+				<Card.Subtitle className="mb-2">{beer.beerType}</Card.Subtitle>
+				<FindBreweryName/>
+				<Card.Subtitle className="mb-2">{beer.beerAbv}% ABV</Card.Subtitle>
 			</Card.Body>
 			<Card.Body className="cardBottom">
-				<Card.Text className="beer-description\">{beerDescription}</Card.Text>
+				<Card.Text className="beer-description\">{beer.beerDescription}</Card.Text>
 			</Card.Body>
 		</Card>
 	)
-}
+};
 
 
 //<BeerBreweryName breweryId={beer.beerBreweryId} /></Card.Subtitle>
