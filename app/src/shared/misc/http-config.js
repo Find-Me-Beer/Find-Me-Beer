@@ -14,4 +14,4 @@ httpConfig.interceptors.response.use(function ({data, headers} ) {
 	// Do something with response error
 	console.log(error);
 	return Promise.reject(error);
-}); 	
+});

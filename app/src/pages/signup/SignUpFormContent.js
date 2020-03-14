@@ -71,6 +71,31 @@ export const SignUpFormContent = (props) => {
 							<InputGroup>
 								<InputGroup.Prepend>
 									<InputGroup.Text>
+										<FontAwesomeIcon icon="key"/>
+									</InputGroup.Text>
+								</InputGroup.Prepend>
+								<FormControl
+									id="signupFullName"
+									onChange={handleChange}
+									onBlur={handleBlur}
+									placeholder="Enter Full Name"
+									type="text"
+									value={values.signupFullName}
+								/>
+							</InputGroup>
+							{
+								errors.signupFullName && touched.signupFullName && (
+									<div className="alert alert-danger">
+										{errors.signupFullName}
+									</div>
+								)
+							}
+						</Form.Group>
+
+						<Form.Group>
+							<InputGroup>
+								<InputGroup.Prepend>
+									<InputGroup.Text>
 										<FontAwesomeIcon icon="envelope"/>
 									</InputGroup.Text>
 								</InputGroup.Prepend>
@@ -125,25 +150,25 @@ export const SignUpFormContent = (props) => {
 									</InputGroup.Text>
 								</InputGroup.Prepend>
 								<FormControl
-									id="signupConfirmPassword"
+									id="signupPasswordConfirm"
 									onChange={handleChange}
 									onBlur={handleBlur}
 									placeholder="Confirm Password"
 									type="password"
-									value={values.signupConfirmPassword}
+									value={values.signupPasswordConfirm}
 								/>
 							</InputGroup>
 							{
-								errors.signupConfirmPassword && touched.signupConfirmPassword && (
+								errors.signupPasswordConfirm && touched.signupPasswordConfirm && (
 									<div className="alert alert-danger">
-										{errors.signupConfirmPassword}
+										{errors.signupPasswordConfirm}
 									</div>
 								)
 							}
 						</Form.Group>
 
 						<Form.Group className="text-md-right">
-							<Button variant="primary" type="submit">
+							<Button variant="primary" type="submit" onSubmit={handleSubmit}>
 								<FontAwesomeIcon icon="paw"/>&nbsp;Join Us!
 							</Button>
 						</Form.Group>
