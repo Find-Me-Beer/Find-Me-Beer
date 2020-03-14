@@ -15,7 +15,7 @@ export const Signup = () => {
 			<main className="d-flex align-items-center mh-100 my-5 my-md-0">
 				<Container fluid="true" className="py-5">
 					<Row>
-						<Col md={6} lg={{span: 4, offset: 1}}>
+						<Col lg={4} lg={{span: 12, offset: 1}}>
 							<Card bg="transparent" className="border-0 rounded-0">
 								<Card.Header>
 									<h3>Sign Up!</h3>
