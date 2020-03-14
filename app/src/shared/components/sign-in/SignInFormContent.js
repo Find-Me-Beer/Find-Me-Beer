@@ -8,6 +8,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from 'react-bootstrap/FormControl'
 import Button from "react-bootstrap/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {FormDebugger} from "../../FormDebugger";
 
 export const SignInFormContent = (props) => {
 
@@ -87,7 +88,7 @@ export const SignInFormContent = (props) => {
 						</Form.Group>
 
 						{/*for testing purposes only*/}
-						{/*<FormDebugger {...props}/>*/}
+						<FormDebugger {...props}/>
 
 					</Form>
 

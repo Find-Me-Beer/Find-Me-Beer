@@ -7,9 +7,10 @@ import {BrowserRouter} from "react-router-dom";
 import {Route, Switch} from "react-router";
 import {FourOhFour} from "./pages/FourOhFour";
 import {Home} from "./pages/Home";
+import {SignUpFormContent} from "./pages/signup/SignUpFormContent";
+import {SignInForm} from "./shared/components/sign-in/SignInForm";
+import {SignUpForm} from "./pages/signup/SignUpForm";
 import {Signup} from "./pages/signup/Signup";
-import {SignInForm} from "./shared/components/sign-in/SignIn";
-import {Profile} from "./pages/Profile";
 
 const Routing = () => (
 	<>
@@ -20,7 +21,6 @@ const Routing = () => (
 				<Route exact path="/" component={Home}/>
 				<Route exact path="/signup" component={Signup}/>
 				<Route exact path="/signin" component={SignInForm}/>
-				<Route exact path="/profile" component={Profile}/>
 				<Route component={FourOhFour}/>
 
 			</Switch>
