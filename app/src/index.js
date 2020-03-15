@@ -11,6 +11,7 @@ import {SignUpFormContent} from "./pages/signup/SignUpFormContent";
 import {SignInForm} from "./shared/components/sign-in/SignInForm";
 import {SignUpForm} from "./pages/signup/SignUpForm";
 import {Signup} from "./pages/signup/Signup";
+import {Footer} from "./shared/components/footer/footer"
 
 const Routing = () => (
 	<>
