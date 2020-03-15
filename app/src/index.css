@@ -140,10 +140,11 @@ a:hover, a:visited, a:link, a:active {
 	background-color: #252525;
 }
 
-/*this is the stle for footer */
-.footer-position {
-	position: relative;
-	left: 0;
-	bottom: 0;
-	right: 0;
+@media (max-width: 1000px) {
+	.footer-position {
+		position: relative;
+		left: 0;
+		bottom: 0;
+		right: 0;
+	}
 }

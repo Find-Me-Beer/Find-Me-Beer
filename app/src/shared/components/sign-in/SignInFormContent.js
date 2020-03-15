@@ -39,18 +39,18 @@ export const SignInFormContent = (props) => {
 									</InputGroup.Text>
 								</InputGroup.Prepend>
 								<FormControl
-									id="signinEmail"
+									id="userEmail"
 									onChange={handleChange}
 									onBlur={handleBlur}
 									placeholder="Email"
 									type="email"
-									value={values.signinEmail}
+									value={values.userEmail}
 								/>
 							</InputGroup>
 							{
-								errors.signinEmail && touched.signinEmail && (
+								errors.userEmail && touched.userEmail && (
 									<div className="alert alert-danger">
-										{errors.signinEmail}
+										{errors.userEmail}
 									</div>
 								)
 							}
@@ -65,18 +65,18 @@ export const SignInFormContent = (props) => {
 									</InputGroup.Text>
 								</InputGroup.Prepend>
 								<FormControl
-									id="signinPassword"
+									id="userPassword"
 									onChange={handleChange}
 									onBlur={handleBlur}
 									type="password"
 									placeholder="Password"
-									value={values.signinPassword}
+									value={values.userPassword}
 								/>
 							</InputGroup>
 							{
-								errors.signinPassword && touched.signinPassword && (
+								errors.userPassword && touched.userPassword && (
 									<div className="alert alert-danger">
-										{errors.signinPassword}
+										{errors.userPassword}
 									</div>
 								)
 							}

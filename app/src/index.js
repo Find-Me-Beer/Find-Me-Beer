@@ -15,9 +15,10 @@ import {Footer} from "./shared/components/footer/footer"
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faGithubAlt} from '@fortawesome/free-brands-svg-icons';
 import {faEnvelope, faKey,faUser,faBirthdayCake,faBeer} from '@fortawesome/free-solid-svg-icons'
+import axios from "axios";
 
 library.add(faGithubAlt, faEnvelope,faKey,faUser,faBirthdayCake,faBeer);
-
+axios.get("/apis/xsrf/");
 const Routing = () => (
 	<>
 
@@ -30,7 +31,6 @@ const Routing = () => (
 				<Route exact path="/signin" component={SignInForm}/>
 				<Route component={FourOhFour}/>
 			</Switch>
-			<Route exact path="/" component={Footer}/>
 			<Footer className="mt-2"/>
 		</div>
 		</BrowserRouter>

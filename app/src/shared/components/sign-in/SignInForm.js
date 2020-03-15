@@ -12,15 +12,15 @@ import {SignInFormContent} from "./SignInFormContent";
 export const SignInForm = () => {
 		const history = useHistory();
 	const signIn = {
-		signinEmail: "",
-		signinPassword: ""
+		userEmail: "",
+		userPassword: ""
 	};
 
 	const validator = Yup.object().shape({
-		signinEmail: Yup.string()
+		userEmail: Yup.string()
 			.email("email must be a valid email")
 			.required('email is required'),
-		signinPassword: Yup.string()
+		userPassword: Yup.string()
 			.required("Password is required")
 	});
 
