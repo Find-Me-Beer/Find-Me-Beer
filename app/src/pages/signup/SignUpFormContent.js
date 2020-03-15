@@ -70,14 +70,14 @@ export const SignUpFormContent = (props) => {
 							<InputGroup>
 								<InputGroup.Prepend>
 									<InputGroup.Text>
-										<FontAwesomeIcon icon="key"/>
+										<FontAwesomeIcon icon="beer"/>
 									</InputGroup.Text>
 								</InputGroup.Prepend>
 								<FormControl
 									id="userFirstName"
 									onChange={handleChange}
 									onBlur={handleBlur}
-									placeholder="Enter Full Name"
+									placeholder="Enter First Name"
 									type="text"
 									value={values.userFirstName}
 								/>
@@ -95,7 +95,7 @@ export const SignUpFormContent = (props) => {
 							<InputGroup>
 								<InputGroup.Prepend>
 									<InputGroup.Text>
-										<FontAwesomeIcon icon="key"/>
+										<FontAwesomeIcon icon="beer"/>
 									</InputGroup.Text>
 								</InputGroup.Prepend>
 								<FormControl
@@ -145,7 +145,7 @@ export const SignUpFormContent = (props) => {
 							<InputGroup>
 								<InputGroup.Prepend>
 									<InputGroup.Text>
-										
+										<FontAwesomeIcon icon="birthday-cake"/>
 									</InputGroup.Text>
 								</InputGroup.Prepend>
 								<FormControl
@@ -198,7 +198,7 @@ export const SignUpFormContent = (props) => {
 							<InputGroup>
 								<InputGroup.Prepend>
 									<InputGroup.Text>
-										<FontAwesomeIcon icon="ellipsis-h"/>
+										<FontAwesomeIcon icon="key"/>
 									</InputGroup.Text>
 								</InputGroup.Prepend>
 								<FormControl

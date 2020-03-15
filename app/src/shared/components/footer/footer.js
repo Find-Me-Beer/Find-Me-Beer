@@ -3,7 +3,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faFacebookF, faGithubAlt, faTwitter} from "@fortawesome/free-brands-svg-icons";
+import {faEnvelope, faGithubAlt, } from "@fortawesome/free-brands-svg-icons";
 
 
 export const Footer = () => (
@@ -17,7 +17,7 @@ export const Footer = () => (
 								Check Out Our GitHub
 							</h5>
 							<i className="d-lg-none d-inline-block" id="footerIcons">
-								<FontAwesomeIcon icon={fabfa-github} size="2x"/>
+								<FontAwesomeIcon icon={faGithubAlt} size="2x"/>
 							</i>
 						</a>
 					</Col>
@@ -28,7 +28,7 @@ export const Footer = () => (
 								Contact us
 							</h5>
 							<i className="d-lg-none d-inline-block" id="footerIcons">
-								<FontAwesomeIcon icon={"envelope"} size="2x"/>
+								<FontAwesomeIcon icon="envelope" size="2x"/>
 							</i>
 						</a>
 					</Col>

@@ -12,9 +12,15 @@ import {SignInForm} from "./shared/components/sign-in/SignInForm";
 import {SignUpForm} from "./pages/signup/SignUpForm";
 import {Signup} from "./pages/signup/Signup";
 import {Footer} from "./shared/components/footer/footer"
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {faGithubAlt} from '@fortawesome/free-brands-svg-icons';
+import {faEnvelope, faKey,faUser,faBirthdayCake,faBeer} from '@fortawesome/free-solid-svg-icons'
+
+library.add(faGithubAlt, faEnvelope,faKey,faUser,faBirthdayCake,faBeer);
 
 const Routing = () => (
 	<>
+
 
 		<BrowserRouter>
 		<div className="sfooter-content">
