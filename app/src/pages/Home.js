@@ -1,5 +1,4 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -26,24 +25,21 @@ export const Home = () => {
 				</Container>
 				<Container fluid="true">
 					<Row>
-						<Col className="col-12">
-							<Col className="col-4">
-								<Card.Img variant="top" src={Image2} className="img-position-center" />
-								<Card.Subtitle className="mb-2 text-muted">Discover New Beer Based On Preferences.</Card.Subtitle>
-							</Col>
-							<Col className="col-4">
-								<Card.Img variant="top" src={Image3} className="img-position-center" />
-								<Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-							</Col>
-							<Col className="col-4">
-								<Card.Img variant="top" src={Image4} className="img-position-center" />
-								<Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-							</Col>
+						<Col className="col-6 offset-3 col-sm-4 offset-sm-0">
+							<Image src={Image2} className="thumbs img-fluid"/>
+							<div>Discover New Beer Based On Preferences.</div>
+						</Col>
+						<Col className="col-6 offset-3 col-sm-4 offset-sm-0">
+							<Image src={Image3} className="thumbs img-fluid"/>
+							<div>Find Local Breweries Near Your Location.</div>
+						</Col>
+						<Col className="col-6 offset-3 col-sm-4 offset-sm-0">
+							<Image src={Image4} className="thumbs img-fluid" class="thumbs"/>
+							<div>Discover New Beer Based On Preferences.</div>
 						</Col>
 					</Row>
 				</Container>
 			</main>
-
 		</>
 	)
 };
