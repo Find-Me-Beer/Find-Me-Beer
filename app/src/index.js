@@ -29,8 +29,9 @@ const Routing = () => (
 				<Route exact path="/signup" component={Signup}/>
 				<Route exact path="/signin" component={SignInForm}/>
 				<Route component={FourOhFour}/>
-
 			</Switch>
+			<Route exact path="/" component={Footer}/>
+			<Footer className="mt-2"/>
 		</div>
 		</BrowserRouter>
 

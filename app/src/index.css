@@ -112,3 +112,38 @@ button,
 	height: 100%;
 
 }
+footer {
+	background-color: #262626;
+	height: 50px;
+	padding-top: 10px;
+	position:relative;
+}
+
+a:hover, a:visited, a:link, a:active {
+	text-decoration: none !important;
+}
+
+#footerIcons:hover {
+	color: #F5FF38;
+}
+
+#footerIcons {
+	color: #FFFFFF;
+}
+
+.bg-modal {
+	background-color: rgba(37, 37, 37, 0.7);
+}
+
+.bg-modal .modal-content {
+	color: #FFFFFF;
+	background-color: #252525;
+}
+
+/*this is the stle for footer */
+.footer-position {
+	position: relative;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
