@@ -1,4 +1,3 @@
-
 <?php
 require_once dirname(__DIR__, 3) . "/vendor/autoload.php";
 require_once dirname(__DIR__, 3) . "/Classes/autoload.php";
@@ -176,11 +175,11 @@ EOF;
 
 		// update reply
 		$reply->message = "Thank you for creating Find Me Beer profile!";
-		} else {
-			throw (new InvalidArgumentException("invalid http request"));
-		}
+	} else {
+		throw (new InvalidArgumentException("invalid http request"));
+	}
 
-	} catch(\Exception |\TypeError $exception) {
+} catch(\Exception |\TypeError $exception) {
 	$reply->status = $exception->getCode();
 	$reply->message = $exception->getMessage();
 	$reply->trace = $exception->getTraceAsString();
@@ -188,26 +187,6 @@ EOF;
 
 header("Content-type: application/json");
 echo json_encode($reply);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
