@@ -11,6 +11,7 @@ import {SignUpFormContent} from "./pages/signup/SignUpFormContent";
 import {SignInForm} from "./shared/components/sign-in/SignInForm";
 import {SignUpForm} from "./pages/signup/SignUpForm";
 import {Signup} from "./pages/signup/Signup";
+import {SignUpSuccess} from "./pages/SignUpSuccess";
 import {Footer} from "./shared/components/footer/footer"
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faGithubAlt} from '@fortawesome/free-brands-svg-icons';
@@ -28,7 +29,9 @@ const Routing = () => (
 			<Switch>
 				<Route exact path="/" component={Home}/>
 				<Route exact path="/signup" component={Signup}/>
+				<Route exact path="/sign-up-successful" component={SignUpSuccess}/>
 				<Route exact path="/signin" component={SignInForm}/>
+
 				<Route component={FourOhFour}/>
 			</Switch>
 			<Footer className="mt-2"/>
