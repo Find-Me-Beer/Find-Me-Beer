@@ -9,26 +9,33 @@ import {useHistory} from "react-router-dom";
 export const SignUpForm = ({handleClose}) => {
 	const history = useHistory();
 	const signUp = {
-		signupUsername: "",
-		signupEmail: "",
-		signupFullName: "",
-		signupPassword: "",
-		signupPasswordConfirm: ""
+		userAvatarUrl: "",
+		userUsername: "",
+		userEmail: "",
+		userFirstName: "",
+		userLastName: "",
+		userDOB: "",
+		userPassword: "",
+		userPasswordConfirm: ""
 	};
 
 
 	const validator = Yup.object().shape({
-		signupEmail: Yup.string()
+		userEmail: Yup.string()
 			.email("email must be a valid email")
 			.required('email is required'),
-		signupUsername: Yup.string()
+		userUsername: Yup.string()
 			.required("user name is required"),
-		signupFullName: Yup.string()
+		userFirstName: Yup.string()
 			.required("user's full name is required"),
-		signupPassword: Yup.string()
+		userLastName: Yup.string()
+			.required("user's full name is required"),
+		userDOB: Yup.string()
+			.required("User must have a date of birth."),
+		userPassword: Yup.string()
 			.required("Password is required")
 			.min(8, "Password must be at least eight characters"),
-		signupPasswordConfirm: Yup.string()
+		userPasswordConfirm: Yup.string()
 			.required("Password Confirm is required")
 			.min(8, "Password must be at least eight characters"),
 	});
@@ -39,8 +46,7 @@ export const SignUpForm = ({handleClose}) => {
 					let {message, type} = reply;
 					if(reply.status === 200) {
 						resetForm();
-						handleClose();
-						history.push("/sign-up-successful")
+						history.push("/")
 					} setStatus({message, type});
 				}
 			);

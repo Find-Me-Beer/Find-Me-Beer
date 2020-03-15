@@ -15,7 +15,6 @@ import {FormDebugger} from "../../shared/FormDebugger";
 
 
 export const SignUpFormContent = (props) => {
-	console.log(props);
 
 	const {
 		status,
@@ -50,18 +49,18 @@ export const SignUpFormContent = (props) => {
 									</InputGroup.Text>
 								</InputGroup.Prepend>
 								<FormControl
-									id="signupUsername"
+									id="userUsername"
 									onChange={handleChange}
 									onBlur={handleBlur}
 									placeholder="Pick a User Name"
 									type="text"
-									value={values.signupUsername}
+									value={values.userUsername}
 								/>
 							</InputGroup>
 							{
-								errors.signupUsername && touched.signupUsername && (
+								errors.userUsername && touched.userUsername && (
 									<div className="alert alert-danger">
-										{errors.signupUsername}
+										{errors.userUsername}
 									</div>
 								)
 							}
@@ -75,18 +74,43 @@ export const SignUpFormContent = (props) => {
 									</InputGroup.Text>
 								</InputGroup.Prepend>
 								<FormControl
-									id="signupFullName"
+									id="userFirstName"
 									onChange={handleChange}
 									onBlur={handleBlur}
 									placeholder="Enter Full Name"
 									type="text"
-									value={values.signupFullName}
+									value={values.userFirstName}
 								/>
 							</InputGroup>
 							{
-								errors.signupFullName && touched.signupFullName && (
+								errors.userFirstName && touched.userFirstName && (
 									<div className="alert alert-danger">
-										{errors.signupFullName}
+										{errors.userFirstName}
+									</div>
+								)
+							}
+						</Form.Group>
+
+						<Form.Group>
+							<InputGroup>
+								<InputGroup.Prepend>
+									<InputGroup.Text>
+										<FontAwesomeIcon icon="key"/>
+									</InputGroup.Text>
+								</InputGroup.Prepend>
+								<FormControl
+									id="userLastName"
+									onChange={handleChange}
+									onBlur={handleBlur}
+									placeholder="Enter Last Name"
+									type="text"
+									value={values.userLastName}
+								/>
+							</InputGroup>
+							{
+								errors.userLastName && touched.userLastName && (
+									<div className="alert alert-danger">
+										{errors.userLastName}
 									</div>
 								)
 							}
@@ -100,18 +124,46 @@ export const SignUpFormContent = (props) => {
 									</InputGroup.Text>
 								</InputGroup.Prepend>
 								<FormControl
-									id="signupEmail"
+									id="userEmail"
 									onChange={handleChange}
 									onBlur={handleBlur}
 									placeholder="Your Email"
 									type="email"
-									value={values.signupEmail}
+									value={values.userEmail}
 								/>
 							</InputGroup>
 							{
-								errors.signupEmail && touched.signupEmail && (
+								errors.userEmail && touched.userEmail && (
 									<div className="alert alert-danger">
-										{errors.signupEmail}
+										{errors.userEmail}
+									</div>
+								)
+							}
+						</Form.Group>
+
+						<Form.Group>
+							<InputGroup>
+								<InputGroup.Prepend>
+									<InputGroup.Text>
+										
+									</InputGroup.Text>
+								</InputGroup.Prepend>
+								<FormControl
+									id="userDOB"
+									onChange={handleChange}
+									onBlur={handleBlur}
+									placeholder="Date of Birth"
+									type="date"
+									value={values.userDOB}
+								/>
+
+							
+
+							</InputGroup>
+							{
+								errors.userDOB && touched.userDOB && (
+									<div className="alert alert-danger">
+										{errors.userDOB}
 									</div>
 								)
 							}
@@ -125,18 +177,18 @@ export const SignUpFormContent = (props) => {
 									</InputGroup.Text>
 								</InputGroup.Prepend>
 								<FormControl
-									id="signupPassword"
+									id="userPassword"
 									onChange={handleChange}
 									onBlur={handleBlur}
 									placeholder="Password"
 									type="password"
-									value={values.signupPassword}
+									value={values.userPassword}
 								/>
 							</InputGroup>
 							{
-								errors.signupPassword && touched.signupPassword && (
+								errors.userPassword && touched.userPassword && (
 									<div className="alert alert-danger">
-										{errors.signupPassword}
+										{errors.userPassword}
 									</div>
 								)
 							}
@@ -150,18 +202,18 @@ export const SignUpFormContent = (props) => {
 									</InputGroup.Text>
 								</InputGroup.Prepend>
 								<FormControl
-									id="signupPasswordConfirm"
+									id="userPasswordConfirm"
 									onChange={handleChange}
 									onBlur={handleBlur}
 									placeholder="Confirm Password"
 									type="password"
-									value={values.signupPasswordConfirm}
+									value={values.userPasswordConfirm}
 								/>
 							</InputGroup>
 							{
-								errors.signupPasswordConfirm && touched.signupPasswordConfirm && (
+								errors.userPasswordConfirm && touched.userPasswordConfirm && (
 									<div className="alert alert-danger">
-										{errors.signupPasswordConfirm}
+										{errors.userPasswordConfirm}
 									</div>
 								)
 							}
