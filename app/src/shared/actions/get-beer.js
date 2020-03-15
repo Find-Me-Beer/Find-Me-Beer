@@ -25,7 +25,7 @@ export const getBeerByBeerType = (beerType) => async dispatch => {
 
 export const getBeerByTagId = (tagId) => async dispatch => {
 	const {data} = await httpConfig(`/apis/beer/?tagId=${tagId}`);
-	dispatch({type: "GET_BEER_BY_BEER_TYPE", payload: data})
+	dispatch({type: "GET_BEER_BY_BEER_TAG_ID", payload: data})
 };
 
 export const getBeerAndBreweries = () => async (dispatch, getState) => {

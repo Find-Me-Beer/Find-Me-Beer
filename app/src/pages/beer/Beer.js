@@ -13,6 +13,10 @@ import {getBeerAndBreweries} from "../../shared/actions/get-beer";
 import {BeerCard} from "./BeerCard";
 
 import {useDispatch, useSelector} from "react-redux";
+import {
+	getFavoriteByFavoriteBeerIdAndFavoriteUserId,
+	getFavoriteByFavoriteUserId
+} from "../../shared/actions/get-favorite";
 
 export const Beer = () => {
 
@@ -22,6 +26,8 @@ export const Beer = () => {
 
 	const effects = () => {
 		dispatch(getBeerAndBreweries());
+		dispatch(getFavoriteByFavoriteBeerIdAndFavoriteUserId);
+		dispatch(getFavoriteByFavoriteUserId);
 	};
 
 	const inputs = [];

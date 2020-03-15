@@ -7,6 +7,7 @@ import {isEmpty} from "../shared/misc/js-object-helpers";
 
 import Button from "react-bootstrap/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Badge from "react-bootstrap/Badge";
 
 //Based on Example from Rochelle Lewis
 
@@ -22,7 +23,7 @@ export const Favorite = ({beerId, userId}) => {
 	* isFavorited will hold a text value that will set the button color
 	* to red whether or not the logged in user has favorited the beer.
 	*
-	* likeCount holds the number of favorites for each post by postId.
+	* favoriteCount holds the number of favorites for each post by postId.
 	* */
 	const [isFavorited, setIsFavorited] = useState(null);
 	const [favoriteCount, setFavoriteCount] = useState(0);
@@ -40,9 +41,9 @@ export const Favorite = ({beerId, userId}) => {
 	useEffect(effects, inputs);
 
 	/*
-	* initializeLikes function filters over all the favorites
-	* from the Redux store, and sets the isLiked state variable
-	* to "active" if the logged in user has already liked the post.
+	* initializeFavorites function filters over all the favorites
+	* from the Redux store, and sets the isFavorited state variable
+	* to "active" if the logged in user has already favorited the beer.
 	*
 	* "active" is a Bootstrap class that makes the buttons red.
 	*
@@ -112,6 +113,7 @@ export const Favorite = ({beerId, userId}) => {
 				let {message, type} = reply;
 				if(reply.status === 200) {
 					toggleFavorite();
+					setFavoriteCount(favoriteCount > 0 ? favoriteCount - 1 : 0);
 				}
 			});
 	};
@@ -126,7 +128,8 @@ export const Favorite = ({beerId, userId}) => {
 	return (
 		<>
 			<Button variant="outline-danger" size="sm" className={`post-favorite-btn ${(isFavorited !== null ? isFavorited : "")}`} disabled={!jwt && true} onClick={clickFavorite}>
-				<FontAwesomeIcon icon="star"/>&nbsp;
+				<FontAwesomeIcon icon="heart"/>&nbsp;
+				<Badge variant="danger">{favoriteCount}</Badge>
 			</Button>
 		</>
 	)
