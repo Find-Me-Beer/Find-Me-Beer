@@ -24,6 +24,8 @@ $reply->status = 200;
 $reply->data = null;
 
 try {
+
+
 	//grab the mySQL connection
 	$secrets = new \Secrets("/etc/apache2/capstone-mysql/beerme.ini");
 	$pdo = $secrets->getPdoObject();
@@ -33,14 +35,16 @@ try {
 
 	if($method === "POST") {
 
+
+
 		//decode the json and turn it into a php object
 		$requestContent = file_get_contents("php://input");
 		$requestObject = json_decode($requestContent);
 
-		//if avatar url is empty set it to null
-		if(empty($requestObject->userAvatarUrl) === true) {
-			$requestObject->userAvatarUrl = null;
-		}
+//		if Avatar url is empty set it to null
+		 if(empty($requestObject->userAvatarUrl) === true) {
+		 	$requestObject->userAvatarUrl = null;
+		 }
 
 		//the dob is a required field
 		if(empty($requestObject->userDOB) === true) {
@@ -187,15 +191,3 @@ EOF;
 
 header("Content-type: application/json");
 echo json_encode($reply);
-
-
-
-
-
-
-
-
-
-
-
-

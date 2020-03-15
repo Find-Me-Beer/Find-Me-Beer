@@ -90,7 +90,7 @@ class User implements \JsonSerializable {
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \Exception if some other exception occurs
 	 * @throws \TypeError if data types violate type hints
-	 **/
+	 */
 //TODO: Type hint
 		public function __construct( $newUserId, $newUserActivationToken,string $newUserAvatarUrl, $newUserDOB,string $newUserEmail,string $newUserFirstName,$newUserHash, string $newUserLastName,string $newUserUsername) {
 			try{
