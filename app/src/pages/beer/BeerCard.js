@@ -24,6 +24,7 @@ console.log(beer);
 				<Card.Subtitle className="mb-2">{beer.beerType}</Card.Subtitle>
 				<FindBreweryName/>
 				<Card.Subtitle className="mb-2">{beer.beerAbv}% ABV</Card.Subtitle>
+				<Favorite userId={userId} beerId={beer.beerId}/>
 			</Card.Body>
 			<Card.Body className="cardBottom">
 				<Card.Text className="beer-description\">{beer.beerDescription}</Card.Text>
