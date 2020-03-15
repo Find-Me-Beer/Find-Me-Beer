@@ -9,7 +9,7 @@ import {useHistory} from "react-router-dom";
 
 import {SignInFormContent} from "./SignInFormContent";
 
-export const SignInForm = () => {
+export const SignInForm = ({handleClose}) => {
 		const history = useHistory();
 	const signIn = {
 		userEmail: "",
@@ -32,10 +32,12 @@ export const SignInForm = () => {
 					window.localStorage.removeItem("jwt-token");
 					window.localStorage.setItem("jwt-token", reply.headers["x-jwt-token"]);
 					resetForm();
-					setTimeout(() => {
-						history.push(alert("Congrats!"))
-					}, 1500);
-				}
+				// 	setTimeout(() => {
+				// 	history.push(alert("Congrats!"))
+				// }, 1500);
+					handleClose();
+					window.location.reload();
+			}
 				setStatus({message, type});
 			});
 	};
