@@ -16,7 +16,6 @@ import {applyMiddleware, createStore} from "redux";
 import {combinedReducers} from "./shared/reducers/";
 import thunk from "redux-thunk";
 import { Provider } from 'react-redux'
-
 import {SignUpFormContent} from "./pages/signup/SignUpFormContent";
 import {SignInForm} from "./shared/components/sign-in/SignInForm";
 import {SignUpForm} from "./pages/signup/SignUpForm";
