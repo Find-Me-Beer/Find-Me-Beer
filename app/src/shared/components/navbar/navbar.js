@@ -38,13 +38,13 @@ export const NavBar = () => {
 				  variant="dark"
 		>
 
-			{/*<LinkContainer exact to="/">*/}
-			{/*	<img alt="ABQCOOKBOOK Icon"*/}
-			{/*		  src= {logo}*/}
-			{/*		  id="nav-image"*/}
-			{/*		  className="d-none d-lg-inline-block align-top"*/}
-			{/*	/>*/}
-			{/*</LinkContainer>*/}
+			<LinkContainer exact to="/">
+				<img alt="ABQCOOKBOOK Icon"
+					  src= {logo}
+					  id="nav-image"
+					  className="d-none d-lg-inline-block align-top"
+				/>
+			</LinkContainer>
 
 			{/*<LinkContainer exact to="/">*/}
 			{/*	<img alt="ABQCOOKBOOK Icon"*/}
