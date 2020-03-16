@@ -40,11 +40,6 @@ export const BeerCard = ({ beer }) => {
 						</Col>
 						<Favorite beerId={beer.beerId} userId={userId}/>
 					</Row>
-					<Row>
-						<Col>
-							<Card.Subtitle></Card.Subtitle>
-						</Col>
-					</Row>
 				</Container>
 			</Card.Body>
 			<Card.Body className="cardBottom">
