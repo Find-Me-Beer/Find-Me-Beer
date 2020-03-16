@@ -2,3 +2,10 @@
 	height: 100px;
 	width: 100px;
 }
+
+body {
+	font-family: 'Audiowide', sans-serif;
+	color: #FFFFFF;
+	font-size: x-large;
+	text-align: center;
+}

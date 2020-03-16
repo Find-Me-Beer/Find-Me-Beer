@@ -11,6 +11,7 @@ import Image3 from "./shared/image/location-tick.png";
 import Image4 from "./shared/image/favorite-star.png";
 
 
+
 export const Home = () => {
 
 	return (
@@ -26,25 +27,25 @@ export const Home = () => {
 				<Container fluid="true">
 					<Row>
 						<Col className="col-6 offset-3 col-sm-4 offset-sm-0 mt-5 mb-3">
-							<Image src={Image2} className="thumbs offset-4"/>
+							<Image src={Image2} className="thumbs offset-2"/>
 							<div className="ml-5 align-text-center">Discover New Beer Based On Preferences.</div>
 						</Col>
 						<Col className="col-6 offset-3 col-sm-4 offset-sm-0 mt-5 mb-3">
-							<Image src={Image3} className="thumbs img-fluid offset-4"/>
+							<Image src={Image3} className="thumbs img-fluid offset-2"/>
 							<div className="ml-5 align-text-center">Find Local Breweries Near Your Location.</div>
 						</Col>
-						<Col className="col-6 offset-3 col-sm-4 offset-sm-0 mt-5 mb-5">
-							<Image src={Image4} className="thumbs img-fluid offset-4"/>
+						<Col className="col-6 offset-2 col-sm-4 offset-sm-0 mt-5 mb-5">
+							<Image src={Image4} className="thumbs img-fluid offset-2"/>
 							<div className="ml-5 align-text-center">Keep a list of your favorite beer.</div>
 						</Col>
 					</Row>
 				</Container>
 				<Container fluid="true">
 					<Row>
-						<Col className="col-12 offset-4 mt-5">
+						<Col className="col-12 mt-5">
 							<div className="mb-5">
-								<Button variant="primary" size="lg">
-									Find Me Beer
+								<Button variant="primary" size="lg" className="rounded">
+									Find Me Beer!
 								</Button>{' '}
 							</div>
 						</Col>
