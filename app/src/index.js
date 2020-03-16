@@ -12,6 +12,7 @@ import {Route, Switch} from "react-router";
 import {FourOhFour} from "./pages/FourOhFour";
 import {Home} from "./pages/Home";
 import {Beer} from "./pages/beer/Beer";
+import {NavBar} from "./shared/components/navbar/navbar";
 
 import {applyMiddleware, createStore} from "redux";
 import {combinedReducers} from "./shared/reducers/";
@@ -29,7 +30,6 @@ import {library} from '@fortawesome/fontawesome-svg-core';
 import {faGithubAlt} from '@fortawesome/free-brands-svg-icons';
 import {faEnvelope, faKey,faUser,faBirthdayCake,faBeer} from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
-import {NavBar} from "./shared/components/navbar/navbar";
 
 import {far} from "@fortawesome/free-regular-svg-icons";
 import {
@@ -51,7 +51,6 @@ const store = createStore(combinedReducers, applyMiddleware(thunk));
 
 const Routing = (store) => (
 	<>
-
 		<Provider store={store}>
 			<BrowserRouter>
 				<div className="sfooter-content">
@@ -71,3 +70,6 @@ const Routing = (store) => (
 	</>
 );
 ReactDOM.render(Routing(store), document.querySelector('#root'));
+
+
+		//<Route exact path="/navbar" component={NavBar}/>
