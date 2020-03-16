@@ -1,0 +1,188 @@
+
+
+/* GLOBAL */
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+.navbar-brand {
+	font-family: 'Audiowide', sans-serif;
+}
+
+button {
+	cursor: pointer;
+}
+
+hr {
+	border-color: rgba(0,0,0,0.15);
+}
+
+/* UTILS */
+.mh-80 {
+	min-height: 80vh;
+}
+
+.mh-100 {
+	min-height: 100vh;
+}
+
+.bg-shadow-light {
+	background-color: rgba(255,255,255,0.15);
+}
+
+.bg-shadow-dark {
+	background-color: rgba(0,0,0,0.3);
+}
+
+.text-shadow-dark {
+	text-shadow: 1px 1px #000;
+}
+
+.bg-transparent-90 {
+	background-color: rgba(255,255,255,0.9);
+}
+
+
+/*corrects IE min-height bug*/
+html { display: flex;}
+body { width: 100%;}
+
+.sfooter {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.sfooter-content {
+	flex: 1 0 auto;
+}
+
+ /*GLOBAL */
+ /*this is how to apply a background image */
+#root {
+	background-color: #f2B705;
+	background-size: cover;
+}
+
+/* HEADER */
+nav {
+	border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+div.dropdown-item.sign-out-dropdown:active,
+div.dropdown-item.sign-out-dropdown:hover,
+.dropdown-item.active, .dropdown-item:active {
+	background-color: transparent;
+}
+
+/* POSTS */
+.posts-form-panel {
+	z-index: 999;
+}
+
+.posts-panel {
+	margin-top: 60px;
+}
+
+/* no pointer on disabled like button! */
+button.post-like-btn:disabled {
+	cursor: unset;
+}
+
+#signup
+{
+	text-align: center;
+}
+
+
+button,
+.card,
+.modal-content {
+	border-radius: 0 !important;
+	border: none;
+}
+
+#background {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+
+}
+footer {
+	background-color: #262626;
+	height: 50px;
+	padding-top: 10px;
+	position:relative;
+}
+
+a:hover, a:visited, a:link, a:active {
+	text-decoration: none !important;
+}
+
+#footerIcons:hover {
+	color: #F5FF38;
+}
+
+#footerIcons {
+	color: #FFFFFF;
+}
+
+.bg-modal {
+	background-color: rgba(37, 37, 37, 0.7);
+}
+
+.bg-modal .modal-content {
+	color: #FFFFFF;
+	background-color: #252525;
+}
+
+@media (max-width: 1000px) {
+	.footer-position {
+		position: relative;
+		left: 0;
+		bottom: 0;
+		right: 0;
+	}
+}
+
+/*Beer Page*/
+
+.search-container {
+	background: #f2b705;
+}
+
+.beerCard{
+	background: white;
+	border-radius: 0px;
+	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.4);
+}
+
+.cardTop {
+	background: #f2b705;
+	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.4)
+
+}
+
+.beer-description {
+	background: white;
+	border-radius: 8px;
+}
+
+.beer-container {
+	background: #048ABF;
+}
+
+.found-beer-title {
+	color: white;
+	text-shadow: 2px 2px rgba(0, 0, 0, 0.4);;
+}
+
+.search-button {
+	background: #048ABF;
+	color: white;
+
+}

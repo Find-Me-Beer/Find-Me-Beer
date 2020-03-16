@@ -1,16 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom'
-import 'bootstrap/dist/css/bootstrap.css';
-import {BrowserRouter} from "react-router-dom";
-import {Route, Switch} from "react-router";
 
-import 'bootstrap/dist/css/bootstrap.css';
-
-import "./pages/style/home.css";
-import {Home} from "./pages/Home";
-import {FourOhFour} from "./pages/FourOhFour";
-import {applyMiddleware, createStore} from "redux";
-import thunk from "redux-thunk";
 import React from 'react';
 import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.css';
@@ -82,23 +70,3 @@ const Routing = (store) => (
 	</>
 );
 ReactDOM.render(Routing(store), document.querySelector('#root'));
-import Provider from "react-redux/lib/components/Provider";
-
-const store = createStore(applyMiddleware(thunk));
-
-const Routing = () => (
-	<>
-		<Provider store={store}>
-		<BrowserRouter>
-			<Switch>
-				<Route component={Home}/>
-				<Route component={FourOhFour}/>
-			</Switch>
-		</BrowserRouter>
-		</Provider>
-	</>
-);
-ReactDOM.render(<Routing/>, document.querySelector('#root'));
-
-
-// use https://github.com/rlewis2892/creepy-octo-meow-react/blob/react-hooks/app/src/index.js as reference

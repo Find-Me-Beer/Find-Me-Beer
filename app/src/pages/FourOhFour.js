@@ -1,9 +1,9 @@
 import React from "react"
-
+import Background from "../img/404.jpg"
 export const FourOhFour = () => {
 	return (
 		<>
-			<h1>Y U NO FIND</h1>
+			<img className="img-fluid img-thumbnail" src={Background} id="background" alt="Responsive-image"/>
 		</>
 	)
 };
