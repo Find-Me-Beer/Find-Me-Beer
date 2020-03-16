@@ -17,21 +17,22 @@ import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Col from "react-bootstrap/Col";
 
+
 export const NavBar = () => {
 	return (
 		<>
 			<header>
-				<Navbar class="navbar" bg="primary" expand="md" variant="light" fixed="top">
+				<Navbar class="navbar" bg="primary" expand="md" variant="light">
 					<Container>
 						<Row>
 							<Col xs={6} md={4}>
 								<Image src="" rounded />
 							</Col>
 							<Col xs={6} md={4}>
-								<Image src="holder.js/171x180" roundedCircle />
+								<img src="holder.js/171x180" roundedCirclee alt="logo" />
 							</Col>
 							<Col xs={6} md={4}>
-								<Image src="holder.js/171x180" thumbnail />
+								<img src="holder.js/171x180" thumbnail alt="logo" />
 							</Col>
 						</Row>
 					</Container>
