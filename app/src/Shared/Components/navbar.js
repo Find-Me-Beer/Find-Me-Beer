@@ -11,15 +11,11 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 
-
-
-
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Col from "react-bootstrap/Col";
-
 
 export const NavBar = () => {
 	return (

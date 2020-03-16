@@ -149,6 +149,21 @@ a:hover, a:visited, a:link, a:active {
 	}
 }
 
+/*Home Page Styling*/
+
+.thumbs {
+	height: 100px;
+	width: 100px;
+}
+
+body {
+	font-family: 'Audiowide', sans-serif;
+	color: #FFFFFF;
+	font-size: x-large;
+	text-align: center;
+}
+
+
 /*Beer Page*/
 
 .search-container {
@@ -174,6 +189,7 @@ a:hover, a:visited, a:link, a:active {
 .beer-description {
 	background: white;
 	border-radius: 8px;
+	color: black;
 }
 
 .beer-container {

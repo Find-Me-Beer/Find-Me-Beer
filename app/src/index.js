@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 import "./index.css"
-import "./pages/style/home.css"
 
 import {BrowserRouter} from "react-router-dom";
 import {Route, Switch} from "react-router";
@@ -12,7 +11,7 @@ import {Route, Switch} from "react-router";
 import {FourOhFour} from "./pages/FourOhFour";
 import {Home} from "./pages/Home";
 import {Beer} from "./pages/beer/Beer";
-import {NavBar} from "./shared/components/navbar/navbar";
+import {NavBar} from "./shared/components/navbar";
 
 import {applyMiddleware, createStore} from "redux";
 import {combinedReducers} from "./shared/reducers/";
