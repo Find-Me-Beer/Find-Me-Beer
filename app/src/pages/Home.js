@@ -5,10 +5,10 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 import Image from "react-bootstrap/Image";
-import Image1 from "./shared/image/fmb-beer.jpg";
-import Image2 from "./shared/image/beer-mug.png";
-import Image3 from "./shared/image/location-tick.png";
-import Image4 from "./shared/image/favorite-star.png";
+import Image1 from "../img/fmb-beer.jpg";
+import Image2 from "../img/beer-mug.png";
+import Image3 from "../img/location-tick.png";
+import Image4 from "../img/favorite-star.png";
 
 
 
@@ -34,7 +34,7 @@ export const Home = () => {
 							<Image src={Image3} className="thumbs img-fluid offset-2"/>
 							<div className="ml-5 align-text-center">Find Local Breweries Near Your Location.</div>
 						</Col>
-						<Col className="col-6 offset-2 col-sm-4 offset-sm-0 mt-5 mb-5">
+						<Col className="col-6 offset-2 col-sm-4 offset-sm-0 mt-5 mb-5 container">
 							<Image src={Image4} className="thumbs img-fluid offset-2"/>
 							<div className="ml-5 align-text-center">Keep a list of your favorite beer.</div>
 						</Col>
