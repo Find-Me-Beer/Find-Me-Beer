@@ -20,6 +20,19 @@ export const NavBar = () => {
 		<>
 			<header>
 				<Navbar class="navbar" bg="primary" expand="md" variant="light" fixed="top">
+					<Container>
+						<Row>
+							<Col xs={6} md={4}>
+								<Image src="" rounded />
+							</Col>
+							<Col xs={6} md={4}>
+								<Image src="holder.js/171x180" roundedCircle />
+							</Col>
+							<Col xs={6} md={4}>
+								<Image src="holder.js/171x180" thumbnail />
+							</Col>
+						</Row>
+					</Container>
 					<Link to="/">
 						<Navbar.Brand>Find Me Beer!</Navbar.Brand>
 					</Link>
@@ -27,12 +40,14 @@ export const NavBar = () => {
 					<Navbar.Collapse>
 						<Nav className="ml-auto">
 							<NavDropdown className="nav-link" title={"Profile"}>
-								<NavDropdown.Item href="/profile">
-									<FontAwesomeIcon icon="Favorites"/>&nbsp; Favorites
-									<link to="/"
-									<FontAwesomeIcon icon="Profile"/>&nbsp; Profile
+								{/*<NavDropdown.Item href="/profile">*/}
+								{/*	<FontAwesomeIcon icon="Favorites"/>&nbsp; Favorites*/}
+								{/*</NavDropdown.Item>*/}
+								<NavDropdown.Item>
+									{/*<FontAwesomeIcon icon="Profile"/>&nbsp; Profile*/}
+									<Nav.Link href="#link">Profile</Nav.Link>
+									<div className="dropdown-divider"/>
 								</NavDropdown.Item>
-								<div className="dropdown-divider"></div>
 								<div className="dropdown-item log-out-dropdown">
 									<button className="btn btn-outline-dark">
 										Log Out&nbsp;<FontAwesomeIcon icon="log-out-alt"/>
