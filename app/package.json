@@ -13,6 +13,7 @@
     "http-proxy-middleware": "^0.19.1",
     "jwt-decode": "^2.2.0",
     "node-sass": "^4.13.1",
+    "lodash": "^4.17.15",
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.17",
     "react-dom": "^16.9.0",

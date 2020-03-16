@@ -1,3 +1,4 @@
+
 import axios from "axios/index";
 
 export const httpConfig = axios.create();
@@ -15,3 +16,6 @@ httpConfig.interceptors.response.use(function ({data, headers} ) {
 	console.log(error);
 	return Promise.reject(error);
 });
+
+			// 		? {message: null, data: data.data, status: 200, type: " alert alert-success", headers: {...headers}}
+			// : {message: data.message, status: 200, type: " alert alert-success", data: null, headers: {...headers}};
