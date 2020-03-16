@@ -3,20 +3,99 @@ import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 import {BrowserRouter} from "react-router-dom";
 import {Route, Switch} from "react-router";
+
+import 'bootstrap/dist/css/bootstrap.css';
+
+import "./pages/style/home.css";
+import {Home} from "./pages/Home";
+import {FourOhFour} from "./pages/FourOhFour";
+import {applyMiddleware, createStore} from "redux";
+import thunk from "redux-thunk";
+import React from 'react';
+import ReactDOM from 'react-dom'
+import 'bootstrap/dist/css/bootstrap.css';
+import "./index.css"
+
+import {BrowserRouter} from "react-router-dom";
+import {Route, Switch} from "react-router";
+
+
 import {FourOhFour} from "./pages/FourOhFour";
 import {Home} from "./pages/Home";
-import './pages/sign-up/style.scss';
-import {SignIn} from "./pages/sign-up/SignIn";
-import {SignUp} from "./pages/sign-up/SignUp";
+import {Beer} from "./pages/beer/Beer";
+
+import {applyMiddleware, createStore} from "redux";
+import {combinedReducers} from "./shared/reducers/";
+import thunk from "redux-thunk";
+import { Provider } from 'react-redux'
+import {SignUpFormContent} from "./pages/signup/SignUpFormContent";
+import {SignInForm} from "./shared/components/sign-in/SignInForm";
+import {SignUpForm} from "./pages/signup/SignUpForm";
+import {SignInModal} from "./shared/components/sign-in/SigninModal";
+import {SignUpModal} from "./pages/signup/SignUpModal";
+import {Signup} from "./pages/signup/Signup";
+import {SignUpSuccess} from "./pages/SignUpSuccess";
+import {Footer} from "./shared/components/footer/footer"
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {faGithubAlt} from '@fortawesome/free-brands-svg-icons';
+import {faEnvelope, faKey,faUser,faBirthdayCake,faBeer} from '@fortawesome/free-solid-svg-icons'
+import axios from "axios";
+import {NavBar} from "./shared/components/navbar/navbar";
+
+import {far} from "@fortawesome/free-regular-svg-icons";
+import {
+	fas,
+	faCat,
+	faEllipsisH,
+	faHeart,
+	faPencilAlt,
+	faSignInAlt,
+	faSignOutAlt,
+	faTrash,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(far, fas, faCat, faEllipsisH, faEnvelope, faHeart, faKey, faPencilAlt, faSignInAlt, faSignOutAlt, faTrash, faUser);
+
+library.add(faGithubAlt, faEnvelope,faKey,faUser,faBirthdayCake,faBeer);
+axios.get("/apis/xsrf/");
+
+const store = createStore(combinedReducers, applyMiddleware(thunk));
+
+const Routing = (store) => (
+	<>
+
+		<Provider store={store}>
+			<BrowserRouter>
+				<div className="sfooter-content">
+					<NavBar/>
+					<Switch>
+						<Route exact path="/" component={Home}/>
+						<Route exact path="/signup" component={Signup}/>
+						<Route exact path="/sign-up-successful" component={SignUpSuccess}/>
+						<Route exact path="/signin" component={SignInForm}/>
+						<Route exact path="/beer" component={Beer}/>
+						<Route component={FourOhFour}/>
+					</Switch>
+					<Footer className="mt-2"/>
+				</div>
+			</BrowserRouter>
+		</Provider>
+	</>
+);
+ReactDOM.render(Routing(store), document.querySelector('#root'));
+import Provider from "react-redux/lib/components/Provider";
+
+const store = createStore(applyMiddleware(thunk));
 
 const Routing = () => (
 	<>
+		<Provider store={store}>
 		<BrowserRouter>
 			<Switch>
-				<Route exact path="/" component={Home}/>
+				<Route component={Home}/>
 				<Route component={FourOhFour}/>
 			</Switch>
 		</BrowserRouter>
+		</Provider>
 	</>
 );
 ReactDOM.render(<Routing/>, document.querySelector('#root'));
