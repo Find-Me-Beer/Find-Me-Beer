@@ -12,11 +12,7 @@ import {BeerTagCard} from "./BeerTagCard";
 export const BeerCard = ({ beer }) => {
 	const breweries = useSelector((state) => state.breweries ? state.breweries : null);
 
-	const tags = useSelector((state) => state.tags ? state.tags : null);
 	const beerTags = useSelector((state) => state.beerTags ? state.beerTags : null);
-
-
-	const jwt = UseJwt();
 	const userId = UseJwtUserId();
 
 	const FindBreweryName = () => {

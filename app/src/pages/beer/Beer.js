@@ -9,7 +9,7 @@ import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import CardColumns from "react-bootstrap/CardColumns";
 
-import {getBeerAndBreweries, getBeerByTagId} from "../../shared/actions/get-beer";
+import {getEverythingButFavorites} from "../../shared/actions/get-beer";
 import {BeerCard} from "./BeerCard";
 
 import {useDispatch, useSelector} from "react-redux";
@@ -24,25 +24,25 @@ export const Beer = () => {
 
 	const dispatch = useDispatch();
 
-	console.log(dispatch);
 
 	const effects = () => {
-		dispatch(getBeerAndBreweries());
-		dispatch(getBeerByTagId);
-		dispatch(getFavoriteByFavoriteBeerIdAndFavoriteUserId);
-		dispatch(getFavoriteByFavoriteUserId);
-		dispatch(getAllTags);
-		dispatch(getTagByTagId);
-		dispatch(getBeerTagsByBeerTagTagId);
-		dispatch(getBeerTagsByBeerTagBeerId)
+		dispatch(getEverythingButFavorites());
+		//dispatch(getBeerByTagId());
+		// dispatch(getFavoriteByFavoriteBeerIdAndFavoriteUserId());
+		// dispatch(getFavoriteByFavoriteUserId());
+		//dispatch(getTagByTagId());
+		// dispatch(getBeerTagsByBeerTagTagId());
+		// dispatch(getBeerTagsByBeerTagBeerId())
 	};
 
 	const inputs = [];
 
 	useEffect(effects, inputs);
 
-	const beer = useSelector(state => (state.beer ? state.beer : []));;
-	console.log(beer);
+	const beer = useSelector(state => {
+
+		return state.beer ? state.beer : []});
+
 
 	return (
 
