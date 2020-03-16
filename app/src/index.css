@@ -158,13 +158,17 @@ a:hover, a:visited, a:link, a:active {
 .beerCard{
 	background: white;
 	border-radius: 0px;
+	transition: .1s;
+	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.4);
+}
+
+.beerCard:hover {
 	box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.4);
 }
 
 .cardTop {
 	background: #f2b705;
 	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.4)
-
 }
 
 .beer-description {

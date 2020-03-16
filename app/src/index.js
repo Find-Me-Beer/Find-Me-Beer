@@ -53,23 +53,20 @@ const Routing = (store) => (
 
 		<Provider store={store}>
 			<BrowserRouter>
-			<div className="sfooter-content">
-				<NavBar/>
-				<Switch>
-					<Route exact path="/" component={Home}/>
-					<Route exact path="/signup" component={Signup}/>
-					<Route exact path="/sign-up-successful" component={SignUpSuccess}/>
-					<Route exact path="/signin" component={SignInForm}/>
-					<Route exact path="/beer" component={Beer}/>
-					<Route component={FourOhFour}/>
-				</Switch>
-				<Footer className="mt-2"/>
-			</div>
+				<div className="sfooter-content">
+					<NavBar/>
+					<Switch>
+						<Route exact path="/" component={Home}/>
+						<Route exact path="/signup" component={Signup}/>
+						<Route exact path="/sign-up-successful" component={SignUpSuccess}/>
+						<Route exact path="/signin" component={SignInForm}/>
+						<Route exact path="/beer" component={Beer}/>
+						<Route component={FourOhFour}/>
+					</Switch>
+					<Footer className="mt-2"/>
+				</div>
 			</BrowserRouter>
 		</Provider>
 	</>
 );
 ReactDOM.render(Routing(store), document.querySelector('#root'));
-
-// use https://github.com/rlewis2892/creepy-octo-meow-react/blob/react-hooks/app/src/index.js as reference
-

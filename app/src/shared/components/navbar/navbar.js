@@ -42,6 +42,9 @@ export const NavBar = () => {
 			{/*	<img alt="ABQCOOKBOOK Icon"*/}
 			{/*		  src= {logo}*/}
 			{/*		  id="nav-image" */}
+
+			{/*		  id="nav-image"*/}
+
 			{/*		  className="d-none d-lg-inline-block align-top"*/}
 			{/*	/>*/}
 			{/*</LinkContainer>*/}
