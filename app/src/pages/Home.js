@@ -26,22 +26,22 @@ export const Home = () => {
 				<Container fluid="true">
 					<Row>
 						<Col className="col-6 offset-3 col-sm-4 offset-sm-0 mt-5 mb-3">
-							<Image src={Image2} className="thumbs img-thumbnail"/>
-							<div>Discover New Beer Based On Preferences.</div>
+							<Image src={Image2} className="thumbs img-thumbnail offset-4"/>
+							<div className="ml-5">Discover New Beer Based On Preferences.</div>
 						</Col>
 						<Col className="col-6 offset-3 col-sm-4 offset-sm-0 mt-5 mb-3">
-							<Image src={Image3} className="thumbs img-fluid"/>
-							<div>Find Local Breweries Near Your Location.</div>
+							<Image src={Image3} className="thumbs img-fluid offset-4"/>
+							<div className="ml-5">Find Local Breweries Near Your Location.</div>
 						</Col>
 						<Col className="col-6 offset-3 col-sm-4 offset-sm-0 mt-5 mb-5">
-							<Image src={Image4} className="thumbs img-fluid" class="thumbs"/>
-							<div>Discover New Beer Based On Preferences.</div>
+							<Image src={Image4} className="thumbs img-fluid offset-4" class="thumbs"/>
+							<div className="ml-5">Keep a list of your favorite beer.</div>
 						</Col>
 					</Row>
 				</Container>
 				<Container fluid="true">
 					<Row>
-						<Col className="col-12 offset-4">
+						<Col className="col-12 offset-5 mt-5">
 							<div className="mb-5">
 								<Button variant="primary" size="lg">
 									Find Me Beer
