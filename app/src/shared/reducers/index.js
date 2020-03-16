@@ -3,7 +3,7 @@ import {combineReducers} from "redux"
 import {beerReducer} from "./beerReducer";
 import {favoriteReducer} from "./favoriteReducer"
 import {breweryReducer} from "./breweryReducer";
-import {userReducer} from "./userReducer";
+import {userReducer} from "./UserReducer";
 import {tagReducer} from "./tagReducer";
 import {beerTagReducer} from "./beerTagReducer";
 
