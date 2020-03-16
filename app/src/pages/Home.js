@@ -28,15 +28,15 @@ export const Home = () => {
 					<Row>
 						<Col className="col-6 offset-3 col-sm-4 offset-sm-0 mt-5 mb-3">
 							<Image src={Image2} className="thumbs offset-2"/>
-							<div className="ml-5 align-text-center">Discover New Beer Based On Preferences.</div>
+							<div className="ml-3 align-text-center">Discover New Beer Based On Preferences.</div>
 						</Col>
 						<Col className="col-6 offset-3 col-sm-4 offset-sm-0 mt-5 mb-3">
 							<Image src={Image3} className="thumbs img-fluid offset-2"/>
-							<div className="ml-5 align-text-center">Find Local Breweries Near Your Location.</div>
+							<div className="ml-1 align-text-center">Find Local Breweries Near Your Location.</div>
 						</Col>
-						<Col className="col-6 offset-2 col-sm-4 offset-sm-0 mt-5 mb-5 container">
+						<Col className="col-6 offset-3 col-sm-4 offset-sm-0 mt-5 mb-5 container">
 							<Image src={Image4} className="thumbs img-fluid offset-2"/>
-							<div className="ml-5 align-text-center">Keep a list of your favorite beer.</div>
+							<div className="ml-1 align-text-center">Keep a list of your favorite beer.</div>
 						</Col>
 					</Row>
 				</Container>
