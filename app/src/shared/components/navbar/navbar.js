@@ -1,14 +1,14 @@
 import React, {useEffect} from "react";
 import {httpConfig} from "../../misc/http-config";
 import {Link} from "react-router-dom";
-import {UseJwt, UseJwtProfileId, UseJwtUsername} from "../../misc/JwtHelpers";
+import {UseJwt, UseJwtUserId, UseJwtUsername} from "../../misc/JwtHelpers";
 
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {SignUpModal} from "./sign-up/SignUpModal";
+import {SignUpModal} from "../../../pages/signup/SignUpModal";
 import {SignInModal} from "../sign-in/SigninModal";
 export const NavBar = () => {
 
@@ -16,7 +16,7 @@ export const NavBar = () => {
 	const jwt = UseJwt();
 	
 	useEffect( () =>{
-		httpConfig.get("/apis/sessionAPI/")
+		httpConfig.get("/apis/xsrf/")
 	});
 
 	const signOut = () => {
@@ -32,45 +32,70 @@ export const NavBar = () => {
 			});
 	};
 
-	return (
-		<>
-			<header>
-				<Navbar bg="light" expand="md" variant="light" fixed="top">
-					<Link to="/">
-						<Navbar.Brand>=^ Octo Meow 7.0 ^=</Navbar.Brand>
-					</Link>
-					<Navbar.Text className="small font-italic d-none d-md-inline-block">A DDC React Demo.</Navbar.Text>
-					<Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
+	return(
+		<Navbar className="nav-style fixed-top"
+				  expand="lg"
+				  variant="dark"
+		>
 
-					<Navbar.Collapse>
-						<Nav className="ml-auto">
+			{/*<LinkContainer exact to="/">*/}
+			{/*	<img alt="ABQCOOKBOOK Icon"*/}
+			{/*		  src= {logo}*/}
+			{/*		  id="nav-image"*/}
+			{/*		  className="d-none d-lg-inline-block align-top"*/}
+			{/*	/>*/}
+			{/*</LinkContainer>*/}
 
-							{/* conditional render if user has jwt / is logged in */}
-							{jwt !== null && (
-								<NavDropdown className="nav-link navbar-username" title={"Welcome, " + Username + "!"}>
-									<div className="dropdown-item">
-										<Link to={`/profile/${profileId}`} className="nav-link">
-											<FontAwesomeIcon icon="user" />&nbsp;&nbsp;My Profile
-										</Link>
-									</div>
-									<div className="dropdown-divider"></div>
-									<div className="dropdown-item sign-out-dropdown">
-										<button className="btn btn-outline-dark" onClick={signOut}>
-											Sign Out&nbsp;&nbsp;<FontAwesomeIcon icon="sign-out-alt" />
-										</button>
-									</div>
-								</NavDropdown>
-							)}
+			{/*<LinkContainer exact to="/">*/}
+			{/*	<img alt="ABQCOOKBOOK Icon"*/}
+			{/*		  src={smallLogo}*/}
+			{/*		  id="nav-image-small"*/}
+			{/*		  className="d-lg-none d-inline-block align-top"*/}
+			{/*	/>*/}
+			{/*</LinkContainer>*/}
 
-							<Link className="nav-link" to="/posts">
-								<Button variant="outline-dark" className="btn-block">
-									<FontAwesomeIcon icon="cat" />&nbsp;Posts
-								</Button>
-							</Link>
-						</Nav>
-					</Navbar.Collapse>
-				</Navbar>
-			</header>
-		</>
+			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+			<Navbar.Collapse id="responsive-navbar-nav">
+				<Nav className="ml-auto text-right">
+
+					{/*<Nav.Link href="/recipe-list"*/}
+					{/*			 className="py-3 mr-1 d-lg-none d-inline-block"*/}
+					{/*>SEARCH</Nav.Link>*/}
+					{/*{jwt !== null ?*/}
+					{/*	<UserMenu/>*/}
+					{/*	:*/}
+					{/*	<SignInModal/>*/}
+					{/*}*/}
+
+					{/*{jwt !== null &&*/}
+					{/*<Nav.Link className="py-4 d-lg-none d-block"*/}
+					{/*			 id="menuSignOut"*/}
+					{/*			 href="/recipe-submission"*/}
+					{/*>*/}
+					{/*	CREATE RECIPE*/}
+					{/*</Nav.Link>*/}
+					{/*}*/}
+
+					{/*{jwt !== null &&*/}
+					{/*<Nav.Item className="py-4"*/}
+					{/*			 id="menuSignOut">MY RECIPES</Nav.Item>*/}
+					{/*}*/}
+
+					{/*{jwt !== null &&*/}
+					{/*<Nav.Item className="py-4"*/}
+					{/*			 id="menuSignOut">ACCOUNT SETTINGS</Nav.Item>*/}
+					{/*}*/}
+
+					{/*{jwt !== null ?*/}
+					{/*	<Nav.Item onClick={signOut}*/}
+					{/*				 className="py-4"*/}
+					{/*				 id="menuSignOut"*/}
+					{/*	>SIGN OUT</Nav.Item>*/}
+					{/*	:*/}
+					{/*	<SignUpModal/>*/}
+					{/*}*/}
+				</Nav>
+			</Navbar.Collapse>
+		</Navbar>
 	)
 };

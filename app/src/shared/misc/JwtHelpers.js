@@ -4,7 +4,7 @@ import * as jwtDecode from "jwt-decode";
 /*
 * Custom hooks to grab the jwt and decode jwt data for logged in users.
 *
-* Author: rlewis37@cnm.edu
+* Author: Vlad
 * */
 
 export const UseJwt = () => {
@@ -24,23 +24,23 @@ export const UseJwtUsername = () => {
 		const token = window.localStorage.getItem("jwt-token");
 		if(token !== null) {
 			const decodedJwt = jwtDecode(token);
-			setUsername(decodedJwt.auth.profileUsername);
+			setUsername(decodedJwt.auth.userUsername);
 		}
 	}, [username]);
 
 	return username;
 };
 
-export const UseJwtProfileId = () => {
-	const [profileId, setProfileId] = useState(null);
+export const UseJwtUserId = () => {
+	const [userId, setuserId] = useState(null);
 
 	useEffect(() => {
 		const token = window.localStorage.getItem("jwt-token");
 		if(token !== null) {
 			const decodedJwt = jwtDecode(token);
-			setProfileId(decodedJwt.auth.profileId);
+			setuserId(decodedJwt.auth.userId);
 		}
-	}, [profileId]);
+	}, [userId]);
 
-	return profileId;
+	return userId;
 };
