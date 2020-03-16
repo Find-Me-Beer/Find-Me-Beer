@@ -5,27 +5,20 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import {Favorite} from "../Favorite";
+import {TagCard} from "./TagCard";
 
 export const BeerTagCard = ({ beerTag }) => {
 	const tags = useSelector((state) => state.tags ? state.tags : null);
-
 	const FindTagContent = () => {
-		const tag = tags.find(tag => beerTag.beerTagTagId === tag.tagId);
+		const foundTags = tags.filter(tag => {let result = beerTag.beerTagTagId === tag.tagId;
+		console.log(result);
+			return result
+		}) ;
+		console.log(foundTags);
+		console.log(beerTag);
 		return (
 			<>
-				<>
-					<Card>
-						<Card.Body>
-							<Container>
-								<Row>
-									<Col>
-										<Card.Title className="mb-2">{tag.tagContent}</Card.Title>
-									</Col>
-								</Row>
-							</Container>
-						</Card.Body>
-					</Card>
-				</>
+				{foundTags.map(tag => <TagCard tag={tag} key={tag.tagId}/>)}
 			</>
 		)
 	};
