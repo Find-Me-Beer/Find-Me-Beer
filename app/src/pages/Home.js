@@ -24,30 +24,28 @@ export const Home = () => {
 						</Col>
 					</Row>
 				</Container>
-				<Container fluid="true">
+				<Container fluid="true" className="py-5">
 					<Row>
-						<Col className="col-6 offset-3 col-sm-4 offset-sm-0 mt-5 mb-3">
-							<Image src={Image2} className="thumbs offset-2"/>
-							<div className="ml-3 align-text-center">Discover New Beer Based On Preferences.</div>
+						<Col m={4} className="align-items-center justify-content-center">
+							<Image src={Image2} className="thumbs mx-auto d-block"/>
+							<h3 className="ml-3 align-text-center home-page-text">Discover New Beer Based On Preferences.</h3>
 						</Col>
-						<Col className="col-6 offset-3 col-sm-4 offset-sm-0 mt-5 mb-3">
-							<Image src={Image3} className="thumbs img-fluid offset-2"/>
-							<div className="ml-1 align-text-center">Find Local Breweries Near Your Location.</div>
+						<Col m={4}>
+							<Image src={Image3} className="thumbs thumbs mx-auto d-block"/>
+							<h3 className="ml-1 align-text-center home-page-text">Find Local Breweries Near Your Location.</h3>
 						</Col>
-						<Col className="col-6 offset-3 col-sm-4 offset-sm-0 mt-5 mb-5 container">
-							<Image src={Image4} className="thumbs img-fluid offset-2"/>
-							<div className="ml-1 align-text-center">Keep a list of your favorite beer.</div>
+						<Col m={4}>
+							<Image src={Image4} className="thumbs thumbs mx-auto d-block"/>
+							<h3 className="ml-1 align-text-center home-page-text">Keep a list of your favorite beer.</h3>
 						</Col>
 					</Row>
 				</Container>
-				<Container fluid="true">
+				<Container fluid="true" className="pb-5">
 					<Row>
-						<Col className="col-12 mt-5">
-							<div className="mb-5">
-								<Button variant="primary" size="lg" className="rounded">
+						<Col m={12}>
+								<Button variant="primary" size="lg" className="rounded mx-auto d-block">
 									Find Me Beer!
 								</Button>{' '}
-							</div>
 						</Col>
 					</Row>
 				</Container>

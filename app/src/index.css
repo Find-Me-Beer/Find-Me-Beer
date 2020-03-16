@@ -156,9 +156,9 @@ a:hover, a:visited, a:link, a:active {
 	width: 100px;
 }
 
-body {
-	font-family: 'Audiowide', sans-serif;
+.home-page-text {
 	color: #FFFFFF;
+	font-family: 'Audiowide', sans-serif;
 	font-size: x-large;
 	text-align: center;
 }
