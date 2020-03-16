@@ -41,10 +41,10 @@ try {
 		$requestContent = file_get_contents("php://input");
 		$requestObject = json_decode($requestContent);
 
-//		if Avatar url is empty set it to null
-		 if(empty($requestObject->userAvatarUrl) === true) {
-		 	$requestObject->userAvatarUrl = null;
-		 }
+////		if Avatar url is empty set it to null
+//		 if(empty($requestObject->userAvatarUrl) === true) {
+//		 	$requestObject->userAvatarUrl = null;
+//		 }
 
 		//the dob is a required field
 		if(empty($requestObject->userDOB) === true) {
@@ -96,7 +96,7 @@ try {
 		$user = new User(
 			generateUuidV4(),
 			$userActivationToken,
-			$requestObject->userAvatarUrl,
+			"null",
 			$requestObject->userDOB,
 			$requestObject->userEmail,
 			$requestObject->userFirstName,
