@@ -7,11 +7,13 @@ import {UseJwt, UseJwtUserId} from "../../shared/misc/JwtHelpers";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import {BeerTagCard} from "./BeerTagCard";
 
 export const BeerCard = ({ beer }) => {
 	const breweries = useSelector((state) => state.breweries ? state.breweries : null);
 
 	const tags = useSelector((state) => state.tags ? state.tags : null);
+	const beerTags = useSelector((state) => state.beerTags ? state.beerTags : null);
 
 
 	const jwt = UseJwt();
@@ -39,6 +41,11 @@ export const BeerCard = ({ beer }) => {
 							<Card.Subtitle className="mb-2">{beer.beerAbv}% ABV</Card.Subtitle>
 						</Col>
 						<Favorite beerId={beer.beerId} userId={userId}/>
+					</Row>
+					<Row>
+						<Col>
+							{beerTags.map(beerTag => <BeerTagCard beerTag={beerTag} key={beerTag.beerTagTagId}/>)}
+						</Col>
 					</Row>
 				</Container>
 			</Card.Body>

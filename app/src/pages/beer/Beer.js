@@ -41,8 +41,7 @@ export const Beer = () => {
 
 	useEffect(effects, inputs);
 
-	const beer = useSelector(state => (state.beer ? state.beer : []));
-	const beerTags = useSelector(state => (state.beerTag ? state.beerTag : []));
+	const beer = useSelector(state => (state.beer ? state.beer : []));;
 	console.log(beer);
 
 	return (
