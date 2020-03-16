@@ -6,7 +6,7 @@ import {Route, Switch} from "react-router";
 
 import 'bootstrap/dist/css/bootstrap.css';
 
-import "./index.css";
+import "./pages/style/home.css";
 import {Home} from "./pages/Home";
 import {FourOhFour} from "./pages/FourOhFour";
 import {applyMiddleware, createStore} from "redux";
