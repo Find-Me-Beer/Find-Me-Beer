@@ -109,12 +109,12 @@ export const Favorite = ({beerId, userId}) => {
 	};
 
 	/*
-* User deletes a Favorite.
+* User removes a favorite.
 * */
-	const deleteFavorite = () => {
+	const removeFavorite = () => {
 		const headers = {'X-JWT-TOKEN': jwt};
-		httpConfig.put("/apis/favorite/", {
-			headers, data})
+		httpConfig.put("/apis/favorite/", data, {
+			headers: headers})
 			.then(reply => {
 				let {message, type} = reply;
 				if(reply.status === 200) {
@@ -132,7 +132,7 @@ export const Favorite = ({beerId, userId}) => {
 	* Fire this function onclick
 	* */
 	const clickFavorite = () => {
-		(isFavorited === "active") ? deleteFavorite() : submitFavorite();
+		(isFavorited === "active") ? removeFavorite() : submitFavorite();
 	};
 
 	return (
