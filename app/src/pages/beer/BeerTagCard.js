@@ -11,11 +11,9 @@ export const BeerTagCard = ({ beerTag }) => {
 	const tags = useSelector((state) => state.tags ? state.tags : null);
 	const FindTagContent = () => {
 		const foundTags = tags.filter(tag => {let result = beerTag.beerTagTagId === tag.tagId;
-		console.log(result);
+
 			return result
 		}) ;
-		console.log(foundTags);
-		console.log(beerTag);
 		return (
 			<>
 				{foundTags.map(tag => <TagCard tag={tag} key={tag.tagId}/>)}
