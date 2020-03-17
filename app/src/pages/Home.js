@@ -20,6 +20,7 @@ export const Home = () => {
 				<div className="home-background">
 				<Container fluid="true">
 					<Row>
+<<<<<<< HEAD
 						<Col className="col-12">
 							<h1 className="home-page-text">Welcome To The Find Me Beer App</h1>
 							{/*<Image className="img-fluid" src={Image1} alt="beer foam in a glass" id="background-image" fluid/>*/}
@@ -31,6 +32,10 @@ export const Home = () => {
 					<Row>
 						<Col>
 							<h1 className="mt-5  col-9">FMB Features</h1>
+=======
+						<Col className="col-12 pr-0">
+							<Image className="img-fluid" src={Image1} alt="beer foam in a glass" id="background-image" fluid/>
+>>>>>>> 4e07123a453a18882026fe280f83603f142b00ee
 						</Col>
 					</Row>
 				</Container>
@@ -45,8 +50,8 @@ export const Home = () => {
 							<h3 className="ml-1 align-text-center home-page-text">Find Local Breweries Near Your Location.</h3>
 						</Col>
 						<Col m={4}>
-							<Image src={Image4} className="thumbs thumbs mx-auto d-block"/>
-							<h3 className="ml-1 align-text-center home-page-text">Keep a list of your favorite beer.</h3>
+							<Image src={Image4} className="thumbs thumbs mx-auto d-block pr-0"/>
+							<h3 className="align-text-center home-page-text">Keep a list of your favorite beer.</h3>
 						</Col>
 					</Row>
 				</Container>
