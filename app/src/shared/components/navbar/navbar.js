@@ -32,16 +32,30 @@ export const NavBar = () => {
 					<Link to="/">
 						<Navbar.Brand>Find Me Beer!</Navbar.Brand>
 					</Link>
+					<Link to="/beer">
+						<Navbar.Brand>Beer!</Navbar.Brand>
+					</Link>
+					<Link to="/signup">
+						<Navbar.Brand>Sign Up!</Navbar.Brand>
+					</Link>
+					<Link to="/signin">
+						<Navbar.Brand>Sign In!</Navbar.Brand>
+					</Link>
 					<Navbar.Toggle aria-controls="basic-navbar-nav">Find Me Beer</Navbar.Toggle>
 					<Navbar.Collapse>
 						<Nav className="ml-auto">
 							<NavDropdown className="nav-link" title={"Profile"}>
-								{/*<NavDropdown.Item href="/profile">*/}
-								{/*	<FontAwesomeIcon icon="Favorites"/>&nbsp; Favorites*/}
-								{/*</NavDropdown.Item>*/}
+								<NavDropdown.Item href="/beer">
+									<FontAwesomeIcon icon="Favorites"/>&nbsp; Beer
+								</NavDropdown.Item>
 								<NavDropdown.Item>
 									{/*<FontAwesomeIcon icon="Profile"/>&nbsp; Profile*/}
-									<Nav.Link href="#link">Profile</Nav.Link>
+									<Nav.Link href="/signup">Sign Up</Nav.Link>
+									<div className="dropdown-divider"/>
+								</NavDropdown.Item>
+								<NavDropdown.Item>
+									{/*<FontAwesomeIcon icon="Profile"/>&nbsp; Profile*/}
+									<Nav.Link href="/signin">Sign In</Nav.Link>
 									<div className="dropdown-divider"/>
 								</NavDropdown.Item>
 								<div className="dropdown-item log-out-dropdown">
