@@ -34,7 +34,7 @@ export const Favorite = ({beerId, userId}) => {
 	const effects = () => {
 		initializeFavorites(userId);
 		countFavorites(beerId);
-		console.log(userId);
+		console.log(favoriteCount);
 	};
 
 	// add favorites to inputs - this informs React that favorites are being updated from Redux. This ensures proper component rendering.
@@ -65,6 +65,7 @@ export const Favorite = ({beerId, userId}) => {
 	* */
 	const countFavorites = (beerId) => {
 		const beerFavorites = favorites.filter(favorite => favorite.favoriteBeerId === beerId);
+		console.log(beerId);
 		return (setFavoriteCount(beerFavorites.length));
 	};
 
@@ -112,7 +113,7 @@ export const Favorite = ({beerId, userId}) => {
 * */
 	const deleteFavorite = () => {
 		const headers = {'X-JWT-TOKEN': jwt};
-		httpConfig.delete("/apis/favorite/", {
+		httpConfig.put("/apis/favorite/", {
 			headers, data})
 			.then(reply => {
 				let {message, type} = reply;

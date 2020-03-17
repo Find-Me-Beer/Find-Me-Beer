@@ -38,11 +38,11 @@ export const BeerCard = ({ beer }) => {
 						</Col>
 						<Favorite beerId={beer.beerId} userId={userId}/>
 					</Row>
-					<Row>
-						<Col>
-							{beerTags.map(beerTag => <BeerTagCard beerTag={beerTag} key={beerTag.beerTagTagId}/>)}
-						</Col>
-					</Row>
+					{/*<Row>*/}
+					{/*	<Col>*/}
+					{/*		{beerTags.map(beerTag => <BeerTagCard beerTag={beerTag} key={beerTag.beerTagTagId}/>)}*/}
+					{/*	</Col>*/}
+					{/*</Row>*/}
 				</Container>
 			</Card.Body>
 			<Card.Body className="cardBottom">

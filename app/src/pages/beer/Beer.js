@@ -14,6 +14,7 @@ import {BeerCard} from "./BeerCard";
 
 import {useDispatch, useSelector} from "react-redux";
 import {
+	getAllFavorites,
 	getFavoriteByFavoriteBeerIdAndFavoriteUserId,
 	getFavoriteByFavoriteUserId
 } from "../../shared/actions/get-favorite";
@@ -27,9 +28,10 @@ export const Beer = () => {
 
 	const effects = () => {
 		dispatch(getEverythingButFavorites());
+		dispatch(getAllFavorites());
 		//dispatch(getBeerByTagId());
-		dispatch(getFavoriteByFavoriteBeerIdAndFavoriteUserId());
-		dispatch(getFavoriteByFavoriteUserId());
+		// dispatch(getFavoriteByFavoriteBeerIdAndFavoriteUserId());
+		// dispatch(getFavoriteByFavoriteUserId());
 		//dispatch(getTagByTagId());
 		// dispatch(getBeerTagsByBeerTagTagId());
 		// dispatch(getBeerTagsByBeerTagBeerId())
