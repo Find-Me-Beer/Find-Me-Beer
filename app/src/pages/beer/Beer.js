@@ -28,8 +28,8 @@ export const Beer = () => {
 	const effects = () => {
 		dispatch(getEverythingButFavorites());
 		//dispatch(getBeerByTagId());
-		dispatch(getFavoriteByFavoriteBeerIdAndFavoriteUserId());
-		dispatch(getFavoriteByFavoriteUserId());
+		// dispatch(getFavoriteByFavoriteBeerIdAndFavoriteUserId());
+		// dispatch(getFavoriteByFavoriteUserId());
 		//dispatch(getTagByTagId());
 		// dispatch(getBeerTagsByBeerTagTagId());
 		// dispatch(getBeerTagsByBeerTagBeerId())
