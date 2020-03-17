@@ -2,6 +2,8 @@
 import {httpConfig} from "../misc/http-config";
 import _ from "lodash";
 import {getBreweryByBreweryId} from "./get-breweries";
+import {getAllTags} from "./get-tag";
+import {getBeerTagsByBeerTagBeerId, getBeerTagsByBeerTagTagId} from "./get-beerTag";
 
 export const getAllBeer = () => async dispatch => {
 	const {data} = await httpConfig(`/apis/beer/`);
@@ -28,12 +30,20 @@ export const getBeerByTagId = (tagId) => async dispatch => {
 	dispatch({type: "GET_BEER_BY_BEER_TAG_ID", payload: data})
 };
 
-export const getBeerAndBreweries = () => async (dispatch, getState) => {
+export const getTagsAndBeerTags = () => async (dispatch, getState) => {
+	await dispatch(getAllTags());
+	const beerIds = _.uniq(_.map(getState().beer, "beerId"));
+	beerIds.forEach(id => dispatch(getBeerTagsByBeerTagBeerId(id)));
+};
+
+export const getEverythingButFavorites = () => async (dispatch, getState) => {
 	await dispatch(getAllBeer());
+
+	await dispatch(getAllTags());
+	const beerIds = _.uniq(_.map(getState().beer, "beerId"));
+	beerIds.forEach(id => dispatch(getBeerTagsByBeerTagBeerId(id)));
 
 	const breweryIds = _.uniq(_.map(getState().beer, "beerBreweryId"));
 	breweryIds.forEach(id => dispatch(getBreweryByBreweryId(id)));
-
 };
-
 
