@@ -16,6 +16,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Col from "react-bootstrap/Col";
+import Logo from "../../img/fmb-navbar-logo.jpg"
 
 
 export const NavBar = () => {
@@ -29,11 +30,11 @@ export const NavBar = () => {
 								<Image src="" rounded />
 							</Col>
 							<Col xs={6} md={4}>
-								<img src="holder.js/171x180" roundedCirclee alt="logo" />
+								<img src={Logo} id="logo-nav" />
 							</Col>
-							<Col xs={6} md={4}>
-								<img src="holder.js/171x180" thumbnail alt="logo" />
-							</Col>
+							{/*<Col xs={6} md={4}>*/}
+							{/*	<img src="holder.js/171x180" thumbnail alt="logo" />*/}
+							{/*</Col>*/}
 						</Row>
 					</Container>
 					<Link to="/">
