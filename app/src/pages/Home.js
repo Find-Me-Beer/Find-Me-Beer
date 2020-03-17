@@ -18,15 +18,11 @@ export const Home = () => {
 		<>
 			<main className="mh-100">
 				<Container fluid="true">
-					<Row>
-						<Col className="col-12 pr-0">
-							<Image className="img-fluid" src={Image1} alt="beer foam in a glass" id="background-image" fluid/>
-						</Col>
-					</Row>
+					<Image className="img-fluid" src={Image1} alt="beer foam in a glass" id="background-image" fluid/>
 				</Container>
 				<Container fluid="true" className="py-5">
 					<Row>
-						<Col m={4} className="align-items-center justify-content-center">
+						<Col m={4}>
 							<Image src={Image2} className="thumbs mx-auto d-block"/>
 							<h3 className="ml-3 align-text-center home-page-text">Discover New Beer Based On Preferences.</h3>
 						</Col>
