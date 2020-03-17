@@ -163,6 +163,9 @@ a:hover, a:visited, a:link, a:active {
 	text-align: center;
 }
 
+.home-background {
+	background-image: url("./img/fmb-beer.jpg");
+}
 
 /*Beer Page*/
 

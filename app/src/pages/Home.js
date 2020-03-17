@@ -17,10 +17,20 @@ export const Home = () => {
 	return (
 		<>
 			<main className="mh-100">
+				<div className="home-background">
 				<Container fluid="true">
 					<Row>
 						<Col className="col-12">
-							<Image className="img-fluid" src={Image1} alt="beer foam in a glass" id="background-image" fluid/>
+							<h1 className="home-page-text">Welcome To The Find Me Beer App</h1>
+							{/*<Image className="img-fluid" src={Image1} alt="beer foam in a glass" id="background-image" fluid/>*/}
+						</Col>
+					</Row>
+				</Container>
+				</div>
+				<Container>
+					<Row>
+						<Col>
+							<h1 className="mt-5  col-9">FMB Features</h1>
 						</Col>
 					</Row>
 				</Container>
