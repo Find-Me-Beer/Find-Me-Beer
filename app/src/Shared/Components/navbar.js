@@ -39,6 +39,15 @@ export const NavBar = () => {
 					<Link to="/">
 						<Navbar.Brand>Find Me Beer!</Navbar.Brand>
 					</Link>
+					<Link to="/beer">
+						<Navbar.Brand>My Beer!</Navbar.Brand>
+					</Link>
+					<Link to="/signin">
+						<Navbar.Brand>Sign In!</Navbar.Brand>
+					</Link>
+					<Link to="/signup">
+						<Navbar.Brand>Sign Up!</Navbar.Brand>
+					</Link>
 					<Navbar.Toggle aria-controls="basic-navbar-nav">Find Me Beer</Navbar.Toggle>
 					<Navbar.Collapse>
 						<Nav className="ml-auto">
