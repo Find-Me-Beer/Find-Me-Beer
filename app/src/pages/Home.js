@@ -19,7 +19,7 @@ export const Home = () => {
 			<main className="mh-100">
 				<Container fluid="true">
 					<Row>
-						<Col className="col-12">
+						<Col className="col-12 pr-0">
 							<Image className="img-fluid" src={Image1} alt="beer foam in a glass" id="background-image" fluid/>
 						</Col>
 					</Row>
@@ -35,8 +35,8 @@ export const Home = () => {
 							<h3 className="ml-1 align-text-center home-page-text">Find Local Breweries Near Your Location.</h3>
 						</Col>
 						<Col m={4}>
-							<Image src={Image4} className="thumbs thumbs mx-auto d-block"/>
-							<h3 className="ml-1 align-text-center home-page-text">Keep a list of your favorite beer.</h3>
+							<Image src={Image4} className="thumbs thumbs mx-auto d-block pr-0"/>
+							<h3 className="align-text-center home-page-text">Keep a list of your favorite beer.</h3>
 						</Col>
 					</Row>
 				</Container>
