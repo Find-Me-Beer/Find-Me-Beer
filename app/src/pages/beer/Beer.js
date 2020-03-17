@@ -9,7 +9,7 @@ import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import CardColumns from "react-bootstrap/CardColumns";
 
-import {getBeerAndUsers, getEverythingButFavorites} from "../../shared/actions/get-beer";
+import {getEverythingButFavorites} from "../../shared/actions/get-beer";
 import {BeerCard} from "./BeerCard";
 
 import {useDispatch, useSelector} from "react-redux";
@@ -28,8 +28,8 @@ export const Beer = () => {
 	const effects = () => {
 		dispatch(getEverythingButFavorites());
 		//dispatch(getBeerByTagId());
-		//dispatch(getFavoriteByFavoriteBeerIdAndFavoriteUserId());
-		//dispatch(getFavoriteByFavoriteUserId());
+		dispatch(getFavoriteByFavoriteBeerIdAndFavoriteUserId());
+		dispatch(getFavoriteByFavoriteUserId());
 		//dispatch(getTagByTagId());
 		// dispatch(getBeerTagsByBeerTagTagId());
 		// dispatch(getBeerTagsByBeerTagBeerId())
