@@ -7,6 +7,6 @@ export const getFavoriteByFavoriteBeerIdAndFavoriteUserId = (favoriteBeerId, fav
 };
 
 export const getFavoriteByFavoriteUserId = (favoriteUserId) => async dispatch => {
-	const {data} = await httpConfig('/apis/favorite/?favoriteUserId=${favoriteUserId');
+	const {data} = await httpConfig('/apis/favorite/?favoriteUserId=${favoriteUserId}');
 	dispatch({type: "GET_FAVORITE_BY_FAVORITE_USER_ID", payload: data })
 };
