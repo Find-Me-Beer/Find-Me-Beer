@@ -221,7 +221,7 @@ export const SignUpFormContent = (props) => {
 
 						<Form.Group className="text-md-right">
 							<Button variant="primary" type="submit" onSubmit={handleSubmit}>
-								<FontAwesomeIcon icon="paw"/>&nbsp;Join Us!
+								<FontAwesomeIcon icon="user-plus"/>&nbsp;Join Us!
 							</Button>
 							<div className="my-2">
 								<span className="font-weight-light font-italic">Already Have an Account?&nbsp;</span>
@@ -230,7 +230,7 @@ export const SignUpFormContent = (props) => {
 						</Form.Group>
 
 						{/*for testing purposes only*/}
-						<FormDebugger {...props}/>
+						{/*<FormDebugger {...props}/>*/}
 
 					</Form>
 				</Col>

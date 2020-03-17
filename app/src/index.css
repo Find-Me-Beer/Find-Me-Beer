@@ -151,11 +151,20 @@ a:hover, a:visited, a:link, a:active {
 
 /*Home Page Styling*/
 
+#home {
+	overflow-x: hidden;
+	/*overflow-y: hidden;*/
+	position: relative;
+}
 .thumbs {
 	height: 100px;
 	width: 100px;
 }
+#background-image{
+	width:100%;
+	height:75%;
 
+}
 .home-page-text {
 	color: #FFFFFF;
 	font-family: 'Audiowide', sans-serif;

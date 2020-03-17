@@ -16,7 +16,7 @@ export const Home = () => {
 
 	return (
 		<>
-			<main className="mh-100">
+			<main className="mh-50" id="home">
 				<Container fluid="true">
 					<Row>
 						<Col className="col-12">

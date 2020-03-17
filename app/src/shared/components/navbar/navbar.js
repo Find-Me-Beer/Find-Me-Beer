@@ -10,95 +10,50 @@ import Button from "react-bootstrap/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {SignUpModal} from "../../../pages/signup/SignUpModal";
 import {SignInModal} from "../sign-in/SigninModal";
+
 export const NavBar = () => {
-
-	// grab the jwt and username for logged in users
-	const jwt = UseJwt();
-	
-	useEffect( () =>{
-		httpConfig.get("/apis/xsrf/")
-	});
-
-	const signOut = () => {
-		httpConfig.get("apis/sign-out/")
-			.then(reply => {
-				if (reply.status === 200) {
-					window.localStorage.removeItem("jwt-token");
-					console.log(reply);
-					setTimeout(() => {
-						window.location.reload();
-					}, 1500);
-				}
-			});
-	};
-
-	return(
-		<Navbar className="nav-style fixed-top"
-				  expand="lg"
-				  variant="dark"
-		>
-
-			{/*<LinkContainer exact to="/">*/}
-			{/*	<img alt="ABQCOOKBOOK Icon"*/}
-			{/*		  src= {logo}*/}
-			{/*		  id="nav-image" */}
-
-			{/*		  id="nav-image"*/}
-
-			{/*		  className="d-none d-lg-inline-block align-top"*/}
-			{/*	/>*/}
-			{/*</LinkContainer>*/}
-
-			{/*<LinkContainer exact to="/">*/}
-			{/*	<img alt="ABQCOOKBOOK Icon"*/}
-			{/*		  src={smallLogo}*/}
-			{/*		  id="nav-image-small"*/}
-			{/*		  className="d-lg-none d-inline-block align-top"*/}
-			{/*	/>*/}
-			{/*</LinkContainer>*/}
-
-			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
-			<Navbar.Collapse id="responsive-navbar-nav">
-				<Nav className="ml-auto text-right">
-
-					{/*<Nav.Link href="/recipe-list"*/}
-					{/*			 className="py-3 mr-1 d-lg-none d-inline-block"*/}
-					{/*>SEARCH</Nav.Link>*/}
-					{/*{jwt !== null ?*/}
-					{/*	<UserMenu/>*/}
-					{/*	:*/}
-					{/*	<SignInModal/>*/}
-					{/*}*/}
-
-					{/*{jwt !== null &&*/}
-					{/*<Nav.Link className="py-4 d-lg-none d-block"*/}
-					{/*			 id="menuSignOut"*/}
-					{/*			 href="/recipe-submission"*/}
-					{/*>*/}
-					{/*	CREATE RECIPE*/}
-					{/*</Nav.Link>*/}
-					{/*}*/}
-
-					{/*{jwt !== null &&*/}
-					{/*<Nav.Item className="py-4"*/}
-					{/*			 id="menuSignOut">MY RECIPES</Nav.Item>*/}
-					{/*}*/}
-
-					{/*{jwt !== null &&*/}
-					{/*<Nav.Item className="py-4"*/}
-					{/*			 id="menuSignOut">ACCOUNT SETTINGS</Nav.Item>*/}
-					{/*}*/}
-
-					{/*{jwt !== null ?*/}
-					{/*	<Nav.Item onClick={signOut}*/}
-					{/*				 className="py-4"*/}
-					{/*				 id="menuSignOut"*/}
-					{/*	>SIGN OUT</Nav.Item>*/}
-					{/*	:*/}
-					{/*	<SignUpModal/>*/}
-					{/*}*/}
-				</Nav>
-			</Navbar.Collapse>
-		</Navbar>
+	return (
+		<>
+			<header>
+				<Navbar class="navbar" bg="primary" expand="md" variant="light" fixed="top">
+					<Container>
+						<Row>
+							<Col xs={6} md={4}>
+								<Image src="" rounded />
+							</Col>
+							<Col xs={6} md={4}>
+								<Image src="holder.js/171x180" roundedCircle />
+							</Col>
+							<Col xs={6} md={4}>
+								<Image src="holder.js/171x180" thumbnail />
+							</Col>
+						</Row>
+					</Container>
+					<Link to="/">
+						<Navbar.Brand>Find Me Beer!</Navbar.Brand>
+					</Link>
+					<Navbar.Toggle aria-controls="basic-navbar-nav">Find Me Beer</Navbar.Toggle>
+					<Navbar.Collapse>
+						<Nav className="ml-auto">
+							<NavDropdown className="nav-link" title={"Profile"}>
+								{/*<NavDropdown.Item href="/profile">*/}
+								{/*	<FontAwesomeIcon icon="Favorites"/>&nbsp; Favorites*/}
+								{/*</NavDropdown.Item>*/}
+								<NavDropdown.Item>
+									{/*<FontAwesomeIcon icon="Profile"/>&nbsp; Profile*/}
+									<Nav.Link href="#link">Profile</Nav.Link>
+									<div className="dropdown-divider"/>
+								</NavDropdown.Item>
+								<div className="dropdown-item log-out-dropdown">
+									<button className="btn btn-outline-dark">
+										Log Out&nbsp;<FontAwesomeIcon icon="log-out-alt"/>
+									</button>
+								</div>
+							</NavDropdown>
+						</Nav>
+					</Navbar.Collapse>
+				</Navbar>
+			</header>
+		</>
 	)
 };
