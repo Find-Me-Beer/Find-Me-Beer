@@ -32,8 +32,8 @@ export const SignInForm = ({handleClose}) => {
 					window.localStorage.removeItem("jwt-token");
 					window.localStorage.setItem("jwt-token", reply.headers["x-jwt-token"]);
 					resetForm();
-					handleClose();
-					window.location.reload();
+					history.push('/')
+					// window.location.reload();
 			}
 				setStatus({message, type});
 			});
