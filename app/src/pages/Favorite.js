@@ -2,8 +2,8 @@ import React, {useState, useEffect} from "react";
 import {useSelector} from "react-redux";
 import {httpConfig} from "../shared/misc/http-config";
 import {UseJwt} from "../shared/misc/JwtHelpers";
-
 import {isEmpty} from "../shared/misc/js-object-helpers";
+import {handleSessionTimeout} from "../shared/misc/handle-session-timeout";
 
 import Button from "react-bootstrap/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -34,6 +34,7 @@ export const Favorite = ({beerId, userId}) => {
 	const effects = () => {
 		initializeFavorites(userId);
 		countFavorites(beerId);
+		console.log(userId);
 	};
 
 	// add favorites to inputs - this informs React that favorites are being updated from Redux. This ensures proper component rendering.
@@ -99,6 +100,10 @@ export const Favorite = ({beerId, userId}) => {
 					toggleFavorite();
 					setFavoriteCount(favoriteCount + 1);
 				}
+				// if there's an issue with a $_SESSION mismatch with xsrf or jwt, alert user and do a sign out
+				if(reply.status === 401) {
+					handleSessionTimeout();
+				}
 			});
 	};
 
@@ -114,6 +119,10 @@ export const Favorite = ({beerId, userId}) => {
 				if(reply.status === 200) {
 					toggleFavorite();
 					setFavoriteCount(favoriteCount > 0 ? favoriteCount - 1 : 0);
+				}
+				// if there's an issue with a $_SESSION mismatch with xsrf or jwt, alert user and do a sign out
+				if(reply.status === 401) {
+					handleSessionTimeout();
 				}
 			});
 	};

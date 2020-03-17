@@ -4,6 +4,7 @@ import _ from "lodash";
 import {getBreweryByBreweryId} from "./get-breweries";
 import {getAllTags} from "./get-tag";
 import {getBeerTagsByBeerTagBeerId, getBeerTagsByBeerTagTagId} from "./get-beerTag";
+import {getUserByUserId} from "./get-user";
 
 export const getAllBeer = () => async dispatch => {
 	const {data} = await httpConfig(`/apis/beer/`);
@@ -47,3 +48,9 @@ export const getEverythingButFavorites = () => async (dispatch, getState) => {
 	breweryIds.forEach(id => dispatch(getBreweryByBreweryId(id)));
 };
 
+export const getBeerAndUsers = () => async (dispatch, getState) => {
+	await dispatch(getAllBeer());
+
+	const userIds = _.uniq(_.map(getState().beer, "beerUserId"));
+	userIds.forEach(id => dispatch(getUserByUserId(id)));
+};
