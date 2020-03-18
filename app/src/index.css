@@ -53,6 +53,7 @@ body { width: 100%;}
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+
 }
 
 .sfooter-content {
@@ -115,8 +116,10 @@ button,
 footer {
 	background-color: #262626;
 	height: 50px;
-	padding-top: 10px;
+	/*padding-top: 10px;*/
 	position:relative;
+	padding-bottom: 3em;
+	padding-top: 3em;
 }
 
 a:hover, a:visited, a:link, a:active {
