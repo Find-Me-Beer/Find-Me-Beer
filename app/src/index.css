@@ -7,6 +7,7 @@ h1, .h1,
 h2, .h2,
 h3, .h3,
 h4, .h4,
+
 .navbar-brand {
 	font-family: 'Audiowide', sans-serif;
 }
@@ -91,8 +92,7 @@ button.post-like-btn:disabled {
 	cursor: unset;
 }
 
-#signup
-{
+#signup {
 	text-align: center;
 }
 
@@ -163,8 +163,31 @@ a:hover, a:visited, a:link, a:active {
 	text-align: center;
 }
 
+.home-page-text-yellow {
+	color: #f2B705;
+	text-align: center;
+}
+
 .home-background {
 	background-image: url("./img/fmb-beer.jpg");
+	background-size: cover;
+}
+
+.home-page-text-black {
+	color: #373737;
+	font-family: 'Audiowide', sans-serif;
+	font-size: x-large;
+	text-align: center;
+}
+
+.logo-icon {
+	height: 50px;
+	width: 40px;
+}
+
+.logo-icon-large {
+	height: 300px;
+	width: 250px;
 }
 
 /*Beer Page*/
