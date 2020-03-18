@@ -8,7 +8,7 @@ import Image from "react-bootstrap/Image";
 import Image2 from "../img/beer-mug.png";
 import Image3 from "../img/location-tick.png";
 import Image4 from "../img/favorite-star.png";
-import Logo from "../img/fmb-navbar-logo.png"
+import Logo from '../img/fmb-navbar-logo.png';
 
 
 export const Home = () => {
@@ -23,45 +23,48 @@ export const Home = () => {
 								<h1 className="home-page-text-yellow mt-5 mb-5">Welcome!</h1>
 									<Col className="col-12 offset-5">
 										<Image className="logo-icon-large" src={Logo} />
-										<p>Find Me Beer has you covered when it comes to finding the perfect craft beer and then it will take you to it! </p>
-								</Col>
+										<p>Find Me Beer has you covered when it comes to finding the perfect craft beer and then it
+										will take you there! </p>
+									</Col>
 							</Col>
 						</Row>
 					</Container>
-				</div>
-				<Container>
-					<Row>
-						<Col>
-							<h3 className="display-4 mt-5 d-bloc home-page-text-black">FMB! Features</h3>
-						</Col>
-					</Row>
-				</Container>
-				<Container fluid="true" className="py-5">
-					<Row>
-						<Col m={4} className="align-items-center justify-content-center">
-							<Image src={Image2} className="thumbs mx-auto d-block"/>
-							<h3 className="ml-3 align-text-center home-page-text">Discover New Beer Based On Preferences.</h3>
-						</Col>
-						<Col m={4}>
-							<Image src={Image3} className="thumbs mx-auto d-block"/>
-							<h3 className="ml-1 align-text-center home-page-text">Find Local Breweries Near Your Location.</h3>
-						</Col>
-						<Col m={4}>
-							<Image src={Image4} className="thumbs mx-auto d-block"/>
-							<h3 className="align-text-center home-page-text">Keep a list of your favorite beer.</h3>
-						</Col>
-					</Row>
-				</Container>
-				<Container fluid="true" className="pb-5">
-					<Row>
-						<Col m={12}>
-							<Button variant="primary" size="lg" className="home-page-text rounded mx-auto d-block">
-								Find Me Beer!
-							</Button>{' '}
-						</Col>
-					</Row>
-				</Container>
-			</main>
-		</>
-	)
+						</div>
+						<Container>
+							<Row>
+								<Col>
+									<h3 className="display-4 mt-5 d-bloc home-page-text-black">FMB! Features</h3>
+								</Col>
+							</Row>
+						</Container>
+						<Container fluid="true" className="py-5">
+							<Row>
+								<Col m={4}>
+									<Image src={Image2} className="thumbs mx-auto d-block"/>
+									<h3 className="ml-3 align-text-center home-page-text">Discover New Beer Based On
+										Preferences.</h3>
+								</Col>
+								<Col m={4}>
+									<Image src={Image3} className="thumbs mx-auto d-block"/>
+									<h3 className="ml-1 align-text-center home-page-text">Find Local Breweries Near Your
+										Location.</h3>
+								</Col>
+								<Col m={4}>
+									<Image src={Image4} className="thumbs mx-auto d-block"/>
+									<h3 className="align-text-center home-page-text">Keep a list of your favorite beer.</h3>
+								</Col>
+							</Row>
+						</Container>
+						<Container fluid="true" className="pb-5">
+							<Row>
+								<Col m={12}>
+									<Button variant="primary" size="lg" className="home-page-text rounded mx-auto d-block">
+										Find Me Beer!
+									</Button>{' '}
+								</Col>
+							</Row>
+						</Container>
+					</main>
+				</>
+		)
 };

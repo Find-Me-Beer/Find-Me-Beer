@@ -10,92 +10,41 @@ import Button from "react-bootstrap/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {SignUpModal} from "../../../pages/signup/SignUpModal";
 import {SignInModal} from "../sign-in/SigninModal";
-export const NavBar = () => {
 
-	// grab the jwt and username for logged in users
-	const jwt = UseJwt();
-	
-	useEffect( () =>{
-		httpConfig.get("/apis/xsrf/")
-	});
+	export const NavBar = () => {
+		return (
+			<>
+				<header>
+					<Navbar bg="light" expand="md" variant="light" fixed="top">
+						<Link to="/">
+							<Navbar.Brand>=^ Octo Meow 7.0 ^=</Navbar.Brand>
+						</Link>
+						<Navbar.Text className="small font-italic d-none d-md-inline-block">A DDC React Demo.</Navbar.Text>
+						<Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
+						<Navbar.Collapse>
+							<Nav className="ml-auto">
 
-	const signOut = () => {
-		httpConfig.get("apis/sign-out/")
-			.then(reply => {
-				if (reply.status === 200) {
-					window.localStorage.removeItem("jwt-token");
-					console.log(reply);
-					setTimeout(() => {
-						window.location.reload();
-					}, 1500);
-				}
-			});
+								<NavDropdown className="nav-link" title={"Welcome, --username--- !"}>
+									<NavDropdown.Item href="/profile">
+										<FontAwesomeIcon icon="user"/>&nbsp; Profile
+									</NavDropdown.Item>
+									<div className="dropdown-divider"></div>
+									<div className="dropdown-item sign-out-dropdown">
+										<button className="btn btn-outline-dark">
+											Sign Out&nbsp;<FontAwesomeIcon icon="sign-out-alt"/>
+										</button>
+									</div>
+								</NavDropdown>
+
+								<Link className="nav-link" to="/posts">
+									<Button variant="outline-dark" className="btn-block">
+										<FontAwesomeIcon icon="cat"/>&nbsp;Posts
+									</Button>
+								</Link>
+							</Nav>
+						</Navbar.Collapse>
+					</Navbar>
+				</header>
+			</>
+		)
 	};
-
-	return(
-		<Navbar className="nav-style fixed-top"
-				  expand="lg"
-				  variant="dark"
-		>
-
-			{/*<LinkContainer exact to="/">*/}
-			{/*	<img alt="ABQCOOKBOOK Icon"*/}
-			{/*		  src= {logo}*/}
-			{/*		  id="nav-image"*/}
-			{/*		  className="d-none d-lg-inline-block align-top"*/}
-			{/*	/>*/}
-			{/*</LinkContainer>*/}
-
-			{/*<LinkContainer exact to="/">*/}
-			{/*	<img alt="ABQCOOKBOOK Icon"*/}
-			{/*		  src={smallLogo}*/}
-			{/*		  id="nav-image-small"*/}
-			{/*		  className="d-lg-none d-inline-block align-top"*/}
-			{/*	/>*/}
-			{/*</LinkContainer>*/}
-
-			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
-			<Navbar.Collapse id="responsive-navbar-nav">
-				<Nav className="ml-auto text-right">
-
-					{/*<Nav.Link href="/recipe-list"*/}
-					{/*			 className="py-3 mr-1 d-lg-none d-inline-block"*/}
-					{/*>SEARCH</Nav.Link>*/}
-					{/*{jwt !== null ?*/}
-					{/*	<UserMenu/>*/}
-					{/*	:*/}
-					{/*	<SignInModal/>*/}
-					{/*}*/}
-
-					{/*{jwt !== null &&*/}
-					{/*<Nav.Link className="py-4 d-lg-none d-block"*/}
-					{/*			 id="menuSignOut"*/}
-					{/*			 href="/recipe-submission"*/}
-					{/*>*/}
-					{/*	CREATE RECIPE*/}
-					{/*</Nav.Link>*/}
-					{/*}*/}
-
-					{/*{jwt !== null &&*/}
-					{/*<Nav.Item className="py-4"*/}
-					{/*			 id="menuSignOut">MY RECIPES</Nav.Item>*/}
-					{/*}*/}
-
-					{/*{jwt !== null &&*/}
-					{/*<Nav.Item className="py-4"*/}
-					{/*			 id="menuSignOut">ACCOUNT SETTINGS</Nav.Item>*/}
-					{/*}*/}
-
-					{/*{jwt !== null ?*/}
-					{/*	<Nav.Item onClick={signOut}*/}
-					{/*				 className="py-4"*/}
-					{/*				 id="menuSignOut"*/}
-					{/*	>SIGN OUT</Nav.Item>*/}
-					{/*	:*/}
-					{/*	<SignUpModal/>*/}
-					{/*}*/}
-				</Nav>
-			</Navbar.Collapse>
-		</Navbar>
-	)
-};

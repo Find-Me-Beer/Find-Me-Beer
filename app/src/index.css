@@ -54,6 +54,7 @@ body { width: 100%;}
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+
 }
 
 .sfooter-content {
@@ -115,8 +116,10 @@ button,
 footer {
 	background-color: #262626;
 	height: 50px;
-	padding-top: 10px;
+	/*padding-top: 10px;*/
 	position:relative;
+	padding-bottom: 3em;
+	padding-top: 3em;
 }
 
 a:hover, a:visited, a:link, a:active {
@@ -151,11 +154,20 @@ a:hover, a:visited, a:link, a:active {
 
 /*Home Page Styling*/
 
+#homepage {
+	overflow-x: hidden;
+	/*overflow-y: hidden;*/
+
+}
 .thumbs {
 	height: 100px;
 	width: 100px;
 }
+#background-image{
+	width:100%;
+	height:75%;
 
+}
 .home-page-text {
 	color: #FFFFFF;
 	font-family: 'Audiowide', sans-serif;
@@ -230,5 +242,12 @@ a:hover, a:visited, a:link, a:active {
 .search-button {
 	background: #048ABF;
 	color: white;
-
+}
+#logo-nav{
+	max-width:25%;
+	/*max-height:100%;*/
+	align-items: flex-start;
+	object-fit: contain;
+	position: relative;
+	border-radius: 50%;
 }

@@ -145,6 +145,35 @@ class Favorite implements \JsonSerializable {
 	}
 
 	/**
+	 * gets all Favorites
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @return \SplFixedArray SplFixedArray of Favorites found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getAllFavorites(\PDO $pdo) : \SplFixedArray {
+		//create query template
+		$query = "SELECT favoriteBeerId, favoriteUserId FROM favorite";
+		$statement = $pdo->prepare($query);
+		$statement->execute();
+		//build an array of posts
+		$favorites = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$favorite = new Favorite($row["favoriteBeerId"], $row["favoriteUserId"]);
+				$favorites[$favorites->key()] = $favorite;
+				$favorites->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($favorites);
+	}
+
+	/**
 	 * gets the Favorites by FavoriteBeerId and favoriteUserId
 	 *
 	 * @param \PDO $pdo PDO connection object

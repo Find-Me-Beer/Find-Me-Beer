@@ -58,7 +58,7 @@ try {
 		} else if(empty($favoriteUserId) === false) {
 			$reply->data = Favorite::getFavoriteByFavoriteUserId($pdo, $favoriteUserId)->toArray();
 		} else {
-			throw new InvalidArgumentException("incorrect search parameters ", 404);
+			$reply->data = Favorite::getAllFavorites($pdo)->toArray();
 		}
 
 	} else if($method === "POST" || $method === "PUT") {

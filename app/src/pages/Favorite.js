@@ -2,8 +2,8 @@ import React, {useState, useEffect} from "react";
 import {useSelector} from "react-redux";
 import {httpConfig} from "../shared/misc/http-config";
 import {UseJwt} from "../shared/misc/JwtHelpers";
-
 import {isEmpty} from "../shared/misc/js-object-helpers";
+import {handleSessionTimeout} from "../shared/misc/handle-session-timeout";
 
 import Button from "react-bootstrap/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -34,6 +34,7 @@ export const Favorite = ({beerId, userId}) => {
 	const effects = () => {
 		initializeFavorites(userId);
 		countFavorites(beerId);
+		console.log(favoriteCount);
 	};
 
 	// add favorites to inputs - this informs React that favorites are being updated from Redux. This ensures proper component rendering.
@@ -64,6 +65,7 @@ export const Favorite = ({beerId, userId}) => {
 	* */
 	const countFavorites = (beerId) => {
 		const beerFavorites = favorites.filter(favorite => favorite.favoriteBeerId === beerId);
+		console.log(beerId);
 		return (setFavoriteCount(beerFavorites.length));
 	};
 
@@ -99,21 +101,29 @@ export const Favorite = ({beerId, userId}) => {
 					toggleFavorite();
 					setFavoriteCount(favoriteCount + 1);
 				}
+				// if there's an issue with a $_SESSION mismatch with xsrf or jwt, alert user and do a sign out
+				if(reply.status === 401) {
+					handleSessionTimeout();
+				}
 			});
 	};
 
 	/*
-* User deletes a Favorite.
+* User removes a favorite.
 * */
-	const deleteFavorite = () => {
+	const removeFavorite = () => {
 		const headers = {'X-JWT-TOKEN': jwt};
-		httpConfig.delete("/apis/favorite/", {
-			headers, data})
+		httpConfig.put("/apis/favorite/", data, {
+			headers: headers})
 			.then(reply => {
 				let {message, type} = reply;
 				if(reply.status === 200) {
 					toggleFavorite();
 					setFavoriteCount(favoriteCount > 0 ? favoriteCount - 1 : 0);
+				}
+				// if there's an issue with a $_SESSION mismatch with xsrf or jwt, alert user and do a sign out
+				if(reply.status === 401) {
+					handleSessionTimeout();
 				}
 			});
 	};
@@ -122,14 +132,13 @@ export const Favorite = ({beerId, userId}) => {
 	* Fire this function onclick
 	* */
 	const clickFavorite = () => {
-		(isFavorited === "active") ? deleteFavorite() : submitFavorite();
+		(isFavorited === "active") ? removeFavorite() : submitFavorite();
 	};
 
 	return (
 		<>
 			<Button variant="outline-danger" size="sm" className={`post-favorite-btn ${(isFavorited !== null ? isFavorited : "")}`} disabled={!jwt && true} onClick={clickFavorite}>
 				<FontAwesomeIcon icon="heart"/>&nbsp;
-				<Badge variant="danger">{favoriteCount}</Badge>
 			</Button>
 		</>
 	)
