@@ -22,7 +22,7 @@ export const Home = () => {
 							<Col className="col-12">
 								<h1 className="home-page-text-yellow mt-5 mb-5">FIND ME BEER!</h1>
 								<Col className="col-6 offset-3 offset-xl-5 rounded-bottom">
-									<Image className="logo-icon-large ml-3 offset-lg-4 offset-xl-4 container" src={Logo}/>
+									<Image xs={12} md={3} className="logo-icon-large ml-3 offset-lg-4 offset-xl-4 container " src={Logo}/>
 								</Col>
 								<Row className="offset-3 col-6">
 									<p className="home-p">Find Me Beer has you covered when it comes to helping you find your favorite craft beers
@@ -44,19 +44,19 @@ export const Home = () => {
 						</Col>
 					</Row>
 				</Container>
-				<Container fluid="true" className="py-5">
-					<Row>
-						<Col xs={6} md={4} clasName="container p-0 mr-3">
+				<Container lg={12} xs={12} md={6} sm={6} fluid="true" className="py-5">
+					<Row className="">
+						<Col xs={12} md={6} sm={6} clasName="container py-5">
 							<Image src={Image2} className="thumbs mx-auto d-block"/>
 							<p className="ml-3 align-text-center home-p">Discover New Beer Based On
 								Preferences.</p>
 						</Col>
-						<Col xs={6} md={4} clasName="container p-0 mr-3">
+						<Col xs={12} md={6} sm={6} clasName="container py-5">
 							<Image src={Image3} className="thumbs mx-auto d-block"/>
-							<p className="ml-1 align-text-center home-p">Find Local Breweries Near Your
+							<p className="ml-1 align-text-center home-p col-xs-9">Find Local Breweries Near Your
 								Location.</p>
 						</Col>
-						<Col xs={6} md={4} clasName="container p-0 mr-3">
+						<Col lg={12} xs={12} md={12} sm={12} clasName="container py-5">
 							<Image src={Image4} className="thumbs mx-auto d-block"/>
 							<p className="align-text-center home-p">Keep a list of your favorite beer.</p>
 						</Col>
