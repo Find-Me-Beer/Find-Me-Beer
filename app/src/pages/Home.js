@@ -17,7 +17,7 @@ export const Home = () => {
 	return (
 		<>
 
-			<main className="mh-100">
+			<main className="mh-100" id="homepage">
 				<div className="home-background">
 				<Container fluid="true">
 					<Image className="img-fluid" src={Image1} alt="beer foam in a glass" id="background-image" fluid/>

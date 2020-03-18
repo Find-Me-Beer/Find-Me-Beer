@@ -49,7 +49,7 @@ export const NavBar = () => {
 					<Link to="/signup">
 						<Navbar.Brand>Sign Up!</Navbar.Brand>
 					</Link>
-					<Navbar.Toggle aria-controls="basic-navbar-nav id=basic-nav-dropdown"></Navbar.Toggle>
+					{/*<Navbar.Toggle aria-controls="basic-navbar-nav id=basic-nav-dropdown"></Navbar.Toggle>*/}
 					<Navbar.Collapse>
 						<Nav className="ml-auto">
 							<NavDropdown>
