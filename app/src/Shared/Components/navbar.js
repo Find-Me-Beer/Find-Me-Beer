@@ -29,9 +29,6 @@ export const NavBar = () => {
 							<Col xs={6} md={4}>
 								<img src={Logo} id="logo-nav" />
 							</Col>
-							{/*<Col xs={6} md={4}>*/}
-							{/*	<img src="holder.js/171x180" thumbnail alt="logo" />*/}
-							{/*</Col>*/}
 						</Row>
 					</Container>
 					<Link to="/">
