@@ -230,7 +230,7 @@ export const SignUpFormContent = (props) => {
 						</Form.Group>
 
 						{/*for testing purposes only*/}
-						<FormDebugger {...props}/>
+						{/*<FormDebugger {...props}/>*/}
 
 					</Form>
 				</Col>

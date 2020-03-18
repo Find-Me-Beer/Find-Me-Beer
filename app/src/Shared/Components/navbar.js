@@ -49,10 +49,10 @@ export const NavBar = () => {
 					<Link to="/signup">
 						<Navbar.Brand>Sign Up!</Navbar.Brand>
 					</Link>
-					<Navbar.Toggle aria-controls="basic-navbar-nav">Find Me Beer</Navbar.Toggle>
+					<Navbar.Toggle aria-controls="basic-navbar-nav id=basic-nav-dropdown"></Navbar.Toggle>
 					<Navbar.Collapse>
 						<Nav className="ml-auto">
-							<NavDropdown title="Profile" id="basic-nav-dropdown">
+							<NavDropdown>
 								<NavDropdown.Item href="/beer">
 									<FontAwesomeIcon icon="Favorites"/>&nbsp; Favorites
 								</NavDropdown.Item>
