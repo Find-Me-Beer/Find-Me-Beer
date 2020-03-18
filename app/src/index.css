@@ -107,6 +107,15 @@ button,
 	border: none;
 }
 
+.button-dark {
+	background-color: #048abf;
+	font-family: 'Audiowide', sans-serif;
+}
+
+.fmb-link {
+	color: #048abf;
+}
+
 #background {
 	background-repeat: no-repeat;
 	background-position: center;
