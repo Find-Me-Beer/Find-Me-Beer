@@ -33,7 +33,7 @@ export const SignInForm = ({handleClose}) => {
 					window.localStorage.setItem("jwt-token", reply.headers["x-jwt-token"]);
 					resetForm();
 					history.push('/beer')
-					// window.location.reload();
+					window.location.reload();
 			}
 				setStatus({message, type});
 			});

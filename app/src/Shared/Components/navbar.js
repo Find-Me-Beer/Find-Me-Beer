@@ -17,9 +17,27 @@ import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Col from "react-bootstrap/Col";
 import Logo from "../../img/fmb-navbar-logo.png"
+import {UseJwt} from "../misc/JwtHelpers";
+import {httpConfig} from "../misc/http-config";
+import {SignInModal} from "../components/sign-in/SigninModal"
+
 
 
 export const NavBar = () => {
+	const jwt = UseJwt();
+	const signOut = () => {
+		httpConfig.get("apis/sign-out/")
+			.then(reply => {
+				let {message, type} = reply;
+				if(reply.status === 200) {
+					window.localStorage.removeItem("jwt-token");
+					console.log(reply);
+					setTimeout(() => {
+						window.location = "/";
+					}, 1500);
+				}
+			});
+	};
 	return (
 		<>
 			<header>
@@ -27,7 +45,7 @@ export const NavBar = () => {
 					<Container>
 						<Row>
 							<Col xs={6} md={4}>
-								<Link to="/">
+								<Link to="/" >
 									<img src={Logo} id="logo-nav" alt="logo-nav" />
 								</Link>
 							</Col>
@@ -35,19 +53,25 @@ export const NavBar = () => {
 					</Container>
 					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 					<Navbar.Collapse id="responsive-navbar-nav">
-						<div className="navbar-collapse flex-row" id="navbarNavAltMarkup">
-					<Link to="/">
+						<div className="navbar-collapse  flex-row" id="navbarNavAltMarkup">
+					<Link className="nav-link" to="/">
 						<Navbar.Brand>Home</Navbar.Brand>
 					</Link>
-					<Link to="/beer">
+					<Link className="nav-link" to="/beer">
 						<Navbar.Brand>FMB!</Navbar.Brand>
 					</Link>
-					<Link to="/signin">
-						<Navbar.Brand>Sign In!</Navbar.Brand>
+					<Link className="nav-link">
+						<SignInModal/>
 					</Link>
-					<Link to="/signup">
+					<Link className="nav-link" to="/signup">
 						<Navbar.Brand>Sign Up!</Navbar.Brand>
 					</Link>
+							{/* conditional render if user has jwt / is logged in */}
+							{jwt !== null && (
+								<Button className="btn btn-dark" onClick={signOut}>
+									Sign Out!
+								</Button>
+							)}
 						</div>
 					</Navbar.Collapse>
 				</Navbar>
@@ -55,4 +79,3 @@ export const NavBar = () => {
 		</>
 	)
 };
-
