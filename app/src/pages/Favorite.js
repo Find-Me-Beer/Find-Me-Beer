@@ -135,6 +135,7 @@ export const Favorite = ({beerId, userId}) => {
 		(isFavorited === "active") ? removeFavorite() : submitFavorite();
 	};
 
+
 	return (
 		<>
 			<Button variant="outline-danger" size="sm" className={`post-favorite-btn ${(isFavorited !== null ? isFavorited : "")}`} disabled={!jwt && true} onClick={clickFavorite}>
