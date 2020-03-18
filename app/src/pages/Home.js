@@ -27,10 +27,11 @@ export const Home = () => {
 								<Row className="offset-3 col-6">
 									<p>Find Me Beer has you covered when it comes to helping you find your favorite craft beers
 										and then FMB
-										will take you to it! </p>
+										will take you to it! Sign up today and start finding beer!</p>
 								</Row>
-								<Row className="offset-3 col-6">
-									<p>Sign up today and start finding beer!</p>
+								<Row className="mt-5 d-block">
+									<p className="col-6 offset-3">“Beer is proof that God loves us and wants us to be happy.”
+										― Benjamin Franklin</p>
 								</Row>
 							</Col>
 						</Row>
