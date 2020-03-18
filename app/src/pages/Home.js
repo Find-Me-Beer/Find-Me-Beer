@@ -21,7 +21,7 @@ export const Home = () => {
 						<Row>
 							<Col className="col-12">
 								<h1 className="home-page-text-yellow mt-5 mb-5">FIND ME BEER!</h1>
-								<Col className="col-12 offset-3 offset-xl-5">
+								<Col className="col-6 offset-3 offset-xl-5">
 									<Image className="logo-icon-large ml-3 offset-lg-4 offset-xl-4 container" src={Logo}/>
 								</Col>
 								<Row className="offset-3 col-6">
@@ -29,10 +29,10 @@ export const Home = () => {
 										and then FMB
 										will take you to it! Sign up today and start finding beer!</p>
 								</Row>
-								<Row className="mt-5 d-block">
+								<Container className="mt-5 d-block">
 									<p className="col-6 offset-3 home-p">“Beer is proof that God loves us and wants us to be happy.”
 										― Benjamin Franklin</p>
-								</Row>
+								</Container>
 							</Col>
 						</Row>
 					</Container>
