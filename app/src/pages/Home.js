@@ -21,11 +21,13 @@ export const Home = () => {
 						<Row>
 							<Col className="col-12">
 								<h1 className="home-page-text-yellow mt-5 mb-5">Welcome!</h1>
-									<Col className="col-12 offset-5">
+									<Col className="col-12 offset-3 offset-xl-5">
 										<Image className="logo-icon-large" src={Logo} />
-										<p>Find Me Beer has you covered when it comes to finding the perfect craft beer and then it
-										will take you there! </p>
 									</Col>
+								<Row className="offset-3 col-6">
+									<p className="home-page-text">Find Me Beer has you covered when it comes to finding the perfect craft beer and then it
+										will take you there! </p>
+								</Row>
 							</Col>
 						</Row>
 					</Container>
@@ -58,7 +60,7 @@ export const Home = () => {
 						<Container fluid="true" className="pb-5">
 							<Row>
 								<Col m={12}>
-									<Button variant="primary" size="lg" className="home-page-text rounded mx-auto d-block">
+									<Button variant="primary" size="lg" className="rounded mx-auto d-block">
 										Find Me Beer!
 									</Button>{' '}
 								</Col>
