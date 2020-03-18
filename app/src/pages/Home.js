@@ -25,12 +25,12 @@ export const Home = () => {
 									<Image className="logo-icon-large ml-3 offset-lg-4 offset-xl-4 container" src={Logo}/>
 								</Col>
 								<Row className="offset-3 col-6">
-									<p>Find Me Beer has you covered when it comes to helping you find your favorite craft beers
+									<p className="home-p">Find Me Beer has you covered when it comes to helping you find your favorite craft beers
 										and then FMB
 										will take you to it! Sign up today and start finding beer!</p>
 								</Row>
 								<Row className="mt-5 d-block">
-									<p className="col-6 offset-3">“Beer is proof that God loves us and wants us to be happy.”
+									<p className="col-6 offset-3 home-p">“Beer is proof that God loves us and wants us to be happy.”
 										― Benjamin Franklin</p>
 								</Row>
 							</Col>
@@ -48,17 +48,17 @@ export const Home = () => {
 					<Row>
 						<Col m={4}>
 							<Image src={Image2} className="thumbs mx-auto d-block"/>
-							<p className="ml-3 align-text-center">Discover New Beer Based On
+							<p className="ml-3 align-text-center home-p">Discover New Beer Based On
 								Preferences.</p>
 						</Col>
 						<Col m={4}>
 							<Image src={Image3} className="thumbs mx-auto d-block"/>
-							<p className="ml-1 align-text-center">Find Local Breweries Near Your
+							<p className="ml-1 align-text-center home-p">Find Local Breweries Near Your
 								Location.</p>
 						</Col>
 						<Col m={4} clasName="container p-0 mr-3">
 							<Image src={Image4} className="thumbs mx-auto d-block"/>
-							<p className="align-text-center">Keep a list of your favorite beer.</p>
+							<p className="align-text-center home-p">Keep a list of your favorite beer.</p>
 						</Col>
 					</Row>
 				</Container>

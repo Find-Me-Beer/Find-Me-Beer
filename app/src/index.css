@@ -205,7 +205,7 @@ a:hover, a:visited, a:link, a:active {
 	width: 260px;
 }
 
-p {
+.home-p {
 	font-family: 'Rajdhani', sans-serif;
 	color: #FFFFFF;
 	text-align: center;
