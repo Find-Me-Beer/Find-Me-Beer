@@ -11,6 +11,7 @@ import CardColumns from "react-bootstrap/CardColumns";
 
 import {getEverythingButFavorites} from "../../shared/actions/get-beer";
 import {BeerCard} from "./BeerCard";
+import {Search} from "../../shared/components/search/SearchForm"
 
 import {useDispatch, useSelector} from "react-redux";
 import {
