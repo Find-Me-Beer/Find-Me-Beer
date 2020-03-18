@@ -22,10 +22,10 @@ export const Home = () => {
 							<Col className="col-12">
 								<h1 className="home-page-text-yellow mt-5 mb-5">FIND ME BEER!</h1>
 									<Col className="col-12 offset-3 offset-xl-5">
-										<Image className="logo-icon-large" src={Logo} />
+										<Image className="logo-icon-large ml-4 offset-lg-4 offset-xl-4 container" src={Logo} />
 									</Col>
 									<Row className="offset-3 col-6">
-										<p>Find Me Beer has you covered when it comes to finding your favorite craft beer and then it
+										<p>Find Me Beer has you covered when it comes to helping you find your favorite craft beers and then FMB
 										will take you to it! </p>
 								</Row>
 							</Col>
@@ -35,7 +35,7 @@ export const Home = () => {
 						<Container>
 							<Row>
 								<Col>
-									<h1 className="display-4 mt-5 d-bloc home-page-text-black">Find Me Beer Features</h1>
+									<h1 className="display-4 mt-5 home-page-text-black">FMB Features</h1>
 								</Col>
 							</Row>
 						</Container>
@@ -43,24 +43,24 @@ export const Home = () => {
 							<Row>
 								<Col m={4}>
 									<Image src={Image2} className="thumbs mx-auto d-block"/>
-									<h3 className="ml-3 align-text-center home-page-text">Discover New Beer Based On
-										Preferences.</h3>
+									<p className="ml-3 align-text-center">Discover New Beer Based On
+										Preferences.</p>
 								</Col>
 								<Col m={4}>
 									<Image src={Image3} className="thumbs mx-auto d-block"/>
-									<h3 className="ml-1 align-text-center home-page-text">Find Local Breweries Near Your
-										Location.</h3>
+									<p className="ml-1 align-text-center">Find Local Breweries Near Your
+										Location.</p>
 								</Col>
-								<Col m={4}>
+								<Col m={4} clasName="container p-0 mr-3">
 									<Image src={Image4} className="thumbs mx-auto d-block"/>
-									<h3 className="align-text-center home-page-text">Keep a list of your favorite beer.</h3>
+									<p className="align-text-center">Keep a list of your favorite beer.</p>
 								</Col>
 							</Row>
 						</Container>
 						<Container fluid="true" className="pb-5">
 							<Row>
 								<Col m={12}>
-									<Button variant="primary" size="lg" className="rounded mx-auto d-block">
+									<Button variant="primary" size="lg" className="home-page-text rounded mx-auto d-block">
 										Find Me Beer
 									</Button>{' '}
 								</Col>

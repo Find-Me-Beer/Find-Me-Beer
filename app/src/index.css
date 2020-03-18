@@ -199,8 +199,8 @@ a:hover, a:visited, a:link, a:active {
 }
 
 .logo-icon-large {
-	height: 300px;
-	width: 250px;
+	height: 280px;
+	width: 260px;
 }
 
 p {
@@ -244,7 +244,7 @@ p {
 
 .found-beer-title {
 	color: white;
-	text-shadow: 2px 2px rgba(0, 0, 0, 0.4);;
+	text-shadow: 2px 2px rgba(0, 0, 0, 0.4);
 }
 
 .search-button {
