@@ -112,8 +112,13 @@ button,
 	font-family: 'Audiowide', sans-serif;
 }
 
-.fmb-link {
+.modal-title {
 	color: #048abf;
+	font-family: 'Audiowide', sans-serif;
+}
+
+.modal-dark {
+	background-color: #f2B705;
 }
 
 #background {
@@ -214,6 +219,11 @@ a:hover, a:visited, a:link, a:active {
 .logo-icon-large {
 	height: 280px;
 	width: 260px;
+}
+
+.logo-icon-gray {
+	height: 290px;
+	width: 270px;
 }
 
 .home-p {
