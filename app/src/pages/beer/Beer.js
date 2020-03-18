@@ -45,7 +45,6 @@ export const Beer = () => {
 
 		return state.beer ? state.beer : []});
 
-
 	return (
 
 		<>
