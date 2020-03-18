@@ -20,13 +20,13 @@ export const Home = () => {
 					<Container fluid="true">
 						<Row>
 							<Col className="col-12">
-								<h1 className="home-page-text-yellow mt-5 mb-5">Welcome!</h1>
+								<h1 className="home-page-text-yellow mt-5 mb-5">FIND ME BEER!</h1>
 									<Col className="col-12 offset-3 offset-xl-5">
 										<Image className="logo-icon-large" src={Logo} />
 									</Col>
-								<Row className="offset-3 col-6">
-									<p className="home-page-text">Find Me Beer has you covered when it comes to finding the perfect craft beer and then it
-										will take you there! </p>
+									<Row className="offset-3 col-6">
+										<p>Find Me Beer has you covered when it comes to finding your favorite craft beer and then it
+										will take you to it! </p>
 								</Row>
 							</Col>
 						</Row>
@@ -35,7 +35,7 @@ export const Home = () => {
 						<Container>
 							<Row>
 								<Col>
-									<h3 className="display-4 mt-5 d-bloc home-page-text-black">FMB! Features</h3>
+									<h1 className="display-4 mt-5 d-bloc home-page-text-black">Find Me Beer Features</h1>
 								</Col>
 							</Row>
 						</Container>
@@ -61,7 +61,7 @@ export const Home = () => {
 							<Row>
 								<Col m={12}>
 									<Button variant="primary" size="lg" className="rounded mx-auto d-block">
-										Find Me Beer!
+										Find Me Beer
 									</Button>{' '}
 								</Col>
 							</Row>

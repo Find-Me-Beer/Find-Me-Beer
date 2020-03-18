@@ -2,6 +2,7 @@
 
 /* GLOBAL */
 @import url('https://fonts.googleapis.com/css?family=Audiowide');
+@import url('https://fonts.googleapis.com/css?family=Rajdhani');
 
 h1, .h1,
 h2, .h2,
@@ -200,6 +201,13 @@ a:hover, a:visited, a:link, a:active {
 .logo-icon-large {
 	height: 300px;
 	width: 250px;
+}
+
+p {
+	font-family: 'Rajdhani', sans-serif;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: x-large;
 }
 
 /*Beer Page*/
