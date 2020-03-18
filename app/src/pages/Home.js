@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -9,9 +9,28 @@ import Image2 from "../img/beer-mug.png";
 import Image3 from "../img/location-tick.png";
 import Image4 from "../img/favorite-star.png";
 import Logo from '../img/fmb-navbar-logo.png';
+import {httpConfig} from "../shared/misc/http-config";
+import {handleSessionTimeout} from "../shared/misc/handle-session-timeout";
+import {useDispatch} from "react-redux";
+import {getEverythingButFavorites} from "../shared/actions/get-beer";
+import {getAllFavorites} from "../shared/actions/get-favorite";
+
+
 
 
 export const Home = () => {
+
+	const dispatch = useDispatch();
+
+
+	const effects = () => {
+		dispatch(getEverythingButFavorites());
+	};
+
+	const inputs = [];
+
+	useEffect(effects, inputs);
+
 
 	return (
 		<>
