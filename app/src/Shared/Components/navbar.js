@@ -23,7 +23,7 @@ export const NavBar = () => {
 	return (
 		<>
 			<header>
-				<Navbar class="navbar" bg="primary" expand="md" variant="light">
+				<Navbar className="navbar" expand="md" variant="light">
 					<Container>
 						<Row>
 							<Col xs={6} md={4}>
