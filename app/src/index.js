@@ -41,6 +41,7 @@ import {
 	faSignOutAlt,
 	faTrash,
 } from "@fortawesome/free-solid-svg-icons";
+
 library.add(far, fas, faCat, faEllipsisH, faEnvelope, faHeart, faKey, faPencilAlt, faSignInAlt, faSignOutAlt, faTrash, faUser);
 
 library.add(faGithubAlt, faEnvelope,faKey,faUser,faBirthdayCake,faBeer);
