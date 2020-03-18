@@ -69,7 +69,7 @@ export const NavBar = () => {
 
 							{/* conditional render if user has jwt / is logged in */}
 							{jwt !== null && (
-								<Button className="btn btn-dark" onClick={signOut}>
+								<Button className="btn btn-signIn" onClick={signOut}>
 									Sign Out!
 								</Button>
 							)}

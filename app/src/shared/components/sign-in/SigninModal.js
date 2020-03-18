@@ -12,7 +12,7 @@ export const SignInModal = () => {
 
 	return (
 		<>
-			<Button className="btn btn-dark button-dark col-12 rounded" onClick={handleShow}>
+			<Button className="btn button-signIn rounded" onClick={handleShow}>
 				Sign In!
 			</Button>
 
