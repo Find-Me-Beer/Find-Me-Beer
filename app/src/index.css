@@ -217,6 +217,14 @@ a:hover, a:visited, a:link, a:active {
 	font-size: x-large;
 }
 
+/*SignIn Page*/
+
+.sign-in-card {
+	padding-bottom: 36em;
+}
+
+
+
 /*Beer Page*/
 
 .search-container {
