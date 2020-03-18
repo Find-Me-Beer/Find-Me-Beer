@@ -23,14 +23,19 @@ export const NavBar = () => {
 	return (
 		<>
 			<header>
-				<Navbar className="navbar" expand="md" variant="light">
+				<Navbar className="navbar" variant="dark" sticky="top" collapseOnSelect expand="lg">
 					<Container>
 						<Row>
 							<Col xs={6} md={4}>
-								<img src={Logo} id="logo-nav" />
+								<Link to="/">
+									<img src={Logo} id="logo-nav" alt="logo-nav" />
+								</Link>
 							</Col>
 						</Row>
 					</Container>
+					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+					<Navbar.Collapse id="responsive-navbar-nav">
+						<div className="navbar-collapse flex-row-reverse" id="navbarNavAltMarkup">
 					<Link to="/">
 						<Navbar.Brand>Home</Navbar.Brand>
 					</Link>
@@ -43,30 +48,7 @@ export const NavBar = () => {
 					<Link to="/signup">
 						<Navbar.Brand>Sign Up!</Navbar.Brand>
 					</Link>
-					{/*<Navbar.Toggle aria-controls="basic-navbar-nav id=basic-nav-dropdown"></Navbar.Toggle>*/}
-					<Navbar.Collapse>
-						<Nav className="ml-auto">
-							<NavDropdown>
-								<NavDropdown.Item href="/beer">
-									<FontAwesomeIcon icon="Favorites"/>&nbsp; Favorites
-								</NavDropdown.Item>
-								<NavDropdown.Item>
-									<FontAwesomeIcon icon="Profile"/>&nbsp; Profile
-									<Nav.Link href="/signin">Sign In</Nav.Link>
-									<div className="dropdown-divider"/>
-								</NavDropdown.Item>
-								<NavDropdown.Item>
-									<FontAwesomeIcon icon="Profile"/>&nbsp; Profile
-									<Nav.Link href="/signup">Sign Up</Nav.Link>
-									<div className="dropdown-divider"/>
-								</NavDropdown.Item>
-								<div className="dropdown-item log-out-dropdown">
-									<button className="btn btn-outline-dark">
-										Log Out&nbsp;<FontAwesomeIcon icon="log-out-alt"/>
-									</button>
-								</div>
-							</NavDropdown>
-						</Nav>
+						</div>
 					</Navbar.Collapse>
 				</Navbar>
 			</header>
