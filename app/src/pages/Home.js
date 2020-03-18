@@ -78,7 +78,7 @@ export const Home = () => {
 				<Container fluid="true" className="pb-5">
 					<Row lg={6} xs={6} md={6} sm={6} >
 						<Col>
-							<Button href="/home" variant="primary" size="lg" className="col-6 home-page-text rounded mx-auto d-block">
+							<Button href="/" variant="primary" size="lg" className="col-6 home-page-text rounded mx-auto d-block">
 								Find Me Beer
 							</Button>{' '}
 						</Col>
