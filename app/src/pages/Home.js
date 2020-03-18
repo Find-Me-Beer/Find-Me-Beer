@@ -46,17 +46,17 @@ export const Home = () => {
 				</Container>
 				<Container fluid="true" className="py-5">
 					<Row>
-						<Col m={4} xs={6} md={4} clasName="container p-0 mr-3">
+						<Col xs={6} md={4} clasName="container p-0 mr-3">
 							<Image src={Image2} className="thumbs mx-auto d-block"/>
 							<p className="ml-3 align-text-center home-p">Discover New Beer Based On
 								Preferences.</p>
 						</Col>
-						<Col m={4} xs={6} md={4} clasName="container p-0 mr-3">
+						<Col xs={6} md={4} clasName="container p-0 mr-3">
 							<Image src={Image3} className="thumbs mx-auto d-block"/>
 							<p className="ml-1 align-text-center home-p">Find Local Breweries Near Your
 								Location.</p>
 						</Col>
-						<Col m={4} xs={6} md={4} clasName="container p-0 mr-3">
+						<Col xs={6} md={4} clasName="container p-0 mr-3">
 							<Image src={Image4} className="thumbs mx-auto d-block"/>
 							<p className="align-text-center home-p">Keep a list of your favorite beer.</p>
 						</Col>
