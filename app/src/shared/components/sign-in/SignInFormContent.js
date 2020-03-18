@@ -9,6 +9,9 @@ import FormControl from 'react-bootstrap/FormControl'
 import Button from "react-bootstrap/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {FormDebugger} from "../../FormDebugger";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export const SignInFormContent = (props) => {
 
@@ -27,7 +30,7 @@ export const SignInFormContent = (props) => {
 
 	return (
 		<>
-			<Card bg="transparent" className="col-4 d-inline-block d-flex mx-auto align-items-center border-0 rounded-0">
+			<Card bg="transparent" className="col-4 d-inline-block d-flex mx-auto align-items-center border-0 rounded-0 sign-in-card">
 				<Card.Body>
 					<Form onSubmit={handleSubmit}>
 						<Form.Group>
@@ -98,7 +101,6 @@ export const SignInFormContent = (props) => {
 
 				</Card.Body>
 			</Card>
-
 			{console.log(status)}
 			{status && (<div className={status.type}>{status.message}</div>)}
 		</>
