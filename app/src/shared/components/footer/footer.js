@@ -13,10 +13,7 @@ export const Footer = () => (
 				<Row className="text-center text-white">
 					<Col>
 						<a href="https://github.com/Find-Me-Beer/Find-Me-Beer"  rel="noopener noreferrer" target="_blank">
-							<h5 className="d-none d-lg-block" id="footerIcons">
-								Check Out Our GitHub
-							</h5>
-							<i className="d-lg-none d-inline-block" id="footerIcons">
+							<i id="footerIcons">
 								<FontAwesomeIcon icon={faGithubAlt} size="2x"/>
 							</i>
 						</a>
@@ -24,10 +21,7 @@ export const Footer = () => (
 
 					<Col>
 						<a href="mailto:FindMeBeer2020@gmail.com" rel="noopener noreferrer" target="_blank" >
-							<h5 className="d-none d-lg-block" id="footerIcons">
-								Contact us
-							</h5>
-							<i className="d-lg-none d-inline-block" id="footerIcons">
+							<i id="footerIcons">
 								<FontAwesomeIcon icon="envelope" size="2x"/>
 							</i>
 						</a>
