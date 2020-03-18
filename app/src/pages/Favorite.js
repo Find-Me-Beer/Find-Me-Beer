@@ -139,7 +139,6 @@ export const Favorite = ({beerId, userId}) => {
 		<>
 			<Button variant="outline-danger" size="sm" className={`post-favorite-btn ${(isFavorited !== null ? isFavorited : "")}`} disabled={!jwt && true} onClick={clickFavorite}>
 				<FontAwesomeIcon icon="heart"/>&nbsp;
-				<Badge variant="danger">{favoriteCount}</Badge>
 			</Button>
 		</>
 	)
