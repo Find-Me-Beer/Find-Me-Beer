@@ -44,7 +44,7 @@ export const Beer = () => {
 	const beer = useSelector(state => {
 
 		return state.beer ? state.beer : []});
-	
+
 	return (
 
 		<>
