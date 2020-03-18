@@ -35,7 +35,7 @@ export const NavBar = () => {
 						<Navbar.Brand>Home</Navbar.Brand>
 					</Link>
 					<Link to="/beer">
-						<Navbar.Brand>Find Me Beer!</Navbar.Brand>
+						<Navbar.Brand>FMB!</Navbar.Brand>
 					</Link>
 					<Link to="/signin">
 						<Navbar.Brand>Sign In!</Navbar.Brand>
