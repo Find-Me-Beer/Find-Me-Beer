@@ -75,10 +75,6 @@ nav {
 	border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.navbar {
-	background: #048ABF
-}
-
 div.dropdown-item.sign-out-dropdown:active,
 div.dropdown-item.sign-out-dropdown:hover,
 .dropdown-item.active, .dropdown-item:active {
@@ -181,9 +177,13 @@ a:hover, a:visited, a:link, a:active {
 	background-color: #038abf;
 }
 
-.home-page-text-yellow {
-	color: #f2B705;
+.home-page-text-blue {
+	color: #038abf;
 	text-align: center;
+}
+
+.nav-bar {
+
 }
 
 .home-background {
@@ -205,8 +205,6 @@ a:hover, a:visited, a:link, a:active {
 .logo-icon-large {
 	height: 280px;
 	width: 260px;
-	border: #f2B705;
-	border-radius: 5px;
 }
 
 .home-p {
