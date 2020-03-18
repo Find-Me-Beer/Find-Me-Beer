@@ -194,7 +194,6 @@ a:hover, a:visited, a:link, a:active {
 .home-page-text-black {
 	color: #373737;
 	font-family: 'Audiowide', sans-serif;
-	font-size: x-large;
 	text-align: center;
 }
 
@@ -206,6 +205,8 @@ a:hover, a:visited, a:link, a:active {
 .logo-icon-large {
 	height: 280px;
 	width: 260px;
+	border: #f2B705;
+	border-radius: 5px;
 }
 
 .home-p {
