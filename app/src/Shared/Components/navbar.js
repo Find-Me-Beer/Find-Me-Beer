@@ -35,7 +35,7 @@ export const NavBar = () => {
 					</Container>
 					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 					<Navbar.Collapse id="responsive-navbar-nav">
-						<div className="navbar-collapse flex-row-reverse" id="navbarNavAltMarkup">
+						<div className="navbar-collapse flex-row" id="navbarNavAltMarkup">
 					<Link to="/">
 						<Navbar.Brand>Home</Navbar.Brand>
 					</Link>
