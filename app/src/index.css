@@ -113,12 +113,16 @@ button,
 }
 
 .modal-title {
-	color: #048abf;
+	color: #373737;
 	font-family: 'Audiowide', sans-serif;
 }
 
-.modal-dark {
+.modal-bg-yellow {
 	background-color: #f2B705;
+}
+
+.signIn-form {
+	background-color: #373737;
 }
 
 #background {
