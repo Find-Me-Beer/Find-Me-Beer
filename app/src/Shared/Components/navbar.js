@@ -64,7 +64,6 @@ export const NavBar = () => {
 					</Container>
 					<Navbar.Toggle className="float-right" aria-controls="responsive-navbar-nav" />
 					<Navbar.Collapse id="responsive-navbar-nav">
-<<<<<<< HEAD
 						<div className="navbar-collapse row-cols-12" id="navbarNavAltMarkup">
 					<Link className="nav-link" to="/">
 						<Navbar.Brand>Home</Navbar.Brand>
@@ -108,7 +107,6 @@ export const NavBar = () => {
 							)}
 
 							{/* conditional render sign out only if user has jwt / is logged in */}
->>>>>>> 7d3c69b464f6cbbdd48ebdac6f49ef1b85fe2f3c
 							{jwt !== null && (
 								<Link className="nav-link">
 									<Button className="btn btn-signIn" onClick={signOut}>
@@ -116,7 +114,7 @@ export const NavBar = () => {
 									</Button>
 								</Link>
 							)}
-
+						</div>
 						</div>
 					</Navbar.Collapse>
 				</Navbar>
