@@ -20,6 +20,7 @@ import Logo from "../../img/fmb-navbar-logo.png"
 import {UseJwt} from "../misc/JwtHelpers";
 import {httpConfig} from "../misc/http-config";
 import {SignInModal} from "../components/sign-in/SigninModal"
+// import {SignUpModal} from "../../pages/signup/SignUpModal"
 
 
 
@@ -62,6 +63,7 @@ export const NavBar = () => {
 					</Link>
 					<Link className="nav-link">
 						<SignInModal/>
+						{/*<SignUpModal/>*/}
 					</Link>
 					<Link className="nav-link" to="/signup">
 						<Navbar.Brand>Sign Up!</Navbar.Brand>
