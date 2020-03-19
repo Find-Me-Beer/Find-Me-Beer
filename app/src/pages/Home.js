@@ -60,7 +60,7 @@ export const Home = () => {
 				<Container lg={12} xs={12} md={6} sm={6} fluid="true" className="py-5">
 					<Row>
 						<Col xs={12} md={6} sm={6} className="container py-5">
-							<Image src={Image2} className="thumbs mx-auto d-block"/>
+							<Image src={Image2} className="thumbs mx-auto d-block logo-icon-small"/>
 							<p className="ml-3 align-text-center home-p">Discover New Beer Based On
 								Preferences.</p>
 						</Col>

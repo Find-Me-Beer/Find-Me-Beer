@@ -200,10 +200,6 @@ a:hover, a:visited, a:link, a:active {
 	text-align: center;
 }
 
-.nav-bar {
-
-}
-
 .home-background {
 	background-image: url("./img/fmb-beer.jpg");
 	background-size: cover;
@@ -221,13 +217,18 @@ a:hover, a:visited, a:link, a:active {
 }
 
 .logo-icon-large {
-	height: 280px;
-	width: 260px;
+	 height: 260px;
+	 width: 260px;
+}
+
+.logo-icon-small {
+	height: 100px;
+	width: 100px;
 }
 
 .logo-icon-gray {
 	height: 290px;
-	width: 270px;
+	width: 250px;
 }
 
 .home-p {
