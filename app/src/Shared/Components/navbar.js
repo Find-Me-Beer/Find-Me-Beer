@@ -58,6 +58,7 @@ export const NavBar = () => {
 							<Col xs={6} md={4}>
 								<Link to="/" >
 									<img src={Logo} id="logo-nav" alt="logo-nav" />
+									<h6 className="navbar-title-font">Find Me Beer!</h6>
 								</Link>
 							</Col>
 						</Row>
