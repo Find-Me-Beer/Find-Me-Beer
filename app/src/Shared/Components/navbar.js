@@ -51,9 +51,9 @@ export const NavBar = () => {
 							</Col>
 						</Row>
 					</Container>
-					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+					<Navbar.Toggle className="float-right" aria-controls="responsive-navbar-nav" />
 					<Navbar.Collapse id="responsive-navbar-nav">
-						<div className="navbar-collapse  flex-row" id="navbarNavAltMarkup">
+						<div className="navbar-collapse row-cols-12" id="navbarNavAltMarkup">
 					<Link className="nav-link" to="/">
 						<Navbar.Brand>Home</Navbar.Brand>
 					</Link>
@@ -63,7 +63,7 @@ export const NavBar = () => {
 							<Link className="nav-link" to="/signup">
 							<Navbar.Brand>Sign Up!</Navbar.Brand>
 						</Link>
-					<Link className="nav-link">
+					<Link className="nav-link col-12">
 						<SignInModal/>
 					</Link>
 
