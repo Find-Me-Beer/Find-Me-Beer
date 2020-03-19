@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 import {BrowserRouter} from "react-router-dom";
@@ -19,12 +19,10 @@ import Col from "react-bootstrap/Col";
 import Logo from "../../img/fmb-navbar-logo.png"
 import {UseJwt} from "../misc/JwtHelpers";
 import {httpConfig} from "../misc/http-config";
-<<<<<<< HEAD
 import {SignInModal} from "../components/sign-in/SigninModal"
 // import {SignUpModal} from "../../pages/signup/SignUpModal"
 
-=======
->>>>>>> 05d3c931f38b7a8cb6351984eece6437e7708b8c
+
 
 import {Modal} from "react-bootstrap";
 import {SignInForm} from "../components/sign-in/SignInForm"
@@ -67,21 +65,8 @@ export const NavBar = () => {
 					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 					<Navbar.Collapse id="responsive-navbar-nav">
 						<div className="navbar-collapse  flex-row" id="navbarNavAltMarkup">
-<<<<<<< HEAD
-					<Link className="nav-link" to="/">
-						<Navbar.Brand>Home</Navbar.Brand>
-					</Link>
-					<Link className="nav-link" to="/beer">
-						<Navbar.Brand className="fmb-link">FMB!</Navbar.Brand>
-					</Link>
-							<Link className="nav-link" to="/signup">
-							<Navbar.Brand>Sign Up!</Navbar.Brand>
-						</Link>
-					<Link className="nav-link">
-						<SignInModal/>
-						{/*<SignUpModal/>*/}
-					</Link>
-=======
+
+
 							<Link className="nav-link" to="/">
 								<Navbar.Brand>Home</Navbar.Brand>
 							</Link>
@@ -89,7 +74,7 @@ export const NavBar = () => {
 							<Link className="nav-link" to="/beer">
 								<Navbar.Brand className="fmb-link">FMB!</Navbar.Brand>
 							</Link>
->>>>>>> 05d3c931f38b7a8cb6351984eece6437e7708b8c
+
 
 							{/* conditional render sign-up and sign-in only if null jwt / user is not logged in */}
 							{jwt === null && (
