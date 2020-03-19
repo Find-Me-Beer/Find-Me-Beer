@@ -56,16 +56,7 @@ export const Beer = () => {
 						<Col md={7} className>
 						</Col>
 						<Col md={4} className>
-							<InputGroup className="mb-3">
-								<FormControl
-									placeholder="search for beer"
-									aria-label="search for beer"
-									aria-describedby="basic-addon2"
-								/>
-								<InputGroup.Append>
-									<Button variant="outline-info" className="search-button">Find Me Beer!</Button>
-								</InputGroup.Append>
-							</InputGroup>
+							<Search/>
 						</Col>
 					</Row>
 				</Container>
