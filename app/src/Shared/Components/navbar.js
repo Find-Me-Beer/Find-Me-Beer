@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 import {BrowserRouter} from "react-router-dom";
@@ -21,7 +21,6 @@ import {UseJwt} from "../misc/JwtHelpers";
 import {httpConfig} from "../misc/http-config";
 import {SignInModal} from "../components/sign-in/SigninModal"
 // import {SignUpModal} from "../../pages/signup/SignUpModal"
-
 
 
 import {Modal} from "react-bootstrap";
@@ -55,67 +54,66 @@ export const NavBar = () => {
 				<Navbar className="navbar" variant="dark" sticky="top" collapseOnSelect expand="lg">
 					<Container>
 						<Row>
-							<Col xs={6} md={4}>
-								<Link to="/" >
-									<img src={Logo} id="logo-nav" alt="logo-nav" />
-									<h6 className="navbar-title-font">Find Me Beer!</h6>
+							<Col>
+								<Link to="/">
+									<img src={Logo} id="logo-nav" alt="logo-nav"/>
+										<Row>
+											<h6 className="navbar-title-font">Find Me Beer!</h6>
+										</Row>
 								</Link>
 							</Col>
 						</Row>
 					</Container>
-					<Navbar.Toggle className="float-right" aria-controls="responsive-navbar-nav" />
+					<Navbar.Toggle aria-controls="responsive-navbar-nav"/>
 					<Navbar.Collapse id="responsive-navbar-nav">
-						<div className="navbar-collapse row-cols-12" id="navbarNavAltMarkup">
-					<Link className="nav-link" to="/">
-						<Navbar.Brand>Home</Navbar.Brand>
-					</Link>
-					<Link className="nav-link" to="/beer">
-						<Navbar.Brand className="fmb-link">FMB!</Navbar.Brand>
-					</Link>
-							<Link className="nav-link" to="/signup">
-							<Navbar.Brand>Sign Up!</Navbar.Brand>
-						</Link>
-					<Link className="nav-link col-12">
-						<SignInModal/>
-					</Link>
-
-							{/* conditional render if user has jwt / is logged in */}
-=======
-						<div className="navbar-collapse  flex-row" id="navbarNavAltMarkup">
-
-
+						<div className="navbar-collapse offset-xl-5 offset-lg-5 offset-md-5 offset-sm-5 offset-xs-5" id="navbarNavAltMarkup">
 							<Link className="nav-link" to="/">
 								<Navbar.Brand>Home</Navbar.Brand>
 							</Link>
-
-							<Link className="nav-link" to="/beer">
-								<Navbar.Brand className="fmb-link">FMB!</Navbar.Brand>
+							<Link className="nav-link" to="/signup">
+								<Navbar.Brand>Sign Up!</Navbar.Brand>
+							</Link>
+							<Link className="nav-link col-12">
+								<SignInModal/>
 							</Link>
 
+							{/* conditional render if user has jwt / is logged in */}
 
-							{/* conditional render sign-up and sign-in only if null jwt / user is not logged in */}
-							{jwt === null && (
-								<>
-									<Link className="nav-link" to="/signup">
-										<Navbar.Brand>Sign Up!</Navbar.Brand>
-									</Link>
+							<div className="navbar-collapse  flex-row" id="navbarNavAltMarkup">
+
+
+								<Link className="nav-link" to="/">
+									<Navbar.Brand>Home</Navbar.Brand>
+								</Link>
+
+								<Link className="nav-link" to="/beer">
+									<Navbar.Brand className="fmb-link">FMB!</Navbar.Brand>
+								</Link>
+
+
+								{/* conditional render sign-up and sign-in only if null jwt / user is not logged in */}
+								{jwt === null && (
+									<>
+										<Link className="nav-link" to="/signup">
+											<Navbar.Brand>Sign Up!</Navbar.Brand>
+										</Link>
+										<Link className="nav-link">
+											<Button className="btn button-signIn rounded" onClick={handleShow}>
+												Sign In!
+											</Button>
+										</Link>
+									</>
+								)}
+
+								{/* conditional render sign out only if user has jwt / is logged in */}
+								{jwt !== null && (
 									<Link className="nav-link">
-										<Button className="btn button-signIn rounded" onClick={handleShow}>
-											Sign In!
+										<Button className="btn btn-signIn" onClick={signOut}>
+											Sign Out!
 										</Button>
 									</Link>
-								</>
-							)}
-
-							{/* conditional render sign out only if user has jwt / is logged in */}
-							{jwt !== null && (
-								<Link className="nav-link">
-									<Button className="btn btn-signIn" onClick={signOut}>
-										Sign Out!
-									</Button>
-								</Link>
-							)}
-						</div>
+								)}
+							</div>
 						</div>
 					</Navbar.Collapse>
 				</Navbar>
@@ -126,7 +124,7 @@ export const NavBar = () => {
 						<Modal.Title className="modal-bg-yellow">FMB Sign In!</Modal.Title>
 					</Modal.Header>
 					<Row className="col-12 modal-bg-yellow">
-						<Image src={Logo} className="modal-bg-yellow logo-icon-gray offset-3 mt-5" />
+						<Image src={Logo} className="modal-bg-yellow logo-icon-gray offset-3 mt-5"/>
 					</Row>
 					<Modal.Body className="modal-bg-yellow">
 						<SignInForm/>

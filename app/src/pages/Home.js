@@ -33,9 +33,9 @@ export const Home = () => {
 					<Container fluid="true py-3" xs={6} md={4}>
 						<Row>
 							<Col className="col-12">
-								<h1 className="home-page-text-blue mt-5 mb-5">FIND ME BEER!</h1>
+								<h1 className="home-page-text-blue mt-5 mb-5">Welcome To FMB!</h1>
 								<Col className="col-6 offset-3 offset-xl-5 rounded-bottom">
-									<Image xs={12} md={3} className="logo-icon-large ml-3 offset-lg-4 offset-xl-4 container " src={Logo}/>
+									<Image xl={12} xs={12} md={3} className="logo-icon-large ml-3 offset-lg-4 offset-xl-6 container " src={Logo}/>
 								</Col>
 								<Row className="offset-3 col-6">
 									<p className="home-p">Find Me Beer has you covered when it comes to helping you find your favorite craft beers
