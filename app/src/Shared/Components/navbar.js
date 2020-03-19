@@ -59,18 +59,19 @@ export const NavBar = () => {
 						<Navbar.Brand>Home</Navbar.Brand>
 					</Link>
 					<Link className="nav-link" to="/beer">
-						<Navbar.Brand>FMB!</Navbar.Brand>
+						<Navbar.Brand className="fmb-link">FMB!</Navbar.Brand>
 					</Link>
+							<Link className="nav-link" to="/signup">
+							<Navbar.Brand>Sign Up!</Navbar.Brand>
+						</Link>
 					<Link className="nav-link">
 						<SignInModal/>
 						{/*<SignUpModal/>*/}
 					</Link>
-					<Link className="nav-link" to="/signup">
-						<Navbar.Brand>Sign Up!</Navbar.Brand>
-					</Link>
+
 							{/* conditional render if user has jwt / is logged in */}
 							{jwt !== null && (
-								<Button className="btn btn-dark" onClick={signOut}>
+								<Button className="btn btn-signIn" onClick={signOut}>
 									Sign Out!
 								</Button>
 							)}

@@ -107,6 +107,24 @@ button,
 	border: none;
 }
 
+.button-signIn {
+	background-color: #048abf;
+	font-family: 'Audiowide', sans-serif;
+}
+
+.modal-title {
+	color: #373737;
+	font-family: 'Audiowide', sans-serif;
+}
+
+.modal-bg-yellow {
+	background-color: #f2B705;
+}
+
+.signIn-form {
+	background-color: #373737;
+}
+
 #background {
 	background-repeat: no-repeat;
 	background-position: center;
@@ -182,10 +200,6 @@ a:hover, a:visited, a:link, a:active {
 	text-align: center;
 }
 
-.nav-bar {
-
-}
-
 .home-background {
 	background-image: url("./img/fmb-beer.jpg");
 	background-size: cover;
@@ -203,8 +217,18 @@ a:hover, a:visited, a:link, a:active {
 }
 
 .logo-icon-large {
-	height: 280px;
-	width: 260px;
+	 height: 260px;
+	 width: 260px;
+}
+
+.logo-icon-small {
+	height: 100px;
+	width: 100px;
+}
+
+.logo-icon-gray {
+	height: 290px;
+	width: 250px;
 }
 
 .home-p {

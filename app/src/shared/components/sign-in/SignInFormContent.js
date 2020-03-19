@@ -30,7 +30,7 @@ export const SignInFormContent = (props) => {
 
 	return (
 		<>
-			<Card bg="transparent" className="col-4 d-inline-block d-flex mx-auto align-items-center border-0 rounded-0 sign-in-card">
+			<Card bg="transparent" className="col-12 d-inline-block d-flex mx-auto align-items-center border-0 rounded sign-in-card">
 				<Card.Body>
 					<Form onSubmit={handleSubmit}>
 						<Form.Group>
@@ -91,7 +91,7 @@ export const SignInFormContent = (props) => {
 						</Form.Group>
 
 						{/*for testing purposes only*/}
-						<FormDebugger {...props}/>
+						{/*<FormDebugger {...props}/>*/}
 
 					</Form>
 					<div className="my-2">

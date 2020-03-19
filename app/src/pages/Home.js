@@ -60,7 +60,7 @@ export const Home = () => {
 				<Container lg={12} xs={12} md={6} sm={6} fluid="true" className="py-5">
 					<Row>
 						<Col xs={12} md={6} sm={6} className="container py-5">
-							<Image src={Image2} className="thumbs mx-auto d-block"/>
+							<Image src={Image2} className="thumbs mx-auto d-block logo-icon-small"/>
 							<p className="ml-3 align-text-center home-p">Discover New Beer Based On
 								Preferences.</p>
 						</Col>
@@ -76,9 +76,9 @@ export const Home = () => {
 					</Row>
 				</Container>
 				<Container fluid="true" className="pb-5">
-					<Row>
-						<Col m={12}>
-							<Button variant="primary" size="lg" className="home-page-text rounded mx-auto d-block">
+					<Row lg={6} xs={6} md={6} sm={6} >
+						<Col>
+							<Button href="/beer" variant="primary" size="lg" className="col-6 home-page-text rounded mx-auto d-block">
 								Find Me Beer
 							</Button>{' '}
 						</Col>
