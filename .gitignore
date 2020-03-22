@@ -2,3 +2,5 @@
 /.idea
 */vendor
 /php/vendor
+/php/config/secrets/inifilename.php
+/docker-compose.env
