@@ -23,7 +23,7 @@ services:
       volumes:
          - ./dh-param/dhparam-2048.pem:/etc/ssl/certs/dhparam-2048.pem
          - /docker-volumes/pwp/etc/letsencrypt/live/abqfindmebeer.com/fullchain.pem:/etc/letsencrypt/live/abqfindmebeer.com/fullchain.pem
-         - /docker-volumes/pwp/etc/letsencrypt/live/abqfindmebeer/privkey.pem:/etc/letsencrypt/live/abqfindmebeer/privkey.pem
+         - /docker-volumes/pwp/etc/letsencrypt/live/abqfindmebeer.com/privkey.pem:/etc/letsencrypt/live/abqfindmebeer.com/privkey.pem
 
    sql:
       build: ./sql

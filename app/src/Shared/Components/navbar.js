@@ -57,16 +57,17 @@ export const NavBar = () => {
 							<Col>
 								<Link to="/">
 									<img src={Logo} id="logo-nav" alt="logo-nav"/>
-										<Row>
-											<h6 className="navbar-title-font">Find Me Beer!</h6>
-										</Row>
+									<Row>
+										<h6 className="navbar-title-font">Find Me Beer!</h6>
+									</Row>
 								</Link>
 							</Col>
 						</Row>
 					</Container>
 					<Navbar.Toggle aria-controls="responsive-navbar-nav"/>
 					<Navbar.Collapse id="responsive-navbar-nav">
-						<div className="navbar-collapse offset-xl-5 offset-lg-5 offset-md-5 offset-sm-5 offset-xs-5" id="navbarNavAltMarkup">
+						<div className="navbar-collapse offset-xl-5 offset-lg-5 offset-md-5 offset-sm-5 offset-xs-5"
+							  id="navbarNavAltMarkup">
 							<Link className="nav-link" to="/">
 								<Navbar.Brand>Home</Navbar.Brand>
 							</Link>
@@ -107,12 +108,14 @@ export const NavBar = () => {
 
 								{/* conditional render sign out only if user has jwt / is logged in */}
 								{jwt !== null && (
+
 									<Link className="nav-link">
 										<Button className="btn btn-signIn" onClick={signOut}>
 											Sign Out!
 										</Button>
 									</Link>
 								)}
+
 							</div>
 						</div>
 					</Navbar.Collapse>
@@ -134,4 +137,5 @@ export const NavBar = () => {
 			</header>
 		</>
 	)
-};
+}
+
