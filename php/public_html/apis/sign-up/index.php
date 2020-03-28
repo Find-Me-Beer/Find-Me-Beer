@@ -7,6 +7,7 @@ require_once dirname(__DIR__, 3) . "/lib/uuid.php";
 require_once("/etc/apache2/capstone-mysql/Secrets.php");
 
 use FindMeBeer\FindMeBeer\User;
+use Mailgun\Mailgun;
 
 /**
  * api for signing up for Find Me Beer account
@@ -29,6 +30,9 @@ try {
 	//grab the mySQL connection
 	$secrets = new \Secrets("/etc/apache2/capstone-mysql/beerme.ini");
 	$pdo = $secrets->getPdoObject();
+
+	//add: mailgun api keys from secrets
+	$mailgunConfig = $secrets->getSecret("mailgun");
 
 	//determine which HTTP method was used
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
@@ -160,22 +164,9 @@ EOF;
 		 * send the Email via SMTP
 		 **/
 
-		//setup smtp
-		$smtp = new Swift_SmtpTransport(
-			"localhost", 25);
-		$mailer = new Swift_Mailer($smtp);
+		$mailgun = Mailgun::create($mailgunConfig->apikey);
 
-		//send the message
-		$numSent = $mailer->send($swiftMessage, $failedRecipients);
-
-		/**
-		 * the send method returns the number of recipients that accepted the Email
-		 * if the number attempted is not the number accepted, this is an Exception
-		 **/
-		if($numSent !== count($recipients)) {
-			// the $failedRecipients parameter passed in the send() method now contains contains an array of the Emails that failed
-			throw(new RuntimeException("unable to send email", 400));
-		}
+		$mailgun->messages()->sendMime($mailgunConfig->domain, [$requestObject->userEmail], $swiftMessage->toString(), []);
 
 		// update reply
 		$reply->message = "Thank you for creating Find Me Beer profile!";
