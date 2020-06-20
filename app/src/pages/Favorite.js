@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
 import {useSelector} from "react-redux";
-import {httpConfig} from "../Shared2/misc/http-config";
-import {UseJwt} from "../Shared2/misc/JwtHelpers";
-import {isEmpty} from "../Shared2/misc/js-object-helpers";
-import {handleSessionTimeout} from "../Shared2/misc/handle-session-timeout";
+import {httpConfig} from "../shared/misc/http-config";
+import {UseJwt} from "../shared/misc/JwtHelpers";
+import {isEmpty} from "../shared/misc/js-object-helpers";
+import {handleSessionTimeout} from "../shared/misc/handle-session-timeout";
 
 import Button from "react-bootstrap/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

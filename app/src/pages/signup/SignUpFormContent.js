@@ -11,7 +11,7 @@ import Button from "react-bootstrap/Button";
 import Logo from "../../img/login.jfif"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Link} from "react-router-dom";
-import {FormDebugger} from "../../Shared2/FormDebugger";
+import {FormDebugger} from "../../shared/FormDebugger";
 
 
 export const SignUpFormContent = (props) => {

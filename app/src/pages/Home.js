@@ -10,7 +10,7 @@ import Image3 from "../img/location-tick.png";
 import Image4 from "../img/favorite-star.png";
 import Logo from '../img/fmb-navbar-logo.png';
 import {useDispatch} from "react-redux";
-import {getEverythingButFavorites} from "../Shared2/actions/get-beer";
+import {getEverythingButFavorites} from "../shared/actions/get-beer";
 
 
 export const Home = () => {

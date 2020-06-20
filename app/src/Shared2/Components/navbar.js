@@ -17,15 +17,15 @@ import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Col from "react-bootstrap/Col";
 import Logo from "../../img/fmb-navbar-logo.png"
-import {UseJwt} from "../misc/JwtHelpers";
-import {httpConfig} from "../misc/http-config";
-import {SignInModal} from "../components/sign-in/SigninModal"
+import {UseJwt} from "../../shared/misc/JwtHelpers"
+import {httpConfig} from "../../shared/misc/http-config";
+import {SignInModal} from "../../shared/components/sign-in/SigninModal"
 // import {SignUpModal} from "../../pages/signup/SignUpModal"
 
 
 
 import {Modal} from "react-bootstrap";
-import {SignInForm} from "../components/sign-in/SignInForm"
+import {SignInForm} from "../../shared/components/sign-in/SignInForm"
 
 export const NavBar = () => {
 

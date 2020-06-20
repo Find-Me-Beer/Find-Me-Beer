@@ -10,20 +10,20 @@ import {Route, Switch} from "react-router";
 import {FourOhFour} from "./pages/FourOhFour";
 import {Home} from "./pages/Home";
 import {Beer} from "./pages/beer/Beer";
-import {NavBar} from "./Shared2/components/navbar";
+import {NavBar} from "./Shared2/Components/navbar";
 
 import {applyMiddleware, createStore} from "redux";
-import {combinedReducers} from "./Shared2/reducers/";
+import {combinedReducers} from "./shared/reducers/";
 import thunk from "redux-thunk";
 import { Provider } from 'react-redux'
 import {SignUpFormContent} from "./pages/signup/SignUpFormContent";
-import {SignInForm} from "./Shared2/components/sign-in/SignInForm";
+import {SignInForm} from "./shared/components/sign-in/SignInForm";
 import {SignUpForm} from "./pages/signup/SignUpForm";
-import {SignInModal} from "./Shared2/components/sign-in/SigninModal";
+import {SignInModal} from "./shared/components/sign-in/SigninModal";
 import {SignUpModal} from "./pages/signup/SignUpModal";
 import {Signup} from "./pages/signup/Signup";
 import {SignUpSuccess} from "./pages/SignUpSuccess";
-import {Footer} from "./Shared2/components/footer/footer"
+import {Footer} from "./shared/components/footer/footer"
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faGithubAlt} from '@fortawesome/free-brands-svg-icons';
 import {faEnvelope, faKey,faUser,faBirthdayCake,faBeer} from '@fortawesome/free-solid-svg-icons'

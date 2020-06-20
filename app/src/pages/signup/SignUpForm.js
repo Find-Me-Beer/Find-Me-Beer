@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {httpConfig} from "../../Shared2/misc/http-config";
+import {httpConfig} from "../../shared/misc/http-config";
 import * as Yup from "yup";
 import {Formik} from "formik";
 

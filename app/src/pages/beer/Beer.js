@@ -9,7 +9,7 @@ import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import CardColumns from "react-bootstrap/CardColumns";
 
-import {getEverythingButFavorites} from "../../Shared2/actions/get-beer";
+import {getEverythingButFavorites} from "../../shared/actions/get-beer";
 import {BeerCard} from "./BeerCard";
 
 import {useDispatch, useSelector} from "react-redux";
@@ -17,9 +17,9 @@ import {
 	getAllFavorites,
 	getFavoriteByFavoriteBeerIdAndFavoriteUserId,
 	getFavoriteByFavoriteUserId
-} from "../../Shared2/actions/get-favorite";
-import {getAllTags, getTagByTagId} from "../../Shared2/actions/get-tag";
-import {getBeerTagsByBeerTagBeerId, getBeerTagsByBeerTagTagId} from "../../Shared2/actions/get-beerTag";
+} from "../../shared/actions/get-favorite";
+import {getAllTags, getTagByTagId} from "../../shared/actions/get-tag";
+import {getBeerTagsByBeerTagBeerId, getBeerTagsByBeerTagTagId} from "../../shared/actions/get-beerTag";
 
 export const Beer = () => {
 

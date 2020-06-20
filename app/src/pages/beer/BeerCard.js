@@ -3,7 +3,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import Card from "react-bootstrap/Card";
 import {Favorite} from "../Favorite";
-import {UseJwt, UseJwtUserId} from "../../Shared2/misc/JwtHelpers";
+import {UseJwt, UseJwtUserId} from "../../shared/misc/JwtHelpers";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
