@@ -3,4 +3,4 @@
 */vendor
 /php/vendor
 /php/config/secrets/inifilename.php
-/docker-compose.envv
+/docker-compose.env
